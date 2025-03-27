@@ -1,0 +1,270 @@
+:root {
+    --corDaBorda: 1px solid rgba(102, 51, 153, 0.096);
+    --menuCor: #27222c;
+    --chatCor: rgb(28, 25, 32);
+}
+
+.grupo_grupoContainer {
+    display: flex;
+    width: 100%;
+    height: 100%;
+}
+
+
+
+.grupo_canaisContainer {
+    width: 13vw;
+    border: var(--corDaBorda);
+    background-color: var(--menuCor);
+}
+
+.grupo_canaisHeader {
+    display: flex;
+    border-bottom: var(--corDaBorda);
+    height: 3vw;
+}
+
+.grupo_nomeGrupo {
+    font-size: 1.2vw;
+    margin: auto;
+    color: #cecece;
+}
+
+.grupo_botaoOpcao {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    width: 1.8vw;
+    height: 1.8vw;
+    color: #9b9999;
+    border: none;
+    background: none;
+    cursor: pointer;
+}
+
+.grupo_botaoOpcao > *{
+    width: 1.5vw;
+    height: 1.5vw;
+}
+
+.grupo_botaoOpcao:hover {
+    background-color: #ffffff09;
+}
+
+.grupo_canaisPadroes {
+    border-bottom: var(--corDaBorda);
+}
+
+.grupo_categoria {
+    font-size: .7vw;
+    padding-left: .4vw;
+    padding-top: .5vw;
+}
+
+.grupo_canalNome {
+    font-size: .8vw;
+    padding-left: 1.3vw;
+    padding-top: .4vw;
+    padding-bottom: .4vw;
+    color: #b99fc4;
+    cursor: pointer;
+}
+
+.grupo_canalNome.usuario {
+    color: #9c9b9b;
+}
+
+.grupo_canalNome.usuario.ativo {
+    background-color: #ffffff25;
+    color: #f3f3f3;
+}
+
+.grupo_canalNome:hover {
+    background-color: #ffffff09;
+}
+
+
+
+
+.grupo_chatContainer {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.grupo_chatHeader {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    gap: 1.2vw;
+    height: 3.63vw;
+    background-color: #211c24;
+    border-bottom: var(--corDaBorda);
+}
+
+.grupo_chatHeader :nth-child(2) {
+   margin-left: 75vw;
+}
+
+.grupo_chatName {
+    position: absolute;
+    padding-inline: 10vw;
+    color: #f3f3f3;
+}
+
+.grupo_chatHeader button {
+    border: none;
+    border-radius: 5px;
+    width: 2.1vw;
+    height: 2.1vw;
+    cursor: pointer;
+    background-color: #f3f3f3;
+}
+
+.grupo_chatHeader button:hover {
+    background-color: rgb(206, 206, 206);
+}
+
+.grupo_chatHeader button * {
+    height: 1.1vw;
+    width: 1.1vw;
+}
+
+
+
+
+
+.grupo_chatContent {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(28, 25, 32);
+}
+
+
+.grupo_comentarioCardBackground {
+    display: flex;
+    width: 100%;
+    padding-top: 1.2vw;
+}
+
+.grupo_comentarioCardBackground:hover {
+    background-color: #00000023;
+}
+
+.grupo_comentarioCard {
+    width: 93.5%;
+}
+
+.grupo_informacaoUsuario {
+    position: absolute;
+    display: flex;
+    gap: .5vw;
+    align-items: center;
+    padding-left: 2vw;
+}
+
+.grupo_nomeDoUsuario {
+    color: #f3f3f3e1;
+}
+
+.grupo_dataDeEnvio {
+    font-size: .7vw;
+    color: #f3f3f396;
+}
+
+.grupo_imagemDoUsuario {
+    background-color: #31303065;
+    height: 3vw;
+    width: 3vw;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+
+.grupo_menssagemEnviada {
+    font-size: .7vw;
+    color: #f3f3f3c4;
+    padding-top: 2.5vw;
+    padding-left: 6vw;
+}
+
+
+
+
+.grupo_chatBar {
+    display: flex;
+    width: 100%;
+    height: 6.2vw;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--chatCor);
+}
+
+.grupo_chatBarBackground {
+    display: flex;
+    width: 90%;
+    height: 2vw;
+    background-color: #403c44;
+    border-radius: 200px;
+}
+
+.grupo_bar {
+    height: 97%;
+    width: 100%;
+    border: none;
+    outline: none;
+    background: none;
+    border-radius: 200px;
+    padding-left: 10px;
+    color: #f3f3f3be;
+}
+
+.grupo_chatBotao {
+    height: 100%;
+    width: 2.2vw;
+    background: none;
+    border: none;
+    border-radius: 200px;
+}
+
+.grupo_chatBotao > * {
+    height: 100%;
+    width: 100%;
+    color: #f3f3f39a;
+    cursor: pointer;
+}
+
+.grupo_chatBotao:hover {
+    background-color: #1f1e1e36;
+}
+
+
+
+.grupo_botaoOpcao:focus + .grupo_grupoOpcoes {
+    z-index: 1;
+    display: block;
+}
+
+.grupo_botaoOpcao:hover {
+    background-color: #f3f3f321;
+}
+
+.grupo_ButtonDiv {
+    display: flex;
+}
+
+.grupo_grupoOpcoes {
+    display: none;
+    position: absolute;
+    width: 12vw;
+    padding-bottom: .5vw;
+    margin-left: 2vw;
+    border-radius: 10px;
+    background-color: rgba(31, 30, 30, 0.938);
+    border: 2px solid rgba(165, 165, 165, 0.267);
+    
+}

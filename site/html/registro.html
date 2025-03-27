@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro</title>
+    <link rel="stylesheet" href="../style/reset.css">
+    <link rel="stylesheet" href="../style/style.css">
+    <link rel="stylesheet" href="../style/login.css">
+</head>
+<body>
+    <header>
+        <a class="logo_a" href="../../index.html">
+            <span class="login_imageSpan"><img class="logoImagem " src="../img/StudyPlaza.png" alt="Logo"></span>
+        </a>
+        
+    </header>
+    
+    <main class="main">
+        <form class="LoginModel" method="post">
+            <div class="TitleContainer">
+                <h1>Novo usuário</h1>
+                <input required type="email" name="email" class="ipt" placeholder="E-mail">
+                <input required type="text" name="nome" class="ipt" placeholder="Nome de usuário">
+                <input required type="password" name="senha" class="ipt" placeholder="Senha">
+                <input required type="password" name="senha" class="ipt" placeholder="Confirmar Senha">
+            </div>
+            <div class="buttons">
+                <button onclick= "redirecionar('./FaltaPoucoEmail.html')" type="submit" class="btnEntrar">Registrar</button>
+            </div>
+        </form> 
+    </main>
+
+    <script src="../js/redirecionar.js"></script>
+</body>
+</html>

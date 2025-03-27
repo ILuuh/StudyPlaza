@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Study Plaza</title>
+</head>
+
+<body>
+    <div class="containerPrincipal">
+        <div class="sourceContainer">
+            <div class="meusGrupos_barraDePesquisaContainer">
+                <input type="text" class="meusGrupos_barraDePesquisa" placeholder="Pesquisar grupos">
+                <button type="submit" class="meusGrupos_botaoPesquisar"><ion-icon class="meusGrupos_lupaImagem"
+                        name="search-outline"></ion-icon></button>
+            </div>
+
+            <div class="meusGrupos_grupoParteSuperior">
+                <h1>Meus grupos</h1>
+                <button onclick="trazerComponente('../app/pages/criarGrupo.html')" class="meusGrupos_botaoCriarGrupo">+</button>
+            </div>
+
+            <div class="meusGrupos_gruposBackground">
+                <div class="meusGrupos_grupos">
+                    <div class="meusGrupos_grupoCard">
+                        <div class="meusGrupos_ButtonDiv">
+                            <button title="Mais opções" type="button" class="meusGrupos_botaoOpcao">
+                                <ion-icon class="meusGrupos_iconeOpcao" name="ellipsis-horizontal-outline"></ion-icon>
+                            </button>
+
+                            <div class="meusGrupos_grupoOpcoes">
+                                <ul class="Listaopcoes">
+                                    <li class="opcao"><span><ion-icon name="notifications-outline"></ion-icon></span> Notificações</li>
+                                    <li class="opcao"><span><ion-icon name="settings-outline"></ion-icon></span> Configurações</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <button onclick="trazerComponente('./pages/grupo.html')" title="Estudos de SQL" type="button"class="meusGrupos_botaoGrupo">
+                            <img class="meusGrupos_grupoImagem" src="../grupoImagens/EstudosDeSQL.jpeg" alt="GrupoImagem">
+
+                            <h2 class="meusGrupos_grupoTitulo">Estudos de SQL</h2>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../js/trazerComponente.js"></script>
+
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+</body>
+
+</html>

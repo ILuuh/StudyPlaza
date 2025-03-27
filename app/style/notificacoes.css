@@ -1,0 +1,53 @@
+.notificacoes_notificacoesParteSuperior {
+    padding-top: 3vw;
+    width: 100%;
+}
+
+.notificacoes_notificacoesParteSuperior h1 {
+    text-align: center;
+    font-size: 1.2vw;
+    color: #f3f3f3;
+    letter-spacing: .5rem;
+}
+
+
+
+.notificacoes_notificacoes {
+    width: 85%;
+    height: 80%;
+    margin: auto;
+    padding-top: 4vw;
+    border-left: 1px solid #f3f3f309;
+    background-color: rgba(56, 55, 55, 0.034);
+    border-radius: 15px;
+}
+
+.notificacoes_notificacaoCard {
+    display: flex;
+    background: linear-gradient(to right, rgb(24, 15, 27), rgb(27, 18, 32), rgb(24, 1, 34));
+    height: 2.5vw;
+    width: 90%;
+    margin: auto;
+    margin-bottom: 1vw;
+    border-radius: 15px;
+    align-items: center;
+    gap: 2vw;
+}
+
+.notificacoes_nomeDoMencionador {
+    margin-left: 1vw;
+    color: rgb(127, 99, 160);
+}
+
+.notificacoes_atividade {
+    color: #f3f3f3;
+}
+
+.notificacoes_nomeDoGrupo {
+    color: #6fa2cc;
+}
+
+.notificacoes_data {
+    color: #f3f3f356;
+    font-size: .65vw;
+}

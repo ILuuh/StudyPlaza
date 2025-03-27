@@ -1,0 +1,137 @@
+main {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+}
+
+.principal {
+    display: flex;
+    padding-top: 6rem;
+    padding-bottom: 4rem;
+    max-width: 1280px;
+    margin: auto;
+    border-bottom: 1px solid #ffffff0c;
+}
+
+.principal_esquerdo {
+    flex: 1;
+}
+
+.principal_direito {
+    flex: 1;
+}
+
+.principal_titulo {
+    font-size: 3rem;
+    line-height: 1.1;
+    font-weight: 500;
+    letter-spacing: -0.04em;
+    color: #f3f3f3;;
+}
+
+.principal_descricao {
+    font-size: 0.9rem;
+    opacity: 0.6;
+    font-weight: 300;
+    line-height: calc(1em + 0.5rem);
+    max-width: 55ch;
+    color: #f3f3f3;
+}
+
+.principal_imagem {
+    max-width: 300px;
+    padding-left: 100px;
+}
+
+.novidadesSlider h1 {
+    font-size: .9vw;
+    color: #d29cf7bd;
+    margin-left: 16.4vw;
+    margin-top: 1vw;
+}
+
+.sliderContainer {
+    display: flex;
+    overflow: hidden;
+    height: 6vw;
+    margin-left: 21vw;
+    padding-top: 2.5vw;
+}
+
+.novidadesSlider button {
+    width: 2vw;
+    height: 2vw;
+    margin-top: 2.2vw;
+    background-color: #ffffff1c;
+    border-radius: 200px;
+    border: 1px solid #3a085c6b;
+    outline: none;
+    cursor: pointer;
+}
+
+.novidade_ul {
+    width: 53vw;
+    overflow: scroll;
+    overflow-y: hidden;
+    overflow-x: hidden;
+}
+
+.novidadesSlider button:hover {
+    background-color: #ffffffaf;
+}
+
+.botaoAnterior {
+    margin-right: 2vw;
+}
+
+.botaoProximo {
+    margin-left: 2vw;
+}
+
+.novidadesSlider button img {
+    width: 1.2vw;
+    height: 1.3vw;
+}
+
+.botaoAnterior img {
+    color: #f3f3f3;
+    margin-right: 0.12vw;
+    margin-top: 0.12vw;
+}
+
+.botaoProximo img {
+    color: #f3f3f3;
+    margin-left: 0.12vw;
+    margin-top: 0.12vw;
+}
+
+.novidade_ul {
+    display: flex;
+    gap: 3vw;
+}
+
+.novidade_li {
+    cursor: pointer;
+    border-radius: 10px;
+}
+
+.novidade_li:hover {
+    background-color: rgba(255, 255, 255, 0.04);
+}
+
+.novidade_li p {
+    width: 12vw;
+}
+
+.novidade_ul h2 {
+    font-size: 1.3vw;
+    color: #b9b4b8;
+}
+
+.novidade_ul p {
+    font-size: .8vw;
+    color: #f3f3f38c;
+    opacity: .7;
+}
+

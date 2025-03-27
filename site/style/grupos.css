@@ -1,0 +1,92 @@
+.barraDePesquisaContainer {
+    display: flex;
+    justify-content: center;
+    gap: .2vw;
+    padding-top: 5vw;
+}
+
+.barraDePesquisa {
+    border-radius: 5px;
+    width: 25vw;
+    height: 2.5vw;
+    border: none;
+    font-size: 1vw;
+}
+
+.botaoPesquisar {
+    border-radius: 5px;
+    width: 2.7vw;
+    cursor: pointer;
+    border: none;
+    background: linear-gradient(to right, rgb(61, 7, 105), rgb(112, 26, 161));
+}
+
+.botaoPesquisar:hover {
+    background: linear-gradient(to right, rgba(61, 7, 105, 0.877), rgba(111, 26, 161, 0.795));
+}
+
+.lupaImagem {
+    height: 1.2vw;
+    width: 1.2vw;
+    color: #f3f3f3;
+}
+
+.navGrupos {
+    color: rgb(255, 182, 255);
+}
+
+
+
+
+
+.gruposContainer {
+    display: flex;
+    justify-content: center;
+    border-top: 1px solid #ffffff0c;
+    margin-top: 2.5vw;
+    width: 55vw;
+    margin: auto;
+    margin-top: 2.5vw;
+}
+
+.grupos {
+    display: flex;
+    justify-content: center;
+    margin-top: 1vw;
+    gap: 3vw;
+    width: 42vw;
+    flex-wrap: wrap;
+}
+
+.grupoCard {
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    border-radius: 15px;
+    width: 9vw;
+    height: 10vw;
+    align-items: center;
+    justify-content: center;
+}
+
+.grupoCard:hover {
+    background-color: #f3f3f317;
+}
+
+.grupoImagem {
+    width: 6vw;
+    height: 6vw;
+    margin: auto;
+    margin-bottom: 0vw;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.grupoTitulo {
+    font-size: 1vw;
+    width: 8vw;
+    color: #f3f3f3;
+    margin: auto;
+    margin-top: .6vw;
+    text-align: center;
+}

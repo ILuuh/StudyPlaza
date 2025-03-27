@@ -1,0 +1,171 @@
+/*Poppins*/
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+html {
+    height: 100%;
+    min-height: 100%;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+    background: linear-gradient(to right, rgb(47, 7, 73), rgb(43, 7, 40), #010118);
+    font-family: "Poppins", sans-serif;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    padding-inline: 1.25rem;
+    padding-block: 1.25rem;
+    align-items: center;
+    max-width: 1366px;
+    margin-inline: auto;
+}
+
+footer {
+    margin-top: auto;
+}
+
+header span {
+    display: flex;
+    margin-right: 27vw;
+    width: 22vw;
+    height: 5vw;
+}
+
+.logo_a {
+    display: flex;
+    text-decoration: none;
+    align-items: center;
+    gap: 1vw;
+    width: 10vw;
+}
+
+.logoImagem {
+    max-width: 10.5vw;
+}
+
+.logoTexto {
+    font-size: 1.2vw;
+    color: #f3f3f3;
+}
+
+.nav_ul {
+    display: flex;
+    gap: 2rem;
+    padding-right: 50px;
+    align-items: center;
+    justify-content: center;
+}
+
+.nav_a {
+    text-decoration: none;
+    color:  #f3f3f3;
+}
+
+.botaoEntrar {
+    background: none;
+    border: none;
+    border: #f3f3f3 .5px solid;
+    color: #f3f3f3;
+    background-color: rgba(43, 7, 40, 0.644);
+    padding: 0.3rem 2em;
+    border-radius: 6px;
+    margin-left: 50px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.botaoEntrar:hover {
+    background-color: rgb(37, 6, 35);
+    color: rgb(255, 182, 255);
+}
+
+.footerContainer {
+    display: flex;
+    justify-content: center;
+    border-top: 5px solid #2f1242d5;
+    background: linear-gradient(to right, rgb(163, 103, 158), #20032e);
+    font-size: .8vw;
+    gap: 10vw;
+    margin-top: 6.2vw;
+    padding-bottom: 1vw;
+}
+
+
+.footerContainer > * {
+    margin-top: 2vw;
+}
+
+.Footer_logoImagem {
+    width: 4vw;
+    height: 2vw;
+    margin-bottom: 1.5vw;
+}
+
+.footer_Titulo {
+    color: #f3f3f3;
+    font-size: .78vw;
+    font-weight: 600;
+    margin-bottom: .4vw;
+}
+
+.midiasLista {
+    display: flex;
+    width: 8vw;
+    gap: .25vw;
+}
+
+.midiasSociaisDiv {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.midiaImagem {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #eceaea;
+    border-radius: 50%;
+    width: 1.5vw;
+    height: 1.5vw;
+}
+
+.midiaImagem > * {
+    width: 1.2vw;
+    height: 1.2vw;
+}
+
+.midiaImagem:hover {
+    cursor: pointer;
+}
+
+.contatoDiv {
+    display: flex;
+    flex-direction: column;
+}
+
+.contatoLista > *{
+    margin-bottom: .5vw;
+    color: #c5c4c4;
+}
+
+.politicaLista li {
+    margin-bottom: .5vw;
+}
+
+.politicaLista li a {
+    color: #c5c4c4;
+    text-decoration: none;
+}
+
+.politicaLista li a:hover {
+    text-decoration:underline;
+}
+
+

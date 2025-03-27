@@ -1,0 +1,24 @@
+.sobreNosContaioner {
+    padding-left: 9vw;
+    padding-top: 7vw;
+}
+
+article .sobreNos {
+    font-size: 3vw;
+    color: #f3f3f3;
+}
+
+.sobreNosDescricao {
+    font-size: 1.3vw;
+    padding-top: 1vw;
+    color: rgb(184, 140, 196);
+    width: 40vw;
+    letter-spacing: .1vw;
+    line-height: 1.7vw;
+    -webkit-text-stroke-width: .1px;
+    -webkit-text-stroke-color: black;
+}
+
+.navSobreNos {
+    color: rgb(255, 182, 255);
+}
