@@ -10,7 +10,8 @@ main {
     padding-top: 6rem;
     padding-bottom: 4rem;
     max-width: 1280px;
-    margin: auto;
+    margin-inline: 100px;
+    padding-left: 1.25rem;
     border-bottom: 1px solid #ffffff0c;
 }
 
@@ -47,14 +48,15 @@ main {
 .novidadesSlider h1 {
     font-size: .9vw;
     color: #d29cf7bd;
-    margin-left: 16.4vw;
+    margin-left: 100px;
+    padding-left: 1.25rem;
     margin-top: 1vw;
 }
 
 .sliderContainer {
     display: flex;
     overflow: hidden;
-    height: 6vw;
+    height: auto;
     margin-left: 21vw;
     padding-top: 2.5vw;
 }
@@ -134,4 +136,3 @@ main {
     color: #f3f3f38c;
     opacity: .7;
 }
-

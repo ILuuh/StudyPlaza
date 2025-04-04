@@ -21,7 +21,7 @@ header {
     padding-block: 1.25rem;
     align-items: center;
     max-width: 1366px;
-    margin-inline: auto;
+    margin-inline: 100px;
 }
 
 footer {
@@ -167,5 +167,3 @@ header span {
 .politicaLista li a:hover {
     text-decoration:underline;
 }
-
-
