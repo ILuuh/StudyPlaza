@@ -7,8 +7,6 @@ html {
 }
 
 body {
-    display: flex;
-    flex-direction: column;
     min-height: 100%;
     background: linear-gradient(to right, rgb(47, 7, 73), rgb(43, 7, 40), #010118);
     font-family: "Poppins", sans-serif;
@@ -17,11 +15,8 @@ body {
 header {
     display: flex;
     justify-content: space-between;
-    padding-inline: 1.25rem;
-    padding-block: 1.25rem;
     align-items: center;
-    max-width: 1366px;
-    margin-inline: 100px;
+    width: 100%;
 }
 
 footer {
@@ -30,7 +25,8 @@ footer {
 
 header span {
     display: flex;
-    margin-right: 27vw;
+    padding-left: 1.25rem;
+    margin-left: 100px;
     width: 22vw;
     height: 5vw;
 }

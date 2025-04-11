@@ -24,10 +24,8 @@ main {
 }
 
 .principal_titulo {
-    font-size: 3rem;
-    line-height: 1.1;
-    font-weight: 500;
-    letter-spacing: -0.04em;
+    font-size: 2rem;
+    font-weight: 300;
     color: #f3f3f3;;
 }
 
