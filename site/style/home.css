@@ -44,93 +44,33 @@ main {
 }
 
 .novidadesSlider h1 {
-    font-size: .9vw;
     color: #d29cf7bd;
     margin-left: 100px;
     padding-left: 1.25rem;
     margin-top: 1vw;
 }
 
-.sliderContainer {
-    display: flex;
-    overflow: hidden;
-    height: auto;
-    margin-left: 21vw;
-    padding-top: 2.5vw;
+.novidadesSlider {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 5%;
 }
 
-.novidadesSlider button {
-    width: 2vw;
-    height: 2vw;
-    margin-top: 2.2vw;
-    background-color: #ffffff1c;
-    border-radius: 200px;
-    border: 1px solid #3a085c6b;
-    outline: none;
-    cursor: pointer;
-}
-
-.novidade_ul {
-    width: 53vw;
-    overflow: scroll;
-    overflow-y: hidden;
-    overflow-x: hidden;
-}
-
-.novidadesSlider button:hover {
-    background-color: #ffffffaf;
-}
-
-.botaoAnterior {
-    margin-right: 2vw;
-}
-
-.botaoProximo {
-    margin-left: 2vw;
-}
-
-.novidadesSlider button img {
-    width: 1.2vw;
-    height: 1.3vw;
-}
-
-.botaoAnterior img {
-    color: #f3f3f3;
-    margin-right: 0.12vw;
-    margin-top: 0.12vw;
-}
-
-.botaoProximo img {
-    color: #f3f3f3;
-    margin-left: 0.12vw;
-    margin-top: 0.12vw;
-}
-
-.novidade_ul {
-    display: flex;
-    gap: 3vw;
-}
-
-.novidade_li {
-    cursor: pointer;
+.novidadesSlider .card {
+    background-color: linear-gradient(to right, rgb(47, 7, 73), rgb(43, 7, 40), #010118)cf7bd;
     border-radius: 10px;
+    padding: 0.5rem;
+    gap: 0.5rem;
+    color: white;
+ }
+
+.novidadesSlider .card:hover{
+    box-shadow: 0 10px 20px #d29cf7bd;
 }
 
-.novidade_li:hover {
-    background-color: rgba(255, 255, 255, 0.04);
-}
-
-.novidade_li p {
-    width: 12vw;
-}
-
-.novidade_ul h2 {
-    font-size: 1.3vw;
-    color: #b9b4b8;
-}
-
-.novidade_ul p {
-    font-size: .8vw;
-    color: #f3f3f38c;
-    opacity: .7;
-}
+ .card h2{
+    padding-bottom: 0.5rem;
+    font-weight: bold;
+ }

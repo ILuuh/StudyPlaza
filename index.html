@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="./site/style/reset.css">
     <link rel="stylesheet" href="./site//style/style.css">
     <link rel="stylesheet" href="./site//style/home.css">
+    <link rel="stylesheet" href="./site//style/responsivo.css">
+
 </head>
 
 <body>
@@ -22,7 +24,9 @@
             <ul class="nav_ul">
                 <li class="nav_li"><a class="nav_a" href="./site/html/sobreNos.html">Sobre nós</a></li>
                 <li class="nav_li"><a class="nav_a" href="./site/html/grupos.html">Grupos</a></li>
-                <li class="nav_li"><button onclick="redirecionar('./site/html/login.html', 'Entrar', './app/appIndex.html')" type="button" class="botaoEntrar">Entrar</button></li>
+                <li class="nav_li"><button
+                        onclick="redirecionar('./site/html/login.html', 'Entrar', './app/appIndex.html')" type="button"
+                        class="botaoEntrar">Entrar</button></li>
             </ul>
         </nav>
     </header>
@@ -31,86 +35,49 @@
         <section class="principal">
             <div class="principal_esquerdo">
                 <h2 class="principal_titulo">
-                    Encontre grupos de estudos ou crie seu próprio com os seus amigos!
+                    Transforme estudo em conexão. Crie laços, compartilhe ideias e evolua junto!
                 </h2>
 
                 <p class="principal_descricao">
-                    Com o Study Plaza você consegue encontrar vários grupos de estudos diferentes e
-                    de diversos tipos, encontrar pessoas, conversar sobre seus estudos e fazer amigos.
+                    Com o Study Plaza........
                 </p>
             </div>
 
             <div class="principal_direito">
-                <img class="principal_imagem" src="./site/img/ElfaEstudando2.png" alt="Ilustração de uma garota estudando">
+                <img class="principal_imagem" src="./site/img/ElfaEstudando2.png"
+                    alt="Ilustração de uma garota estudando">
             </div>
         </section>
 
         <section class="novidadesSlider">
             <h1>Novidades</h1>
 
-            <div class="sliderContainer">
-                <button onclick="scrollHorizontal(-150)" title="Para trás" class="botaoAnterior">
-                    <img src="./site/img/MenorQue.png " alt="botaoAnterior">
-                </button>
-
-                <ul class="novidade_ul">
-                    <li class="novidade_li">
+                    <div class="card">
                         <h2>Nova função lançada!</h2>
                         <p>
                             Após algum tempo, decidimos que é melhor que os nosso usuários consigam enviar arquivos de
                             forma mais fácil, então implementamos uma nova forma que está em seu
                             chat no bate-papo! Clique e anexe seus arquivos!
                         </p>
-                    </li>
+                    </div>
 
-                    <li class="novidade_li">
+                    <div class="card">
                         <h2>Nova integração com calendários!</h2>
                         <p>
-                            Agora você pode sincronizar os eventos dos seus grupos diretamente com o Google Agenda e o Outlook! Nunca mais perca uma reunião ou entrega de tarefa.
+                            Agora você pode sincronizar os eventos dos seus grupos diretamente com o Google Agenda e o
+                            Outlook! Nunca mais perca uma reunião ou entrega de tarefa.
                         </p>
-                    </li>
+                    </div>
 
-                    <li class="novidade_li">
+                    <div class="card">
                         <h2>IA aprimorada no fórum!</h2>
                         <p>
-                            Nossa IA agora pode sugerir respostas para perguntas comuns no fórum, ajudando você a encontrar as informações mais relevantes de forma rápida.
+                            Nossa IA agora pode sugerir respostas para perguntas comuns no fórum, ajudando você a
+                            encontrar as informações mais relevantes de forma rápida.
                         </p>
-                    </li>
-
-                    <li class="novidade_li">
-                        <h2>Grupos com temas personalizados!</h2>
-                        <p>
-                            Personalize o visual do seu grupo com temas exclusivos, cores e ícones únicos. Deixe seu grupo com a cara da sua equipe!
-                        </p>
-                    </li>
-
-                    <li class="novidade_li">
-                        <h2>Notificações inteligentes lançadas!</h2>
-                        <p>
-                            Receba alertas apenas do que realmente importa. Nosso sistema agora destaca as mensagens mais relevantes e tarefas urgentes para você.
-                        </p>
-                    </li>
-
-                    <li class="novidade_li">
-                        <h2>Modo de estudos em foco!</h2>
-                        <p>
-                            Ative o "Modo Foco" e elimine distrações enquanto estuda. Silencie notificações e mantenha a concentração no conteúdo compartilhado no grupo.
-                        </p>
-                    </li>
-
-                    <li class="novidade_li">
-                        <h2>Wiki colaborativa nos grupos!</h2>
-                        <p>
-                            Cada grupo agora possui uma Wiki colaborativa onde os membros podem construir e editar juntos um repositório de conhecimento sobre os temas estudados.
-                        </p>
-                    </li>
-                </ul>
-
-                <button onclick="scrollHorizontal(150)" title="Para frente" class="botaoProximo">
-                    <img src="./site/img/MaiorQue.png" alt="botaoAnterior">
-                </button>
-            </div>
+                    </div>
         </section>
+
     </main>
 
     <footer>

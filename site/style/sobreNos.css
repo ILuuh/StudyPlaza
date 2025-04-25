@@ -3,7 +3,32 @@
     padding-top: 7vw;
 }
 
-article .sobreNos {
+.sobreNosConteudo {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap; /* Para não quebrar em telas pequenas */
+}
+
+.principal_esquerdo {
+    flex: 1;
+    min-width: 300px;
+}
+
+.principal_direito {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.principal_imagem {
+    max-width: 100%;
+    height: auto;
+    padding-left: 2vw;
+}
+
+.sobreNos {
     font-size: 3vw;
     color: #f3f3f3;
 }
@@ -18,7 +43,46 @@ article .sobreNos {
     -webkit-text-stroke-width: .1px;
     -webkit-text-stroke-color: black;
 }
+/* Layout flexível padrão (desktop/tablet) */
+.sobreNosConteudo {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 2vw;
+}
 
-.navSobreNos {
-    color: rgb(255, 182, 255);
+/* Responsividade */
+@media (max-width: 768px) {
+    .sobreNosConteudo {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .sobreNosDescricao {
+        width: 80vw;
+        font-size: 4vw;
+        line-height: 6vw;
+    }
+
+    .sobreNos {
+        font-size: 6vw;
+    }
+
+    .principal_imagem {
+        max-width: 80vw;
+        padding-left: 0;
+        margin-top: 5vw;
+    }
+}
+
+@media (max-width: 480px) {
+    .sobreNos {
+        font-size: 6vw; 
+    }
+
+    .sobreNosDescricao {
+        font-size: 3vw;
+    }
 }

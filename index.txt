@@ -1,0 +1,51 @@
+ <li class="novidade_li">
+                        <h2>Nova função lançada!</h2>
+                        <p>
+                            Após algum tempo, decidimos que é melhor que os nosso usuários consigam enviar arquivos de
+                            forma mais fácil, então implementamos uma nova forma que está em seu
+                            chat no bate-papo! Clique e anexe seus arquivos!
+                        </p>
+                    </li>
+
+                    <li class="novidade_li">
+                        <h2>Nova integração com calendários!</h2>
+                        <p>
+                            Agora você pode sincronizar os eventos dos seus grupos diretamente com o Google Agenda e o Outlook! Nunca mais perca uma reunião ou entrega de tarefa.
+                        </p>
+                    </li>
+
+                    <li class="novidade_li">
+                        <h2>IA aprimorada no fórum!</h2>
+                        <p>
+                            Nossa IA agora pode sugerir respostas para perguntas comuns no fórum, ajudando você a encontrar as informações mais relevantes de forma rápida.
+                        </p>
+                    </li>
+
+                    <li class="novidade_li">
+                        <h2>Grupos com temas personalizados!</h2>
+                        <p>
+                            Personalize o visual do seu grupo com temas exclusivos, cores e ícones únicos. Deixe seu grupo com a cara da sua equipe!
+                        </p>
+                    </li>
+
+                    <li class="novidade_li">
+                        <h2>Notificações inteligentes lançadas!</h2>
+                        <p>
+                            Receba alertas apenas do que realmente importa. Nosso sistema agora destaca as mensagens mais relevantes e tarefas urgentes para você.
+                        </p>
+                    </li>
+
+                    <li class="novidade_li">
+                        <h2>Modo de estudos em foco!</h2>
+                        <p>
+                            Silencie notificações e mantenha a concentração no conteúdo compartilhado no grupo.
+                        </p>
+                    </li>
+
+                    <li class="novidade_li">
+                        <h2>Wiki colaborativa nos grupos!</h2>
+                        <p>
+                            Cada grupo agora possui uma Wiki colaborativa onde os membros podem construir e editar juntos um repositório de conhecimento sobre os temas estudados.
+                        </p>
+                    </li>
+                </ul>

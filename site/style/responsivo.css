@@ -1,0 +1,87 @@
+@media (max-width: 950px) {
+    header {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+  
+    .nav_ul {
+      flex-direction: column;
+      gap: 1rem;
+    }
+  
+    .footerContainer {
+      flex-direction: column;
+      align-items: center;
+      gap: 2rem;
+    }
+  
+    .midiasLista {
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+  
+    .main, .sobreNosContaioner, .LoginModel, .container {
+      padding: 2rem 1rem;
+      text-align: center;
+    }
+  
+    .grupoCard {
+      width: 100%;
+      max-width: 300px;
+      margin: 0 auto;
+    }
+  
+    .grupos {
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 2rem;
+    }
+  }
+  
+  @media (max-width: 650px) {
+    .logoImagem {
+      width: 180px;
+    }
+  
+    .principal_titulo,
+    .sobreNos {
+      font-size: 1.5rem;
+    }
+  
+    .principal_descricao,
+    .sobreNosDescricao {
+      font-size: 1rem;
+    }
+  
+    .TitleContainer h1,
+    .container h1 {
+      font-size: 1.4rem;
+    }
+  
+    .ipt {
+      width: 100%;
+      font-size: 1rem;
+    }
+  
+    .btnEntrar {
+      width: 100%;
+    }
+  }
+  
+  @media (max-width: 450px) {
+    .footer_Titulo {
+      font-size: 1.2rem;
+    }
+  
+    .footerContainer {
+      padding: 1rem;
+    }
+  
+    .contatoLista li,
+    .politicaLista li {
+      font-size: 0.9rem;
+    }
+  }
+  
