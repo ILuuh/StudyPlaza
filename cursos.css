@@ -1,0 +1,66 @@
+/* Cursos Complementares slider */
+.courses-container {
+    display: flex;
+    overflow-x: auto;
+    gap: 18px;
+    padding-bottom: 10px;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+  }
+  .courses-container::-webkit-scrollbar {
+    height: 8px;
+  }
+  .courses-container::-webkit-scrollbar-thumb {
+    background-color: var(--purple-dark);
+    border-radius: 5px;
+  }
+  
+  /* Um card de curso */
+  .course-card {
+    flex: 0 0 280px;
+    background: var(--grey-light);
+    border-radius: 16px;
+    box-shadow: inset 6px 6px 12px #a896ca,
+                inset -6px -6px 12px #ddd7ff;
+    padding: 20px 25px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform 0.3s ease;
+  }
+  .course-card:hover,
+  .course-card:focus {
+    transform: translateY(-10px);
+    outline: none;
+  }
+  .course-card h3 {
+    font-size: 1.4rem;
+    color: var(--purple-vibrant);
+    margin-bottom: 10px;
+    user-select: none;
+  }
+  .course-card p {
+    flex-grow: 1;
+    font-size: 1rem;
+    color: var(--purple-darkest);
+    margin-bottom: 15px;
+  }
+  .course-card a {
+    font-weight: 700;
+    font-size: 1rem;
+    color: var(--purple-darkest);
+    background-color: var(--purple-lightest);
+    padding: 8px 14px;
+    border-radius: 8px;
+    box-shadow: 2px 2px 6px rgba(135, 115, 199, 0.4);
+    align-self: flex-start;
+    transition: background-color 0.3s ease;
+    user-select: none;
+  }
+  .course-card a:hover,
+  .course-card a:focus {
+    background-color: var(--purple-medium);
+    color: var(--grey-light);
+    outline: none;
+  }
+  

@@ -1,0 +1,91 @@
+/* Quiz */
+.quiz-container {
+    max-width: 600px;
+    margin: 0 auto;
+    user-select: none;
+  }
+  .quiz-question {
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin-bottom: 18px;
+    color: var(--purple-vibrant);
+  }
+  .quiz-options {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 25px;
+  }
+  .quiz-options li {
+    margin-bottom: 12px;
+  }
+  .quiz-options label {
+    cursor: pointer;
+    font-size: 1.05rem;
+    display: block;
+    background-color: var(--grey-light);
+    color: var(--purple-darkest);
+    padding: 12px 18px;
+    border-radius: 10px;
+    border: 2px solid transparent;
+    transition: all 0.3s ease;
+    user-select: none;
+  }
+
+  .quiz-options label:hover{
+    border-color: var(--purple-darkest);
+  }
+
+  .quiz-options input[type='radio'] {
+    display: none;
+  }
+  .quiz-options input[type='radio']:checked + label {
+    background-color: var(--purple-vibrant);
+    color: var(--white);
+    border-color: var(--purple-dark);
+  }
+  .quiz-btn {
+    background: linear-gradient(45deg, var(--purple-vibrant), var(--purple-dark));
+    color: var(--white);
+    border: none;
+    padding: 16px 32px;
+    border-radius: 12px;
+    font-size: 1.2rem;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 6px 18px rgba(106, 76, 147, 0.6);
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    user-select: none;
+  }
+  .quiz-btn:disabled {
+    background-color: var(--grey-medium);
+    cursor: not-allowed;
+    box-shadow: none;
+    transform: none;
+  }
+  .quiz-btn:hover:not(:disabled),
+  .quiz-btn:focus:not(:disabled) {
+    background: linear-gradient(45deg, var(--purple-dark), var(--purple-vibrant));
+    outline: none;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 26px rgba(106, 76, 147, 0.8);
+  }
+  .quiz-result {
+    margin-top: 22px;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--purple-dark);
+  }
+  
+  /* Mensagens de erro do form */
+  .input-error {
+    border-color: #e74c3c !important;
+    box-shadow: 0 0 6px #e74c3c !important;
+  }
+  .error-message {
+    font-size: 0.9rem;
+    color: #e74c3c;
+    font-weight: 600;
+    margin-top: -12px;
+    margin-bottom: 8px;
+    user-select: none;
+  }

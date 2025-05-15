@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <title>Cadastro - StudyPlaza</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="cadastro.css">
+</head>
+
+<body>
+  <header>
+    <div class="branding" tabindex="0" aria-label="Branding StudyPlaza">StudyPlaza</div>
+    <nav aria-label="Menu principal">
+      <a href="index.html">Home</a>
+      <a href="como-funciona.html">Como Funciona</a>
+      <a href="beneficios.html">Benefícios</a>
+      <a href="cursos.html">Cursos Complementares</a>
+      <a href="quiz.html">Quizzes</a>
+      <a href="cadastro.html" class="active">Cadastro</a>
+      <a href="login.html">Login</a>
+    </nav>
+  </header>
+
+  <main class="container" role="main" tabindex="0">
+    <section aria-labelledby="register-title">
+      <h2 id="register-title">Cadastro</h2>
+      <form id="register-form" novalidate autocomplete="off" aria-label="Formulário de cadastro da plataforma">
+        <div class="camposForm">
+          <label for="nome">Nome completo</label>
+          <input type="text" id="nome" name="nome" required aria-required="true" aria-describedby="nome-error" />
+          <div id="nome-error" class="error-message" role="alert" aria-live="assertive" style="display:none;"></div>
+        </div>
+        <div class="camposForm">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" required aria-required="true" aria-describedby="email-error" />
+          <div id="email-error" class="error-message" role="alert" aria-live="assertive" style="display:none;"></div>
+        </div>
+        <div class="camposForm">
+          <label for="interesses">Áreas de Interesse</label>
+          <textarea id="interesses" name="interesses" required aria-required="true" aria-describedby="interesses-error"
+            placeholder="Ex: Programação, IA, Gestão do Tempo"></textarea>
+          <div id="interesses-error" class="error-message" role="alert" aria-live="assertive" style="display:none;">
+          </div>
+        </div>
+        <button type="submit">Cadastrar</button>
+        <div id="form-feedback" class="form-feedback" role="alert" aria-live="polite" style="margin-top:18px;"></div>
+      </form>
+    </section>
+  </main>
+
+  <footer>
+    &copy; 2025 StudyPlaza - Todos os direitos reservados.
+  </footer>
+
+  <script>
+    const form = document.getElementById('register-form');
+    const nomeInput = form.nome;
+    const emailInput = form.email;
+    const interessesInput = form.interesses;
+
+    const nomeError = document.getElementById('nome-error');
+    const emailError = document.getElementById('email-error');
+    const interessesError = document.getElementById('interesses-error');
+    const formFeedback = document.getElementById('form-feedback');
+
+    function showError(input, errorElem, message) {
+      errorElem.textContent = message;
+      errorElem.style.display = 'block';
+      input.classList.add('input-error');
+      input.setAttribute('aria-invalid', 'true');
+    }
+    function clearError(input, errorElem) {
+      errorElem.textContent = '';
+      errorElem.style.display = 'none';
+      input.classList.remove('input-error');
+      input.removeAttribute('aria-invalid');
+    }
+
+    function validateEmail(email) {
+      const re = /^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$/;
+      return re.test(String(email).toLowerCase());
+    }
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      let valid = true;
+
+      if (nomeInput.value.trim().length < 3) {
+        showError(nomeInput, nomeError, 'Por favor, insira um nome válido (3 ou mais caracteres).');
+        valid = false;
+      } else {
+        clearError(nomeInput, nomeError);
+      }
+
+      if (!validateEmail(emailInput.value.trim())) {
+        showError(emailInput, emailError, 'Por favor, insira um e-mail válido.');
+        valid = false;
+      } else {
+        clearError(emailInput, emailError);
+      }
+
+      if (interessesInput.value.trim().length < 3) {
+        showError(interessesInput, interessesError, 'Por favor, informe suas áreas de interesse.');
+        valid = false;
+      } else {
+        clearError(interessesInput, interessesError);
+      }
+
+      if (valid) {
+        formFeedback.style.color = 'green';
+        formFeedback.textContent = 'Cadastro realizado com sucesso! Obrigado por se juntar a StudyPlaza.';
+        form.reset();
+      } else {
+        formFeedback.style.color = '#e74c3c';
+        formFeedback.textContent = 'Por favor, corrija os erros antes de enviar.';
+      }
+    });
+  </script>
+
+</body>
+
+</html>

@@ -1,129 +1,54 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Study Plaza</title>
-    <link rel="stylesheet" href="./site/style/reset.css">
-    <link rel="stylesheet" href="./site//style/style.css">
-    <link rel="stylesheet" href="./site//style/home.css">
-    <link rel="stylesheet" href="./site//style/responsivo.css">
-
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+<title>StudyPlaza - Plataforma de Aprendizado Colaborativo</title>
+<link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
-    <header>
-        <span>
-            <a class="logo_a" href="./index.html">
-                <img class="logoImagem" src="./site/img/StudyPlazaComTexto.png" alt="LogoStudyPlaza">
-            </a>
-        </span>
+<header>
+  <div class="branding" tabindex="0" aria-label="Branding StudyPlaza">StudyPlaza</div>
+  <nav aria-label="Menu principal">
+    <a href="index.html" class="active">Home</a>
+    <a href="como-funciona.html">Como Funciona</a>
+    <a href="beneficios.html">Benefícios</a>
+    <a href="cursos.html">Cursos Complementares</a>
+    <a href="quiz.html">Quizzes</a>
+    <a href="cadastro.html">Cadastro</a>
+    <a href="login.html">Login</a>
+  </nav>
+</header>
 
-        <nav>
-            <ul class="nav_ul">
-                <li class="nav_li"><a class="nav_a" href="./site/html/sobreNos.html">Sobre nós</a></li>
-                <li class="nav_li"><a class="nav_a" href="./site/html/grupos.html">Grupos</a></li>
-                <li class="nav_li"><button
-                        onclick="redirecionar('./site/html/login.html', 'Entrar', './app/appIndex.html')" type="button"
-                        class="botaoEntrar">Entrar</button></li>
-            </ul>
-        </nav>
-    </header>
+<main class="container" role="main" tabindex="0">
+  <section aria-labelledby="welcome-title">
+    <div class="imgElfa">
+      
+    </div>
+    <h2 id="welcome-title">Bem-vindo ao StudyPlaza</h2>
+    <p>A plataforma de aprendizado colaborativo que conecta você a grupos de estudo, materiais personalizados e quizzes gerados por inteligência artificial para potencializar seu aprendizado.</p>
+    <p>Nosso objetivo é tornar o estudo mais eficiente, dinâmico e agradável para todos. Navegue pelo site para conhecer todas as funcionalidades que oferecemos!</p>
+  </section>
 
-    <main>
-        <section class="principal">
-            <div class="principal_esquerdo">
-                <h2 class="principal_titulo">
-                    Transforme estudo em conexão. Crie laços, compartilhe ideias e evolua junto!
-                </h2>
+  <section aria-labelledby="quick-features" style="margin-top:40px;">
+    <h2 id="quick-features">Funcionalidades em Destaque</h2>
+    <ul class="no-bullet" tabindex="0" aria-label="Lista das funcionalidades principais da Plataforma StudyPlaza">
+      <li>Formação de grupos de estudo públicos e privados</li>
+      <li>Compartilhamento de PDFs, vídeos e links</li>
+      <li>Chat e discussões em tempo real</li>
+      <li>Quizzes personalizados baseados nos materiais compartilhados</li>
+      <li>Sugestão de cursos complementares gratuitos e pagos</li>
+      <li>Acesso pela web em computadores, tablets e smartphones</li>
+    </ul>
+  </section>
+</main>
 
-                <p class="principal_descricao">
-                    Com o Study Plaza........
-                </p>
-            </div>
+<footer>
+  &copy; 2025 StudyPlaza - Todos os direitos reservados.
+</footer>
 
-            <div class="principal_direito">
-                <img class="principal_imagem" src="./site/img/ElfaEstudando2.png"
-                    alt="Ilustração de uma garota estudando">
-            </div>
-        </section>
-
-        <section class="novidadesSlider">
-            <h1>Novidades</h1>
-
-                    <div class="card">
-                        <h2>Nova função lançada!</h2>
-                        <p>
-                            Após algum tempo, decidimos que é melhor que os nosso usuários consigam enviar arquivos de
-                            forma mais fácil, então implementamos uma nova forma que está em seu
-                            chat no bate-papo! Clique e anexe seus arquivos!
-                        </p>
-                    </div>
-
-                    <div class="card">
-                        <h2>Nova integração com calendários!</h2>
-                        <p>
-                            Agora você pode sincronizar os eventos dos seus grupos diretamente com o Google Agenda e o
-                            Outlook! Nunca mais perca uma reunião ou entrega de tarefa.
-                        </p>
-                    </div>
-
-                    <div class="card">
-                        <h2>IA aprimorada no fórum!</h2>
-                        <p>
-                            Nossa IA agora pode sugerir respostas para perguntas comuns no fórum, ajudando você a
-                            encontrar as informações mais relevantes de forma rápida.
-                        </p>
-                    </div>
-        </section>
-
-    </main>
-
-    <footer>
-        <div class="footerContainer">
-            <div class="midiasSociaisDiv">
-                <span><img class="Footer_logoImagem" src="./site/img/StudyPlaza.png" alt="LogoStudyPlaza"></span>
-
-                <h2 class="footer_Titulo">Mídias sociais</h2>
-
-                <ul class="midiasLista">
-                    <li class="midiaImagem"><ion-icon name="logo-facebook"></ion-icon></li>
-                    <li class="midiaImagem"><ion-icon name="logo-instagram"></ion-icon></li>
-                    <li class="midiaImagem"><ion-icon name="logo-twitter"></ion-icon></li>
-                    <li class="midiaImagem"><ion-icon name="logo-linkedin"></ion-icon></li>
-                    <li class="midiaImagem"><ion-icon name="logo-youtube"></ion-icon></li>
-                </ul>
-            </div>
-
-            <div class="politicaDiv">
-                <h2 class="footer_Titulo">Politica</h2>
-
-                <ul class="politicaLista">
-                    <li><a href="#">Termos</a></li>
-                    <li><a href="#">Diretrizes</a></li>
-                    <li><a href="#">Licenças</a></li>
-                    <li><a href="#">Privacidade</a></li>
-                </ul>
-            </div>
-
-            <div class="contatoDiv">
-                <h2 class="footer_Titulo">Contato</h2>
-
-                <ul class="contatoLista">
-                    <li>E-mail: studyPlaza@outlook.com</li>
-                    <li>WhatsApp: (00) 00000-0000</li>
-                </ul>
-            </div>
-        </div>
-    </footer>
-
-    <script src="./site/js/redirecionar.js"></script>
-    <script src="./site/js/sliderNovidades.js"></script>
-    <script src="./site/js/telaInicialBotaoEntrar.js"></script>
-
-    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
-    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 </body>
-
 </html>
+

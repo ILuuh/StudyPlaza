@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+<title>Quizzes Personalizados - StudyPlaza</title>
+<link rel="stylesheet" href="style.css" />
+<link rel="stylesheet" href="quiz.css">
+</head>
+
+<body>
+  <header>
+    <div class="branding" tabindex="0" aria-label="Branding StudyPlaza">StudyPlaza</div>
+    <nav aria-label="Menu principal">
+      <a href="index.html" >Home</a>
+      <a href="como-funciona.html">Como Funciona</a>
+      <a href="beneficios.html">Benefícios</a>
+      <a href="cursos.html">Cursos Complementares</a>
+      <a href="quiz.html" class="active">Quizzes</a>
+      <a href="cadastro.html">Cadastro</a>
+      <a href="login.html">Login</a>
+    </nav>
+  </header>
+
+<main class="container" role="main" tabindex="0">
+  <section aria-labelledby="quiz-title">
+    <h2 id="quiz-title">Quizzes Personalizados</h2>
+    <div class="quiz-container" role="region" aria-live="polite" aria-atomic="true" aria-relevant="additions">
+      <div id="quiz-question" class="quiz-question"></div>
+      <ul id="quiz-options" class="quiz-options"></ul>
+      <button id="submit-btn" class="quiz-btn" disabled>Responder</button>
+      <div id="quiz-result" class="quiz-result" aria-live="assertive"></div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  &copy; 2025 StudyPlaza - Todos os direitos reservados.
+</footer>
+
+<script>
+  const quizData = [
+    {
+      question: "Qual desses formatos de material podem ser compartilhados na plataforma?",
+      options: [
+        "Só PDFs",
+        "PDFs, vídeos e links",
+        "Somente vídeos",
+        "Nenhum dos anteriores"
+      ],
+      answer: 1
+    },
+    {
+      question: "A plataforma permite criar que tipo de grupos de estudo?",
+      options: [
+        "Só grupos públicos",
+        "Grupos públicos ou privados",
+        "Só grupos privados",
+        "Não permite grupos"
+      ],
+      answer: 1
+    },
+    {
+      question: "Qual é uma função da inteligência artificial na plataforma?",
+      options: [
+        "Gerar quizzes personalizados para reforçar os estudos",
+        "Substituir professores",
+        "Criar vídeos automaticamente",
+        "Não há IA na plataforma"
+      ],
+      answer: 0
+    }
+  ];
+
+  const quizQuestion = document.getElementById('quiz-question');
+  const quizOptions = document.getElementById('quiz-options');
+  const submitBtn = document.getElementById('submit-btn');
+  const quizResult = document.getElementById('quiz-result');
+
+  let currentQuestion = 0;
+  let selectedOption = null;
+  let correctAnswersCount = 0;
+
+  function loadQuestion(){
+    const currentQuiz = quizData[currentQuestion];
+    quizQuestion.textContent = `Pergunta ${currentQuestion + 1}: ${currentQuiz.question}`;
+    quizOptions.innerHTML = '';
+    selectedOption = null;
+    submitBtn.disabled = true;
+    quizResult.textContent = '';
+
+    currentQuiz.options.forEach((option, index) => {
+      const li = document.createElement('li');
+
+      const input = document.createElement('input');
+      input.type = 'radio';
+      input.name = 'option';
+      input.id = `option${index}`;
+      input.value = index;
+
+      input.addEventListener('change', () => {
+        selectedOption = parseInt(input.value);
+        submitBtn.disabled = false;
+      });
+
+      const label = document.createElement('label');
+      label.htmlFor = input.id;
+      label.textContent = option;
+
+      li.appendChild(input);
+      li.appendChild(label);
+      quizOptions.appendChild(li);
+    });
+  }
+
+  submitBtn.addEventListener('click', () => {
+    if(selectedOption === null) return;
+
+    const correct = quizData[currentQuestion].answer;
+    if(selectedOption === correct){
+      correctAnswersCount++;
+      quizResult.textContent = 'Resposta correta! 🎉';
+      quizResult.style.color = 'green';
+    } else {
+      quizResult.textContent = `Resposta errada. A resposta correta é: "${quizData[currentQuestion].options[correct]}"`;
+      quizResult.style.color = '#b00020';
+    }
+    submitBtn.disabled = true;
+
+    setTimeout(() => {
+      currentQuestion++;
+      if(currentQuestion < quizData.length){
+        loadQuestion();
+      } else {
+        quizQuestion.textContent = `Quiz finalizado! Você acertou ${correctAnswersCount} de ${quizData.length} perguntas.`;
+        quizOptions.innerHTML = '';
+        submitBtn.style.display = 'none';
+        quizResult.style.color = '#0049b7';
+      }
+    }, 2000);
+  });
+
+  loadQuestion();
+</script>
+
+</body>
+</html>
+

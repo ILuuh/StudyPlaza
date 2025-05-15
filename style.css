@@ -1,0 +1,208 @@
+/* Fontes */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;600;700&display=swap');
+
+:root {
+  /* Paleta de degradê roxo */
+  --purple-lightest: #cdb4db;
+  --purple-light: #a390d6;
+  --purple-medium: #8773c7;
+  --purple-vibrant: #6a4c93;
+  --purple-dark: #4d3570;
+  --purple-darkest: #331f4a;
+  --grey-light: #eae2f8;
+  --grey-medium: #b9aedc;
+  --grey-dark: #6b5b95;
+  --accent-yellow: #f9bc60;
+  --white: #fff;
+  --black: #222;
+  --shadow: rgba(111, 66, 193, 0.2);
+}
+
+/* Reset e corpo */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: var(--grey-light);
+  color: var(--purple-darkest);
+  line-height: 1.6;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Container para centralizar conteúdo */
+.container {
+  width: 90%;
+  max-width: 1100px;
+  margin: 40px auto 70px auto;
+  flex-grow: 1;
+}
+
+/* Cabeçalho */
+header {
+  background: linear-gradient(90deg, var(--purple-darkest), var(--purple-vibrant));
+  padding: 20px 0;
+  color: var(--white);
+  box-shadow: 0 4px 12px var(--shadow);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+header .branding {
+  text-align: center;
+  font-size: 1.9rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  user-select: none;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+}
+
+nav {
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+  flex-wrap: wrap;
+}
+
+nav a {
+  color: var(--purple-lightest);
+  font-weight: 600;
+  font-size: 1rem;
+  padding: 10px 18px;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  user-select: none;
+}
+nav a:hover,
+nav a:focus {
+  background-color: var(--accent-yellow);
+  color: var(--purple-darkest);
+  outline: none;
+  box-shadow: 0 0 8px var(--accent-yellow);
+}
+
+/* Seções */
+section {
+  background-color: var(--white);
+  border-radius: 14px;
+  padding: 30px 40px;
+  margin-bottom: 30px;
+  box-shadow: 0 8px 25px var(--shadow);
+}
+
+section h2 {
+  color: var(--purple-vibrant);
+  border-bottom: 4px solid var(--purple-medium);
+  padding-bottom: 8px;
+  font-weight: 700;
+  font-size: 2rem;
+  margin-bottom: 20px;
+  user-select: none;
+}
+
+section p,
+section li {
+  font-size: 1.05rem;
+  color: var(--purple-darkest);
+  user-select: none;
+  line-height: 1.5;
+}
+
+/* Listas com marcadores */
+ul {
+  list-style: disc inside;
+  margin-left: 10px;
+}
+
+ul.no-bullet {
+  list-style: none;
+  padding: 0;
+}
+
+ul.no-bullet li {
+  background: var(--purple-lightest);
+  padding: 10px 20px;
+  margin-bottom: 12px;
+  border-radius: 10px;
+  box-shadow: inset 3px 3px 8px #b29cd9, inset -3px -3px 8px #e7dfff;
+  color: var(--purple-darkest);
+  font-weight: 600;
+}
+
+/* Navegação ativa */
+nav a.active {
+  background-color: var(--accent-yellow);
+  color: var(--purple-darkest);
+  font-weight: 700;
+}
+
+/* Footer */
+footer {
+  background: linear-gradient(90deg, var(--purple-vibrant), var(--purple-dark));
+  color: var(--grey-light);
+  text-align: center;
+  padding: 25px 15px;
+  font-size: 1rem;
+  user-select: none;
+  box-shadow: 0 -6px 20px var(--shadow);
+  margin-top: auto;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  body {
+    font-size: 16px;
+  }
+  .courses-container {
+    gap: 12px;
+  }
+  .course-card {
+    flex: 0 0 230px;
+  }
+}
+@media (max-width: 480px) {
+  header .branding {
+    font-size: 1.4rem;
+  }
+  nav {
+    gap: 12px;
+  }
+  nav a {
+    font-size: 0.9rem;
+    padding: 8px 12px;
+  }
+  section {
+    padding: 20px 25px;
+    margin-bottom: 20px;
+  }
+  .container {
+    width: 95%;
+    margin: 25px auto 50px auto;
+  }
+  .course-card {
+    flex: 0 0 90%;
+    margin-left: 5%;
+    margin-right: 5%;
+  }
+  form {
+    max-width: 100%;
+  }
+}
+
+/* Focar link para acessibilidade */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
+  outline: 3px solid var(--accent-yellow);
+  outline-offset: 3px;
+}
+

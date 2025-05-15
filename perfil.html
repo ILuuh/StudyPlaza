@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Meu Perfil - StudyPlaza</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="dashboard.css" />
+  <style>
+    /* Perfil - detalhes simples */
+    .profile-container {
+      max-width: 600px;
+      margin: 0 auto;
+      background: var(--white);
+      border-radius: 16px;
+      box-shadow: 0 8px 30px var(--shadow);
+      padding: 30px 35px;
+      user-select: none;
+    }
+    .profile-container h2 {
+      color: var(--purple-vibrant);
+      margin-bottom: 25px;
+      font-weight: 700;
+    }
+    .profile-row {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 20px;
+      font-size: 1.1rem;
+      color: var(--purple-darkest);
+    }
+    .profile-label {
+      font-weight: 600;
+    }
+    button.edit-btn {
+      background: var(--purple-vibrant);
+      color: var(--white);
+      border: none;
+      padding: 12px 25px;
+      border-radius: 12px;
+      font-weight: 700;
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      box-shadow: 0 6px 18px rgba(106, 76, 147, 0.6);
+      user-select: none;
+    }
+    button.edit-btn:hover,
+    button.edit-btn:focus {
+      background: var(--purple-dark);
+      outline: none;
+    }
+  </style>
+</head>
+
+<body>
+  <aside class="sidebar" aria-label="Menu do usuário">
+    <div class="brand" tabindex="0">StudyPlaza</div>
+    <nav>
+      <a href="dashboard.html">Dashboard</a>
+      <a href="grupos.html">Grupos de Estudo</a>
+      <a href="materiais.html">Materiais Compartilhados</a>
+      <a href="chat.html">Chat & Discussões</a>
+      <a href="quizzes.html">Quizzes</a>
+      <a href="perfil.html" class="active" aria-current="page">Meu Perfil</a>
+      <a href="index.html" aria-label="Sair do sistema">Sair</a>
+    </nav>
+  </aside>
+
+  <main class="main-content" tabindex="0" role="main" aria-label="Página de perfil do usuário">
+    <section class="profile-container" aria-live="polite">
+      <h2>Meu Perfil</h2>
+      <div class="profile-row">
+        <span class="profile-label">Nome:</span>
+        <span id="profile-nome">João da Silva</span>
+      </div>
+      <div class="profile-row">
+        <span class="profile-label">Email:</span>
+        <span id="profile-email">joao.silva@email.com</span>
+      </div>
+      <div class="profile-row">
+        <span class="profile-label">Áreas de interesse:</span>
+        <span id="profile-interesses">Programação, Inteligência Artificial, Gestão do Tempo</span>
+      </div>
+      <button class="edit-btn" id="btn-editar">Editar Perfil</button>
+    </section>
+  </main>
+
+  <script>
+    const btnEditar = document.getElementById('btn-editar');
+    const nomeSpan = document.getElementById('profile-nome');
+    const emailSpan = document.getElementById('profile-email');
+    const interessesSpan = document.getElementById('profile-interesses');
+
+    btnEditar.addEventListener('click', () => {
+      const nomeAtual = nomeSpan.textContent;
+      const emailAtual = emailSpan.textContent;
+      const interessesAtual = interessesSpan.textContent;
+
+      const novoNome = prompt('Atualize seu nome completo:', nomeAtual);
+      if(novoNome && novoNome.trim() !== '') {
+        nomeSpan.textContent = novoNome.trim();
+      }
+
+      const novoEmail = prompt('Atualize seu email:', emailAtual);
+      if(novoEmail && novoEmail.trim() !== '') {
+        emailSpan.textContent = novoEmail.trim();
+      }
+
+      const novosInteresses = prompt('Atualize suas áreas de interesse:', interessesAtual);
+      if(novosInteresses && novosInteresses.trim() !== '') {
+        interessesSpan.textContent = novosInteresses.trim();
+      }
+
+      alert('Perfil atualizado com sucesso!');
+    });
+  </script>
+</body>
+</html>
+

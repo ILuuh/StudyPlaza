@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Materiais Compartilhados - StudyPlaza</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="dashboard.css" />
+  <link rel="stylesheet" href="materiais.css">
+</head>
+<body>
+  <aside class="sidebar" aria-label="Menu do usuário">
+    <div class="brand" tabindex="0">StudyPlaza</div>
+    <nav>
+      <a href="dashboard.html">Dashboard</a>
+      <a href="grupos.html">Grupos de Estudo</a>
+      <a href="materiais.html" class="active" aria-current="page">Materiais Compartilhados</a>
+      <a href="chat.html">Chat & Discussões</a>
+      <a href="quizzes.html">Quizzes</a>
+      <a href="perfil.html">Meu Perfil</a>
+      <a href="index.html" aria-label="Sair do sistema">Sair</a>
+    </nav>
+  </aside>
+
+  <main class="main-content" tabindex="0" role="main" aria-label="Materiais Compartilhados do usuário">
+    <h2>Materiais Compartilhados</h2>
+    <section class="section">
+      <p>Visualize e compartilhe materiais como PDFs, vídeos e links com seus grupos de estudo.</p>
+      <button id="btn-upload" aria-haspopup="dialog" aria-controls="modal-upload" aria-expanded="false">Compartilhar Material</button>
+    </section>
+
+    <section class="section" aria-live="polite" aria-label="Lista de materiais">
+      <h3>Materiais Recentes</h3>
+      <ul id="lista-materiais">
+        <li tabindex="0" aria-label="PDF sobre JavaScript avançado">JavaScript Avançado - PDF</li>
+        <li tabindex="0" aria-label="Link para vídeo explicativo sobre álgebra linear">Álgebra Linear - Vídeo</li>
+        <li tabindex="0" aria-label="Link para artigo sobre aprendizado de máquina">Artigo: Aprendizado de Máquina</li>
+      </ul>
+    </section>
+
+    <!-- Modal para upload -->
+    <dialog id="modal-upload" role="dialog" aria-modal="true" aria-labelledby="modal-upload-title" style="border-radius:14px; padding:20px; width:90%; max-width:420px; box-shadow: 0 10px 30px rgba(106,76,147,0.7);">
+      <h3 id="modal-upload-title" style="color: var(--purple-vibrant); margin-bottom: 10px;">Compartilhar Material</h3>
+      <form id="form-upload">
+        <label for="tipo-material" style="font-weight:600;">Tipo de material:</label>
+        <select id="tipo-material" name="tipo-material" required style="width:100%; padding: 8px; margin-bottom: 15px; border-radius: 8px; border: 1.5px solid var(--purple-light);">
+          <option value="" disabled selected>Selecione</option>
+          <option value="pdf">PDF</option>
+          <option value="video">Vídeo</option>
+          <option value="link">Link</option>
+        </select>
+
+        <label for="descricao-material" style="font-weight:600;">Descrição do material:</label>
+        <input type="text" id="descricao-material" name="descricao-material" required placeholder="Ex: Apresentação sobre IA" style="width: 100%; padding: 8px; margin-bottom:20px; border-radius: 8px; border: 1.5px solid var(--purple-light);" />
+
+        <button type="submit" style="background: var(--purple-vibrant); color:#fff; padding: 10px 20px; border:none; border-radius: 10px; font-weight: 700; cursor: pointer;">Enviar</button>
+        <button type="button" id="btn-close-upload" style="margin-left: 10px; padding: 10px 18px; background: var(--grey-medium); border: none; border-radius: 10px; cursor: pointer;">Cancelar</button>
+      </form>
+      <p id="msg-upload" style="margin-top: 15px; font-weight:600; user-select:none;"></p>
+    </dialog>
+  </main>
+
+  <script>
+    const btnUpload = document.getElementById('btn-upload');
+    const modalUpload = document.getElementById('modal-upload');
+    const btnCloseUpload = document.getElementById('btn-close-upload');
+    const formUpload = document.getElementById('form-upload');
+    const msgUpload = document.getElementById('msg-upload');
+    const listaMateriais = document.getElementById('lista-materiais');
+
+    btnUpload.addEventListener('click', () => {
+      modalUpload.showModal();
+      btnUpload.setAttribute('aria-expanded', 'true');
+    });
+
+    btnCloseUpload.addEventListener('click', () => {
+      modalUpload.close();
+      btnUpload.setAttribute('aria-expanded', 'false');
+      formUpload.reset();
+      msgUpload.textContent = '';
+    });
+
+    formUpload.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      const tipo = formUpload['tipo-material'].value;
+      const desc = formUpload['descricao-material'].value.trim();
+
+      if(tipo === '' || desc === ''){
+        msgUpload.style.color = '#b00020';
+        msgUpload.textContent = 'Por favor, preencha todos os campos.';
+        return;
+      }
+
+      const li = document.createElement('li');
+      li.tabIndex = 0;
+      li.textContent = tipo.toUpperCase() + ' - ' + desc;
+      li.setAttribute('aria-label', `Material compartilhado: ${desc} do tipo ${tipo}`);
+      listaMateriais.appendChild(li);
+
+      msgUpload.style.color = 'green';
+      msgUpload.textContent = `Material "${desc}" compartilhado com sucesso!`;
+      formUpload.reset();
+
+      setTimeout(() => {
+        modalUpload.close();
+        btnUpload.setAttribute('aria-expanded', 'false');
+        msgUpload.textContent = '';
+      }, 1800);
+    });
+
+    modalUpload.addEventListener('click', (e) => {
+      const rect = modalUpload.getBoundingClientRect();
+      if(e.clientX < rect.left || e.clientX > rect.right || e.clientY < rect.top || e.clientY > rect.bottom) {
+        modalUpload.close();
+        btnUpload.setAttribute('aria-expanded', 'false');
+        formUpload.reset();
+        msgUpload.textContent = '';
+      }
+    });
+  </script>
+</body>
+</html>
+
