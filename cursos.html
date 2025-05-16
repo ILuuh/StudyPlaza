@@ -2,59 +2,72 @@
 <html lang="pt-BR">
 
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-<title>Cursos Complementares - StudyPlaza</title>
-<link rel="stylesheet" href="style.css" />
-<link rel="stylesheet" href="cursos.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <title>Cursos Complementares - StudyPlaza</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="cursos.css">
+  <style>
+  </style>
 </head>
 
 <body>
   <header>
-    <div class="branding" tabindex="0" aria-label="Branding StudyPlaza">StudyPlaza</div>
-    <nav aria-label="Menu principal">
+    <div class="logo">
+      <img src="img/logo.png" alt="Logo StudyPlaza">
+    </div>
+    <nav>
       <a href="index.html">Home</a>
       <a href="como-funciona.html">Como Funciona</a>
-      <a href="beneficios.html">Benefícios</a>
-      <a href="cursos.html" class="active">Cursos Complementares</a>
-      <a href="quiz.html">Quizzes</a>
+      <a href="cursos.html" class="active">Cursos</a>
+      <a href="quiz.html">Quiz</a>
       <a href="cadastro.html">Cadastro</a>
       <a href="login.html">Login</a>
     </nav>
   </header>
+  <main class="container" role="main" tabindex="0">
+    <section aria-labelledby="courses-title">
+      <h2 id="courses-title">Cursos</h2>
+      <div class="courses-container" aria-label="Lista de cursos sugeridos">
+        <article class="course-card" tabindex="0">
+          <h3>Introdução à Programação</h3>
+          <p>Curso gratuito que ensina os conceitos básicos de programação com exercícios práticos.</p>
+          <a href="https://www.coursera.org/learn/programming-fundamentals" target="_blank"
+            rel="noopener noreferrer">Ver curso</a>
+        </article>
+        <article class="course-card" tabindex="0">
+          <h3>Machine Learning Aplicado</h3>
+          <p>Aprenda fundamentos de IA e machine learning com exemplos aplicados a diversos setores.</p>
+          <a href="https://www.udemy.com/course/machine-learning-aplicado/" target="_blank"
+            rel="noopener noreferrer">Ver curso</a>
+        </article>
+        <article class="course-card" tabindex="0">
+          <h3>Gestão do Tempo para Estudantes</h3>
+          <p>Dicas práticas e técnicas para melhorar sua produtividade e organização nos estudos.</p>
+          <a href="https://www.edx.org/course/time-management-skills" target="_blank" rel="noopener noreferrer">Ver
+            curso</a>
+        </article>
+        <article class="course-card" tabindex="0">
+          <h3>Comunicação Eficiente</h3>
+          <p>Aprenda a se comunicar melhor em ambientes colaborativos e acadêmicos.</p>
+          <a href="https://www.coursera.org/learn/effective-communication" target="_blank" rel="noopener noreferrer">Ver
+            curso</a>
+        </article>
+      </div>
+    </section>
+  </main>
 
-<main class="container" role="main" tabindex="0">
-  <section aria-labelledby="courses-title">
-    <h2 id="courses-title">Cursos Complementares</h2>
-    <div class="courses-container" aria-label="Lista de cursos sugeridos">
-      <article class="course-card" tabindex="0">
-        <h3>Introdução à Programação</h3>
-        <p>Curso gratuito que ensina os conceitos básicos de programação com exercícios práticos.</p>
-        <a href="https://www.coursera.org/learn/programming-fundamentals" target="_blank" rel="noopener noreferrer">Ver curso</a>
-      </article>
-      <article class="course-card" tabindex="0">
-        <h3>Machine Learning Aplicado</h3>
-        <p>Aprenda fundamentos de IA e machine learning com exemplos aplicados a diversos setores.</p>
-        <a href="https://www.udemy.com/course/machine-learning-aplicado/" target="_blank" rel="noopener noreferrer">Ver curso</a>
-      </article>
-      <article class="course-card" tabindex="0">
-        <h3>Gestão do Tempo para Estudantes</h3>
-        <p>Dicas práticas e técnicas para melhorar sua produtividade e organização nos estudos.</p>
-        <a href="https://www.edx.org/course/time-management-skills" target="_blank" rel="noopener noreferrer">Ver curso</a>
-      </article>
-      <article class="course-card" tabindex="0">
-        <h3>Comunicação Eficiente</h3>
-        <p>Aprenda a se comunicar melhor em ambientes colaborativos e acadêmicos.</p>
-        <a href="https://www.coursera.org/learn/effective-communication" target="_blank" rel="noopener noreferrer">Ver curso</a>
-      </article>
+  <footer>
+    <p>&copy; 2025 StudyPlaza - Todos os direitos reservados.</p>
+    <p>Siga-nos:</p>
+    <div class="social-icons">
+      <i class="fab fa-facebook"></i>
+      <i class="fab fa-instagram"></i>
+      <i class="fab fa-twitter"></i>
+      <i class="fab fa-linkedin"></i>
     </div>
-  </section>
-</main>
-
-<footer>
-  &copy; 2025 StudyPlaza - Todos os direitos reservados.
-</footer>
-
+  </footer>
 </body>
-</html>
 
+</html>

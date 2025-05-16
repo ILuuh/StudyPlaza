@@ -1,208 +1,160 @@
-/* Fontes */
+
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;600;700&display=swap');
 
 :root {
-  /* Paleta de degradê roxo */
-  --purple-lightest: #cdb4db;
-  --purple-light: #a390d6;
-  --purple-medium: #8773c7;
-  --purple-vibrant: #6a4c93;
-  --purple-dark: #4d3570;
-  --purple-darkest: #331f4a;
-  --grey-light: #eae2f8;
-  --grey-medium: #b9aedc;
-  --grey-dark: #6b5b95;
-  --accent-yellow: #f9bc60;
-  --white: #fff;
-  --black: #222;
-  --shadow: rgba(111, 66, 193, 0.2);
+  --roxo-claro: #cdb4db;
+  --roxo-principal: #6a4c93;
+  --roxo-escuro: #331f4a;
+  --amarelo: #f9bc60;
+  --branco: #ffffff;
+  --sombra: rgba(111, 66, 193, 0.2);
 }
 
-/* Reset e corpo */
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
+* {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
+
 body {
   font-family: 'Poppins', sans-serif;
-  background-color: var(--grey-light);
-  color: var(--purple-darkest);
-  line-height: 1.6;
-  min-height: 100vh;
+  background: var(--roxo-claro);
+  color: var(--roxo-escuro);
   display: flex;
   flex-direction: column;
+  min-height: 100vh;
 }
 
-/* Container para centralizar conteúdo */
-.container {
-  width: 90%;
-  max-width: 1100px;
-  margin: 40px auto 70px auto;
-  flex-grow: 1;
+/* Ajusta a logo para ficar maior e com margem */
+.logo img {
+  height: 70px;
+  margin-right: 20px;
 }
 
-/* Cabeçalho */
+/* Torna o header mais espaçoso para acomodar a logo maior */
 header {
-  background: linear-gradient(90deg, var(--purple-darkest), var(--purple-vibrant));
-  padding: 20px 0;
-  color: var(--white);
-  box-shadow: 0 4px 12px var(--shadow);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 30px;
+  background: linear-gradient(90deg, #331f4a, #6a4c93);
+  box-shadow: 0 4px 12px rgba(111, 66, 193, 0.2);
   position: sticky;
   top: 0;
   z-index: 1000;
 }
 
-header .branding {
-  text-align: center;
-  font-size: 1.9rem;
-  font-weight: 700;
-  letter-spacing: 0.04em;
-  user-select: none;
-  text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
-}
-
+/* Menu ajustado e com destaque no item ativo */
 nav {
-  margin-top: 10px;
   display: flex;
-  justify-content: center;
-  gap: 25px;
+  gap: 18px;
   flex-wrap: wrap;
 }
 
 nav a {
-  color: var(--purple-lightest);
+  color: #cdb4db;
   font-weight: 600;
-  font-size: 1rem;
-  padding: 10px 18px;
+  text-decoration: none;
+  padding: 10px 16px;
   border-radius: 8px;
-  transition: all 0.3s ease;
-  user-select: none;
+  transition: 0.3s ease;
 }
+
 nav a:hover,
-nav a:focus {
-  background-color: var(--accent-yellow);
-  color: var(--purple-darkest);
-  outline: none;
-  box-shadow: 0 0 8px var(--accent-yellow);
-}
-
-/* Seções */
-section {
-  background-color: var(--white);
-  border-radius: 14px;
-  padding: 30px 40px;
-  margin-bottom: 30px;
-  box-shadow: 0 8px 25px var(--shadow);
-}
-
-section h2 {
-  color: var(--purple-vibrant);
-  border-bottom: 4px solid var(--purple-medium);
-  padding-bottom: 8px;
-  font-weight: 700;
-  font-size: 2rem;
-  margin-bottom: 20px;
-  user-select: none;
-}
-
-section p,
-section li {
-  font-size: 1.05rem;
-  color: var(--purple-darkest);
-  user-select: none;
-  line-height: 1.5;
-}
-
-/* Listas com marcadores */
-ul {
-  list-style: disc inside;
-  margin-left: 10px;
-}
-
-ul.no-bullet {
-  list-style: none;
-  padding: 0;
-}
-
-ul.no-bullet li {
-  background: var(--purple-lightest);
-  padding: 10px 20px;
-  margin-bottom: 12px;
-  border-radius: 10px;
-  box-shadow: inset 3px 3px 8px #b29cd9, inset -3px -3px 8px #e7dfff;
-  color: var(--purple-darkest);
-  font-weight: 600;
-}
-
-/* Navegação ativa */
 nav a.active {
-  background-color: var(--accent-yellow);
-  color: var(--purple-darkest);
-  font-weight: 700;
+  background: #f9bc60;
+  color: #331f4a;
+  box-shadow: 0 0 10px #f9bc60;
 }
 
-/* Footer */
+.banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 60px;
+  background: var(--branco);
+  box-shadow: 0 10px 25px var(--sombra);
+  flex-wrap: wrap;
+}
+
+.banner-texto {
+  flex: 1;
+  padding-right: 30px;
+}
+
+.banner-texto h1 {
+  font-size: 2.8rem;
+  color: var(--roxo-principal);
+  margin-bottom: 20px;
+}
+
+.banner-texto p {
+  font-size: 1.2rem;
+  line-height: 1.6;
+}
+
+.banner img {
+  max-width: 300px;
+  border-radius: 12px;
+}
+
+.funcionalidades {
+  padding: 50px 30px;
+  background: var(--roxo-escuro);
+  color: var(--branco);
+}
+
+.funcionalidades h2 {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 30px;
+}
+
+.funcionalidades ul {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  list-style: none;
+}
+
+.funcionalidades li {
+  background: var(--roxo-principal);
+  padding: 20px;
+  border-radius: 10px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  font-weight: 600;
+  box-shadow: 0 4px 10px var(--sombra);
+}
+
+.funcionalidades li:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px var(--amarelo);
+  background: var(--amarelo);
+  color: var(--roxo-escuro);
+}
+
 footer {
-  background: linear-gradient(90deg, var(--purple-vibrant), var(--purple-dark));
-  color: var(--grey-light);
+  background: linear-gradient(90deg, var(--roxo-principal), var(--roxo-escuro));
+  color: var(--branco);
   text-align: center;
   padding: 25px 15px;
   font-size: 1rem;
   user-select: none;
-  box-shadow: 0 -6px 20px var(--shadow);
+  box-shadow: 0 -6px 20px var(--sombra);
   margin-top: auto;
 }
 
-/* Responsividade */
-@media (max-width: 768px) {
-  body {
-    font-size: 16px;
-  }
-  .courses-container {
-    gap: 12px;
-  }
-  .course-card {
-    flex: 0 0 230px;
-  }
-}
-@media (max-width: 480px) {
-  header .branding {
-    font-size: 1.4rem;
-  }
-  nav {
-    gap: 12px;
-  }
-  nav a {
-    font-size: 0.9rem;
-    padding: 8px 12px;
-  }
-  section {
-    padding: 20px 25px;
-    margin-bottom: 20px;
-  }
-  .container {
-    width: 95%;
-    margin: 25px auto 50px auto;
-  }
-  .course-card {
-    flex: 0 0 90%;
-    margin-left: 5%;
-    margin-right: 5%;
-  }
-  form {
-    max-width: 100%;
-  }
+footer p {
+  margin: 10px 0;
 }
 
-/* Focar link para acessibilidade */
-a:focus-visible,
-button:focus-visible,
-input:focus-visible,
-textarea:focus-visible {
-  outline: 3px solid var(--accent-yellow);
-  outline-offset: 3px;
+footer .social-icons i {
+  margin: 0 10px;
+  font-size: 1.2rem;
+  transition: transform 0.3s;
 }
 
+footer .social-icons i:hover {
+  transform: scale(1.2);
+  color: var(--amarelo);
+}

@@ -2,53 +2,69 @@
 <html lang="pt-BR">
 
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-<title>StudyPlaza - Plataforma de Aprendizado Colaborativo</title>
-<link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>StudyPlaza - Plataforma de Aprendizado Colaborativo</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-<header>
-  <div class="branding" tabindex="0" aria-label="Branding StudyPlaza">StudyPlaza</div>
-  <nav aria-label="Menu principal">
-    <a href="index.html" class="active">Home</a>
-    <a href="como-funciona.html">Como Funciona</a>
-    <a href="beneficios.html">Benefícios</a>
-    <a href="cursos.html">Cursos Complementares</a>
-    <a href="quiz.html">Quizzes</a>
-    <a href="cadastro.html">Cadastro</a>
-    <a href="login.html">Login</a>
-  </nav>
-</header>
-
-<main class="container" role="main" tabindex="0">
-  <section aria-labelledby="welcome-title">
-    <div class="imgElfa">
-      
+  <header>
+    <div class="logo">
+      <img src="img/logo.png" alt="Logo StudyPlaza">
     </div>
-    <h2 id="welcome-title">Bem-vindo ao StudyPlaza</h2>
-    <p>A plataforma de aprendizado colaborativo que conecta você a grupos de estudo, materiais personalizados e quizzes gerados por inteligência artificial para potencializar seu aprendizado.</p>
-    <p>Nosso objetivo é tornar o estudo mais eficiente, dinâmico e agradável para todos. Navegue pelo site para conhecer todas as funcionalidades que oferecemos!</p>
+    <nav>
+      <a href="index.html" class="active">Home</a>
+      <a href="como-funciona.html">Como Funciona</a>
+      <a href="cursos.html">Cursos</a>
+      <a href="quiz.html">Quiz</a>
+      <a href="cadastro.html">Cadastro</a>
+      <a href="#login">Login</a>
+    </nav>
+  </header>
+
+  <section class="banner">
+    <div class="banner-texto">
+      <h1>Descubra o futuro do aprendizado colaborativo!</h1>
+      <p>Na StudyPlaza, você se conecta com estudantes como você, compartilha materiais, participa de grupos e ainda aprende de forma interativa com quizzes gerados por inteligência artificial. Estude no seu ritmo, com liberdade e motivação, de qualquer lugar, a qualquer hora.</p>
+    </div>
+    <img src="img/ElfaEstudando2.png" alt="Mascote Elfa Estudando">
   </section>
 
-  <section aria-labelledby="quick-features" style="margin-top:40px;">
-    <h2 id="quick-features">Funcionalidades em Destaque</h2>
-    <ul class="no-bullet" tabindex="0" aria-label="Lista das funcionalidades principais da Plataforma StudyPlaza">
-      <li>Formação de grupos de estudo públicos e privados</li>
-      <li>Compartilhamento de PDFs, vídeos e links</li>
-      <li>Chat e discussões em tempo real</li>
-      <li>Quizzes personalizados baseados nos materiais compartilhados</li>
-      <li>Sugestão de cursos complementares gratuitos e pagos</li>
-      <li>Acesso pela web em computadores, tablets e smartphones</li>
+  <section class="funcionalidades">
+    <h2>Funcionalidades em Destaque</h2>
+    <ul>
+      <li><i class="fas fa-users"></i> Grupos de estudo públicos e privados</li>
+      <li><i class="fas fa-file-pdf"></i> Compartilhamento de PDFs e links</li>
+      <li><i class="fas fa-comments"></i> Chat em tempo real</li>
+      <li><i class="fas fa-brain"></i> Quizzes com IA personalizada</li>
+      <li><i class="fas fa-laptop"></i> Acesso via computador, tablet ou celular</li>
+      <li><i class="fas fa-book"></i> Sugestão de cursos gratuitos e pagos</li>
     </ul>
   </section>
-</main>
 
-<footer>
-  &copy; 2025 StudyPlaza - Todos os direitos reservados.
-</footer>
+  <section class="funcionalidades" id="beneficios">
+    <h2 id="benefits-title">Benefícios</h2>
+    <ul class="no-bullet" tabindex="0" aria-label="Lista de benefícios da Plataforma StudyPlaza">
+      <li>Aprendizado colaborativo e personalizado.</li>
+      <li>Flexibilidade e autonomia para estudar.</li>
+      <li>IA para reforço do aprendizado com quizzes.</li>
+      <li>Sugestão de cursos para aprofundamento.</li>
+      <li>Ambiente interativo e inclusivo.</li>
+    </ul>
+  </section>
 
+  <footer>
+    <p>&copy; 2025 StudyPlaza - Todos os direitos reservados.</p>
+    <p>Siga-nos:</p>
+    <div class="social-icons">
+      <i class="fab fa-facebook"></i>
+      <i class="fab fa-instagram"></i>
+      <i class="fab fa-twitter"></i>
+      <i class="fab fa-linkedin"></i>
+    </div>
+  </footer>
 </body>
-</html>
 
+</html>

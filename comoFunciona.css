@@ -1,0 +1,78 @@
+
+header {
+    background: linear-gradient(90deg, #331f4a, #6a4c93);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 30px;
+    box-shadow: 0 4px 12px rgba(111, 66, 193, 0.2);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+  }
+
+  .logo img {
+    height: 70px;
+    margin-right: 20px;
+  }
+
+  nav {
+    display: flex;
+    gap: 18px;
+    flex-wrap: wrap;
+  }
+
+  nav a {
+    color: #cdb4db;
+    font-weight: 600;
+    text-decoration: none;
+    padding: 10px 16px;
+    border-radius: 8px;
+    transition: 0.3s ease;
+  }
+
+  nav a:hover,
+  nav a.active {
+    background: #f9bc60;
+    color: #331f4a;
+    box-shadow: 0 0 10px #f9bc60;
+  }
+
+  .etapas {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    padding: 60px 30px;
+    background-color: #f7f1fb;
+  }
+
+  .etapa {
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    padding: 25px;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .etapa:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 8px 25px rgba(111, 66, 193, 0.2);
+  }
+
+  .etapa i {
+    font-size: 2rem;
+    color: #6a4c93;
+    margin-bottom: 15px;
+  }
+
+  .etapa h3 {
+    font-size: 1.2rem;
+    color: #331f4a;
+    margin-bottom: 10px;
+  }
+
+  .etapa p {
+    font-size: 1rem;
+    color: #4a3a60;
+  }
