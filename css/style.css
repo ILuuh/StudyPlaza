@@ -25,13 +25,11 @@ body {
   min-height: 100vh;
 }
 
-/* Ajusta a logo para ficar maior e com margem */
 .logo img {
-  height: 70px;
+  height: 90px;
   margin-right: 20px;
 }
 
-/* Torna o header mais espaçoso para acomodar a logo maior */
 header {
   display: flex;
   align-items: center;
@@ -44,7 +42,6 @@ header {
   z-index: 1000;
 }
 
-/* Menu ajustado e com destaque no item ativo */
 nav {
   display: flex;
   gap: 18px;
