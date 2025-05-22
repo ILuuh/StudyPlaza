@@ -42,26 +42,43 @@ header {
   z-index: 1000;
 }
 
-nav {
+.menu {
   display: flex;
   gap: 18px;
   flex-wrap: wrap;
 }
 
-nav a {
-  color: #cdb4db;
-  font-weight: 600;
+.menu .linkMenu {
+  margin: 0 1rem;
+  position: relative;
+  display: inline-block;
   text-decoration: none;
-  padding: 10px 16px;
-  border-radius: 8px;
-  transition: 0.3s ease;
+  color: var(--roxo-claro);
+  font-weight: bold;
+  transition: transform 0.3s ease;
 }
 
-nav a:hover,
-nav a.active {
-  background: #f9bc60;
-  color: #331f4a;
-  box-shadow: 0 0 10px #f9bc60;
+.menu .linkMenu:hover {
+  transform: translateY(-4px);
+}
+
+.menu .linkMenu::before{
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 4px;
+  background-color: var(--amarelo);
+  transition: width 0.3s ease, opacity 0.3s ease, bottom 0.3s ease;
+  transform: translateX(-50%);
+  opacity: 0;
+}
+
+.menu .linkMenu:hover::before{
+  width: 100%;
+  opacity: 1;
+  bottom: -6px; /* Faz a barra "subir" */
 }
 
 .banner {
@@ -118,16 +135,13 @@ nav a.active {
   background: var(--roxo-principal);
   padding: 20px;
   border-radius: 10px;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: box-shadow 0.3s ease;
   font-weight: 600;
   box-shadow: 0 4px 10px var(--sombra);
 }
 
 .funcionalidades li:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 20px var(--amarelo);
-  background: var(--amarelo);
-  color: var(--roxo-escuro);
+  box-shadow: 0 8px 20px var(--roxo-claro);
 }
 
 footer {
