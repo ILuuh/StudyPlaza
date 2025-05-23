@@ -17,16 +17,16 @@
       <img src="img/logo.png" alt="Logo StudyPlaza">
     </div>
     <nav class="menu">
-      <a href="index.html" class="linkMenu active">Home</a>
+      <a href="index.html" class="linkMenu active">Ínicio</a>
       <a href="como-funciona.html" class="linkMenu">Como Funciona</a>
       <a href="cursos.html" class="linkMenu">Cursos</a>
       <a href="quiz.html" class="linkMenu">Quiz</a>
-      <a href="login.html" class="linkMenu">Login</a>
+      <a href="login.html" class="linkMenu">Login/Cadastro</a>
     </nav>
   </header>
 
   <main>
-    <h2>Teste seu conhecimento!</h2>
+    <h2 class="textoPag">Teste seu conhecimento!</h2>
     <div class="quiz-container">
       <div class="question" id="question">Carregando pergunta...</div>
       <div class="options" id="options"></div>
@@ -35,93 +35,46 @@
   </main>
 
   <footer>
-    <p>&copy; 2025 StudyPlaza - Todos os direitos reservados.</p>
-    <p>Siga-nos:</p>
-    <div class="social-icons">
-      <i class="fab fa-facebook"></i>
-      <i class="fab fa-instagram"></i>
-      <i class="fab fa-twitter"></i>
-      <i class="fab fa-linkedin"></i>
+    <div class="footer-container">
+      <div class="footer-section">
+        <div class="nomeLogo">
+          <img class="logoFooter" src="img/logo.png" alt="Logo do site">
+          <h2 class="logo">StudyPlaza</h2>
+        </div>
+        <p>Transformando o jeito como você estuda. Conecte-se, compartilhe e aprenda em uma comunidade vibrante.</p>
+      </div>
+
+      <div class="footer-section">
+        <h3>Links Rápidos</h3>
+        <ul>
+          <li><a href="index.html">Ínicio</a></li>
+          <li><a href="como-funciona.html">Como funciona</a></li>
+          <li><a href="cursos.html">Cursos</a></li>
+          <li><a href="quiz.html">Quiz</a></li>
+          <li><a href="login.html">Login</a></li>
+          <li><a href="cadastro.html">Cadastro</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-section">
+        <h3>Informações</h3>
+        <ul>
+          <li><a href="#">Política de Privacidade</a></li>
+          <li><a href="mailto:contato@studyplaza.com">contato@studyplaza.com</a></li>
+          <div class="social-icons">
+            <i class="fab fa-facebook"></i>
+            <i class="fab fa-instagram"></i>
+            <i class="fab fa-twitter"></i>
+            <i class="fab fa-linkedin"></i>
+          </div>
+        </ul>
+      </div>
     </div>
+    <p>&copy; 2025 StudyPlaza - Todos os direitos reservados.</p>
   </footer>
 
-  <script>
-    const questions = [
-      {
-        question: "Qual é o principal objetivo da plataforma StudyPlaza?",
-        options: [
-          "Oferecer videoaulas para concursos",
-          "Criar uma rede social para professores",
-          "Promover o aprendizado colaborativo entre estudantes",
-          "Fornecer apenas cursos pagos"
-        ],
-        answer: "Promover o aprendizado colaborativo entre estudantes"
-      },
-      {
-        question: "Como a IA é usada na StudyPlaza?",
-        options: [
-          "Para corrigir provas escritas automaticamente",
-          "Para sugerir temas de redação",
-          "Para gerar quizzes personalizados com base no conteúdo compartilhado",
-          "Para gravar vídeos explicativos com avatares"
-        ],
-        answer: "Para gerar quizzes personalizados com base no conteúdo compartilhado"
-      },
-      {
-        question: "Por que a StudyPlaza é considerada acessível para diferentes perfis de estudantes?",
-        options: [
-          "Porque só funciona em escolas conveniadas",
-          "Porque exige dedicação em horário fixo",
-          "Porque oferece recursos acessíveis e flexíveis em diferentes dispositivos",
-          "Porque obriga o uso de computador avançado"
-        ],
-        answer: "Porque oferece recursos acessíveis e flexíveis em diferentes dispositivos"
-      }
-    ];  
+<script src="js/quiz.js" defer></script>
 
-    let current = 0;
-    const questionEl = document.getElementById("question");
-    const optionsEl = document.getElementById("options");
-    const resultEl = document.getElementById("result");
-
-    function showQuestion() {
-      const q = questions[current];
-      questionEl.textContent = q.question;
-      optionsEl.innerHTML = "";
-      resultEl.textContent = "";
-
-      q.options.forEach(option => {
-        const btn = document.createElement("button");
-        btn.textContent = option;
-        btn.onclick = () => checkAnswer(option);
-        optionsEl.appendChild(btn);
-      });
-    }
-
-    function checkAnswer(selected) {
-      const correct = questions[current].answer;
-      if (selected === correct) {
-        resultEl.textContent = "✅ Resposta correta!";
-        resultEl.style.color = "#2e7d32";
-      } else {
-        resultEl.textContent = `❌ Resposta incorreta. Resposta correta: ${correct}`;
-        resultEl.style.color = "#c62828";
-      }
-
-      setTimeout(() => {
-        current++;
-        if (current < questions.length) {
-          showQuestion();
-        } else {
-          questionEl.textContent = "Parabéns, você completou o quiz!";
-          optionsEl.innerHTML = "";
-          resultEl.innerHTML = "";
-        }
-      }, 2000);
-    }
-
-    showQuestion();
-  </script>
 </body>
 
 </html>

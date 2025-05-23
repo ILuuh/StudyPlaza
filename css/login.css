@@ -37,24 +37,31 @@ body {
   width: 100%;
   text-align: center;
 }
+
+.login-container img{
+  width: 70px;
+}
+
 .login-container h1 {
-  font-size: 2.3rem;
   margin-bottom: 25px;
   font-weight: 700;
   color: var(--accent-yellow);
   user-select: text;
 }
+
 form {
   display: flex;
   flex-direction: column;
   gap: 20px;
 }
+
 label {
   font-weight: 600;
   font-size: 1.1rem;
   text-align: left;
   user-select: text;
 }
+
 input[type="email"],
 input[type="password"] {
   padding: 15px 20px;
@@ -64,10 +71,12 @@ input[type="password"] {
   outline: none;
   transition: box-shadow 0.3s ease;
 }
+
 input[type="email"]:focus,
 input[type="password"]:focus {
   box-shadow: 0 0 10px var(--accent-yellow);
 }
+
 button {
   background: var(--accent-yellow);
   color: var(--purple-darkest);
@@ -81,11 +90,13 @@ button {
   box-shadow: 0 6px 20px rgba(249, 188, 96, 0.7);
   user-select: none;
 }
+
 button:hover,
 button:focus {
   background-color: #d4a839;
   outline: none;
 }
+
 .error-message {
   color: #ff6666;
   font-weight: 600;
@@ -94,6 +105,7 @@ button:focus {
   user-select: text;
   display: none;
 }
+
 .links {
   margin-top: 25px;
   display: flex;
@@ -101,17 +113,20 @@ button:focus {
   font-size: 0.9rem;
   user-select: text;
 }
+
 .links a {
   color: var(--accent-yellow);
   text-decoration: none;
   font-weight: 600;
   transition: text-decoration 0.3s ease;
 }
+
 .links a:hover,
 .links a:focus {
   text-decoration: underline;
   outline: none;
 }
+
 @media (max-width: 480px) {
   .login-container {
     padding: 30px 25px;
