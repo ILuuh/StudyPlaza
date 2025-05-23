@@ -14,9 +14,6 @@
 * 🎨 **Interface Personalizada:** Design limpo e agradável, com navegação simples.
 * 💾 **Salvamento Local:** Os dados são salvos localmente no navegador do usuário, sem necessidade de login.
 
-## 📸 Captura de Tela
-
-![Screenshot do StudyPlaza](https://user-images.githubusercontent.com/SEU_USUARIO/IMAGEM-DE-EXEMPLO.png)
 *Interface leve e intuitiva para uma melhor organização dos estudos.*
 
 ## 🚀 Como usar
