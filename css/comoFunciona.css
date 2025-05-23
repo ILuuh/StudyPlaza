@@ -3,11 +3,11 @@
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 30px;
     padding: 60px 30px;
-    background-color: #f7f1fb;
+    background: linear-gradient(135deg, #3C096C 0%, #240046 50%, #3C096C 100%);
   }
 
   .etapa {
-    background: #fff;
+    background: #10002B;
     border-radius: 12px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
     padding: 25px;
@@ -22,17 +22,17 @@
 
   .etapa i {
     font-size: 2rem;
-    color: #6a4c93;
+    color: #fff;
     margin-bottom: 15px;
   }
 
   .etapa h3 {
     font-size: 1.2rem;
-    color: #331f4a;
+    color: #fff;
     margin-bottom: 10px;
   }
 
   .etapa p {
     font-size: 1rem;
-    color: #4a3a60;
+    color: #fff;
   }

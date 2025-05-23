@@ -1,11 +1,12 @@
-
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;600;700&display=swap');
 
 :root {
   --roxo-claro: #cdb4db;
+  --roxo-menos-claro: #3C096C;
   --roxo-principal: #6a4c93;
-  --roxo-escuro: #331f4a;
-  --amarelo: #f9bc60;
+  --roxo-escuro: #10002B;
+  --roxo-menos-escuro : #1f0939;
+  --lilas: #9D4EDD;
   --branco: #ffffff;
   --sombra: rgba(111, 66, 193, 0.2);
 }
@@ -35,7 +36,7 @@ header {
   align-items: center;
   justify-content: space-between;
   padding: 12px 30px;
-  background: linear-gradient(90deg, #331f4a, #6a4c93);
+  background: linear-gradient(90deg, #10002B 0%, #240046 100%);
   box-shadow: 0 4px 12px rgba(111, 66, 193, 0.2);
   position: sticky;
   top: 0;
@@ -62,23 +63,24 @@ header {
   transform: translateY(-4px);
 }
 
-.menu .linkMenu::before{
+.menu .linkMenu::before {
   content: '';
   position: absolute;
   bottom: 0;
   left: 50%;
   width: 0;
   height: 4px;
-  background-color: var(--amarelo);
+  background-color: var(--lilas);
   transition: width 0.3s ease, opacity 0.3s ease, bottom 0.3s ease;
   transform: translateX(-50%);
   opacity: 0;
 }
 
-.menu .linkMenu:hover::before{
+.menu .linkMenu:hover::before {
   width: 100%;
   opacity: 1;
-  bottom: -6px; /* Faz a barra "subir" */
+  bottom: -6px;
+  /* Faz a barra "subir" */
 }
 
 .banner {
@@ -86,10 +88,11 @@ header {
   align-items: center;
   justify-content: space-between;
   padding: 60px;
-  background: var(--branco);
-  box-shadow: 0 10px 25px var(--sombra);
+  background: linear-gradient(135deg, #3C096C 0%, #240046 50%, #3C096C 100%);
+  box-shadow: 0 10px 25px var(--branco);
   flex-wrap: wrap;
 }
+
 
 .banner-texto {
   flex: 1;
@@ -98,13 +101,14 @@ header {
 
 .banner-texto h1 {
   font-size: 2.8rem;
-  color: var(--roxo-principal);
+  color: var(--branco);
   margin-bottom: 20px;
 }
 
 .banner-texto p {
   font-size: 1.2rem;
   line-height: 1.6;
+  color: var(--branco);
 }
 
 .banner img {
@@ -132,7 +136,7 @@ header {
 }
 
 .funcionalidades li {
-  background: var(--roxo-principal);
+  background: var(--roxo-menos-claro);
   padding: 20px;
   border-radius: 10px;
   transition: box-shadow 0.3s ease;
@@ -141,11 +145,11 @@ header {
 }
 
 .funcionalidades li:hover {
-  box-shadow: 0 8px 20px var(--roxo-claro);
+  box-shadow: 0 8px 20px var(--roxo-menos-claro);
 }
 
 .footer {
-  background-color: #1f0939;
+  background-color: var(--roxo-menos-escuro);
   color: #fff;
   padding: 40px 20px;
   font-family: 'Segoe UI', sans-serif;

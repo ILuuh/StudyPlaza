@@ -1,3 +1,18 @@
+:root {
+  --roxo-claro: #cdb4db;
+  --roxo-menos-claro: #3C096C;
+  --roxo-principal: #6a4c93;
+  --roxo-escuro: #10002B;
+  --roxo-menos-escuro: #1f0939;
+  --lilas: #9D4EDD;
+  --branco: #ffffff;
+  --sombra: rgba(111, 66, 193, 0.2);
+}
+
+body {
+  background: linear-gradient(135deg, #3C096C 0%, #240046 50%, #3C096C 100%);
+}
+
 main {
   max-width: 800px;
   margin: 50px auto;
@@ -7,12 +22,12 @@ main {
 
 h2 {
   font-size: 2.2rem;
-  color: #6a4c93;
+  color: var(--branco);
   margin-bottom: 30px;
 }
 
 .quiz-container {
-  background: #fff;
+  background: var(--roxo-escuro);
   padding: 30px;
   border-radius: 12px;
   box-shadow: 0 4px 25px rgba(111, 66, 193, 0.15);
@@ -20,7 +35,7 @@ h2 {
 
 .question {
   font-size: 1.2rem;
-  color: #331f4a;
+  color: var(--branco);
   margin-bottom: 20px;
 }
 
@@ -31,17 +46,16 @@ h2 {
   padding: 12px;
   border: none;
   border-radius: 8px;
-  background: #f7f1fb;
-  color: #331f4a;
+  background: var(--roxo-menos-claro);
+  color: var(--branco);
   font-weight: 600;
   cursor: pointer;
   transition: 0.3s ease;
 }
 
 .options button:hover {
-  background-color: #f9bc60;
-  color: #331f4a;
-  box-shadow: 0 0 10px #f9bc60;
+  background-color: var(--roxo-menos-claro);
+  box-shadow: 0 0 10px var(--roxo-claro);
 }
 
 .result {
