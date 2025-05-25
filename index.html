@@ -18,12 +18,19 @@
 
     <!-- Botão hamburger para telas pequenas -->
     <button class="hamburger" aria-label="Abrir menu" aria-expanded="false" aria-controls="menu-principal">
+
+
       <span class="hamburger-bar"></span>
       <span class="hamburger-bar"></span>
       <span class="hamburger-bar"></span>
     </button>
 
     <nav class="menu" id="menu-principal" aria-label="Menu principal">
+
+      <div >
+        <button class="fecharMenu">X</button>
+      </div>
+
       <a href="index.html" class="linkMenu active" aria-current="page">Ínicio</a>
       <a href="como-funciona.html" class="linkMenu">Como Funciona</a>
       <a href="cursos.html" class="linkMenu">Cursos</a>
@@ -110,13 +117,21 @@
   </footer>
 
   <script>
-    const hamburger = document.querySelector('.hamburger');
-    const menu = document.querySelector('.menu');
+    let botaomenu = document.querySelector("header .hamburger");
+    botaomenu.addEventListener("click", abrirmenu);
 
-    hamburger.addEventListener('click', () => {
-      const isOpen = menu.classList.toggle('open');
-      hamburger.setAttribute('aria-expanded', isOpen);
-    });
+    let menu = document.querySelector("header .menu");
+
+    let botaofecharmenu = document.querySelector(".fecharMenu");
+    botaofecharmenu.addEventListener("click", fecharmenu);
+
+    function abrirmenu() {
+      menu.style.right = "0";
+    }
+
+    function fecharmenu() {
+      menu.style.right = "-100%";
+    }
   </script>
 
 </body>
