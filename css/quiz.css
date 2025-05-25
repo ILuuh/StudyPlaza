@@ -1,3 +1,4 @@
+
 main {
   max-width: 800px;
   margin: 50px auto;
@@ -12,7 +13,7 @@ main {
 }
 
 .quiz-container {
-  background: #fff;
+  background: rgb(240, 240, 240);
   padding: 30px;
   border-radius: 12px;
   box-shadow: 0 4px 25px rgba(111, 66, 193, 0.15);
@@ -31,7 +32,7 @@ main {
   padding: 12px;
   border: none;
   border-radius: 8px;
-  background: #f7f1fb;
+  background: rgb(250, 250, 250);
   color: #331f4a;
   font-weight: 600;
   cursor: pointer;
