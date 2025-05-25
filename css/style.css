@@ -5,7 +5,7 @@
   /* lavanda suave */
   --roxo-principal: #6A4C93;
   /* roxo mais vibrante */
-  --roxo-escuro: #333333;
+  --preto: #333333;
   /* quase preto para texto */
   --amarelo: #FFD166;
   /* destaque */
@@ -24,7 +24,7 @@
 body {
   font-family: 'Poppins', sans-serif;
   background: var(--branco);
-  color: var(--roxo-escuro);
+  color: var(--preto);
   display: flex;
   flex-direction: column;
   min-height: 100vh;
@@ -86,6 +86,63 @@ header {
   bottom: -6px;
 }
 
+.menu .fecharMenu {
+  align-self: flex-end;
+  margin-bottom: 20px;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: var(--branco);
+  cursor: pointer;
+  transition: color 0.3s;
+  display: none;
+}
+
+.menu .fecharMenu:hover {
+  color: var(--amarelo);
+}
+
+/* Esconder o botão hamburger no desktop */
+.hamburger {
+  height: 2.5rem;
+  /* Altura do botão de menu */
+  width: 2rem;
+  /* Largura do botão de menu */
+  background-color: transparent;
+  /* Fundo transparente */
+  border: none;
+  /* Sem borda */
+  border-radius: 5px;
+  /* Bordas arredondadas */
+  display: none;
+  /* Esconde o botão por padrão */
+  flex-direction: column;
+  /* Organiza os itens dentro do botão em coluna */
+  gap: 0.4rem;
+  /* Espaço entre as "barrinhas" do botão */
+  align-items: center;
+  /* Alinha as "barrinhas" no centro */
+  justify-content: center;
+  /* Justifica o conteúdo no centro */
+  cursor: pointer;
+  /* Muda o cursor para a mãozinha ao passar sobre o botão */
+  transition: background 0.5s;
+  /* Adiciona transição suave no fundo ao passar o mouse */
+}
+
+.hamburger:focus {
+  outline: 2px solid var(--amarelo);
+  outline-offset: 2px;
+}
+
+.hamburger-bar {
+  width: 100%;
+  height: 3px;
+  border-radius: 10px;
+  background-color: var(--branco);
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
 .banner {
   display: flex;
   align-items: center;
@@ -121,7 +178,7 @@ header {
 .funcionalidades {
   padding: 50px 30px;
   background: var(--roxo-claro);
-  color: var(--roxo-escuro);
+  color: var(--preto);
 }
 
 .funcionalidades h2 {
@@ -144,7 +201,7 @@ header {
   transition: box-shadow 0.3s ease;
   font-weight: 600;
   box-shadow: 0 4px 10px var(--sombra);
-  color: var(--roxo-escuro);
+  color: var(--preto);
 }
 
 footer {
@@ -233,66 +290,11 @@ footer .social-icons a:hover {
   color: #aaa;
 }
 
-/* Botão padrão */
-.fecharMenu {
-  background: var(--roxo-principal);
-  color: var(--branco);
-  padding: 10px 20px;
-  border-radius: 8px;
-  border: none;
-  transition: background 0.3s ease, color 0.3s ease;
-}
-
-.fecharMenu:hover {
-  background: var(--amarelo);
-  color: var(--roxo-escuro);
-}
-
-/* Esconder o botão hamburger no desktop */
-.hamburger {
-  height: 2.5rem;
-  /* Altura do botão de menu */
-  width: 2rem;
-  /* Largura do botão de menu */
-  background-color: transparent;
-  /* Fundo transparente */
-  border: none;
-  /* Sem borda */
-  border-radius: 5px;
-  /* Bordas arredondadas */
-  display: none;
-  /* Esconde o botão por padrão */
-  flex-direction: column;
-  /* Organiza os itens dentro do botão em coluna */
-  gap: 0.4rem;
-  /* Espaço entre as "barrinhas" do botão */
-  align-items: center;
-  /* Alinha as "barrinhas" no centro */
-  justify-content: center;
-  /* Justifica o conteúdo no centro */
-  cursor: pointer;
-  /* Muda o cursor para a mãozinha ao passar sobre o botão */
-  transition: background 0.5s;
-  /* Adiciona transição suave no fundo ao passar o mouse */
-}
-
-.hamburger:focus {
-  outline: 2px solid var(--amarelo);
-  outline-offset: 2px;
-}
-
-.hamburger-bar {
-  width: 100%;
-  height: 3px;
-  border-radius: 10px;
-  background-color: var(--branco);
-  transition: background-color 0.3s ease, transform 0.3s ease;
-}
 
 /* ======== Responsividade ======== */
 
 /* Para tablets e pequenos desktops */
-@media (max-width: 992px) {
+@media screen and (max-width: 992px) {
   header {
     flex-wrap: wrap;
     justify-content: center;
@@ -343,7 +345,7 @@ footer .social-icons a:hover {
 }
 
 /* Para celulares */
-@media (max-width: 600px) {
+@media screen and (max-width: 600px) {
   .hamburger {
     display: flex;
   }
@@ -392,4 +394,14 @@ footer .social-icons a:hover {
   .menu .linkMenu:focus {
     color: var(--amarelo);
   }
+
+  .menu .fecharMenu {
+    display: flex;
+  }
+
+  .funcionalidades ul {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
 }

@@ -1,3 +1,17 @@
+:root {
+  --roxo-claro: #A88BEB;
+  /* lavanda suave */
+  --roxo-principal: #6A4C93;
+  /* roxo mais vibrante */
+  --preto: #333333;
+  /* quase preto para texto */
+  --amarelo: #FFD166;
+  /* destaque */
+  --branco: #F9F9F9;
+  /* fundo claro */
+  --sombra: rgba(0, 0, 0, 0.1);
+  /* sombra suave para light mode */
+}
 
 main {
   max-width: 800px;
@@ -8,7 +22,7 @@ main {
 
 .textoPag {
   font-size: 2.2rem;
-  color: #6a4c93;
+  color: var(--roxo-principal);
   margin-bottom: 30px;
 }
 

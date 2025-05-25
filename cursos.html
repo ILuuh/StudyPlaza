@@ -16,19 +16,29 @@
 <body>
   <header>
     <div class="logo">
-      <img src="img/logo.png" alt="Logo StudyPlaza">
+      <img src="img/logo.png" alt="Logo">
     </div>
-    <nav class="menu">
-      <a href="index.html" class="linkMenu active">Ínicio</a>
+
+    <button class="hamburger" aria-label="Abrir menu" aria-expanded="false" aria-controls="menu-principal">
+      <span class="hamburger-bar"></span>
+      <span class="hamburger-bar"></span>
+      <span class="hamburger-bar"></span>
+    </button>
+
+    <nav class="menu" id="menu-principal" aria-label="Menu principal">
+      <button class="fecharMenu" aria-label="Fechar menu">✕</button>
+
+      <a href="index.html" class="linkMenu active" aria-current="page">Início</a>
       <a href="como-funciona.html" class="linkMenu">Como Funciona</a>
       <a href="cursos.html" class="linkMenu">Cursos</a>
       <a href="quiz.html" class="linkMenu">Quiz</a>
       <a href="login.html" class="linkMenu">Login/Cadastro</a>
     </nav>
   </header>
+
   <main class="container" role="main" tabindex="0">
     <section aria-labelledby="courses-title">
-      <h2 id="courses-title">Cursos</h2>
+      <h2 class="courses-title">Cursos</h2>
       <div class="courses-container" aria-label="Lista de cursos sugeridos">
         <article class="course-card" tabindex="0">
           <h3>Introdução à Programação</h3>
@@ -98,6 +108,8 @@
     </div>
     <p>&copy; 2025 StudyPlaza - Todos os direitos reservados.</p>
   </footer>
+
+  <script src="js/menuHamburguer.js"></script>
 </body>
 
 </html>
