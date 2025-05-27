@@ -1,37 +1,33 @@
 :root {
-    --roxo-claro: #E0AAFF;
-    --roxo-principal: #9D4EDD;
-    --roxo-escuro: #7B2CBF;
-    --roxo-muito-escuro: #4A148C;
-    --amarelo: #F9BC60;
-    --amarelo-escuro: #d29f3b;
-    --branco: #FFFFFF;
-    --cinza240: rgb(240, 240, 240);
-    --cinza230: rgb(230, 230, 230);
-    --sombra: rgba(157, 78, 221, 0.3);
+    --roxo-claro: #A88BEB;
+    --roxo-principal: #6A4C93;
+    --preto: #333333;
+    --amarelo: #FFD166;
+    --branco: #F9F9F9;
+    --sombra: rgba(0, 0, 0, 0.1);
     --font-family: 'Poppins', Arial, sans-serif;
-    --degrade: linear-gradient(90deg, #7B2CBF, #9D4EDD);
-}
-
-/* Reset básico */
-* {
+    --degrade: linear-gradient(90deg, var(--roxo-principal), var(--roxo-claro));
+  }
+  
+  /* Reset básico */
+  * {
     box-sizing: border-box;
-}
-
-body,
-html {
+  }
+  
+  body,
+  html {
     margin: 0;
     padding: 0;
     height: 100%;
     font-family: var(--font-family);
-    background: var(--cinza230);
-    color: var(--roxo-muito-escuro);
+    background: var(--branco);
+    color: var(--preto);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     user-select: none;
-}
-
-main {
+  }
+  
+  main {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -39,66 +35,70 @@ main {
     gap: 20px;
     padding: 40px 20px;
     user-select: text;
-}
-
-.slogan {
+    margin-top: 2rem;
+  }
+  
+  .slogan {
     display: grid;
     grid-template-columns: 1fr;
     justify-content: start;
-}
-
-.logoTexto {
+  }
+  
+  .logoTexto {
     display: flex;
     text-align: center;
     align-items: center;
-    color: var(--degrade);
-}
-
-.logoTexto img {
+    background: var(--degrade);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  
+  .logoTexto img {
     width: 75px;
     height: 75px;
-}
-
-.imagemElfa img {
+  }
+  
+  .imagemElfa img {
     max-width: 240px;
     width: 100%;
     user-select: none;
     pointer-events: none;
     border-radius: 12px;
-}
-
-.form-container {
-    background-color: var(--cinza240);
+  }
+  
+  .form-container {
+    background-color: var(--branco);
     padding: 25px 28px;
     border-radius: 12px;
     box-shadow: 0 8px 24px var(--sombra);
     width: 480px;
-}
-
-.form-container h2 {
+    color: var(--preto);
+  }
+  
+  .form-container h2 {
     margin-top: 0;
     margin-bottom: 24px;
     font-weight: 600;
     font-size: 1.9rem;
-    color: var(--roxo-muito-escuro);
+    color: var(--roxo-principal);
     text-align: center;
     user-select: text;
-}
-
-.input-field {
+  }
+  
+  .input-field {
     margin-bottom: 20px;
     user-select: text;
-}
-
-label {
+  }
+  
+  label {
     display: block;
     font-weight: 600;
     margin-bottom: 8px;
     color: var(--roxo-principal);
     user-select: text;
-}
-
-input {
+  }
+  
+  input {
     width: 100%;
     padding: 12px 14px;
     font-size: 1rem;
@@ -107,51 +107,51 @@ input {
     border-radius: 8px;
     resize: vertical;
     transition: border-color 0.3s ease, box-shadow 0.3s ease;
-    color: var(--roxo-muito-escuro);
+    color: var(--preto);
     user-select: text;
-    background-color: #fff;
-}
-
-input:focus,
-textarea:focus {
+    background-color: var(--branco);
+  }
+  
+  input:focus,
+  textarea:focus {
     border-color: var(--roxo-principal);
     box-shadow: 0 0 10px var(--sombra);
     outline: none;
     background-color: var(--roxo-claro);
-}
-
-/* Classes para validação */
-input.valid,
-textarea.valid {
+  }
+  
+  /* Classes para validação */
+  input.valid,
+  textarea.valid {
     border-color: green;
-}
-
-input.invalid,
-textarea.invalid {
+  }
+  
+  input.invalid,
+  textarea.invalid {
     border-color: #e63946;
     background-color: #ffe5e5;
-}
-
-.error-message {
+  }
+  
+  .error-message {
     color: #e63946;
     font-size: 0.85rem;
     margin-top: 6px;
     min-height: 18px;
     user-select: text;
-}
-
-.char-count {
+  }
+  
+  .char-count {
     text-align: right;
     font-size: 0.8rem;
-    color: var(--roxo-muito-escuro);
+    color: var(--preto);
     margin-top: 4px;
     user-select: text;
-}
-
-button {
+  }
+  
+  button {
     width: 100%;
     background-color: var(--amarelo);
-    color: var(--roxo-muito-escuro);
+    color: var(--preto);
     font-weight: 700;
     font-size: 1.1rem;
     padding: 14px 0;
@@ -162,59 +162,59 @@ button {
     transition: background-color 0.3s ease;
     user-select: none;
     letter-spacing: 0.03em;
-}
-
-button:hover,
-button:focus {
-    background-color: var(--amarelo-escuro);
+  }
+  
+  button:hover,
+  button:focus {
+    background-color: #e6b14a;
     outline: none;
-}
-
-.links {
+  }
+  
+  .links {
     margin-top: 25px;
     display: flex;
     justify-content: space-between;
     font-size: 0.9rem;
     user-select: text;
-}
-
-.links a {
-    color: var(--amarelo);
+  }
+  
+  .links a {
+    color: var(--roxo-principal);
     text-decoration: none;
     font-weight: 600;
     transition: text-decoration 0.3s ease;
-}
-
-.links a:hover,
-.links a:focus {
+  }
+  
+  .links a:hover,
+  .links a:focus {
     text-decoration: underline;
     outline: none;
-}
-
-.sr-only {
-  position: absolute !important;
-  width: 1px !important;
-  height: 1px !important;
-  padding: 0 !important;
-  margin: -1px !important;
-  overflow: hidden !important;
-  clip: rect(0, 0, 0, 0) !important;
-  border: 0 !important;
-}
-
-
-/* Responsividade simples */
-@media (max-width: 520px) {
+  }
+  
+  .sr-only {
+    position: absolute !important;
+    width: 1px !important;
+    height: 1px !important;
+    padding: 0 !important;
+    margin: -1px !important;
+    overflow: hidden !important;
+    clip: rect(0, 0, 0, 0) !important;
+    border: 0 !important;
+  }
+  
+  /* Responsividade simples */
+  @media (max-width: 520px) {
     main {
-        padding: 30px 16px;
-        gap: 30px;
+      padding: 30px 16px;
+      gap: 30px;
     }
-
+  
     .form-container {
-        padding: 28px 20px;
+      padding: 28px 20px;
     }
-
+  
     .imagemElfa img {
-        max-width: 180px;
+      max-width: 180px;
     }
-}
+  }
+  

@@ -13,6 +13,8 @@
   /* fundo claro */
   --sombra: rgba(0, 0, 0, 0.1);
   /* sombra suave para light mode */
+  --font-family: 'Poppins', Arial, sans-serif;
+  --degrade: linear-gradient(90deg, var(--roxo-principal), var(--roxo-claro));
 }
 
 * {
@@ -22,7 +24,7 @@
 }
 
 body {
-  font-family: 'Poppins', sans-serif;
+  font-family: var(--font-family);
   background: var(--branco);
   color: var(--preto);
   display: flex;
