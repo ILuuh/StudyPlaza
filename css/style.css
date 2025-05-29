@@ -2,19 +2,12 @@
 
 :root {
   --roxo-claro: #A88BEB;
-  /* lavanda suave */
   --roxo-principal: #6A4C93;
-  /* roxo mais vibrante */
   --preto: #333333;
-  /* quase preto para texto */
   --amarelo: #FFD166;
-  /* destaque */
   --branco: #F9F9F9;
-  /* fundo claro */
   --sombra: rgba(0, 0, 0, 0.1);
-  /* sombra suave para light mode */
   --font-family: 'Poppins', Arial, sans-serif;
-  --degrade: linear-gradient(90deg, var(--roxo-principal), var(--roxo-claro));
 }
 
 * {
@@ -58,7 +51,6 @@ header {
 .menu .linkMenu {
   margin: 0 1rem;
   position: relative;
-  display: inline-block;
   text-decoration: none;
   color: var(--branco);
   font-weight: bold;
@@ -77,7 +69,7 @@ header {
   width: 0;
   height: 4px;
   background-color: var(--amarelo);
-  transition: width 0.3s ease, opacity 0.3s ease, bottom 0.3s ease;
+  transition: width 0.3s ease, opacity 0.3s ease;
   transform: translateX(-50%);
   opacity: 0;
 }
@@ -85,7 +77,6 @@ header {
 .menu .linkMenu:hover::before {
   width: 100%;
   opacity: 1;
-  bottom: -6px;
 }
 
 .menu .fecharMenu {
@@ -96,40 +87,23 @@ header {
   font-size: 1.5rem;
   color: var(--branco);
   cursor: pointer;
-  transition: color 0.3s;
   display: none;
+  transition: color 0.3s;
 }
 
 .menu .fecharMenu:hover {
   color: var(--amarelo);
 }
 
-/* Esconder o botão hamburger no desktop */
 .hamburger {
   height: 2.5rem;
-  /* Altura do botão de menu */
   width: 2rem;
-  /* Largura do botão de menu */
-  background-color: transparent;
-  /* Fundo transparente */
+  background: transparent;
   border: none;
-  /* Sem borda */
-  border-radius: 5px;
-  /* Bordas arredondadas */
   display: none;
-  /* Esconde o botão por padrão */
   flex-direction: column;
-  /* Organiza os itens dentro do botão em coluna */
   gap: 0.4rem;
-  /* Espaço entre as "barrinhas" do botão */
-  align-items: center;
-  /* Alinha as "barrinhas" no centro */
-  justify-content: center;
-  /* Justifica o conteúdo no centro */
   cursor: pointer;
-  /* Muda o cursor para a mãozinha ao passar sobre o botão */
-  transition: background 0.5s;
-  /* Adiciona transição suave no fundo ao passar o mouse */
 }
 
 .hamburger:focus {
@@ -163,7 +137,6 @@ header {
 
 .banner-texto h1 {
   font-size: 2.8rem;
-  color: var(--roxo-principal);
   margin-bottom: 20px;
 }
 
@@ -180,7 +153,6 @@ header {
 .funcionalidades {
   padding: 50px 30px;
   background: var(--roxo-claro);
-  color: var(--preto);
 }
 
 .funcionalidades h2 {
@@ -200,10 +172,8 @@ header {
   background: var(--branco);
   padding: 25px;
   border-radius: 10px;
-  transition: box-shadow 0.3s ease;
   font-weight: 600;
   box-shadow: 0 4px 10px var(--sombra);
-  color: var(--preto);
 }
 
 footer {
@@ -211,32 +181,23 @@ footer {
   color: var(--branco);
   text-align: center;
   padding: 25px 15px;
-  font-size: 1rem;
-  user-select: none;
   box-shadow: 0 -6px 20px var(--sombra);
   margin-top: auto;
 }
 
 .footer-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  max-width: 1200px;
-  margin: auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
 }
 
 .footer-section {
-  flex: 1;
-  min-width: 250px;
   margin: 20px 0;
-  text-align: left;
 }
 
 footer .nomeLogo {
   display: flex;
   gap: 1rem;
   align-items: center;
-  padding: 0 0.5rem;
 }
 
 .logoFooter {
@@ -245,16 +206,10 @@ footer .nomeLogo {
 
 .footer-section h3 {
   margin-bottom: 10px;
-  color: var(--branco);
 }
 
 .footer-section ul {
   list-style: none;
-  padding: 0;
-}
-
-.footer-section ul li {
-  margin-bottom: 8px;
 }
 
 .footer-section ul li a {
@@ -269,12 +224,12 @@ footer .nomeLogo {
 
 footer .social-icons {
   display: flex;
+  justify-content: center;
   gap: 0.5rem;
 }
 
 footer .social-icons a {
   color: #eee;
-  margin-right: 10px;
   font-size: 30px;
   transition: color 0.3s;
 }
@@ -292,10 +247,8 @@ footer .social-icons a:hover {
   color: #aaa;
 }
 
+/* ===== Responsividade ===== */
 
-/* ======== Responsividade ======== */
-
-/* Para tablets e pequenos desktops */
 @media screen and (max-width: 992px) {
   header {
     flex-wrap: wrap;
@@ -307,38 +260,12 @@ footer .social-icons a:hover {
     margin: 10px 0;
   }
 
-  .menu {
-    justify-content: center;
-    gap: 12px;
-    flex-wrap: wrap;
-    width: 100%;
-    margin-top: 10px;
-  }
-
-  .menu .linkMenu {
-    margin: 0 8px;
-    font-size: 1rem;
-  }
-
   .banner {
     padding: 40px 20px;
   }
 
-  .banner-texto h1 {
-    font-size: 2.2rem;
-  }
-
-  .banner-texto p {
-    font-size: 1.1rem;
-  }
-
-  .banner img {
-    max-width: 250px;
-  }
-
   .funcionalidades ul {
     grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
   }
 
   .funcionalidades {
@@ -346,7 +273,7 @@ footer .social-icons a:hover {
   }
 }
 
-/* Para celulares */
+
 @media screen and (max-width: 600px) {
   .hamburger {
     display: flex;
@@ -354,46 +281,29 @@ footer .social-icons a:hover {
 
   .menu {
     position: fixed;
-    /* O menu fica fixo na tela */
     background-color: var(--roxo-principal);
-    /* Cor de fundo para o menu */
     top: 0;
-    /* Fixa o menu no topo */
     bottom: 0;
-    /* Fixa o menu na parte inferior */
     flex-direction: column;
-    /* Organiza os itens do menu em coluna */
     align-items: flex-start;
-    /* Alinha os itens à esquerda */
-    gap: 0;
-    /* Sem espaçamento entre os itens */
     padding: 3rem;
-    /* Preenchimento interno */
     width: 100%;
-    /* Largura total da tela */
     right: -100%;
-    /* O menu começa fora da tela */
     transition: right 0.5s;
-    /* Transição suave para mostrar o menu */
     z-index: 1;
-    /* Garantir que o menu fique sobre outros elementos */
   }
 
   .menu.open {
-    transform: translateX(0);
+    right: 0;
   }
 
   .menu .linkMenu {
     display: flex;
     width: 100%;
     padding: 1rem;
-    /* Preenchimento interno dos links */
-    transition: color 0.5s;
-    /* Transição suave no fundo ao passar o mouse */
   }
 
-  .menu .linkMenu:hover,
-  .menu .linkMenu:focus {
+  .menu .linkMenu:hover {
     color: var(--amarelo);
   }
 
@@ -403,7 +313,18 @@ footer .social-icons a:hover {
 
   .funcionalidades ul {
     grid-template-columns: 1fr;
-    gap: 20px;
   }
 
+  footer {
+    padding: 20px 10px;
+    text-align: center;
+  }
+
+  footer .footer-container {
+    grid-template-columns: 1fr;
+  }
+
+  footer .nomeLogo {
+    justify-content: center;
+  }
 }
