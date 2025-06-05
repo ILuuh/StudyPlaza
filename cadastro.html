@@ -6,62 +6,65 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="icon" href="img/logo.png" type="image/png" />
   <title>Cadastro - StudyPlaza</title>
+  <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/cadastro.css" />
 </head>
 
 <body>
 
-  <main>
+  <header>
+    <div class="logo">
+      <a href="index.html"><img src="img/logo.png" alt="Logo"></a>
+    </div>
 
-    <!-- Slogan separado do formulário -->
-    <section class="slogan" aria-label="Apresentação do StudyPlaza">
-      <div class="logoTexto">
-        <img src="img/logo.png" alt="Logo do StudyPlaza" width="75" height="75" />
-        <div class="texto">
-          <h1>StudyPlaza</h1>
-          <h2>Venha fazer parte do StudyPlaza</h2>
-        </div>
-      </div>
-      <div class="imagemElfa" aria-hidden="true">
-        <img src="img/ElfaEstudando.png" alt="Elfa estudando" />
-      </div>
-    </section>
+    <button class="hamburger" aria-label="Abrir menu" aria-expanded="false" aria-controls="menu-principal">
+      <span class="hamburger-bar"></span>
+      <span class="hamburger-bar"></span>
+      <span class="hamburger-bar"></span>
+    </button>
 
-    <section class="form-container" aria-label="Formulário de cadastro">
+    <nav class="menu" id="menu-principal" aria-label="Menu principal">
+      <button class="fecharMenu" aria-label="Fechar menu">✕</button>
 
-      <h2>Formulário de Cadastro</h2>
+      <a href="como-funciona.html" class="linkMenu">Como Funciona</a>
+      <a href="cursos.html" class="linkMenu">Cursos</a>
+      <a href="quiz.html" class="linkMenu">Quiz</a>
+      <a href="login.html" class="linkMenu">Login</a>
+    </nav>
+  </header>
 
-      <form id="contactForm" novalidate aria-describedby="formInstructions">
-        <p id="formInstructions" class="sr-only">Preencha todos os campos obrigatórios para realizar o cadastro.</p>
+  <main class="register-container" role="main" aria-labelledby="login-title">
+    <img src="img/ElfaEstudando.png" alt="Elfa estudando">
+    <h1 id="register-title">Venha fazer parte do StudyPlaza</h1>
 
-        <div class="input-field">
-          <label for="name">Nome<span aria-hidden="true">*</span>:</label>
-          <input type="text" id="name" name="name" required aria-required="true" aria-describedby="nameError" autocomplete="name" />
-          <div id="nameError" class="error-message" role="alert" aria-live="assertive"></div>
-        </div>
+    <form id="register-form" novalidate autocomplete="off" aria-describedby="form-error">
 
-        <div class="input-field">
-          <label for="email">E-mail<span aria-hidden="true">*</span>:</label>
-          <input type="email" id="email" name="email" required aria-required="true" aria-describedby="emailError" autocomplete="email" />
-          <div id="emailError" class="error-message" role="alert" aria-live="assertive"></div>
-        </div>
+      <label for="name">Nome:</label>
+      <input type="text" id="name" name="name" required aria-required="true" aria-describedby="nameError" autocomplete="name" />
+      <div id="nameError" class="error-message" role="alert" aria-live="assertive"></div>
 
-        <div class="input-field">
-          <label for="senha">Senha<span aria-hidden="true">*</span>:</label>
-          <input type="password" id="senha" name="senha" required aria-required="true" aria-describedby="passwordError" autocomplete="new-password" />
-          <div id="passwordError" class="error-message" role="alert" aria-live="assertive"></div>
-        </div>
+      <label for="input-email">Email:</label>
+      <input type="email" id="email" name="email" required aria-required="true" aria-describedby="emailError" autocomplete="email" />
+      <div id="emailError" class="error-message" role="alert" aria-live="assertive"></div>
 
-        <button type="submit" aria-label="Enviar formulário de cadastro">Enviar</button>
-      </form>
+      <label for="input-password">Senha:</label>
+      <input type="password" id="senha" name="senha" required aria-required="true" aria-describedby="passwordError" autocomplete="new-password" />
+      <div id="passwordError" class="error-message" role="alert" aria-live="assertive"></div>
 
-      <nav class="links" aria-label="Navegação secundária">
-        <a href="login.html">Fazer Login</a>
-        <a href="index.html">Voltar para o Início</a>
-      </nav>
+      <label for="confirm">Confirmar Senha:</label>
+      <input type="password" id="confirm-password" name="password" placeholder="••••••••" required
+        aria-required="true" aria-describedby="password-error">
+      <div id="confirmPassword-error" class="error-message"></div>
 
-    </section>
 
+      <button type="submit">Entrar</button>
+      <div id="form-error" class="error-message"></div>
+    </form>
+
+    <div class="links">
+      <a href="cadastro.html">Criar conta</a>
+      <a href="index.html">Voltar</a>
+    </div>
   </main>
 
   <script src="js/cadastro.js" defer></script>

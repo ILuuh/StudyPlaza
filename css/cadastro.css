@@ -4,159 +4,93 @@
   --preto: #333333;
   --amarelo: #FFD166;
   --branco: #F9F9F9;
-  --sombra: rgba(0, 0, 0, 0.1);
-  --font-family: 'Poppins', Arial, sans-serif;
-  --degrade: linear-gradient(90deg, var(--roxo-principal), var(--roxo-claro));
 }
 
-/* Reset básico */
 * {
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
 }
 
-body,
-html {
-  margin: 0;
-  padding: 0;
-  font-family: var(--font-family);
-  background: linear-gradient(135deg, var(--roxo-claro), var(--roxo-principal));
-  color: var(--preto);
-}
-
-main {
-  background-color: white;
-  margin: 1rem 3rem;
+.register-container {
+  background: var(--branco);
+  padding: 40px;
   border-radius: 16px;
-  width: 70rem;
-  min-height: 100vh;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  gap: 20px;
-}
-
-.slogan {
-  display: grid;
-  grid-template-columns: 1fr;
-  justify-content: start;
-}
-
-.logoTexto {
-  display: flex;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  width: min(50rem,100%);
   text-align: center;
-  align-items: center;
 }
 
-.logoTexto img {
-  width: 75px;
-  height: 75px;
-}
-
-.imagemElfa img {
-  max-width: 240px;
-  width: 100%;
-  user-select: none;
-  pointer-events: none;
-  border-radius: 12px;
-}
-
-.form-container h2 {
-  font-weight: 600;
-  color: var(--roxo-principal);
-  text-align: center;
-  user-select: text;
-}
-
-.input-field {
+.register-container img {
+  max-width: 120px;
   margin-bottom: 20px;
-  user-select: text;
+}
+
+.register-container h1 {
+  font-size: 1.8rem;
+  margin-bottom: 25px;
+  color: var(--roxo-principal);
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
 }
 
 label {
-  display: block;
   font-weight: 600;
-  margin-bottom: 8px;
+  text-align: left;
+  font-size: 0.9rem;
   color: var(--roxo-principal);
-  user-select: text;
 }
 
 input {
-  width: 100%;
-  padding: 12px 14px;
-  font-size: 1rem;
-  font-weight: 400;
-  border: 2px solid var(--roxo-claro);
+  padding: 12px;
   border-radius: 8px;
-  resize: vertical;
-  transition: border-color 0.3s ease, box-shadow 0.3s ease;
-  color: var(--preto);
-  user-select: text;
-  background-color: var(--branco);
+  border: 1px solid #ddd;
+  transition: border-color 0.3s;
+  background: #f9f9f9;
 }
 
-input:focus,
-textarea:focus {
-  border-color: var(--roxo-principal);
-  box-shadow: 0 0 10px var(--sombra);
+input:focus {
+  border-color: var(--amarelo);
   outline: none;
-  background-color: var(--roxo-claro);
 }
 
 button {
-  width: 100%;
-  background-color: var(--amarelo);
+  background: var(--amarelo);
   color: var(--preto);
-  font-weight: 700;
-  font-size: 1.1rem;
-  padding: 14px 0;
+  padding: 12px;
   border: none;
-  border-radius: 10px;
+  border-radius: 8px;
+  font-weight: bold;
   cursor: pointer;
-  box-shadow: 0 6px 16px var(--sombra);
-  transition: background-color 0.3s ease;
-  user-select: none;
-  letter-spacing: 0.03em;
+  transition: background 0.3s ease, transform 0.3s ease;
 }
 
-button:hover,
-button:focus {
-  background-color: #e6b14a;
-  outline: none;
+button:hover {
+  background: #e0a63e;
+  transform: translateY(-2px);
 }
 
 .links {
-  margin-top: 25px;
+  margin-top: 20px;
   display: flex;
   justify-content: space-between;
   font-size: 0.9rem;
-  user-select: text;
 }
 
 .links a {
   color: var(--roxo-principal);
   text-decoration: none;
-  font-weight: 600;
-  transition: text-decoration 0.3s ease;
+  font-weight: bold;
+  transition: color 0.3s;
 }
 
-.links a:hover,
-.links a:focus {
-  text-decoration: underline;
-  outline: none;
+.links a:hover {
+  color: var(--amarelo);
 }
-
-.sr-only {
-  position: absolute !important;
-  width: 1px !important;
-  height: 1px !important;
-  padding: 0 !important;
-  margin: -1px !important;
-  overflow: hidden !important;
-  clip: rect(0, 0, 0, 0) !important;
-  border: 0 !important;
-}
-
 
 /* Classes para validação */
 input.valid,
@@ -173,8 +107,7 @@ textarea.invalid {
 .error-message {
   color: #e63946;
   font-size: 0.85rem;
-  margin-top: 6px;
-  min-height: 18px;
+  text-align: start;
   user-select: text;
 }
 
@@ -184,20 +117,4 @@ textarea.invalid {
   color: var(--preto);
   margin-top: 4px;
   user-select: text;
-}
-
-/* Responsividade simples */
-@media (max-width: 520px) {
-  main {
-    padding: 30px 16px;
-    gap: 30px;
-  }
-
-  .form-container {
-    padding: 28px 20px;
-  }
-
-  .imagemElfa img {
-    max-width: 180px;
-  }
 }

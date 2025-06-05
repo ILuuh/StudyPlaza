@@ -72,22 +72,49 @@ function validatePassword() {
   }
 }
 
+// Validação do campo Confirmar Senha
+function validateConfirmPassword() {
+  const confirmPassword = document.getElementById('confirm-password');
+  const confirmPasswordError = document.getElementById('confirmPassword-error');
+  const password = document.getElementById('senha');
+  const value = confirmPassword.value.trim();
+
+  if (value === '') {
+    confirmPassword.classList.add('invalid');
+    confirmPassword.classList.remove('valid');
+    confirmPasswordError.textContent = 'O campo Confirmar Senha é obrigatório.';
+    return false;
+  }else if(password.value !== confirmPassword.value){
+    confirmPasswordError.textContent = "As senhas não coincidem.";
+    return false;
+  }else {
+    confirmPassword.classList.remove('invalid');
+    confirmPassword.classList.add('valid');
+    confirmPasswordError.textContent = '';
+    return true;
+  }
+}
+
+
 // Adiciona event listeners para validação em tempo real
 document.getElementById('name').addEventListener('blur', validateName);
 document.getElementById('email').addEventListener('blur', validateEmail);
 document.getElementById('senha').addEventListener('blur', validatePassword);
+document.getElementById('confirm-password').addEventListener('blur', validateConfirmPassword);
 
 document.getElementById('name').addEventListener('focus', () => clearMessage('nameError'));
 document.getElementById('email').addEventListener('focus', () => clearMessage('emailError'));
 document.getElementById('senha').addEventListener('focus', () => clearMessage('passwordError'));
+document.getElementById('confirm-password').addEventListener('focus', () => clearMessage('confirmPassword-error'));
 
 // Validação no envio do formulário
-document.getElementById('contactForm').addEventListener('submit', function (e) {
+document.getElementById('register-form').addEventListener('submit', function (e) {
   const isNameValid = validateName();
   const isEmailValid = validateEmail();
   const isPasswordValid = validatePassword();
+  const isConfirmPasswordValid = validateConfirmPassword();
 
-  if (!isNameValid || !isEmailValid || !isPasswordValid) {
+  if (!isNameValid || !isEmailValid || !isPasswordValid || !isConfirmPasswordValid) {
     e.preventDefault();
     alert('Por favor, corrija os erros antes de enviar o formulário.');
   } else {

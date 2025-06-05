@@ -22,7 +22,6 @@ body {
   color: var(--preto);
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
 }
 
 .logo img {
@@ -128,6 +127,7 @@ header {
   box-shadow: 0 10px 25px var(--sombra);
   flex-wrap: wrap;
   color: var(--roxo-principal);
+  min-height: 90vh;
 }
 
 .banner-texto {
@@ -175,6 +175,131 @@ header {
   font-weight: 600;
   box-shadow: 0 4px 10px var(--sombra);
 }
+
+/* Fundo escuro atrás do login */
+.overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* semitransparente */
+  z-index: 998; /* abaixo do formulário */
+}
+
+/* Exibe o overlay quando ativo */
+.overlay.active {
+  display: block;
+}
+
+.formLogin {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.3);
+  z-index: 999;
+  max-width: 400px;
+  width: 90%;
+}
+
+.formLogin.active {
+  display: block;
+}
+
+.formLogin .close-login {
+  background: transparent;
+  border: none;
+  font-size: 1.5rem;
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  cursor: pointer;
+}
+
+.login-container img {
+  max-width: 120px;
+  margin-bottom: 20px;
+}
+
+.login-container h1 {
+  font-size: 1.8rem;
+  margin-bottom: 25px;
+  color: var(--roxo-principal);
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+label {
+  font-weight: 600;
+  text-align: left;
+  font-size: 0.9rem;
+  color: var(--roxo-principal);
+}
+
+input {
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  transition: border-color 0.3s;
+  background: #f9f9f9;
+}
+
+input:focus {
+  border-color: var(--amarelo);
+  outline: none;
+}
+
+.error-message {
+  color: red;
+  font-size: 0.8rem;
+  text-align: left;
+  display: none;
+}
+
+button {
+  background: var(--amarelo);
+  color: var(--preto);
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+
+button:hover {
+  background: #e0a63e;
+  transform: translateY(-2px);
+}
+
+.links {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.9rem;
+}
+
+.links a {
+  color: var(--roxo-principal);
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s;
+}
+
+.links a:hover {
+  color: var(--amarelo);
+}
+
 
 footer {
   background: linear-gradient(90deg, var(--roxo-principal), var(--roxo-claro));
