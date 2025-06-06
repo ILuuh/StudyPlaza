@@ -95,8 +95,8 @@ header {
 }
 
 .hamburger {
-  height: 2.5rem;
-  width: 2rem;
+  height: 3.5rem;
+  width: 3.5rem;
   background: transparent;
   border: none;
   display: none;
@@ -196,7 +196,7 @@ header {
 .formLogin {
   display: none;
   position: fixed;
-  top: 50%;
+  top: 60%;
   left: 50%;
   transform: translate(-50%, -50%);
   background: white;
@@ -231,6 +231,7 @@ header {
   font-size: 1.8rem;
   margin-bottom: 25px;
   color: var(--roxo-principal);
+  text-align: center;
 }
 
 form {
@@ -377,7 +378,6 @@ footer .social-icons a:hover {
 @media screen and (max-width: 992px) {
   header {
     flex-wrap: wrap;
-    justify-content: center;
   }
 
   .logo img {
