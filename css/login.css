@@ -1,111 +1,115 @@
 :root {
-      --roxo-claro: #A88BEB;
-      --roxo-principal: #6A4C93;
-      --preto: #333333;
-      --amarelo: #FFD166;
-      --branco: #F9F9F9;
-    }
+  --roxo-claro: #cdb4db;
+  --roxo-menos-claro: #3C096C;
+  --roxo-principal: #6a4c93;
+  --roxo-escuro: #10002B;
+  --roxo-menos-escuro: #1f0939;
+  --lilas: #9D4EDD;
+  --logo: #b287f5;
+  --branco: #ffffff;
+  --sombra: rgba(111, 66, 193, 0.2);
+}
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-    body {
-      font-family: 'Poppins', sans-serif;
-      background: linear-gradient(135deg, var(--roxo-claro), var(--roxo-principal));
-      color: var(--preto);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 100vh;
-      padding: 20px;
-    }
+body {
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(135deg, var(--roxo-claro), var(--roxo-principal));
+  color: var(--preto);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 20px;
+}
 
-    .login-container {
-      background: var(--branco);
-      padding: 40px;
-      border-radius: 16px;
-      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
-      width: min(50rem,100%);
-      text-align: center;
-    }
+.login-container {
+  background: var(--branco);
+  padding: 40px;
+  border-radius: 16px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  width: min(50rem, 100%);
+  text-align: center;
+}
 
-    .login-container img {
-      max-width: 120px;
-      margin-bottom: 20px;
-    }
+.login-container img {
+  max-width: 120px;
+  margin-bottom: 20px;
+}
 
-    .login-container h1 {
-      font-size: 1.8rem;
-      margin-bottom: 25px;
-      color: var(--roxo-principal);
-    }
+.login-container h1 {
+  font-size: 1.8rem;
+  margin-bottom: 25px;
+  color: var(--roxo-principal);
+}
 
-    form {
-      display: flex;
-      flex-direction: column;
-      gap: 15px;
-    }
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
 
-    label {
-      font-weight: 600;
-      text-align: left;
-      font-size: 0.9rem;
-      color: var(--roxo-principal);
-    }
+label {
+  font-weight: 600;
+  text-align: left;
+  font-size: 0.9rem;
+  color: var(--roxo-principal);
+}
 
-    input {
-      padding: 12px;
-      border-radius: 8px;
-      border: 1px solid #ddd;
-      transition: border-color 0.3s;
-      background: #f9f9f9;
-    }
+input {
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  transition: border-color 0.3s;
+  background: #f9f9f9;
+}
 
-    input:focus {
-      border-color: var(--amarelo);
-      outline: none;
-    }
+input:focus {
+  border-color: var(--amarelo);
+  outline: none;
+}
 
-    .error-message {
-      color: red;
-      font-size: 0.8rem;
-      text-align: left;
-      display: none;
-    }
+.error-message {
+  color: red;
+  font-size: 0.8rem;
+  text-align: left;
+  display: none;
+}
 
-    button {
-      background: var(--amarelo);
-      color: var(--preto);
-      padding: 12px;
-      border: none;
-      border-radius: 8px;
-      font-weight: bold;
-      cursor: pointer;
-      transition: background 0.3s ease, transform 0.3s ease;
-    }
+button {
+  background: var(--amarelo);
+  color: var(--preto);
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.3s ease;
+}
 
-    button:hover {
-      background: #e0a63e;
-      transform: translateY(-2px);
-    }
+button:hover {
+  background: #e0a63e;
+  transform: translateY(-2px);
+}
 
-    .links {
-      margin-top: 20px;
-      display: flex;
-      justify-content: space-between;
-      font-size: 0.9rem;
-    }
+.links {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.9rem;
+}
 
-    .links a {
-      color: var(--roxo-principal);
-      text-decoration: none;
-      font-weight: bold;
-      transition: color 0.3s;
-    }
+.links a {
+  color: var(--roxo-principal);
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s;
+}
 
-    .links a:hover {
-      color: var(--amarelo);
-    }
+.links a:hover {
+  color: var(--amarelo);
+}

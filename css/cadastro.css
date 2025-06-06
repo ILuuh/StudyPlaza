@@ -1,9 +1,13 @@
 :root {
-  --roxo-claro: #A88BEB;
-  --roxo-principal: #6A4C93;
-  --preto: #333333;
-  --amarelo: #FFD166;
-  --branco: #F9F9F9;
+  --roxo-claro: #cdb4db;
+  --roxo-menos-claro: #3C096C;
+  --roxo-principal: #6a4c93;
+  --roxo-escuro: #10002B;
+  --roxo-menos-escuro: #1f0939;
+  --lilas: #9D4EDD;
+  --logo: #b287f5;
+  --branco: #ffffff;
+  --sombra: rgba(111, 66, 193, 0.2);
 }
 
 * {

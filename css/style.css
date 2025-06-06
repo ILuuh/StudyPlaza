@@ -1,12 +1,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;600;700&display=swap');
 
 :root {
-  --roxo-claro: #A88BEB;
-  --roxo-principal: #6A4C93;
-  --preto: #333333;
-  --amarelo: #FFD166;
-  --branco: #F9F9F9;
-  --sombra: rgba(0, 0, 0, 0.1);
+  --roxo-claro: #cdb4db;
+  --roxo-menos-claro: #3C096C;
+  --roxo-principal: #6a4c93;
+  --roxo-escuro: #10002B;
+  --roxo-menos-escuro: #1f0939;
+  --lilas: #9D4EDD;
+  --logo: #b287f5;
+  --branco: #ffffff;
+  --sombra: rgba(111, 66, 193, 0.2);
   --font-family: 'Poppins', Arial, sans-serif;
 }
 
@@ -18,8 +21,8 @@
 
 body {
   font-family: var(--font-family);
-  background: var(--branco);
-  color: var(--preto);
+  background: var(--roxo-claro);
+  color: var(--roxo-escuro);
   display: flex;
   flex-direction: column;
 }
@@ -34,8 +37,8 @@ header {
   align-items: center;
   justify-content: space-between;
   padding: 0.5rem 5%;
-  background: linear-gradient(90deg, var(--roxo-principal), var(--roxo-claro));
-  box-shadow: 0 4px 12px var(--sombra);
+  background: linear-gradient(90deg, #10002B 0%, #240046 100%);
+  box-shadow: 0 4px 12px rgba(111, 66, 193, 0.2);
   position: sticky;
   top: 0;
   z-index: 1000;
@@ -51,7 +54,7 @@ header {
   margin: 0 1rem;
   position: relative;
   text-decoration: none;
-  color: var(--branco);
+  color: var(--roxo-claro);
   font-weight: bold;
   transition: transform 0.3s ease;
 }
@@ -67,7 +70,7 @@ header {
   left: 50%;
   width: 0;
   height: 4px;
-  background-color: var(--amarelo);
+  background-color: var(--lilas);
   transition: width 0.3s ease, opacity 0.3s ease;
   transform: translateX(-50%);
   opacity: 0;
@@ -84,14 +87,14 @@ header {
   background: none;
   border: none;
   font-size: 1.5rem;
-  color: var(--branco);
+  color: var(--roxo-menos-escuro);
   cursor: pointer;
   display: none;
   transition: color 0.3s;
 }
 
 .menu .fecharMenu:hover {
-  color: var(--amarelo);
+  color: var(--lilas);
 }
 
 .hamburger {
@@ -105,16 +108,11 @@ header {
   cursor: pointer;
 }
 
-.hamburger:focus {
-  outline: 2px solid var(--amarelo);
-  outline-offset: 2px;
-}
-
 .hamburger-bar {
   width: 100%;
   height: 3px;
   border-radius: 10px;
-  background-color: var(--branco);
+  background-color: var(--lilas);
   transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
@@ -123,10 +121,9 @@ header {
   align-items: center;
   justify-content: space-between;
   padding: 60px;
-  background: var(--branco);
-  box-shadow: 0 10px 25px var(--sombra);
+  background: linear-gradient(135deg, #3C096C 0%, #240046 50%, #3C096C 100%);
   flex-wrap: wrap;
-  color: var(--roxo-principal);
+  color: var(--branco);
   min-height: 90vh;
 }
 
@@ -152,7 +149,8 @@ header {
 
 .funcionalidades {
   padding: 50px 30px;
-  background: var(--roxo-claro);
+  background: var(--roxo-escuro);
+  color: var(--branco);
 }
 
 .funcionalidades h2 {
@@ -169,11 +167,16 @@ header {
 }
 
 .funcionalidades li {
-  background: var(--branco);
+  background: var(--roxo-menos-claro);
   padding: 25px;
   border-radius: 10px;
+  transition: box-shadow 0.3s ease;
   font-weight: 600;
   box-shadow: 0 4px 10px var(--sombra);
+}
+
+.funcionalidades li:hover {
+  box-shadow: 0 8px 20px var(--roxo-menos-claro);
 }
 
 /* Fundo escuro atrás do login */
@@ -184,8 +187,10 @@ header {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.5); /* semitransparente */
-  z-index: 998; /* abaixo do formulário */
+  background-color: rgba(0, 0, 0, 0.5);
+  /* semitransparente */
+  z-index: 998;
+  /* abaixo do formulário */
 }
 
 /* Exibe o overlay quando ativo */
@@ -202,7 +207,7 @@ header {
   background: white;
   padding: 2rem;
   border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.3);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
   z-index: 999;
   max-width: 400px;
   width: 90%;
@@ -303,7 +308,7 @@ button:hover {
 
 
 footer {
-  background: linear-gradient(90deg, var(--roxo-principal), var(--roxo-claro));
+  background-color: var(--roxo-menos-escuro);
   color: var(--branco);
   text-align: center;
   padding: 25px 15px;
@@ -323,6 +328,7 @@ footer {
 footer .nomeLogo {
   display: flex;
   gap: 1rem;
+  color: var(--logo);
   align-items: center;
 }
 
@@ -345,7 +351,7 @@ footer .nomeLogo {
 }
 
 .footer-section ul li a:hover {
-  color: var(--amarelo);
+  color: var(--lilas);
 }
 
 footer .social-icons {
@@ -361,7 +367,7 @@ footer .social-icons a {
 }
 
 footer .social-icons a:hover {
-  color: var(--amarelo);
+  color: var(--lilas);
 }
 
 .footer-bottom {
@@ -406,7 +412,7 @@ footer .social-icons a:hover {
 
   .menu {
     position: fixed;
-    background-color: var(--roxo-principal);
+    background: linear-gradient(135deg, #3C096C 0%, #240046 50%, #3C096C 100%);
     top: 0;
     bottom: 0;
     flex-direction: column;
@@ -429,7 +435,7 @@ footer .social-icons a:hover {
   }
 
   .menu .linkMenu:hover {
-    color: var(--amarelo);
+    color: var(--roxo-claro);
   }
 
   .menu .fecharMenu {
