@@ -33,7 +33,7 @@ header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 12px 30px;
+  padding: 0.5rem 5%;
   background: linear-gradient(90deg, var(--roxo-principal), var(--roxo-claro));
   box-shadow: 0 4px 12px var(--sombra);
   position: sticky;
@@ -196,7 +196,7 @@ header {
 .formLogin {
   display: none;
   position: fixed;
-  top: 60%;
+  top: 61.5%;
   left: 50%;
   transform: translate(-50%, -50%);
   background: white;
