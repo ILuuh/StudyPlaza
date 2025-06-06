@@ -95,19 +95,19 @@ header {
 }
 
 .hamburger {
-  height: 3.5rem;
-  width: 3.5rem;
+  height: 2rem;
+  width: 2.5rem;
   background: transparent;
   border: none;
   display: none;
   flex-direction: column;
   gap: 0.4rem;
   cursor: pointer;
+  transition: transform 0.5s;
 }
 
 .hamburger:focus {
-  outline: 2px solid var(--amarelo);
-  outline-offset: 2px;
+  transform: translateY(-2px);
 }
 
 .hamburger-bar {
@@ -260,14 +260,7 @@ input:focus {
   outline: none;
 }
 
-.error-message {
-  color: red;
-  font-size: 0.8rem;
-  text-align: left;
-  display: none;
-}
-
-button {
+.btnEntrar {
   background: var(--amarelo);
   color: var(--preto);
   padding: 12px;
@@ -278,7 +271,7 @@ button {
   transition: background 0.3s ease, transform 0.3s ease;
 }
 
-button:hover {
+.btnEntrar:hover {
   background: #e0a63e;
   transform: translateY(-2px);
 }
