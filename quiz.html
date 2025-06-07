@@ -18,7 +18,7 @@
       <a href="index.html"><img src="img/logo.png" alt="Logo"></a>
     </div>
 
-    <button class="hamburger" aria-label="Abrir menu" aria-expanded="false" aria-controls="menu-principal">
+    <button class="hamburger" aria-expanded="false" aria-controls="menu">
       <span class="hamburger-bar"></span>
       <span class="hamburger-bar"></span>
       <span class="hamburger-bar"></span>
@@ -29,7 +29,7 @@
 
       <a href="cursos.html" class="linkMenu">Cursos</a>
       <a href="quiz.html" class="linkMenu">Quiz</a>
-      <a href="login.html" class="linkMenu">Login</a>
+      <a href="#" class="abrir-login linkMenu">Login</a>
     </nav>
   </header>
 
@@ -59,7 +59,7 @@
             aria-required="true" aria-describedby="password-error" minlength="6">
           <div id="password-error" class="error-message"></div>
 
-          <button type="submit">Entrar</button>
+          <button type="submit" class="btnEntrar">Entrar</button>
           <div id="form-error" class="error-message"></div>
         </form>
 
@@ -86,10 +86,9 @@
         <nav aria-label="Links rápidos do rodapé">
           <ul>
             <li><a href="index.html">Início</a></li>
-            <li><a href="como-funciona.html">Como funciona</a></li>
             <li><a href="cursos.html">Cursos</a></li>
             <li><a href="quiz.html">Quiz</a></li>
-            <li><a href="login.html">Login</a></li>
+            <li><a href="#" id="abrir-login-footer">Login</a></li>
             <li><a href="cadastro.html">Cadastro</a></li>
           </ul>
         </nav>
@@ -102,10 +101,8 @@
           <li><a href="mailto:contato@studyplaza.com">contato@studyplaza.com</a></li>
         </ul>
         <div class="social-icons">
-          <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
-          <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-          <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-          <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+          <a href="https://www.instagram.com/studyplaza_/?utm_source=ig_web_button_share_sheet"
+            aria-label="Instagram"><i class="fab fa-instagram"></i></a>
         </div>
       </div>
     </div>
@@ -113,7 +110,7 @@
   </footer>
 
   <script src="js/quiz.js" defer></script>
-  <script src="js/menuHamburguer.js"></script>
+  <script src="js/geral.js"></script>
 
 </body>
 

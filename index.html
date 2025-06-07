@@ -11,137 +11,149 @@
 </head>
 
 <body>
-    <header>
-      <div class="logo">
-        <a href="index.html"><img src="img/logo.png" alt="Logo"></a>
+  <header>
+    <div class="logo">
+      <a href="index.html"><img src="img/logo.png" alt="Logo"></a>
+    </div>
+
+    <button class="hamburger" aria-expanded="false" aria-controls="menu">
+      <span class="hamburger-bar"></span>
+      <span class="hamburger-bar"></span>
+      <span class="hamburger-bar"></span>
+    </button>
+
+    <nav class="menu" id="menu-principal" aria-label="Menu principal">
+      <button class="fecharMenu" aria-label="Fechar menu">✕</button>
+
+      <a href="cursos.html" class="linkMenu">Cursos</a>
+      <a href="quiz.html" class="linkMenu">Quiz</a>
+      <a href="#" class="abrir-login linkMenu">Login</a>
+    </nav>
+  </header>
+
+  <section class="banner">
+    <div class="banner-texto">
+      <h1>Descubra o futuro do aprendizado colaborativo!</h1>
+      <p>Na StudyPlaza, você se conecta com estudantes como você, compartilha materiais, participa de grupos e ainda
+        aprende de forma interativa com quizzes gerados por inteligência artificial. Estude no seu ritmo, com
+        liberdade
+        e motivação, de qualquer lugar, a qualquer hora.</p>
+    </div>
+    <img src="img/ElfaEstudando2.png" alt="Mascote Elfa Estudando" />
+  </section>
+
+  <main>
+    <section class="funcionalidades timeline">
+      <h2>Funcionalidades em Destaque</h2>
+      <div class="timeline-container">
+        <div class="timeline-item">
+          <div class="timeline-icon"><i class="fas fa-users"></i></div>
+          <div class="timeline-content">Grupos de estudo públicos e privados</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-icon"><i class="fas fa-file-pdf"></i></div>
+          <div class="timeline-content">Compartilhamento de PDFs e links</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-icon"><i class="fas fa-comments"></i></div>
+          <div class="timeline-content">Chat em tempo real</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-icon"><i class="fas fa-brain"></i></div>
+          <div class="timeline-content">Quizzes com IA personalizada</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-icon"><i class="fas fa-laptop"></i></div>
+          <div class="timeline-content">Acesso via computador, tablet ou celular</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-icon"><i class="fas fa-book"></i></div>
+          <div class="timeline-content">Sugestão de cursos gratuitos e pagos</div>
+        </div>
       </div>
-
-      <button class="hamburger" aria-label="Abrir menu" aria-expanded="false" aria-controls="menu-principal">
-        <span class="hamburger-bar"></span>
-        <span class="hamburger-bar"></span>
-        <span class="hamburger-bar"></span>
-      </button>
-
-      <nav class="menu" id="menu-principal" aria-label="Menu principal">
-        <button class="fecharMenu" aria-label="Fechar menu">✕</button>
-
-        <a href="cursos.html" class="linkMenu">Cursos</a>
-        <a href="quiz.html" class="linkMenu">Quiz</a>
-        <a href="login.html" class="linkMenu">Login</a>
-      </nav>
-    </header>
-
-    <section class="banner">
-      <div class="banner-texto">
-        <h1>Descubra o futuro do aprendizado colaborativo!</h1>
-        <p>Na StudyPlaza, você se conecta com estudantes como você, compartilha materiais, participa de grupos e ainda
-          aprende de forma interativa com quizzes gerados por inteligência artificial. Estude no seu ritmo, com
-          liberdade
-          e motivação, de qualquer lugar, a qualquer hora.</p>
-      </div>
-      <img src="img/ElfaEstudando2.png" alt="Mascote Elfa Estudando" />
     </section>
 
-    <main>
-      <section class="funcionalidades">
-        <h2>Funcionalidades em Destaque</h2>
-        <ul>
-          <li><span aria-hidden="true"><i class="fas fa-users"></i></span> Grupos de estudo públicos e privados</li>
-          <li><span aria-hidden="true"><i class="fas fa-file-pdf"></i></span> Compartilhamento de PDFs e links</li>
-          <li><span aria-hidden="true"><i class="fas fa-comments"></i></span> Chat em tempo real</li>
-          <li><span aria-hidden="true"><i class="fas fa-brain"></i></span> Quizzes com IA personalizada</li>
-          <li><span aria-hidden="true"><i class="fas fa-laptop"></i></span> Acesso via computador, tablet ou celular
-          </li>
-          <li><span aria-hidden="true"><i class="fas fa-book"></i></span> Sugestão de cursos gratuitos e pagos</li>
-        </ul>
-      </section>
+    <section class="beneficios-lista">
+      <h2 id="benefits-title">Benefícios</h2>
+      <ul class="beneficios-animados">
+        <li><i class="fas fa-handshake"></i> Aprendizado colaborativo e personalizado</li>
+        <li><i class="fas fa-clock"></i> Flexibilidade e autonomia para estudar</li>
+        <li><i class="fas fa-magic"></i> IA para reforço do aprendizado com quizzes</li>
+        <li><i class="fas fa-graduation-cap"></i> Sugestão de cursos para aprofundamento</li>
+        <li><i class="fas fa-users-cog"></i> Ambiente interativo e inclusivo</li>
+      </ul>
+    </section>
 
-      <section class="funcionalidades" id="beneficios">
-        <h2 id="benefits-title">Benefícios</h2>
-        <ul class="no-bullet" tabindex="0" aria-label="Lista de benefícios da Plataforma StudyPlaza">
-          <li>Aprendizado colaborativo e personalizado.</li>
-          <li>Flexibilidade e autonomia para estudar.</li>
-          <li>IA para reforço do aprendizado com quizzes.</li>
-          <li>Sugestão de cursos para aprofundamento.</li>
-          <li>Ambiente interativo e inclusivo.</li>
-        </ul>
-      </section>
+    <div class="overlay"></div>
+    <section class="formLogin">
+      <button class="close-login" aria-label="Fechar formulário de login">✕</button>
 
-      <div class="overlay"></div>
-      <section class="formLogin">
-        <button class="close-login" aria-label="Fechar formulário de login">✕</button>
+      <section class="login-container" aria-labelledby="login-title">
+        <h1 id="login-title">Bem-vindo ao StudyPlaza</h1>
 
-        <section class="login-container" aria-labelledby="login-title">
-          <h1 id="login-title">Bem-vindo ao StudyPlaza</h1>
+        <form id="login-form" novalidate autocomplete="off" aria-describedby="form-error">
+          <label for="input-email">Email</label>
+          <input type="email" id="input-email" name="email" placeholder="seu@email.com" required aria-required="true"
+            aria-describedby="email-error">
+          <div id="email-error" class="error-message"></div>
 
-          <form id="login-form" novalidate autocomplete="off" aria-describedby="form-error">
-            <label for="input-email">Email</label>
-            <input type="email" id="input-email" name="email" placeholder="seu@email.com" required aria-required="true"
-              aria-describedby="email-error">
-            <div id="email-error" class="error-message"></div>
+          <label for="input-password">Senha</label>
+          <input type="password" id="input-password" name="password" placeholder="••••••••" required
+            aria-required="true" aria-describedby="password-error" minlength="6">
+          <div id="password-error" class="error-message"></div>
 
-            <label for="input-password">Senha</label>
-            <input type="password" id="input-password" name="password" placeholder="••••••••" required
-              aria-required="true" aria-describedby="password-error" minlength="6">
-            <div id="password-error" class="error-message"></div>
+          <button type="submit" class="btnEntrar">Entrar</button>
+          <div id="form-error" class="error-message"></div>
+        </form>
 
-            <button type="submit" class="btnEntrar">Entrar</button>
-            <div id="form-error" class="error-message"></div>
-          </form>
-
-          <div class="links">
-            <p> Já tem uma conta? Se não, clique <a href="cadastro.html">Aqui</a></p>
-          </div>
-        </section>
-
-      </section>
-
-    </main>
-
-    <footer>
-      <div class="footer-container">
-        <div class="footer-section">
-          <div class="nomeLogo">
-            <img class="logoFooter" src="img/logo.png" alt="Logo do site" />
-            <h2 class="logo">StudyPlaza</h2>
-          </div>
-          <p>Transformando o jeito como você estuda. Conecte-se, compartilhe e aprenda em uma comunidade vibrante.</p>
+        <div class="links">
+          <p> Já tem uma conta? Se não, clique <a href="cadastro.html">Aqui</a></p>
         </div>
+      </section>
 
-        <div class="footer-section">
-          <h3>Links Rápidos</h3>
-          <nav aria-label="Links rápidos do rodapé">
-            <ul>
-              <li><a href="index.html">Início</a></li>
-              <li><a href="como-funciona.html">Como funciona</a></li>
-              <li><a href="cursos.html">Cursos</a></li>
-              <li><a href="quiz.html">Quiz</a></li>
-              <li><a href="login.html">Login</a></li>
-              <li><a href="cadastro.html">Cadastro</a></li>
-            </ul>
-          </nav>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="footer-container">
+      <div class="footer-section">
+        <div class="nomeLogo">
+          <img class="logoFooter" src="img/logo.png" alt="Logo do site" />
+          <h2 class="logo">StudyPlaza</h2>
         </div>
+        <p>Transformando o jeito como você estuda. Conecte-se, compartilhe e aprenda em uma comunidade vibrante.</p>
+      </div>
 
-        <div class="footer-section">
-          <h3>Informações</h3>
+      <div class="footer-section">
+        <h3>Links Rápidos</h3>
+        <nav aria-label="Links rápidos do rodapé">
           <ul>
-            <li><a href="#">Política de Privacidade</a></li>
-            <li><a href="mailto:contato@studyplaza.com">contato@studyplaza.com</a></li>
+            <li><a href="index.html">Início</a></li>
+            <li><a href="cursos.html">Cursos</a></li>
+            <li><a href="quiz.html">Quiz</a></li>
+            <li><a href="#" id="abrir-login-footer">Cadastro</a></li>
+            <li><a href="cadastro.html">Login</a></li>
           </ul>
-          <div class="social-icons">
-            <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
-            <a href="https://www.instagram.com/studyplaza_/?utm_source=ig_web_button_share_sheet"
-              aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-            <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-            <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
-          </div>
+        </nav>
+      </div>
+
+      <div class="footer-section">
+        <h3>Informações</h3>
+        <ul>
+          <li><a href="#">Política de Privacidade</a></li>
+          <li><a href="mailto:contato@studyplaza.com">contato@studyplaza.com</a></li>
+        </ul>
+        <div class="social-icons">
+          <a href="https://www.instagram.com/studyplaza_/?utm_source=ig_web_button_share_sheet"
+            aria-label="Instagram"><i class="fab fa-instagram"></i></a>
         </div>
       </div>
-      <p>&copy; 2025 StudyPlaza - Todos os direitos reservados.</p>
-    </footer>
+    </div>
+    <p>&copy; 2025 StudyPlaza - Todos os direitos reservados.</p>
+  </footer>
 
-  <script src="js/menuHamburguer.js"></script>
-
+  <script src="js/geral.js"></script>
 </body>
 
 </html>

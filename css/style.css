@@ -18,15 +18,15 @@
 
 body {
   font-family: var(--font-family);
-  background: var(--branco);
+  background-color: var(--branco);
   color: var(--preto);
   display: flex;
   flex-direction: column;
+  min-height: 100vh;
 }
 
 .logo img {
   height: 90px;
-  margin-right: 20px;
 }
 
 header {
@@ -47,20 +47,20 @@ header {
   flex-wrap: wrap;
 }
 
-.menu .linkMenu {
+.linkMenu {
   margin: 0 1rem;
-  position: relative;
   text-decoration: none;
   color: var(--branco);
   font-weight: bold;
+  position: relative;
   transition: transform 0.3s ease;
 }
 
-.menu .linkMenu:hover {
+.linkMenu:hover {
   transform: translateY(-4px);
 }
 
-.menu .linkMenu::before {
+.linkMenu::before {
   content: '';
   position: absolute;
   bottom: 0;
@@ -73,24 +73,22 @@ header {
   opacity: 0;
 }
 
-.menu .linkMenu:hover::before {
+.linkMenu:hover::before {
   width: 100%;
   opacity: 1;
 }
 
-.menu .fecharMenu {
+.fecharMenu {
   align-self: flex-end;
-  margin-bottom: 20px;
   background: none;
   border: none;
   font-size: 1.5rem;
   color: var(--branco);
   cursor: pointer;
   display: none;
-  transition: color 0.3s;
 }
 
-.menu .fecharMenu:hover {
+.fecharMenu:hover {
   color: var(--amarelo);
 }
 
@@ -103,7 +101,6 @@ header {
   flex-direction: column;
   gap: 0.4rem;
   cursor: pointer;
-  transition: transform 0.5s;
 }
 
 .hamburger:focus {
@@ -123,8 +120,6 @@ header {
   align-items: center;
   justify-content: space-between;
   padding: 60px;
-  background: var(--branco);
-  box-shadow: 0 10px 25px var(--sombra);
   flex-wrap: wrap;
   color: var(--roxo-principal);
   min-height: 90vh;
@@ -155,28 +150,205 @@ header {
   background: var(--roxo-claro);
 }
 
-.funcionalidades h2 {
+/* Timeline */
+.timeline {
+  background: var(--roxo-claro);
+  padding: 50px 30px;
+}
+
+.timeline-container {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  margin-top: 30px;
+  position: relative;
+  padding-left: 30px;
+}
+
+.timeline-container::before {
+  content: "";
+  position: absolute;
+  left: 15px;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: var(--roxo-principal);
+}
+
+.timeline-item {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  position: relative;
+}
+
+.timeline-icon {
+  background: var(--amarelo);
+  color: var(--preto);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-size: 1.2rem;
+  flex-shrink: 0;
+  box-shadow: 0 0 0 4px white, 0 0 0 6px var(--roxo-principal);
+}
+
+.timeline-content {
+  background: white;
+  padding: 15px 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px var(--sombra);
+  font-weight: 600;
+  color: var(--preto);
+}
+
+/* Lista de Benefícios Animada */
+.beneficios-lista {
+  padding: 50px 30px;
+  background: #fff;
+}
+
+.beneficios-lista h2 {
   text-align: center;
   font-size: 2rem;
+  color: var(--roxo-principal);
   margin-bottom: 30px;
 }
 
-.funcionalidades ul {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 30px;
+.beneficios-animados {
   list-style: none;
+  padding: 0;
+  display: grid;
+  gap: 20px;
+  max-width: 800px;
+  margin: 0 auto;
 }
 
-.funcionalidades li {
-  background: var(--branco);
-  padding: 25px;
-  border-radius: 10px;
+.beneficios-animados li {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  font-size: 1.1rem;
   font-weight: 600;
-  box-shadow: 0 4px 10px var(--sombra);
+  padding: 15px 20px;
+  background: var(--roxo-claro);
+  border-radius: 12px;
+  color: var(--preto);
+  box-shadow: 0 4px 8px var(--sombra);
+  transition: transform 0.3s ease;
 }
 
-/* Fundo escuro atrás do login */
+.beneficios-animados li i {
+  font-size: 1.5rem;
+  color: var(--amarelo);
+}
+
+.beneficios-animados li:hover {
+  transform: translateX(10px);
+}
+
+/* Timeline */
+.timeline {
+  background: var(--roxo-claro);
+  padding: 50px 30px;
+}
+
+.timeline-container {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  margin-top: 30px;
+  position: relative;
+  padding-left: 30px;
+}
+
+.timeline-container::before {
+  content: "";
+  position: absolute;
+  left: 15px;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: var(--roxo-principal);
+}
+
+.timeline-item {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  position: relative;
+}
+
+.timeline-icon {
+  background: var(--amarelo);
+  color: var(--preto);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-size: 1.2rem;
+  flex-shrink: 0;
+  box-shadow: 0 0 0 4px white, 0 0 0 6px var(--roxo-principal);
+}
+
+.timeline-content {
+  background: white;
+  padding: 15px 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px var(--sombra);
+  font-weight: 600;
+  color: var(--preto);
+}
+
+/* Lista de Benefícios Animada */
+.beneficios-lista {
+  padding: 50px 30px;
+  background: #fff;
+}
+
+.beneficios-lista h2 {
+  text-align: center;
+  font-size: 2rem;
+  color: var(--roxo-principal);
+  margin-bottom: 30px;
+}
+
+.beneficios-animados {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  gap: 20px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.beneficios-animados li {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  padding: 15px 20px;
+  background: var(--roxo-claro);
+  border-radius: 12px;
+  color: var(--preto);
+  box-shadow: 0 4px 8px var(--sombra);
+  transition: transform 0.3s ease;
+}
+
+.beneficios-animados li i {
+  font-size: 1.5rem;
+  color: var(--amarelo);
+}
+
+.beneficios-animados li:hover {
+  transform: translateX(10px);
+}
+
+
 .overlay {
   display: none;
   position: fixed;
@@ -184,11 +356,10 @@ header {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.5); /* semitransparente */
-  z-index: 998; /* abaixo do formulário */
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 998;
 }
 
-/* Exibe o overlay quando ativo */
 .overlay.active {
   display: block;
 }
@@ -196,23 +367,26 @@ header {
 .formLogin {
   display: none;
   position: fixed;
-  top: 61.5%;
+  top: 60%;
   left: 50%;
   transform: translate(-50%, -50%);
   background: white;
   padding: 2rem;
   border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.3);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
   z-index: 999;
   max-width: 400px;
   width: 90%;
+  opacity: 0;
+  transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
 .formLogin.active {
   display: block;
+  opacity: 1;
 }
 
-.formLogin .close-login {
+.close-login {
   background: transparent;
   border: none;
   font-size: 1.5rem;
@@ -220,11 +394,6 @@ header {
   top: 10px;
   right: 15px;
   cursor: pointer;
-}
-
-.login-container img {
-  max-width: 120px;
-  margin-bottom: 20px;
 }
 
 .login-container h1 {
@@ -242,7 +411,6 @@ form {
 
 label {
   font-weight: 600;
-  text-align: left;
   font-size: 0.9rem;
   color: var(--roxo-principal);
 }
@@ -251,8 +419,8 @@ input {
   padding: 12px;
   border-radius: 8px;
   border: 1px solid #ddd;
-  transition: border-color 0.3s;
   background: #f9f9f9;
+  transition: border-color 0.3s;
 }
 
 input:focus {
@@ -294,7 +462,6 @@ input:focus {
   color: var(--amarelo);
 }
 
-
 footer {
   background: linear-gradient(90deg, var(--roxo-principal), var(--roxo-claro));
   color: var(--branco);
@@ -304,23 +471,20 @@ footer {
   margin-top: auto;
 }
 
-.footer-container {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-}
-
-.footer-section {
-  margin: 20px 0;
-}
-
 footer .nomeLogo {
   display: flex;
-  gap: 1rem;
   align-items: center;
+  justify-content: center;
 }
 
-.logoFooter {
-  width: 100px;
+footer .logoFooter {
+  height: 70px;
+}
+
+.footer-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 2rem;
 }
 
 .footer-section h3 {
@@ -329,6 +493,7 @@ footer .nomeLogo {
 
 .footer-section ul {
   list-style: none;
+  padding: 0;
 }
 
 .footer-section ul li a {
@@ -341,58 +506,34 @@ footer .nomeLogo {
   color: var(--amarelo);
 }
 
-footer .social-icons {
+.social-icons {
   display: flex;
   justify-content: center;
   gap: 0.5rem;
 }
 
-footer .social-icons a {
+.social-icons a {
   color: #eee;
   font-size: 30px;
   transition: color 0.3s;
 }
 
-footer .social-icons a:hover {
+.social-icons a:hover {
   color: var(--amarelo);
 }
 
-.footer-bottom {
-  text-align: center;
-  margin-top: 20px;
-  border-top: 1px solid #ddd;
-  padding-top: 10px;
-  font-size: 14px;
-  color: #aaa;
-}
-
-/* ===== Responsividade ===== */
-
 @media screen and (max-width: 992px) {
-  header {
-    flex-wrap: wrap;
-  }
-
-  .logo img {
-    height: 70px;
-    margin: 10px 0;
-  }
-
   .banner {
     padding: 40px 20px;
   }
 
-  .funcionalidades ul {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .funcionalidades {
-    padding: 40px 20px;
+  .logo img {
+    height: 70px;
   }
 }
 
-
 @media screen and (max-width: 600px) {
+
   .hamburger {
     display: flex;
   }
@@ -414,19 +555,30 @@ footer .social-icons a:hover {
   .menu.open {
     right: 0;
   }
+  .nomeLogo {
+    justify-content: center;
+  }
+  header h1 {
+    font-size: 1.2rem;
+  }
 
-  .menu .linkMenu {
-    display: flex;
+  .linkMenu {
+    display: block;
     width: 100%;
     padding: 1rem;
   }
 
-  .menu .linkMenu:hover {
-    color: var(--amarelo);
+  .fecharMenu {
+    display: block;
   }
 
-  .menu .fecharMenu {
-    display: flex;
+  .cards {
+    grid-template-columns: 1fr;
+  }
+
+  .card {
+    padding: 1rem;
+    font-size: 0.9rem;
   }
 
   .funcionalidades ul {
@@ -434,15 +586,12 @@ footer .social-icons a:hover {
   }
 
   footer {
-    padding: 20px 10px;
     text-align: center;
+    padding: 20px 10px;
   }
 
-  footer .footer-container {
+  .footer-container {
     grid-template-columns: 1fr;
   }
 
-  footer .nomeLogo {
-    justify-content: center;
-  }
 }
