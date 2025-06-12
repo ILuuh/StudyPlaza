@@ -131,7 +131,7 @@
             <h3>Acesse mais conteúdos</h3>
             <p>Faça login ou cadastre-se para ver mais detalhes sobre este curso.</p>
             <div class="modal-as">
-              <a href="#" id="abrir-login-footer" class="abrir-login login-btn">Login</a>
+              <a href="#" id="abrir-login-modal" class="login-btn">Login</a>
               <a href="cadastro.html" class="cadastro-btn">Cadastro</a>
             </div>
             <a class="fechar-btn" onclick="fecharModal()">Fechar</a>
@@ -239,23 +239,8 @@
 
   </footer>
 
-  <script src="js/geral.js"></script>
+  <script src="js/cursos.js"></script>
   <script src="js/login.js"></script>
-
-  <script>
-    function abrirModal() {
-      document.getElementById("modalAviso").style.display = "flex";
-    }
-
-    function fecharModal() {
-      document.getElementById("modalAviso").style.display = "none";
-    }
-
-    document.querySelector('.login-btn').addEventListener('click', () => {
-      fecharModal();
-    });
-  </script>
-
 
 </body>
 
