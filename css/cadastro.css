@@ -12,13 +12,23 @@
   box-sizing: border-box;
 }
 
+.register-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 1rem;
+  background: var(--branco);
+}
+
+
 .register-container {
   background: var(--branco);
   padding: 40px;
   border-radius: 16px;
-  width: min(50rem,100%);
+  width: min(50rem, 100%);
   text-align: center;
-  margin-left: 15rem;
+  margin: 0 auto;
 }
 
 .register-container img {
@@ -27,7 +37,7 @@
 }
 
 .register-container h1 {
-  font-size: 1.8rem;
+  font-size: clamp(1.5rem, 5vw, 2rem);
   margin-bottom: 25px;
   color: var(--roxo-principal);
 }
@@ -36,6 +46,7 @@ form {
   display: flex;
   flex-direction: column;
   gap: 15px;
+  width: 100%;
 }
 
 label {
@@ -51,10 +62,12 @@ input {
   border: 1px solid #ddd;
   transition: border-color 0.3s;
   background: #f9f9f9;
+  font-size: 1rem;
 }
 
 input:focus {
   outline: none;
+  border-color: var(--roxo-principal);
 }
 
 .password-wrapper {
@@ -63,10 +76,9 @@ input:focus {
   align-items: center;
 }
 
-.password-wrapper input[type="password"],
-.password-wrapper input[type="text"] {
+.password-wrapper input {
   flex: 1;
-  padding-right: 40px; /* espaço para o botão */
+  padding-right: 40px;
 }
 
 .toggle-password {
@@ -93,6 +105,7 @@ input:focus {
   font-weight: bold;
   cursor: pointer;
   transition: background 0.3s ease, transform 0.3s ease;
+  font-size: 1rem;
 }
 
 .confirm:hover {
@@ -103,7 +116,9 @@ input:focus {
 .links {
   margin-top: 20px;
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
+  gap: 10px;
   font-size: 0.9rem;
 }
 
@@ -118,36 +133,8 @@ input:focus {
   color: var(--amarelo);
 }
 
-/* Classes para validação */
-input.valid,
-textarea.valid {
-  border-color: green;
-}
-
-input.invalid,
-textarea.invalid {
-  border-color: #e63946;
-  background-color: #ffe5e5;
-}
-
-.error-message {
-  color: #e63946;
-  font-size: 0.85rem;
-  text-align: start;
-  user-select: text;
-}
-
-.char-count {
-  text-align: right;
-  font-size: 0.8rem;
-  color: var(--preto);
-  margin-top: 4px;
-  user-select: text;
-}
-
-@media screen and (max-width: 992px) {
+@media screen and (max-width: 1100px) {
   .register-container {
-    flex-direction: column;
     align-items: center;
     padding: 1rem;
     margin-left: 0;
@@ -179,5 +166,20 @@ textarea.invalid {
 
   .register-container form {
     width: 100%;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .register-container {
+    padding: 1.5rem 1rem;
+  }
+
+  .links {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .confirm {
+    font-size: 0.95rem;
   }
 }

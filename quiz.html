@@ -33,6 +33,12 @@
     </nav>
   </header>
 
+  <section class="intro-quiz">
+    <h1>Descubra como é fácil aprender com a StudyPlaza!</h1>
+    <p>Esse quiz é apenas uma demonstração do que você terá acesso após fazer login. Nossos quizzes são personalizados
+      com base nos seus estudos. Cadastre-se para desbloquear todo o potencial da plataforma!</p>
+  </section>
+
   <main>
     <h2 class="textoPag">Teste seu conhecimento!</h2>
     <div class="quiz-container">
@@ -41,35 +47,39 @@
       <div class="result" id="result"></div>
     </div>
 
-    <div class="overlay"></div>
-    <section class="formLogin">
-      <button class="close-login" aria-label="Fechar formulário de login">✕</button>
-
-      <section class="login-container" aria-labelledby="login-title">
-        <h1 id="login-title">Bem-vindo ao StudyPlaza</h1>
-
-        <form id="login-form" novalidate autocomplete="off" aria-describedby="form-error">
-          <label for="input-email">Email</label>
-          <input type="email" id="input-email" name="email" placeholder="seu@email.com" required aria-required="true"
-            aria-describedby="email-error">
-          <div id="email-error" class="error-message"></div>
-
-          <label for="input-password">Senha</label>
-          <input type="password" id="input-password" name="password" placeholder="••••••••" required
-            aria-required="true" aria-describedby="password-error" minlength="6">
-          <div id="password-error" class="error-message"></div>
-
-          <button type="submit" class="btnEntrar">Entrar</button>
-          <div id="form-error" class="error-message"></div>
-        </form>
-
-        <div class="links">
-          <p> Já tem uma conta? Se não, clique <a href="cadastro.html">Aqui</a></p>
-        </div>
-      </section>
-
-    </section>
+    <div class="quiz-progress">
+      <div class="progress-bar" id="progress-bar"></div>
+    </div>
   </main>
+
+  <div class="overlay"></div>
+  <section class="formLogin">
+    <button class="close-login" aria-label="Fechar formulário de login">✕</button>
+
+    <section class="login-container" aria-labelledby="login-title">
+      <h1 id="login-title">Bem-vindo ao StudyPlaza</h1>
+
+      <form id="login-form" novalidate autocomplete="off" aria-describedby="form-error">
+        <label for="input-email">Email</label>
+        <input type="email" id="input-email" name="email" placeholder="seu@email.com" required aria-required="true"
+          aria-describedby="email-error">
+        <div id="email-error" class="error-message"></div>
+
+        <label for="input-password">Senha</label>
+        <input type="password" id="input-password" name="password" placeholder="••••••••" required aria-required="true"
+          aria-describedby="password-error" minlength="6">
+        <div id="password-error" class="error-message"></div>
+
+        <button type="submit" class="btnEntrar">Entrar</button>
+        <div id="form-error" class="error-message"></div>
+      </form>
+
+      <div class="links">
+        <p> Já tem uma conta? Se não, clique <a href="cadastro.html">Aqui</a></p>
+      </div>
+    </section>
+  </section>
+
 
   <footer>
     <div class="footer-container">
@@ -86,10 +96,10 @@
         <nav aria-label="Links rápidos do rodapé">
           <ul>
             <li><a href="index.html">Início</a></li>
+            <li><a href="cadastro.html">Cadastro</a></li>
+            <li><a href="#" id="abrir-login-footer">Login</a></li>
             <li><a href="cursos.html">Cursos</a></li>
             <li><a href="quiz.html">Quiz</a></li>
-            <li><a href="#" id="abrir-login-footer">Login</a></li>
-            <li><a href="cadastro.html">Cadastro</a></li>
           </ul>
         </nav>
       </div>
@@ -98,7 +108,6 @@
         <h3>Informações</h3>
         <ul>
           <li><a href="#">Política de Privacidade</a></li>
-          <li><a href="mailto:contato@studyplaza.com">contato@studyplaza.com</a></li>
         </ul>
         <div class="social-icons">
           <a href="https://www.instagram.com/studyplaza_/?utm_source=ig_web_button_share_sheet"
@@ -111,6 +120,7 @@
 
   <script src="js/quiz.js" defer></script>
   <script src="js/geral.js"></script>
+  <script src="js/login.js"></script>
 
 </body>
 

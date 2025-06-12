@@ -32,9 +32,13 @@ const questions = [
 ];
 
 let current = 0;
+let correctCount = 0;
+let wrongCount = 0;
+
 const questionEl = document.getElementById("question");
 const optionsEl = document.getElementById("options");
 const resultEl = document.getElementById("result");
+const progressBar = document.getElementById("progress-bar");
 
 function showQuestion() {
     const q = questions[current];
@@ -48,14 +52,19 @@ function showQuestion() {
         btn.onclick = () => checkAnswer(option);
         optionsEl.appendChild(btn);
     });
+
+    progressBar.style.width = `${(current / questions.length) * 100}%`;
+
 }
 
 function checkAnswer(selected) {
     const correct = questions[current].answer;
     if (selected === correct) {
+        correctCount++;
         resultEl.textContent = "✅ Resposta correta!";
         resultEl.style.color = "#2e7d32";
     } else {
+        wrongCount++;
         resultEl.textContent = `❌ Resposta incorreta. Resposta correta: ${correct}`;
         resultEl.style.color = "#c62828";
     }
@@ -65,11 +74,21 @@ function checkAnswer(selected) {
         if (current < questions.length) {
             showQuestion();
         } else {
-            questionEl.textContent = "Parabéns, você completou o quiz!";
-            optionsEl.innerHTML = "";
-            resultEl.innerHTML = "";
+            showFinalResult();
         }
     }, 2000);
+}
+
+function showFinalResult() {
+    questionEl.textContent = "Parabéns, você completou o quiz!";
+    optionsEl.innerHTML = "";
+    resultEl.innerHTML = `
+        <p>✅ Acertos: <strong>${correctCount}</strong></p>
+        <p>❌ Erros: <strong>${wrongCount}</strong></p>
+        <p>🚀 Quer desafios personalizados? <a href="cadastro.html" style="color: var(--roxo-principal); font-weight: bold;">Cadastre-se agora</a> e explore quizzes completos!</p>
+    `;
+
+    progressBar.style.width = "100%";
 }
 
 showQuestion();

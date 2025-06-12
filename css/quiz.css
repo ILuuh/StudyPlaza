@@ -1,18 +1,36 @@
 :root {
   --roxo-claro: #A88BEB;
-  /* lavanda suave */
   --roxo-principal: #6A4C93;
-  /* roxo mais vibrante */
   --preto: #333333;
-  /* quase preto para texto */
   --amarelo: #FFD166;
-  /* destaque */
   --branco: #F9F9F9;
-  /* fundo claro */
   --sombra: rgba(0, 0, 0, 0.1);
-  /* sombra suave para light mode */
 }
 
+/* Introdução */
+.intro-quiz {
+  max-width: 800px;
+  margin: 30px auto;
+  padding: 20px;
+  background-color: #fdfdfd;
+  border-left: 5px solid var(--roxo-principal);
+  border-radius: 10px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
+}
+
+.intro-quiz h1 {
+  color: var(--roxo-principal);
+  font-size: 1.8rem;
+  margin-bottom: 10px;
+}
+
+.intro-quiz p {
+  color: var(--preto);
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+/* Área principal */
 main {
   max-width: 800px;
   min-height: 85vh;
@@ -27,6 +45,7 @@ main {
   margin-bottom: 30px;
 }
 
+/* Quiz */
 .quiz-container {
   background: rgb(240, 240, 240);
   padding: 30px;
@@ -56,7 +75,6 @@ main {
 
 .options button:hover {
   background-color: #f9bc60;
-  color: #331f4a;
   box-shadow: 0 0 10px #f9bc60;
 }
 
@@ -65,4 +83,78 @@ main {
   color: #4a3a60;
   margin-top: 30px;
   font-weight: bold;
+}
+
+/* Barra de progresso */
+.quiz-progress {
+  width: 100%;
+  background-color: #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+  height: 20px;
+  margin-bottom: 30px;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.progress-bar {
+  height: 100%;
+  width: 0%;
+  background-color: var(--roxo-principal);
+  transition: width 0.4s ease;
+  border-radius: 8px;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .textoPag {
+    font-size: 1.8rem;
+  }
+
+  .intro-quiz h1 {
+    font-size: 1.5rem;
+  }
+
+  .intro-quiz p {
+    font-size: 0.95rem;
+  }
+
+  .question {
+    font-size: 1.1rem;
+  }
+
+  .options button {
+    padding: 10px;
+    font-size: 0.95rem;
+  }
+
+  .quiz-container {
+    padding: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .textoPag {
+    font-size: 1.5rem;
+  }
+
+  .intro-quiz {
+    margin: 20px 10px;
+    padding: 15px;
+  }
+
+  .intro-quiz h1 {
+    font-size: 1.3rem;
+  }
+
+  .intro-quiz p {
+    font-size: 0.9rem;
+  }
+
+  .options button {
+    font-size: 0.9rem;
+  }
+
+  .result {
+    font-size: 1rem;
+  }
 }

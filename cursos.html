@@ -20,14 +20,14 @@
       <a href="index.html"><img src="img/logo.png" alt="Logo"></a>
     </div>
 
-    <button class="hamburger" aria-expanded="false" aria-controls="menu">
+    <a class="hamburger" aria-expanded="false" aria-controls="menu">
       <span class="hamburger-bar"></span>
       <span class="hamburger-bar"></span>
       <span class="hamburger-bar"></span>
-    </button>
+    </a>
 
     <nav class="menu" id="menu-principal" aria-label="Menu principal">
-      <button class="fecharMenu" aria-label="Fechar menu">✕</button>
+      <a class="fecharMenu" aria-label="Fechar menu">✕</a>
 
       <a href="cursos.html" class="linkMenu">Cursos</a>
       <a href="quiz.html" class="linkMenu">Quiz</a>
@@ -35,7 +35,14 @@
     </nav>
   </header>
 
-  <main class="container" role="main" tabindex="0">
+  <section class="intro-section">
+    <h1>Explore os Melhores Cursos Complementares</h1>
+    <p>Na <strong>StudyPlaza</strong>, reunimos os cursos online mais relevantes para turbinar sua formação acadêmica e
+      profissional.
+      Conheça novas áreas, desenvolva habilidades práticas e fique à frente no mercado. 🚀</p>
+  </section>
+
+  <main role="main" tabindex="0">
 
     <section aria-labelledby="courses-title">
 
@@ -46,30 +53,90 @@
         <article class="course-card" tabindex="0">
           <h3>Introdução à Programação</h3>
           <p>Curso gratuito que ensina os conceitos básicos de programação com exercícios práticos.</p>
-          <a href="https://www.coursera.org/learn/programming-fundamentals" target="_blank"
+          <a class="linkCurso" href="https://www.coursera.org/learn/programming-fundamentals" target="_blank"
             rel="noopener noreferrer">Ver curso</a>
+          <a class="linkVerMais" onclick="abrirModal()">Ver mais</a>
         </article>
 
         <article class="course-card" tabindex="0">
           <h3>Machine Learning Aplicado</h3>
           <p>Aprenda fundamentos de IA e machine learning com exemplos aplicados a diversos setores.</p>
-          <a href="https://www.udemy.com/course/machine-learning-aplicado/" target="_blank"
-            rel="noopener noreferrer">Ver curso</a>
+          <a class="linkCurso" class="linkCurso" href="https://www.udemy.com/course/machine-learning-aplicado/"
+            target="_blank" rel="noopener noreferrer">Ver curso</a>
+          <a class="linkVerMais" onclick="abrirModal()">Ver mais</a>
         </article>
 
         <article class="course-card" tabindex="0">
           <h3>Gestão do Tempo para Estudantes</h3>
           <p>Dicas práticas e técnicas para melhorar sua produtividade e organização nos estudos.</p>
-          <a href="https://www.edx.org/course/time-management-skills" target="_blank" rel="noopener noreferrer">Ver
+          <a class="linkCurso" href="https://www.edx.org/course/time-management-skills" target="_blank"
+            rel="noopener noreferrer">Ver
             curso</a>
+          <a class="linkVerMais" onclick="abrirModal()">Ver mais</a>
         </article>
 
         <article class="course-card" tabindex="0">
           <h3>Comunicação Eficiente</h3>
           <p>Aprenda a se comunicar melhor em ambientes colaborativos e acadêmicos.</p>
-          <a href="https://www.coursera.org/learn/effective-communication" target="_blank" rel="noopener noreferrer">Ver
+          <a class="linkCurso" href="https://www.coursera.org/learn/effective-communication" target="_blank"
+            rel="noopener noreferrer">Ver
             curso</a>
+          <a class="linkVerMais" onclick="abrirModal()">Ver mais</a>
         </article>
+
+        <article class="course-card" tabindex="0">
+          <h3>Excel e Ferramentas de Produtividade</h3>
+          <p>Domine fórmulas, gráficos e recursos do Excel para otimizar seus estudos e projetos.</p>
+          <a class="linkCurso" href="https://www.udemy.com/course/curso-completo-de-excel/" target="_blank"
+            rel="noopener noreferrer">Ver curso</a>
+          <a class="linkVerMais" onclick="abrirModal()">Ver mais</a>
+        </article>
+
+        <article class="course-card" tabindex="0">
+          <h3>Finanças Pessoais para Jovens</h3>
+          <p>Aprenda a controlar gastos, fazer investimentos iniciais e se organizar financeiramente desde cedo.</p>
+          <a class="linkCurso" href="https://www.coursera.org/learn/financas-pessoais" target="_blank"
+            rel="noopener noreferrer">Ver curso</a>
+          <a class="linkVerMais" onclick="abrirModal()">Ver mais</a>
+        </article>
+
+        <article class="course-card" tabindex="0">
+          <h3>Desenvolvimento Web Básico</h3>
+          <p>Construa seu primeiro site com HTML, CSS e JavaScript de forma prática e interativa.</p>
+          <a class="linkCurso" href="https://www.freecodecamp.org/learn" target="_blank" rel="noopener noreferrer">Ver
+            curso</a>
+          <a class="linkVerMais" onclick="abrirModal()">Ver mais</a>
+        </article>
+
+        <article class="course-card" tabindex="0">
+          <h3>Mindfulness e Gestão do Estresse</h3>
+          <p>Pratique técnicas de respiração e foco para manter a calma nos estudos e na vida pessoal.</p>
+          <a class="linkCurso" href="https://www.coursera.org/learn/mindfulness" target="_blank"
+            rel="noopener noreferrer">Ver curso</a>
+          <a class="linkVerMais" onclick="abrirModal()">Ver mais</a>
+        </article>
+
+        <article class="course-card" tabindex="0">
+          <h3>Redação Nota Mil</h3>
+          <p>Descubra estratégias para organizar ideias, escrever com clareza e conquistar ótimas notas em redações.</p>
+          <a class="linkCurso" href="https://www.udemy.com/course/redacao-enem/" target="_blank"
+            rel="noopener noreferrer">Ver curso</a>
+          <a class="linkVerMais" onclick="abrirModal()">Ver mais</a>
+        </article>
+
+
+        <!-- Modal -->
+        <div id="modalAviso" class="modal-overlay">
+          <div class="modal-content">
+            <h3>Acesse mais conteúdos</h3>
+            <p>Faça login ou cadastre-se para ver mais detalhes sobre este curso.</p>
+            <div class="modal-as">
+              <a href="/login.html" class="login-btn">Login</a>
+              <a href="/cadastro.html" class="cadastro-btn">Cadastro</a>
+            </div>
+            <a class="fechar-btn" onclick="fecharModal()">Fechar</a>
+          </div>
+        </div>
 
       </div>
 
@@ -93,7 +160,7 @@
 
     <div class="overlay"></div>
     <section class="formLogin">
-      <button class="close-login" aria-label="Fechar formulário de login">✕</button>
+      <a class="close-login" aria-label="Fechar formulário de login">✕</a>
 
       <section class="login-container" aria-labelledby="login-title">
         <h1 id="login-title">Bem-vindo ao StudyPlaza</h1>
@@ -109,7 +176,7 @@
             aria-required="true" aria-describedby="password-error" minlength="6">
           <div id="password-error" class="error-message"></div>
 
-          <button type="submit" class="btnEntrar">Entrar</button>
+          <a type="submit" class="btnEntrar">Entrar</a>
           <div id="form-error" class="error-message"></div>
         </form>
 
@@ -141,10 +208,10 @@
 
           <ul>
             <li><a href="index.html">Início</a></li>
+            <li><a href="cadastro.html">Cadastro</a></li>
+            <li><a href="#" id="abrir-login-footer">Login</a></li>
             <li><a href="cursos.html">Cursos</a></li>
             <li><a href="quiz.html">Quiz</a></li>
-            <li><a href="#" id="abrir-login-footer">Login</a></li>
-            <li><a href="cadastro.html">Cadastro</a></li>
           </ul>
 
         </nav>
@@ -157,12 +224,11 @@
 
         <ul>
           <li><a href="#">Política de Privacidade</a></li>
-          <li><a href="mailto:contato@studyplaza.com">contato@studyplaza.com</a></li>
         </ul>
 
         <div class="social-icons">
-          <a href="https://www.instagram.com/studyplaza_/?utm_source=ig_web_button_share_sheet"
-            aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="https://www.instagram.com/studyplaza_/?utm_source=ig_web_a_share_sheet" aria-label="Instagram"><i
+              class="fab fa-instagram"></i></a>
         </div>
 
       </div>
@@ -174,6 +240,18 @@
   </footer>
 
   <script src="js/geral.js"></script>
+  <script src="js/login.js"></script>
+
+  <script>
+    function abrirModal() {
+      document.getElementById("modalAviso").style.display = "flex";
+    }
+
+    function fecharModal() {
+      document.getElementById("modalAviso").style.display = "none";
+    }
+  </script>
+
 </body>
 
 </html>

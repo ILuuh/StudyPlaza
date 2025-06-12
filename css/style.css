@@ -208,6 +208,7 @@ header {
 .beneficios-lista {
   padding: 50px 30px;
   background: #fff;
+  max-height: 90vh;
 }
 
 .beneficios-lista h2 {
@@ -218,135 +219,38 @@ header {
 }
 
 .beneficios-animados {
-  list-style: none;
-  padding: 0;
   display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  align-items: center;
   gap: 20px;
-  max-width: 800px;
+  max-width: 1000px;
   margin: 0 auto;
+  padding: 0;
+  list-style: none;
+  height: 10rem;
 }
 
 .beneficios-animados li {
   display: flex;
-  align-items: center;
-  gap: 15px;
-  font-size: 1.1rem;
-  font-weight: 600;
-  padding: 15px 20px;
-  background: var(--roxo-claro);
-  border-radius: 12px;
+  align-items: flex-start;
+  gap: 12px;
+  font-size: 1rem;
+  font-weight: 500;
+  padding: 10px;
   color: var(--preto);
-  box-shadow: 0 4px 8px var(--sombra);
-  transition: transform 0.3s ease;
+  background: none;
+  border-left: 4px solid var(--roxo-principal);
+  border-radius: 0;
+  box-shadow: none;
+  transition: none;
 }
 
 .beneficios-animados li i {
-  font-size: 1.5rem;
-  color: var(--amarelo);
-}
-
-.beneficios-animados li:hover {
-  transform: translateX(10px);
-}
-
-/* Timeline */
-.timeline {
-  background: var(--roxo-claro);
-  padding: 50px 30px;
-}
-
-.timeline-container {
-  display: flex;
-  flex-direction: column;
-  gap: 30px;
-  margin-top: 30px;
-  position: relative;
-  padding-left: 30px;
-}
-
-.timeline-container::before {
-  content: "";
-  position: absolute;
-  left: 15px;
-  top: 0;
-  bottom: 0;
-  width: 4px;
-  background: var(--roxo-principal);
-}
-
-.timeline-item {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-  position: relative;
-}
-
-.timeline-icon {
-  background: var(--amarelo);
-  color: var(--preto);
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  display: grid;
-  place-items: center;
   font-size: 1.2rem;
-  flex-shrink: 0;
-  box-shadow: 0 0 0 4px white, 0 0 0 6px var(--roxo-principal);
-}
-
-.timeline-content {
-  background: white;
-  padding: 15px 20px;
-  border-radius: 10px;
-  box-shadow: 0 4px 10px var(--sombra);
-  font-weight: 600;
-  color: var(--preto);
-}
-
-/* Lista de Benefícios Animada */
-.beneficios-lista {
-  padding: 50px 30px;
-  background: #fff;
-}
-
-.beneficios-lista h2 {
-  text-align: center;
-  font-size: 2rem;
   color: var(--roxo-principal);
-  margin-bottom: 30px;
+  margin-top: 3px;
 }
 
-.beneficios-animados {
-  list-style: none;
-  padding: 0;
-  display: grid;
-  gap: 20px;
-  max-width: 800px;
-  margin: 0 auto;
-}
-
-.beneficios-animados li {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-  font-size: 1.1rem;
-  font-weight: 600;
-  padding: 15px 20px;
-  background: var(--roxo-claro);
-  border-radius: 12px;
-  color: var(--preto);
-  box-shadow: 0 4px 8px var(--sombra);
-  transition: transform 0.3s ease;
-}
-
-.beneficios-animados li i {
-  font-size: 1.5rem;
-  color: var(--amarelo);
-}
-
-.beneficios-animados li:hover {
-  transform: translateX(10px);
-}
 
 
 .overlay {
@@ -403,9 +307,10 @@ header {
   text-align: center;
 }
 
-form {
+#login-form {
   display: flex;
   flex-direction: column;
+  justify-content: flex-start;
   gap: 15px;
 }
 
@@ -442,6 +347,33 @@ input:focus {
 .btnEntrar:hover {
   background: #e0a63e;
   transform: translateY(-2px);
+}
+
+/* Classes para validação */
+input.valid,
+textarea.valid {
+  border-color: green;
+}
+
+input.invalid,
+textarea.invalid {
+  border-color: #e63946;
+  background-color: #ffe5e5;
+}
+
+.error-message {
+  color: #e63946;
+  font-size: 0.85rem;
+  text-align: start;
+  user-select: text;
+}
+
+.char-count {
+  text-align: right;
+  font-size: 0.8rem;
+  color: var(--preto);
+  margin-top: 4px;
+  user-select: text;
 }
 
 .links {
@@ -532,6 +464,45 @@ footer .logoFooter {
   }
 }
 
+@media screen and (max-width: 768px) {
+  .banner {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .banner-texto {
+    padding-right: 0;
+    margin-bottom: 20px;
+  }
+
+  .banner img {
+    max-width: 80%;
+  }
+
+  .beneficios-animados {
+    height: auto;
+  }
+
+  .timeline-container {
+    padding-left: 20px;
+  }
+
+  .timeline-container::before {
+    left: 8px;
+  }
+
+  .timeline-item {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .timeline-icon {
+    margin-bottom: 8px;
+  }
+}
+
+
+
 @media screen and (max-width: 600px) {
 
   .hamburger {
@@ -555,9 +526,11 @@ footer .logoFooter {
   .menu.open {
     right: 0;
   }
+
   .nomeLogo {
     justify-content: center;
   }
+
   header h1 {
     font-size: 1.2rem;
   }
@@ -594,4 +567,27 @@ footer .logoFooter {
     grid-template-columns: 1fr;
   }
 
+}
+
+@media screen and (max-width: 480px) {
+  html {
+    font-size: 90%;
+  }
+
+  .banner-texto h1 {
+    font-size: 2rem;
+  }
+
+  .beneficios-lista h2 {
+    font-size: 1.5rem;
+  }
+
+  .btnEntrar {
+    font-size: 0.95rem;
+    padding: 10px;
+  }
+
+  .formLogin {
+    padding: 1.5rem;
+  }
 }
