@@ -5,9 +5,14 @@
   --roxo-menos-claro: #3C096C;
   --roxo-principal: #6a4c93;
   --roxo-escuro: #10002B;
+<<<<<<< HEAD
   --roxo-menos-escuro: #1f0939;
   --lilas: #9D4EDD;
   --logo: #b287f5;
+=======
+  --roxo-menos-escuro : #1f0939;
+  --lilas: #9D4EDD;
+>>>>>>> b678fef340ef687ae0593389fbbbc3cc0b2a6506
   --branco: #ffffff;
   --sombra: rgba(111, 66, 193, 0.2);
   --font-family: 'Poppins', Arial, sans-serif;
@@ -36,7 +41,11 @@ header {
   display: flex;
   align-items: center;
   justify-content: space-between;
+<<<<<<< HEAD
   padding: 0.5rem 5%;
+=======
+  padding: 12px 30px;
+>>>>>>> b678fef340ef687ae0593389fbbbc3cc0b2a6506
   background: linear-gradient(90deg, #10002B 0%, #240046 100%);
   box-shadow: 0 4px 12px rgba(111, 66, 193, 0.2);
   position: sticky;
@@ -71,7 +80,11 @@ header {
   width: 0;
   height: 4px;
   background-color: var(--lilas);
+<<<<<<< HEAD
   transition: width 0.3s ease, opacity 0.3s ease;
+=======
+  transition: width 0.3s ease, opacity 0.3s ease, bottom 0.3s ease;
+>>>>>>> b678fef340ef687ae0593389fbbbc3cc0b2a6506
   transform: translateX(-50%);
   opacity: 0;
 }
@@ -79,6 +92,7 @@ header {
 .menu .linkMenu:hover::before {
   width: 100%;
   opacity: 1;
+<<<<<<< HEAD
 }
 
 .menu .fecharMenu {
@@ -114,6 +128,10 @@ header {
   border-radius: 10px;
   background-color: var(--lilas);
   transition: background-color 0.3s ease, transform 0.3s ease;
+=======
+  bottom: -6px;
+  /* Faz a barra "subir" */
+>>>>>>> b678fef340ef687ae0593389fbbbc3cc0b2a6506
 }
 
 .banner {
@@ -122,10 +140,15 @@ header {
   justify-content: space-between;
   padding: 60px;
   background: linear-gradient(135deg, #3C096C 0%, #240046 50%, #3C096C 100%);
+<<<<<<< HEAD
+=======
+  box-shadow: 0 10px 25px var(--branco);
+>>>>>>> b678fef340ef687ae0593389fbbbc3cc0b2a6506
   flex-wrap: wrap;
   color: var(--branco);
   min-height: 90vh;
 }
+
 
 .banner-texto {
   flex: 1;
@@ -134,12 +157,17 @@ header {
 
 .banner-texto h1 {
   font-size: 2.8rem;
+<<<<<<< HEAD
+=======
+  color: var(--branco);
+>>>>>>> b678fef340ef687ae0593389fbbbc3cc0b2a6506
   margin-bottom: 20px;
 }
 
 .banner-texto p {
   font-size: 1.2rem;
   line-height: 1.6;
+  color: var(--branco);
 }
 
 .banner img {
@@ -168,7 +196,11 @@ header {
 
 .funcionalidades li {
   background: var(--roxo-menos-claro);
+<<<<<<< HEAD
   padding: 25px;
+=======
+  padding: 20px;
+>>>>>>> b678fef340ef687ae0593389fbbbc3cc0b2a6506
   border-radius: 10px;
   transition: box-shadow 0.3s ease;
   font-weight: 600;
@@ -179,6 +211,7 @@ header {
   box-shadow: 0 8px 20px var(--roxo-menos-claro);
 }
 
+<<<<<<< HEAD
 /* Fundo escuro atrás do login */
 .overlay {
   display: none;
@@ -458,4 +491,74 @@ footer .social-icons a:hover {
   footer .nomeLogo {
     justify-content: center;
   }
+=======
+.footer {
+  background-color: var(--roxo-menos-escuro);
+  color: #fff;
+  padding: 40px 20px;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.footer-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.footer-section {
+  flex: 1;
+  min-width: 250px;
+  margin: 20px 0;
+}
+
+.logo {
+  font-size: 24px;
+  color: #b287f5;
+}
+
+.footer-section h3 {
+  margin-bottom: 10px;
+  color: #fff;
+}
+
+.footer-section ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-section ul li {
+  margin-bottom: 8px;
+}
+
+.footer-section ul li a {
+  color: #ccc;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.footer-section ul li a:hover {
+  color: #b287f5;
+}
+
+.social-icons a {
+  color: #ccc;
+  margin-right: 10px;
+  font-size: 20px;
+  transition: color 0.3s;
+}
+
+.social-icons a:hover {
+  color: #b287f5;
+}
+
+.footer-bottom {
+  text-align: center;
+  margin-top: 20px;
+  border-top: 1px solid #4b3c65;
+  padding-top: 10px;
+  font-size: 14px;
+  color: #aaa;
+>>>>>>> b678fef340ef687ae0593389fbbbc3cc0b2a6506
 }

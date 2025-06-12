@@ -5,7 +5,10 @@
   --roxo-escuro: #10002B;
   --roxo-menos-escuro: #1f0939;
   --lilas: #9D4EDD;
+<<<<<<< HEAD
   --logo: #b287f5;
+=======
+>>>>>>> b678fef340ef687ae0593389fbbbc3cc0b2a6506
   --branco: #ffffff;
   --sombra: rgba(111, 66, 193, 0.2);
 }
@@ -13,6 +16,10 @@
 body {
   background: linear-gradient(135deg, #3C096C 0%, #240046 50%, #3C096C 100%);
 }
+<<<<<<< HEAD
+=======
+
+>>>>>>> b678fef340ef687ae0593389fbbbc3cc0b2a6506
 main {
   max-width: 800px;
   min-height: 85vh;

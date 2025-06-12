@@ -1,0 +1,38 @@
+  .etapas {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    padding: 60px 30px;
+    background: linear-gradient(135deg, #3C096C 0%, #240046 50%, #3C096C 100%);
+  }
+
+  .etapa {
+    background: #10002B;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    padding: 25px;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .etapa:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 8px 25px rgba(111, 66, 193, 0.2);
+  }
+
+  .etapa i {
+    font-size: 2rem;
+    color: #fff;
+    margin-bottom: 15px;
+  }
+
+  .etapa h3 {
+    font-size: 1.2rem;
+    color: #fff;
+    margin-bottom: 10px;
+  }
+
+  .etapa p {
+    font-size: 1rem;
+    color: #fff;
+  }
