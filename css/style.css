@@ -78,6 +78,10 @@ header {
   opacity: 1;
 }
 
+#ativo{
+  color: var(--amarelo);
+}
+
 .fecharMenu {
   align-self: flex-end;
   background: none;

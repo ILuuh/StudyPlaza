@@ -29,7 +29,7 @@
     <nav class="menu" id="menu-principal" aria-label="Menu principal">
       <a class="fecharMenu" aria-label="Fechar menu">✕</a>
 
-      <a href="cursos.html" class="linkMenu">Cursos</a>
+      <a href="cursos.html" id="ativo" class="linkMenu">Cursos</a>
       <a href="quiz.html" class="linkMenu">Quiz</a>
       <a href="#" class="abrir-login linkMenu">Login</a>
     </nav>
@@ -131,8 +131,8 @@
             <h3>Acesse mais conteúdos</h3>
             <p>Faça login ou cadastre-se para ver mais detalhes sobre este curso.</p>
             <div class="modal-as">
-              <a href="/login.html" class="login-btn">Login</a>
-              <a href="/cadastro.html" class="cadastro-btn">Cadastro</a>
+              <a href="#" id="abrir-login-footer" class="abrir-login login-btn">Login</a>
+              <a href="cadastro.html" class="cadastro-btn">Cadastro</a>
             </div>
             <a class="fechar-btn" onclick="fecharModal()">Fechar</a>
           </div>
@@ -250,7 +250,12 @@
     function fecharModal() {
       document.getElementById("modalAviso").style.display = "none";
     }
+
+    document.querySelector('.login-btn').addEventListener('click', () => {
+      fecharModal();
+    });
   </script>
+
 
 </body>
 
