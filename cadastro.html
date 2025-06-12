@@ -1,21 +1,16 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
- 
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="icon" href="img/logo.png" type="image/png" />
   <title>Cadastro - StudyPlaza</title>
-<<<<<<< HEAD
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/cadastro.css" />
-=======
-  <link rel="stylesheet" href="css/cadastro.css">
->>>>>>> b678fef340ef687ae0593389fbbbc3cc0b2a6506
 </head>
- 
+
 <body>
-<<<<<<< HEAD
 
   <header>
     <div class="logo">
@@ -73,115 +68,6 @@
 
   <script src="js/cadastro.js" defer></script>
 
-=======
-  <main>
-    <div class="slogan">
-      <div class="logoTexto">
-        <img src="img/logo.png" alt="Logo do Site">
-        <div class="texto">
-          <h1>StudyPlaza</h1>
-          <h3>Venha fazer parte do StudyPlaza</h3>
-        </div>
-      </div>
-    <div class="imagemElfa">
-      <img src="img/ElfaEstudando 1.png" alt="Elfa estudando" />
-    </div>
-  </div>
- 
-    <div class="form-container">
-      <h2>Formulário de Cadastro</h2>
- 
-      <form id="contactForm" novalidate>
-        <div class="input-field">
-          <label for="name">Nome:</label>
-          <input type="text" id="name" name="name" onfocus="clearMessage('nameError')" onblur="validateName()"
-            aria-describedby="nameError" aria-required="true" />
-          <div id="nameError" class="error-message" role="alert" aria-live="assertive"></div>
-        </div>
- 
-        <div class="input-field">
-          <label for="email">E-mail:</label>
-          <input type="text" id="email" name="email" onfocus="clearMessage('emailError')" onblur="validateEmail()"
-            aria-describedby="emailError" aria-required="true" />
-          <div id="emailError" class="error-message" role="alert" aria-live="assertive"></div>
-        </div>
- 
-        <div class="input-field">
-          <label for="senha">Senha:</label>
-          <input type="password" name="senha" id="senha">
-          <div id="messageError" class="error-message" role="alert" aria-live="assertive"></div>
-        </div>
- 
-        <button type="submit">Enviar</button>
-      </form>
-      <div class="links">
-        <a href="login.html">Fazer Login</a>
-        <a href="index.html">Voltar para o Ínicio</a>
-      </div>
-    </div>
-  </main>
- 
-  <script>
-    function validateName() {
-      const name = document.getElementById('name');
-      const nameError = document.getElementById('nameError');
-      if (name.value.trim() === '') {
-        name.classList.add('invalid');
-        name.classList.remove('valid');
-        nameError.textContent = 'O campo Nome é obrigatório.';
-        return false;
-      } else {
-        name.classList.remove('invalid');
-        name.classList.add('valid');
-        nameError.textContent = '';
-        return true;
-      }
-    }
- 
-    function validateEmail() {
-      const email = document.getElementById('email');
-      const emailError = document.getElementById('emailError');
-      const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      if (!emailPattern.test(email.value.trim())) {
-        email.classList.add('invalid');
-        email.classList.remove('valid');
-        emailError.textContent = 'Por favor, insira um e-mail válido.';
-        return false;
-      } else {
-        email.classList.remove('invalid');
-        email.classList.add('valid');
-        emailError.textContent = '';
-        return true;
-      }
-    }
- 
-    function validateMessage() {
-      const message = document.getElementById('message');
-      const messageError = document.getElementById('messageError');
-      if (message.value.trim() === '') {
-        message.classList.add('invalid');
-        message.classList.remove('valid');
-        messageError.textContent = 'O campo Mensagem é obrigatório.';
-        return false;
-      } else {
-        message.classList.remove('invalid');
-        message.classList.add('valid');
-        messageError.textContent = '';
-        return true;
-      }
-    }
- 
-    document.getElementById('contactForm').addEventListener('submit', function (e) {
-      if (!validateName() || !validateEmail() || !validateMessage()) {
-        e.preventDefault();
-        alert('Por favor, corrija os erros antes de enviar o formulário.');
-      } else {
-        alert('Formulário enviado com sucesso!');
-      }
-    });
-  </script>
->>>>>>> b678fef340ef687ae0593389fbbbc3cc0b2a6506
 </body>
- 
+
 </html>
- 
