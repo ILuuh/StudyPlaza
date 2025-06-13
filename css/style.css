@@ -255,8 +255,6 @@ header {
   margin-top: 3px;
 }
 
-
-
 .overlay {
   display: none;
   position: fixed;
@@ -314,7 +312,6 @@ header {
 #login-form {
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
   gap: 15px;
 }
 
@@ -341,9 +338,11 @@ input:focus {
   background: var(--amarelo);
   color: var(--preto);
   padding: 12px;
+  font-size: 1rem;
   border: none;
   border-radius: 8px;
   font-weight: bold;
+  text-align: center;
   cursor: pointer;
   transition: background 0.3s ease, transform 0.3s ease;
 }
