@@ -144,10 +144,10 @@ document.getElementById('register-form').addEventListener('submit', function (e)
   }
 });
 
-document.querySelectorAll('.toggle-password').forEach(button => {
+document.getElementById('mostrarSenha').forEach(button => {
   button.addEventListener('click', () => {
     const input = button.previousElementSibling;
-    const icon = button.querySelector('i');
+    const icon = button.getElementById('verPassword');
 
     const isPassword = input.type === 'password';
 
