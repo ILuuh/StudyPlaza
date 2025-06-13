@@ -5,15 +5,23 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>StudyPlaza - Plataforma de Aprendizado Colaborativo</title>
-  <link rel="icon" href="img/logo.png" type="image/png" />
+  <link rel="icon" href="img/logo_roxa.png" type="image/svg" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <link rel="stylesheet" href="css/style.css" />
 </head>
-
+<!-- Container VLibras -->
+<div vw class="enabled">
+  <div vw-access-button class="active"></div>
+  <div vw-plugin-wrapper>
+  <div class="vw-plugin-top-wrapper"></div>
+  </div>
+  </div>
 <body>
   <header>
     <div class="logo">
-      <a href="index.html"><img src="img/logo.png" alt="Logo"></a>
+      <a href="index.html"><img src="img/Logo.svg" alt="Logo">
+        <h1>Study Plaza</h1>
+      </a>
     </div>
 
     <button class="hamburger" aria-expanded="false" aria-controls="menu">
@@ -94,12 +102,12 @@
         <h1 id="login-title">Bem-vindo ao StudyPlaza</h1>
 
         <form id="login-form" novalidate autocomplete="off" aria-describedby="form-error">
-          <label for="input-email">Email</label>
+          <label id="obrigatorio" for="input-email">Email:</label>
           <input type="email" id="input-email" name="email" placeholder="seu@email.com" required aria-required="true"
             aria-describedby="email-error">
           <div id="email-error" class="error-message"></div>
 
-          <label for="input-password">Senha</label>
+          <label id="obrigatorio" for="input-password">Senha:</label>
           <input type="password" id="input-password" name="password" placeholder="••••••••" required
             aria-required="true" aria-describedby="password-error" minlength="6">
           <div id="password-error" class="error-message"></div>
@@ -155,5 +163,9 @@
   <script src="js/geral.js"></script>
   <script src="js/login.js"></script>
 </body>
-
+<script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+<script>
+    new window.VLibras.Widget('https://vlibras.gov.br/app');
+</script>
+ 
 </html>

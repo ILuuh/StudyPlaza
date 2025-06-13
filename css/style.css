@@ -16,6 +16,11 @@
   box-sizing: border-box;
 }
 
+#obrigatorio::after{
+  content: "*";
+  color: red;
+} 
+
 body {
   font-family: var(--font-family);
   background-color: var(--branco);
@@ -25,8 +30,17 @@ body {
   min-height: 100vh;
 }
 
+.logo a{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  color: white;
+  font-size: 0.75rem;
+}
+
 .logo img {
-  height: 90px;
+  height: 100px;
 }
 
 header {
@@ -212,7 +226,7 @@ header {
 .beneficios-lista {
   padding: 50px 30px;
   background: #fff;
-  max-height: 90vh;
+  min-height: 90vh;
 }
 
 .beneficios-lista h2 {
