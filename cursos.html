@@ -36,12 +36,13 @@
     </a>
 
     <nav class="menu" id="menu-principal" aria-label="Menu principal">
-      <a class="fecharMenu" aria-label="Fechar menu">✕</a>
+      <button class="fecharMenu" aria-label="Fechar menu">✕</button>
 
-      <a href="cursos.html" id="ativo" class="linkMenu">Cursos</a>
-      <a href="quiz.html" class="linkMenu">Quiz</a>
-      <a href="#" class="abrir-login linkMenu">Login</a>
+      <a href="cursos.html" class="linkMenu" id="ativo"><i class="fa-solid fa-book"></i> Cursos</a>
+      <a href="quiz.html" class="linkMenu"><i class="fa-solid fa-trophy"></i> Quiz</a>
+      <a href="#" class="abrir-login linkMenu"><i class="fa-solid fa-lock"></i> Login</a>
     </nav>
+
   </header>
 
   <section class="intro-section">
@@ -199,54 +200,42 @@
 
   </section>
 
-  <footer>
 
+  <footer>
     <div class="footer-container">
       <div class="footer-section">
         <div class="nomeLogo">
           <img class="logoFooter" src="img/Logo.svg" alt="Logo do site" />
-          <h2 class="logo">StudyPlaza</h2>
+          <h2 class="textLogoFooter">StudyPlaza</h2>
         </div>
         <p>Transformando o jeito como você estuda. Conecte-se, compartilhe e aprenda em uma comunidade vibrante.</p>
       </div>
 
-      <div class="footer-section">
-
+      <div class="footer-section" id="linksRapidos">
         <h3>Links Rápidos</h3>
-
         <nav aria-label="Links rápidos do rodapé">
-
           <ul>
-            <li><a href="index.html">Início</a></li>
-            <li><a href="cadastro.html">Cadastro</a></li>
-            <li><a href="#" id="abrir-login-footer">Login</a></li>
-            <li><a href="cursos.html">Cursos</a></li>
-            <li><a href="quiz.html">Quiz</a></li>
+            <li><i class="fa-solid fa-house"></i><a href="index.html">Início</a></li>
+            <li><i class="fa-solid fa-address-card"></i><a href="cadastro.html">Cadastro</a></li>
+            <li><i class="fa-solid fa-lock"></i><a href="#" id="abrir-login-footer">Login</a></li>
+            <li><i class="fa-solid fa-book"></i><a href="cursos.html">Cursos</a></li>
+            <li><i class="fa-solid fa-trophy"></i><a href="quiz.html">Quiz</a></li>
           </ul>
-
         </nav>
-
       </div>
 
       <div class="footer-section">
-
         <h3>Informações</h3>
-
         <ul>
           <li><a href="#">Política de Privacidade</a></li>
         </ul>
-
         <div class="social-icons">
-          <a href="https://www.instagram.com/studyplaza_/?utm_source=ig_web_a_share_sheet" aria-label="Instagram"><i
-              class="fab fa-instagram"></i></a>
+          <a href="https://www.instagram.com/studyplaza_/?utm_source=ig_web_button_share_sheet"
+            aria-label="Instagram"><i class="fab fa-instagram"></i></a>
         </div>
-
       </div>
-
     </div>
-
     <p>&copy; 2025 StudyPlaza - Todos os direitos reservados.</p>
-
   </footer>
 
   <script src="js/cursos.js"></script>
