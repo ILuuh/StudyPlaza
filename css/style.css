@@ -590,14 +590,12 @@ footer .logoFooter {
   }
 
   footer {
-    text-align: center;
-    padding: 20px 10px;
+    text-align: justify;
   }
 
   .footer-container {
     grid-template-columns: 1fr;
   }
-
 }
 
 @media screen and (max-width: 480px) {
