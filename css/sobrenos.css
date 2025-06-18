@@ -1,0 +1,179 @@
+:root {
+    --roxo-claro: #A88BEB;
+    --roxo-principal: #6A4C93;
+    --preto: #333333;
+    --amarelo: #FFD166;
+    --branco: #F9F9F9;
+    --sombra: rgba(0, 0, 0, 0.1);
+    --font-family: 'Poppins', Arial, sans-serif;
+}
+
+.sobre-nos {
+    padding: 1rem 1.5rem;
+    display: flex;
+    justify-content: center;
+    background: var(--branco);
+}
+
+.intro-sobre {
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    align-items: center;
+    gap: 40px;
+    width: 100%;
+}
+
+.texto-sobre {
+    flex: 1;
+    min-width: 280px;
+}
+
+.texto-sobre h2 {
+    color: var(--roxo-principal);
+    font-size: 2em;
+    margin-bottom: 10px;
+}
+
+.imagem-sobre {
+    flex: 1;
+    min-width: 280px;
+}
+
+.imagem-sobre img {
+    max-width: 100%;
+    border-radius: 12px;
+    height: auto;
+}
+
+.integrantes {
+    text-align: center;
+    padding: 1rem 1.5rem;
+}
+
+.cards-integrantes {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap;
+    margin: 1rem 0 5rem 0;
+}
+
+.card-integrante {
+    background: #fff;
+    padding: 20px;
+    border-radius: 16px;
+    box-shadow: 0 5px 15px var(--sombra);
+    width: 220px;
+    flex-shrink: 0;
+}
+
+.card-integrante img {
+    width: 100%;
+    border-radius: 12px;
+    height: auto;
+}
+
+.card-integrante h3 {
+    margin-top: 10px;
+}
+
+.card-integrante button {
+    margin-top: 10px;
+    padding: 8px 12px;
+    background-color: var(--roxo-principal);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.card-integrante button:hover {
+    background-color: #5852d6;
+}
+
+.modal-integrante {
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.6);
+    width: 100%;
+    height: 100%;
+    z-index: 1000;
+    padding: 1rem;
+    box-sizing: border-box;
+}
+
+.modal-conteudo {
+    background: #fff;
+    padding: 20px;
+    border-radius: 16px;
+    max-width: 500px;
+    width: 100%;
+    display: flex;
+    gap: 20px;
+    position: relative;
+    flex-wrap: wrap;
+    box-sizing: border-box;
+}
+
+.modal-conteudo .mini-img {
+    width: 80px;
+    height: 80px;
+    border-radius: 12px;
+    flex-shrink: 0;
+    object-fit: cover;
+}
+
+.fechar-modal {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: transparent;
+    font-size: 18px;
+    border: none;
+    cursor: pointer;
+}
+
+/* Responsividade */
+
+@media (max-width: 900px) {
+    .intro-sobre {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .imagem-sobre, .texto-sobre {
+        min-width: 100%;
+    }
+
+    .cards-integrantes {
+        gap: 20px;
+        justify-content: center;
+    }
+
+    .card-integrante {
+        width: 45%;
+        max-width: 300px;
+    }
+}
+
+@media (max-width: 480px) {
+    .card-integrante {
+        width: 100%;
+        max-width: none;
+    }
+
+    .modal-conteudo {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .modal-conteudo .mini-img {
+        margin-bottom: 15px;
+    }
+}

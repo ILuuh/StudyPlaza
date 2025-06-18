@@ -1,6 +1,6 @@
 const questions = [
     {
-        question: "Qual é o principal objetivo da plataforma StudyPlaza?",
+        question: "Qual é o principal objetivo da plataforma Study Plaza?",
         options: [
             "Oferecer videoaulas para concursos",
             "Criar uma rede social para professores",
@@ -10,7 +10,7 @@ const questions = [
         answer: "Promover o aprendizado colaborativo entre estudantes"
     },
     {
-        question: "Como a IA é usada na StudyPlaza?",
+        question: "Como a IA é usada na Study Plaza?",
         options: [
             "Para corrigir provas escritas automaticamente",
             "Para sugerir temas de redação",
@@ -20,7 +20,7 @@ const questions = [
         answer: "Para gerar quizzes personalizados com base no conteúdo compartilhado"
     },
     {
-        question: "Por que a StudyPlaza é considerada acessível para diferentes perfis de estudantes?",
+        question: "Por que a Study Plaza é considerada acessível para diferentes perfis de estudantes?",
         options: [
             "Porque só funciona em escolas conveniadas",
             "Porque exige dedicação em horário fixo",
