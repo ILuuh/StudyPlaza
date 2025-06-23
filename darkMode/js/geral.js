@@ -19,7 +19,6 @@ function fecharmenu() {
 document.addEventListener('DOMContentLoaded', () => {
     const loginLink = document.querySelector('.abrir-login');
     const botaoAbrirLogin = document.getElementById("abrir-login-footer");
-    const modalBtnLogin = document.getElementById("abrir-login-modal");
     const overlay = document.querySelector('.overlay');
     const formLogin = document.querySelector('.formLogin');
     const closeBtn = document.querySelector('.close-login');
@@ -53,12 +52,6 @@ document.addEventListener('DOMContentLoaded', () => {
         openLogin();
     });
 
-    modalBtnLogin.addEventListener("click", (e) => {
-        e.preventDefault();
-        openLogin();
-        fecharModal();
-    });
-
     closeBtn.addEventListener('click', closeLogin);
 
     // Fecha clicando no overlay
@@ -72,28 +65,19 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     const themeBtn = document.getElementById('themeToggleBtn');
-    const isDark = window.location.href.includes('dark');
+  const isDark = window.location.href.includes('dark');
 
-    // Define ícone inicial
-    themeBtn.innerHTML = isDark
-        ? '<i class="fas fa-sun"></i>'
-        : '<i class="fas fa-moon"></i>';
+  // Define ícone inicial
+  themeBtn.innerHTML = isDark
+    ? '<i class="fas fa-sun"></i>'
+    : '<i class="fas fa-moon"></i>';
 
-    themeBtn.addEventListener('click', () => {
-        // Alterna entre light e dark
-        if (isDark) {
-            window.location.href = '../index.html'; // volta para claro
-        } else {
-            window.location.href = 'darkMode/index.html'; // vai para dark
-        }
-    });
+  themeBtn.addEventListener('click', () => {
+    // Alterna entre light e dark
+    if (isDark) {
+      window.location.href = '../index.html'; // volta para claro
+    } else {
+      window.location.href = 'darkMode/index.html'; // vai para dark
+    }
+  });
 });
-
-function abrirModal() {
-    document.getElementById("modalAviso").style.display = "flex";
-}
-
-function fecharModal() {
-    document.getElementById("modalAviso").style.display = "none";
-}
-

@@ -96,4 +96,3 @@ function abrirModal() {
 function fecharModal() {
     document.getElementById("modalAviso").style.display = "none";
 }
-

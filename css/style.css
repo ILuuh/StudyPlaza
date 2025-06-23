@@ -133,60 +133,18 @@ header {
   transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
-.theme-switch {
-  position: relative;
-  display: inline-block;
-  width: 60px;
-  height: 30px;
-  margin-left: 1rem;
-}
-
-.theme-switch input {
-  display: none;
-}
-
-.theme-switch .slider {
-  position: absolute;
+.theme-btn {
+  background: transparent;
+  border: none;
   cursor: pointer;
-  background-color: #ccc;
-  border-radius: 30px;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 6px;
-  transition: background-color 0.4s;
-}
-
-.theme-switch .slider i {
+  font-size: 1.3rem;
   color: white;
-  font-size: 1rem;
-  z-index: 1;
-  transition: opacity 0.3s ease;
+  padding: 0.5rem;
+  transition: transform 0.3s ease;
 }
 
-.theme-switch .slider::before {
-  content: "";
-  position: absolute;
-  height: 24px;
-  width: 24px;
-  left: 3px;
-  bottom: 3px;
-  background-color: white;
-  border-radius: 50%;
-  transition: transform 0.4s ease;
-  z-index: 0;
-}
-
-.theme-switch input:checked + .slider {
-  background-color: var(--roxo-principal);
-}
-
-.theme-switch input:checked + .slider::before {
-  transform: translateX(30px);
+.theme-btn:hover {
+  transform: scale(1.2);
 }
 
 .banner {
@@ -659,24 +617,8 @@ footer .logoFooter {
     font-size: 90%;
   }
 
-  .theme-switch {
-    width: 50px;
-    height: 26px;
-  }
-
-  .theme-switch .slider::before {
-    height: 20px;
-    width: 20px;
-    left: 3px;
-    bottom: 3px;
-  }
-
-  .theme-switch input:checked+.slider::before {
-    transform: translateX(24px);
-  }
-
-  .theme-switch .slider i {
-    font-size: 0.75rem;
+  .theme-btn {
+    font-size: 1.1rem;
   }
 
   .banner-texto h1 {

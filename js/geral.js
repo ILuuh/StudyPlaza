@@ -63,23 +63,21 @@ document.addEventListener('DOMContentLoaded', () => {
       closeLogin();
     }
   });
+
+  const themeBtn = document.getElementById('themeToggleBtn');
+  const isDark = window.location.href.includes('dark');
+
+  // Define ícone inicial
+  themeBtn.innerHTML = isDark
+    ? '<i class="fas fa-sun"></i>'
+    : '<i class="fas fa-moon"></i>';
+
+  themeBtn.addEventListener('click', () => {
+    // Alterna entre light e dark
+    if (isDark) {
+      window.location.href = '../index.html'; // volta para claro
+    } else {
+      window.location.href = 'darkMode/index.html'; // vai para dark
+    }
+  });
 });
-
-const toggle = document.getElementById('themeToggle');
-const currentUrl = window.location.href;
-
-// Detectar tema atual com base na URL
-if (currentUrl.includes('DarkMode/index.html')) {
-  toggle.checked = true;
-}
-
-toggle.addEventListener('change', () => {
-  if (toggle.checked) {
-    // Vai para a versão escura
-    window.location.href = 'DarkMode/index.html';
-  } else {
-    // Volta para a versão clara
-    window.location.href = '/index.html';
-  }
-});
-
