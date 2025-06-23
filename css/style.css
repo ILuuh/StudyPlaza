@@ -16,10 +16,10 @@
   box-sizing: border-box;
 }
 
-#obrigatorio::after{
+#obrigatorio::after {
   content: "*";
   color: red;
-} 
+}
 
 body {
   font-family: var(--font-family);
@@ -30,7 +30,7 @@ body {
   min-height: 100vh;
 }
 
-.logo a{
+.logo a {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -92,7 +92,7 @@ header {
   opacity: 1;
 }
 
-#ativo{
+#ativo {
   color: var(--amarelo);
 }
 
@@ -131,6 +131,62 @@ header {
   border-radius: 10px;
   background-color: var(--branco);
   transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.theme-switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 30px;
+  margin-left: 1rem;
+}
+
+.theme-switch input {
+  display: none;
+}
+
+.theme-switch .slider {
+  position: absolute;
+  cursor: pointer;
+  background-color: #ccc;
+  border-radius: 30px;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 6px;
+  transition: background-color 0.4s;
+}
+
+.theme-switch .slider i {
+  color: white;
+  font-size: 1rem;
+  z-index: 1;
+  transition: opacity 0.3s ease;
+}
+
+.theme-switch .slider::before {
+  content: "";
+  position: absolute;
+  height: 24px;
+  width: 24px;
+  left: 3px;
+  bottom: 3px;
+  background-color: white;
+  border-radius: 50%;
+  transition: transform 0.4s ease;
+  z-index: 0;
+}
+
+.theme-switch input:checked + .slider {
+  background-color: var(--roxo-principal);
+}
+
+.theme-switch input:checked + .slider::before {
+  transform: translateX(30px);
 }
 
 .banner {
@@ -430,7 +486,7 @@ footer .logoFooter {
   height: 90px;
 }
 
-.nomeLogo .textLogoFooter{
+.nomeLogo .textLogoFooter {
   font-size: 1.2rem;
 }
 
@@ -441,11 +497,11 @@ footer .logoFooter {
   margin-bottom: 1rem;
 }
 
-#linksRapidos{
+#linksRapidos {
   margin: 0 0 0 50px;
 }
 
-.footer-section{
+.footer-section {
   padding: 0 0 1rem;
 }
 
@@ -603,6 +659,26 @@ footer .logoFooter {
     font-size: 90%;
   }
 
+  .theme-switch {
+    width: 50px;
+    height: 26px;
+  }
+
+  .theme-switch .slider::before {
+    height: 20px;
+    width: 20px;
+    left: 3px;
+    bottom: 3px;
+  }
+
+  .theme-switch input:checked+.slider::before {
+    transform: translateX(24px);
+  }
+
+  .theme-switch .slider i {
+    font-size: 0.75rem;
+  }
+
   .banner-texto h1 {
     font-size: 2rem;
   }
@@ -619,4 +695,5 @@ footer .logoFooter {
   .formLogin {
     padding: 1.5rem;
   }
+
 }

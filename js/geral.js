@@ -64,3 +64,22 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 });
+
+const toggle = document.getElementById('themeToggle');
+const currentUrl = window.location.href;
+
+// Detectar tema atual com base na URL
+if (currentUrl.includes('DarkMode/index.html')) {
+  toggle.checked = true;
+}
+
+toggle.addEventListener('change', () => {
+  if (toggle.checked) {
+    // Vai para a versão escura
+    window.location.href = 'DarkMode/index.html';
+  } else {
+    // Volta para a versão clara
+    window.location.href = '/index.html';
+  }
+});
+
