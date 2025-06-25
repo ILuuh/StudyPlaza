@@ -126,6 +126,7 @@
     position: relative;
     flex-wrap: wrap;
     box-sizing: border-box;
+    text-align: justify;
 }
 
 .modal-conteudo .mini-img {
