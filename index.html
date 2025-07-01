@@ -4,24 +4,23 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Plataforma de aprendizado colaborativo com IA, quizzes e grupos de estudo." />
+  <meta name="keywords" content="estudo, educação, grupos de estudo, quizzes, IA, aprendizagem colaborativa" />
+  <meta name="author" content="StudyPlaza" />
   <title>StudyPlaza - Plataforma de Aprendizado Colaborativo</title>
-  <link rel="icon" href="img/Logo_Fundo_Roxa.png" type="image/svg" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="icon" href="img/Logo_Fundo_Roxa.png" type="image/svg+xml" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link rel="stylesheet" href="css/style.css" />
 </head>
-<!-- Container VLibras -->
-<div vw class="enabled">
-  <div vw-access-button class="active"></div>
-  <div vw-plugin-wrapper>
-    <div class="vw-plugin-top-wrapper"></div>
-  </div>
-</div>
 
 <body>
+
   <header>
     <div class="logo">
-      <a href="index.html"><img src="img/Logo.svg" alt="Logo">
-        <h1>Study Plaza</h1>
+      <a href="index.html" aria-label="Voltar para página inicial">
+        <img src="img/Logo.svg" alt="Logo StudyPlaza" />
+        <h1>StudyPlaza</h1>
       </a>
     </div>
 
@@ -32,59 +31,67 @@
     </button>
 
     <nav class="menu" id="menu-principal" aria-label="Menu principal">
-      <button class="fecharMenu" aria-label="Fechar menu">✕</button>
-
+      <button class="fecharMenu" aria-label="Fechar menu">&times;</button>
       <a href="cursos.html" class="linkMenu"><i class="fa-solid fa-book"></i> Cursos</a>
       <a href="quiz.html" class="linkMenu"><i class="fa-solid fa-trophy"></i> Quiz</a>
       <a href="sobrenos.html" class="linkMenu"><i class="fa-solid fa-users"></i> Sobre Nós</a>
       <a href="#" class="abrir-login linkMenu"><i class="fa-solid fa-lock"></i> Login</a>
-
       <button id="themeToggleBtn" class="theme-btn" aria-label="Alternar tema">
         <i class="fas fa-moon"></i>
       </button>
-
     </nav>
   </header>
 
-  <section class="banner">
-    <div class="banner-texto">
-      <h1>Descubra o futuro do aprendizado colaborativo!</h1>
-      <p>Na Study Plaza, você se conecta com estudantes como você, compartilha materiais, participa de grupos e ainda
-        aprende de forma interativa com quizzes gerados por inteligência artificial. Estude no seu ritmo, com
-        liberdade
-        e motivação, de qualquer lugar, a qualquer hora.</p>
-    </div>
-    <img src="img/ElfaEstudando2.png" alt="Mascote Elfa Estudando" />
-  </section>
-
   <main>
+    <section>
+      <article>
+        <!-- Container VLibras -->
+        <div vw class="enabled">
+          <div vw-access-button class="active"></div>
+          <div vw-plugin-wrapper>
+            <div class="vw-plugin-top-wrapper"></div>
+          </div>
+        </div>
+        <div class="overlay"></div>
+      </article>
+    </section>
+
+    <section class="banner">
+      <div class="banner-texto">
+        <h2>Descubra o futuro do aprendizado colaborativo!</h2>
+        <p>Na StudyPlaza, você se conecta com estudantes como você, compartilha materiais, participa de grupos e ainda
+          aprende de forma interativa com quizzes gerados por inteligência artificial.</p>
+      </div>
+      <img src="img/ElfaEstudando2.png" alt="Mascote Elfa Estudando" />
+    </section>
+
     <section class="funcionalidades timeline">
       <h2>Funcionalidades em Destaque</h2>
       <div class="timeline-container">
-        <div class="timeline-item">
+        <article class="timeline-item">
           <div class="timeline-icon"><i class="fas fa-users"></i></div>
           <div class="timeline-content">Grupos de estudo públicos e privados</div>
-        </div>
-        <div class="timeline-item">
+        </article>
+        <article class="timeline-item">
           <div class="timeline-icon"><i class="fas fa-file-pdf"></i></div>
           <div class="timeline-content">Compartilhamento de PDFs e links</div>
-        </div>
-        <div class="timeline-item">
+        </article>
+        <article class="timeline-item">
           <div class="timeline-icon"><i class="fas fa-comments"></i></div>
           <div class="timeline-content">Chat em tempo real</div>
-        </div>
-        <div class="timeline-item">
+        </article>
+        <article class="timeline-item">
           <div class="timeline-icon"><i class="fas fa-brain"></i></div>
           <div class="timeline-content">Quizzes com IA personalizada</div>
-        </div>
-        <div class="timeline-item">
+        </article>
+        <article class="timeline-item">
           <div class="timeline-icon"><i class="fas fa-laptop"></i></div>
           <div class="timeline-content">Acesso via computador, tablet ou celular</div>
-        </div>
-        <div class="timeline-item">
+        </article>
+        <article class="timeline-item">
           <div class="timeline-icon"><i class="fas fa-book"></i></div>
           <div class="timeline-content">Sugestão de cursos gratuitos e pagos</div>
-        </div>
+        </article>
       </div>
     </section>
 
@@ -99,69 +106,50 @@
       </ul>
     </section>
 
-  </main>
+    <section class="formLogin" aria-label="Formulário de Login">
+      <article class="login-container">
+        <button class="close-login" aria-label="Fechar login">&times;</button>
+        <h2 id="login-title">Bem-vindo ao StudyPlaza</h2>
+        <form id="login-form" novalidate autocomplete="off" aria-describedby="form-error">
+          <label for="input-email" id="obrigatorio">Email:</label>
+          <input type="email" id="input-email" name="email" required placeholder="seu@email.com" aria-required="true" />
+          <div id="email-error" class="error-message"></div>
 
-  <div class="overlay"></div>
-  <section class="formLogin">
-    <button class="close-login" aria-label="Fechar formulário de login">✕</button>
+          <label for="input-password" id="obrigatorio">Senha:</label>
+          <input type="password" id="input-password" name="password" required minlength="6" placeholder="••••••••"
+            aria-required="true" />
+          <div id="password-error" class="error-message"></div>
 
-    <section class="login-container" aria-labelledby="login-title">
-      <h1 id="login-title">Bem-vindo ao StudyPlaza</h1>
-
-      <form id="login-form" novalidate autocomplete="off" aria-describedby="form-error">
-        <label id="obrigatorio" for="input-email">Email:</label>
-        <input type="email" id="input-email" name="email" placeholder="seu@email.com" required aria-required="true"
-          aria-describedby="email-error">
-        <div id="email-error" class="error-message"></div>
-
-        <label id="obrigatorio" for="input-password">Senha:</label>
-        <input type="password" id="input-password" name="password" placeholder="••••••••" required aria-required="true"
-          aria-describedby="password-error" minlength="6">
-        <div id="password-error" class="error-message"></div>
-
-        <button type="submit" class="btnEntrar">Entrar</button>
-        <div id="form-error" class="error-message"></div>
-      </form>
-
-      <div class="links">
-        <p> Já tem uma conta? Se não, clique <a href="cadastro.html">Aqui</a></p>
-      </div>
+          <button type="submit" class="btnEntrar">Entrar</button>
+          <div id="form-error" class="error-message"></div>
+        </form>
+        <p>Não tem uma conta? <a class="linkCadastro" href="cadastro.html">Cadastre-se aqui</a></p>
+      </article>
     </section>
 
-  </section>
+
+  </main>
 
   <footer>
     <div class="footer-container">
       <div class="footer-section">
         <div class="nomeLogo">
           <img class="logoFooter" src="img/Logo.svg" alt="Logo do site" />
-          <h2 class="textLogoFooter">Study Plaza</h2>
+          <h3 class="textLogoFooter">Study Plaza</h3>
         </div>
         <p>Transformando o jeito como você estuda. Conecte-se, compartilhe e aprenda em uma comunidade vibrante.</p>
       </div>
 
       <div class="footer-section" id="linksRapidos">
         <h3>Links Rápidos</h3>
-        <nav aria-label="Links rápidos do rodapé">
+        <nav aria-label="Links do rodapé">
           <ul>
-            <li>
-              <i class="fa-solid fa-house"></i><a href="index.html">Início</a>
-            </li>
-            <li>
-              <i class="fa-solid fa-address-card"></i><a href="cadastro.html">Cadastro</a>
-            </li>
-            <li>
-              <i class="fa-solid fa-lock"></i><a href="#" id="abrir-login-footer">Login</a>
-            </li>
-            <li>
-              <i class="fa-solid fa-book"></i><a href="cursos.html">Cursos</a>
-            </li>
-            <li>
-              <i class="fa-solid fa-trophy"></i><a href="quiz.html">Quiz</a>
-            </li>
-            <li>
-              <i class="fa-solid fa-users"></i><a href="sobrenos.html">Sobre Nós</a>
-            </li>
+            <li><a href="index.html"><i class="fa-solid fa-house"></i> Início</a></li>
+            <li><a href="cadastro.html"><i class="fa-solid fa-address-card"></i> Cadastro</a></li>
+            <li><a href="#" id="abrir-login-footer"><i class="fa-solid fa-lock"></i> Login</a></li>
+            <li><a href="cursos.html"><i class="fa-solid fa-book"></i> Cursos</a></li>
+            <li><a href="quiz.html"><i class="fa-solid fa-trophy"></i> Quiz</a></li>
+            <li><a href="sobrenos.html"><i class="fa-solid fa-users"></i> Sobre Nós</a></li>
           </ul>
         </nav>
       </div>
@@ -172,20 +160,21 @@
           <li><a href="#">Política de Privacidade</a></li>
         </ul>
         <div class="social-icons">
-          <a href="https://www.instagram.com/studyplaza_/?utm_source=ig_web_button_share_sheet"
-            aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="https://www.instagram.com/studyplaza_" aria-label="Instagram StudyPlaza">
+            <i class="fab fa-instagram"></i>
+          </a>
         </div>
       </div>
     </div>
-    <p>&copy; 2025 Study Plaza - Todos os direitos reservados.</p>
+    <p>&copy; 2025 StudyPlaza - Todos os direitos reservados.</p>
   </footer>
 
   <script src="js/geral.js"></script>
   <script src="js/login.js"></script>
+  <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+  <script>
+    new window.VLibras.Widget('https://vlibras.gov.br/app');
+  </script>
 </body>
-<script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
-<script>
-  new window.VLibras.Widget('https://vlibras.gov.br/app');
-</script>
 
 </html>

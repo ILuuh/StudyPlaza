@@ -46,7 +46,7 @@ main {
   padding: 0 20px;
 }
 
-.courses-title {
+#courses-title {
   color: var(--branco);
   margin-bottom: 30px;
   text-align: center;

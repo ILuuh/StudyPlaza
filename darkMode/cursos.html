@@ -4,66 +4,67 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <meta name="description"
+    content="Cursos complementares gratuitos para estudantes e profissionais - desenvolva habilidades e destaque-se com a Study Plaza." />
+  <meta name="keywords"
+    content="cursos online, gratuitos, programação, finanças pessoais, produtividade, redação, estudantes, educação" />
+  <meta name="author" content="Study Plaza" />
   <title>Cursos Complementares - StudyPlaza</title>
   <link rel="icon" href="img/Logo_Fundo_Roxa.png" type="image/png" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    integrity="sha384-..." crossorigin="anonymous" />
   <link rel="stylesheet" href="css/style.css" />
   <link rel="stylesheet" href="css/cursos.css">
-  <style>
-  </style>
 </head>
-<!-- Container VLibras -->
-<div vw class="enabled">
-  <div vw-access-button class="active"></div>
-  <div vw-plugin-wrapper>
-    <div class="vw-plugin-top-wrapper"></div>
-  </div>
-</div>
 
 <body>
 
   <header>
     <div class="logo">
-      <a href="index.html"><img src="img/Logo.svg" alt="Logo">
+      <a href="index.html" aria-label="Página inicial do Study Plaza">
+        <img src="img/Logo.svg" alt="Logo Study Plaza">
         <h1>Study Plaza</h1>
       </a>
     </div>
 
-    <a class="hamburger" aria-expanded="false" aria-controls="menu">
+    <button class="hamburger" aria-expanded="false" aria-controls="menu">
       <span class="hamburger-bar"></span>
       <span class="hamburger-bar"></span>
       <span class="hamburger-bar"></span>
-    </a>
+    </button>
 
     <nav class="menu" id="menu-principal" aria-label="Menu principal">
       <button class="fecharMenu" aria-label="Fechar menu">✕</button>
-
       <a href="cursos.html" class="linkMenu" id="ativo"><i class="fa-solid fa-book"></i> Cursos</a>
       <a href="quiz.html" class="linkMenu"><i class="fa-solid fa-trophy"></i> Quiz</a>
       <a href="sobrenos.html" class="linkMenu"><i class="fa-solid fa-users"></i> Sobre Nós</a>
       <a href="#" class="abrir-login linkMenu"><i class="fa-solid fa-lock"></i> Login</a>
-
-      <button id="themeToggleBtn" class="theme-btn" aria-label="Alternar tema">
-        <i class="fas fa-moon"></i>
-      </button>
-
+      <button id="themeToggleBtn" class="theme-btn" aria-label="Alternar tema"><i class="fas fa-moon"></i></button>
     </nav>
-
   </header>
 
-  <section class="intro-section">
-    <h1>Explore os Melhores Cursos Complementares</h1>
-    <p>Na Study Plaza, reunimos os cursos online mais relevantes para turbinar sua formação acadêmica e
-      profissional.
-      Conheça novas áreas, desenvolva habilidades práticas e fique à frente no mercado. 🚀</p>
-  </section>
+  <main>
+    <section>
+      <article>
+        <!-- Container VLibras -->
+        <div vw class="enabled">
+          <div vw-access-button class="active"></div>
+          <div vw-plugin-wrapper>
+            <div class="vw-plugin-top-wrapper"></div>
+          </div>
+        </div>
+        <div class="overlay"></div>
+      </article>
+    </section>
 
-  <main role="main" tabindex="0">
+    <section class="intro-section" aria-labelledby="titulo-intro">
+      <h1 id="titulo-intro">Explore os Melhores Cursos Complementares</h1>
+      <p>Na Study Plaza, reunimos os cursos online mais relevantes para turbinar sua formação acadêmica e profissional.
+        Conheça novas áreas, desenvolva habilidades práticas e fique à frente no mercado. 🚀</p>
+    </section>
 
     <section aria-labelledby="courses-title">
-
-      <h2 class="courses-title">Cursos</h2>
-
+      <h2 id="courses-title">Cursos</h2>
       <div class="courses-container" aria-label="Lista de cursos sugeridos">
 
         <article class="course-card" tabindex="0">
@@ -156,56 +157,38 @@
 
       </div>
 
-      <section class="call-to-action">
+    </section>
 
-        <h2>Gostou dos cursos? Então, cadastre-se para ter acesso completo!</h2>
+    <section class="call-to-action">
+      <h2>Gostou dos cursos? Então, cadastre-se para ter acesso completo!</h2>
+      <p>No Study Plaza você encontra uma seleção exclusiva de cursos complementares, participa de grupos de estudo e
+        ainda testa seus conhecimentos com quizzes inteligentes. O cadastro é rápido e gratuito! Não fique de fora
+        dessa comunidade que transforma o aprendizado.</p>
+      <a href="cadastro.html">Quero me cadastrar e acessar tudo!</a>
+    </section>
 
-        <p>
-          No Study Plaza você encontra uma seleção exclusiva de cursos complementares, participa de
-          grupos de estudo e ainda testa seus conhecimentos com quizzes inteligentes. O cadastro é rápido e
-          gratuito! Não fique de fora dessa comunidade que transforma o aprendizado.
-        </p>
+    <section class="formLogin" aria-label="Formulário de Login">
+      <article class="login-container">
+        <button class="close-login" aria-label="Fechar login">&times;</button>
+        <h2 id="login-title">Bem-vindo ao StudyPlaza</h2>
+        <form id="login-form" novalidate autocomplete="off" aria-describedby="form-error">
+          <label for="input-email" id="obrigatorio">Email:</label>
+          <input type="email" id="input-email" name="email" required placeholder="seu@email.com" aria-required="true" />
+          <div id="email-error" class="error-message"></div>
 
-        <a href="cadastro.html">
-          Quero me cadastrar e acessar tudo!
-        </a>
+          <label for="input-password" id="obrigatorio">Senha:</label>
+          <input type="password" id="input-password" name="password" required minlength="6" placeholder="••••••••"
+            aria-required="true" />
+          <div id="password-error" class="error-message"></div>
 
-      </section>
-
+          <button type="submit" class="btnEntrar">Entrar</button>
+          <div id="form-error" class="error-message"></div>
+        </form>
+        <p>Não tem uma conta? <a class="linkCadastro" href="cadastro.html">Cadastre-se aqui</a></p>
+      </article>
     </section>
 
   </main>
-
-
-  <div class="overlay"></div>
-  <section class="formLogin">
-    <a class="close-login" aria-label="Fechar formulário de login">✕</a>
-
-    <section class="login-container" aria-labelledby="login-title">
-      <h1 id="login-title">Bem-vindo ao StudyPlaza</h1>
-
-      <form id="login-form" novalidate autocomplete="off" aria-describedby="form-error">
-        <label id="obrigatorio">Email:</label>
-        <input type="email" id="input-email" name="email" placeholder="seu@email.com" required aria-required="true"
-          aria-describedby="email-error">
-        <div id="email-error" class="error-message"></div>
-
-        <label id="obrigatorio" for="input-password">Senha:</label>
-        <input type="password" id="input-password" name="password" placeholder="••••••••" required aria-required="true"
-          aria-describedby="password-error" minlength="6">
-        <div id="password-error" class="error-message"></div>
-
-        <a type="submit" class="btnEntrar">Entrar</a>
-        <div id="form-error" class="error-message"></div>
-      </form>
-
-      <div class="links">
-        <p> Já tem uma conta? Se não, clique <a href="cadastro.html">Aqui</a></p>
-      </div>
-    </section>
-
-  </section>
-
 
   <footer>
     <div class="footer-container">
@@ -221,24 +204,12 @@
         <h3>Links Rápidos</h3>
         <nav aria-label="Links rápidos do rodapé">
           <ul>
-            <li>
-              <i class="fa-solid fa-house"></i><a href="index.html">Início</a>
-            </li>
-            <li>
-              <i class="fa-solid fa-address-card"></i><a href="cadastro.html">Cadastro</a>
-            </li>
-            <li>
-              <i class="fa-solid fa-lock"></i><a href="#" id="abrir-login-footer">Login</a>
-            </li>
-            <li>
-              <i class="fa-solid fa-book"></i><a href="cursos.html">Cursos</a>
-            </li>
-            <li>
-              <i class="fa-solid fa-trophy"></i><a href="quiz.html">Quiz</a>
-            </li>
-            <li>
-              <i class="fa-solid fa-users"></i><a href="sobrenos.html">Sobre Nós</a>
-            </li>
+            <li><i class="fa-solid fa-house"></i><a href="index.html">Início</a></li>
+            <li><i class="fa-solid fa-address-card"></i><a href="cadastro.html">Cadastro</a></li>
+            <li><i class="fa-solid fa-lock"></i><a href="#" id="abrir-login-footer">Login</a></li>
+            <li><i class="fa-solid fa-book"></i><a href="cursos.html">Cursos</a></li>
+            <li><i class="fa-solid fa-trophy"></i><a href="quiz.html">Quiz</a></li>
+            <li><i class="fa-solid fa-users"></i><a href="sobrenos.html">Sobre Nós</a></li>
           </ul>
         </nav>
       </div>
@@ -259,12 +230,10 @@
 
   <script src="js/cursos.js"></script>
   <script src="js/login.js"></script>
-
   <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
   <script>
     new window.VLibras.Widget('https://vlibras.gov.br/app');
   </script>
-
 </body>
 
 </html>

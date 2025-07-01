@@ -168,7 +168,7 @@ header {
     padding-right: 30px;
 }
 
-.banner-texto h1 {
+.banner-texto h2 {
     font-size: 2.8rem;
     margin-bottom: 20px;
 }
@@ -338,7 +338,7 @@ header {
     cursor: pointer;
 }
 
-.login-container h1 {
+.login-container h2 {
     font-size: 1.8rem;
     margin-bottom: 25px;
     color: var(--branco);
@@ -386,6 +386,20 @@ input:focus {
 .btnEntrar:hover {
     background: var(--roxo-menos-claro);
     transform: translateY(-2px);
+}
+
+.login-container p {
+    color: var(--branco);
+}
+
+.login-container .linkCadastro {
+    text-decoration: none;
+    color: var(--roxo-claro);
+    font-weight: bold;
+}
+
+.login-container .linkCadastro:hover {
+    text-decoration: underline;
 }
 
 /* Classes para validação */

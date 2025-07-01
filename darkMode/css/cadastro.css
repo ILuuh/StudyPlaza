@@ -19,6 +19,15 @@
 }
 
 
+.logo a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  color: white;
+  font-size: 1rem;
+}
+
 .register-wrapper {
   display: flex;
   justify-content: center;

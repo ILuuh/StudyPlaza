@@ -40,6 +40,10 @@
     margin-bottom: 10px;
 }
 
+.texto-sobre p{
+    text-align: justify;
+}
+
 .imagem-sobre {
     flex: 1;
     min-width: 280px;

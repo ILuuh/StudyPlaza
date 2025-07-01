@@ -1,9 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;600;700&display=swap');
 
+/* 1. Tema Claro */
 :root {
   --roxo-claro: #A88BEB;
   --roxo-principal: #6A4C93;
-  --preto: #333333;
+  --preto: #333;
   --amarelo: #FFD166;
   --branco: #F9F9F9;
   --sombra: rgba(0, 0, 0, 0.1);
@@ -16,9 +17,8 @@
   box-sizing: border-box;
 }
 
-#obrigatorio::after {
-  content: "*";
-  color: red;
+html {
+  scroll-behavior: smooth;
 }
 
 body {
@@ -28,6 +28,11 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+}
+
+#obrigatorio::after {
+  content: "*";
+  color: red;
 }
 
 .logo a {
@@ -162,7 +167,7 @@ header {
   padding-right: 30px;
 }
 
-.banner-texto h1 {
+.banner-texto h2 {
   font-size: 2.8rem;
   margin-bottom: 20px;
 }
@@ -330,9 +335,8 @@ header {
   cursor: pointer;
 }
 
-.login-container h1 {
+.login-container h2 {
   font-size: 1.8rem;
-  margin-bottom: 25px;
   color: var(--roxo-principal);
   text-align: center;
 }
@@ -378,6 +382,16 @@ input:focus {
 .btnEntrar:hover {
   background: #e0a63e;
   transform: translateY(-2px);
+}
+
+.login-container .linkCadastro {
+  text-decoration: none;
+  color: var(--roxo-claro);
+  font-weight: bold;
+}
+
+.login-container .linkCadastro:hover {
+  text-decoration: underline;
 }
 
 /* Classes para validação */

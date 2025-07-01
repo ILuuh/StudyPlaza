@@ -42,7 +42,7 @@ main {
   padding: 0 20px;
 }
 
-.courses-title {
+#courses-title {
   color: var(--roxo-principal);
   margin-bottom: 30px;
   text-align: center;
