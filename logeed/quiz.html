@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Quiz Interativo - StudyPlaza</title>
+  <meta name="description"
+    content="Teste seus conhecimentos com o quiz interativo da StudyPlaza. Acesse agora e descubra como aprender pode ser divertido!">
+  <meta name="keywords" content="quiz, conhecimento, estudo, interativo, educação, estudantes, aprendizado">
+  <meta name="author" content="StudyPlaza">
+  <link rel="icon" href="img/Logo_Fundo_Roxa.png" type="image/png" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="/css/style.css" />
+  <link rel="stylesheet" href="/css/quiz.css">
+</head>
+
+<body>
+  <header>
+    <div class="logo">
+      <a href="/logeed/index.html" aria-label="Voltar para página inicial">
+        <img src="/img/Logo.svg" alt="Logo StudyPlaza" />
+        <h1>StudyPlaza</h1>
+      </a>
+    </div>
+
+    <button class="hamburger" aria-expanded="false" aria-controls="menu">
+      <span class="hamburger-bar"></span>
+      <span class="hamburger-bar"></span>
+      <span class="hamburger-bar"></span>
+    </button>
+
+    <nav class="menu" id="menu-principal" aria-label="Menu principal">
+      <button class="fecharMenu" aria-label="Fechar menu">&times;</button>
+      <a href="dashboard.html" class="linkMenu"><i class="fa-solid fa-chart-line"></i> Painel</a>
+      <a href="cursos.html" class="linkMenu"><i class="fa-solid fa-book"></i> Cursos</a>
+      <a href="quiz.html" id="ativo" class="linkMenu"><i class="fa-solid fa-trophy"></i> Quiz</a>
+      <a href="sobrenos.html" class="linkMenu"><i class="fa-solid fa-users"></i> Sobre Nós</a>
+      <a href="#" class="abrirPerfil linkMenu"><i class="fa-solid fa-user"></i> Perfil</a>
+      <button id="themeToggleBtn" class="theme-btn" aria-label="Alternar tema">
+        <i class="fas fa-moon"></i>
+      </button>
+    </nav>
+  </header>
+
+  <main>
+
+    <section>
+      <article>
+        <!-- Container VLibras -->
+        <div vw class="enabled">
+          <div vw-access-button class="active"></div>
+          <div vw-plugin-wrapper>
+            <div class="vw-plugin-top-wrapper"></div>
+          </div>
+        </div>
+        <div class="overlay"></div>
+      </article>
+    </section>
+
+    <section class="intro-quiz" aria-labelledby="intro-title">
+      <h1 id="intro-title">Descubra como é fácil aprender com a Study Plaza!</h1>
+      <p>Esse quiz é apenas uma demonstração do que você terá acesso após fazer login. Nossos quizzes são personalizados
+        com base nos seus estudos. Cadastre-se para desbloquear todo o potencial da plataforma!</p>
+    </section>
+
+    <section aria-labelledby="quiz-title">
+      <h2 id="quiz-title">Teste seu conhecimento</h2>
+      <div class="quiz-container" aria-live="polite">
+        <div class="question" id="question">Carregando pergunta...</div>
+        <div class="options" id="options"></div>
+        <div class="result" id="result"></div>
+      </div>
+      <div class="quiz-progress">
+        <div class="progress-bar" id="progress-bar"></div>
+      </div>
+    </section>
+
+    <!-- Modal Perfil -->
+    <section class="modal-perfil" id="modalPerfil">
+      <article class="modal-content">
+        <button class="fechar-modal" id="fecharPerfil">&times;</button>
+
+        <section class="perfil-card">
+          <div class="perfil-foto">
+            <img src="/img/perfil_padrao.png" alt="Foto de Perfil" />
+            <button class="editar-foto">Alterar Foto</button>
+          </div>
+          <div class="perfil-info">
+            <h2>Luiz Gustavo</h2>
+            <p>Email: luiz@email.com</p>
+            <button class="editar-perfil">Editar Perfil</button>
+          </div>
+        </section>
+
+        <section class="perfil-config">
+          <h3>Configurações</h3>
+          <div class="config-item">
+            <label for="senha">Alterar Senha:</label>
+            <input type="password" id="senha" placeholder="Senha Atual" />
+            <input type="password" id="novaSenha" placeholder="Nova Senha" />
+            <input type="password" id="confirmacaoSenha" placeholder="Confirmação de Senha" />
+          </div>
+          <button class="salvar">Salvar Alterações</button>
+        </section>
+      </article>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="footer-container">
+      <div class="footer-section">
+        <div class="nomeLogo">
+          <img class="logoFooter" src="img/Logo.svg" alt="Logo do site" />
+          <h2 class="textLogoFooter">Study Plaza</h2>
+        </div>
+        <p>Transformando o jeito como você estuda. Conecte-se, compartilhe e aprenda em uma comunidade vibrante.</p>
+      </div>
+
+      <div class="footer-section" id="linksRapidos">
+        <h3>Links Rápidos</h3>
+        <nav aria-label="Links do rodapé">
+          <ul>
+            <li><a href="index.html"><i class="fa-solid fa-house"></i> Início</a></li>
+            <li><a href="dashboard.html"><i class="fa-solid fa-chart-line"></i> Painel</a></li>
+            <li><a href="cadastro.html"><i class="fa-solid fa-address-card"></i> Cadastro</a></li>
+            <li><a href="#" class="abrirPerfil"><i class="fa-solid fa-user"></i> Perfil</a></li>
+            <li><a href="cursos.html"><i class="fa-solid fa-book"></i> Cursos</a></li>
+            <li><a href="quiz.html"><i class="fa-solid fa-trophy"></i> Quiz</a></li>
+            <li><a href="sobrenos.html"><i class="fa-solid fa-users"></i> Sobre Nós</a></li>
+          </ul>
+        </nav>
+      </div>
+
+      <div class="footer-section">
+        <h3>Informações</h3>
+        <ul>
+          <li><a href="#">Política de Privacidade</a></li>
+        </ul>
+        <div class="social-icons">
+          <a href="https://www.instagram.com/studyplaza_/?utm_source=ig_web_button_share_sheet"
+            aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+        </div>
+      </div>
+    </div>
+    <p>&copy; 2025 Study Plaza - Todos os direitos reservados.</p>
+  </footer>
+
+  <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+  <script>new window.VLibras.Widget('https://vlibras.gov.br/app');</script>
+
+  <script src="js/quiz.js" defer></script>
+  <script src="js/geral.js"></script>
+  <script src="js/login.js"></script>
+</body>
+
+</html>

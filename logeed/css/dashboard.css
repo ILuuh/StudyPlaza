@@ -1,0 +1,100 @@
+:root {
+  --roxo-claro: #A88BEB;
+  --roxo-principal: #6A4C93;
+  --preto: #333;
+  --amarelo: #FFD166;
+  --branco: #F9F9F9;
+  --sombra: rgba(0, 0, 0, 0.1);
+  --font-family: 'Poppins', Arial, sans-serif;
+}
+
+main {
+  margin: 0;
+  font-family: var(--font-family);
+  background-color: var(--branco);
+  color: var(--preto);
+  padding: 1.5rem;
+}
+
+.topo-dashboard {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+}
+
+.topo-dashboard h1 {
+  color: var(--roxo-principal);
+  font-size: 1.8rem;
+}
+
+.nav-dashboard a {
+  margin-left: 1rem;
+  text-decoration: none;
+  color: var(--roxo-claro);
+  font-weight: bold;
+}
+
+.dashboard-conteudo {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.progresso-geral .barra-progresso {
+  background-color: #eee;
+  border-radius: 10px;
+  overflow: hidden;
+  height: 20px;
+  margin: 0.5rem 0;
+}
+
+.barra-progresso .preenchido {
+  background-color: var(--roxo-principal);
+  height: 100%;
+  transition: width 0.3s ease;
+}
+
+.cursos-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.5rem;
+}
+
+.curso-card {
+  background-color: var(--roxo-claro);
+  color: white;
+  padding: 1rem;
+  border-radius: 12px;
+  box-shadow: 0 0 10px var(--sombra);
+}
+
+.curso-card h3 {
+  margin-bottom: 0.5rem;
+}
+
+.curso-card button {
+  background-color: var(--amarelo);
+  color: var(--preto);
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 0.5rem;
+  font-weight: bold;
+}
+
+.notificacoes ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.notificacoes li {
+  background-color: #fff;
+  border-left: 4px solid var(--roxo-principal);
+  padding: 0.75rem 1rem;
+  margin-bottom: 0.5rem;
+  box-shadow: 0 0 10px var(--sombra);
+  border-radius: 8px;
+}

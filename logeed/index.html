@@ -3,16 +3,19 @@
 
 <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Dashboard | StudyPlaza</title>
-    <link rel="stylesheet" href="/css/style.css" />
-    <link rel="stylesheet" href="css/dashboard.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Plataforma de aprendizado colaborativo com IA, quizzes e grupos de estudo." />
+    <meta name="keywords" content="estudo, educação, grupos de estudo, quizzes, IA, aprendizagem colaborativa" />
+    <meta name="author" content="StudyPlaza" />
+    <title>StudyPlaza - Plataforma de Aprendizado Colaborativo</title>
     <link rel="icon" href="img/Logo_Fundo_Roxa.png" type="image/svg+xml" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+        integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="/css/style.css" />
 </head>
 
 <body>
+
     <header>
         <div class="logo">
             <a href="/logeed/index.html" aria-label="Voltar para página inicial">
@@ -29,7 +32,7 @@
 
         <nav class="menu" id="menu-principal" aria-label="Menu principal">
             <button class="fecharMenu" aria-label="Fechar menu">&times;</button>
-            <a href="dashboard.html" id="ativo" class="linkMenu"><i class="fa-solid fa-chart-line"></i> Painel</a>
+            <a href="dashboard.html" class="linkMenu"><i class="fa-solid fa-chart-line"></i> Painel</a>
             <a href="cursos.html" class="linkMenu"><i class="fa-solid fa-book"></i> Cursos</a>
             <a href="quiz.html" class="linkMenu"><i class="fa-solid fa-trophy"></i> Quiz</a>
             <a href="sobrenos.html" class="linkMenu"><i class="fa-solid fa-users"></i> Sobre Nós</a>
@@ -40,8 +43,7 @@
         </nav>
     </header>
 
-    <main class="dashboard-conteudo">
-
+    <main>
         <section>
             <article>
                 <!-- Container VLibras -->
@@ -54,35 +56,55 @@
                 <div class="overlay"></div>
             </article>
         </section>
-        <section class="progresso-geral">
-            <h2>Seu Progresso</h2>
-            <div class="barra-progresso">
-                <div class="preenchido" style="width: 65%;"></div>
+
+        <section class="banner">
+            <div class="banner-texto">
+                <h2>Descubra o futuro do aprendizado colaborativo!</h2>
+                <p>Na StudyPlaza, você se conecta com estudantes como você, compartilha materiais, participa de grupos e
+                    ainda
+                    aprende de forma interativa com quizzes gerados por inteligência artificial.</p>
             </div>
-            <p>Você completou 65% dos cursos ativos.</p>
+            <img src="/img/ElfaEstudando2.png" alt="Mascote Elfa Estudando" />
         </section>
 
-        <section class="cursos-em-andamento">
-            <h2>Cursos em andamento</h2>
-            <div class="cursos-grid">
-                <div class="curso-card">
-                    <h3>HTML e CSS</h3>
-                    <p>60% concluído</p>
-                    <button>Continuar</button>
-                </div>
-                <div class="curso-card">
-                    <h3>JavaScript Básico</h3>
-                    <p>80% concluído</p>
-                    <button>Continuar</button>
-                </div>
+        <section class="funcionalidades timeline">
+            <h2>Funcionalidades em Destaque</h2>
+            <div class="timeline-container">
+                <article class="timeline-item">
+                    <div class="timeline-icon"><i class="fas fa-users"></i></div>
+                    <div class="timeline-content">Grupos de estudo públicos e privados</div>
+                </article>
+                <article class="timeline-item">
+                    <div class="timeline-icon"><i class="fas fa-file-pdf"></i></div>
+                    <div class="timeline-content">Compartilhamento de PDFs e links</div>
+                </article>
+                <article class="timeline-item">
+                    <div class="timeline-icon"><i class="fas fa-comments"></i></div>
+                    <div class="timeline-content">Chat em tempo real</div>
+                </article>
+                <article class="timeline-item">
+                    <div class="timeline-icon"><i class="fas fa-brain"></i></div>
+                    <div class="timeline-content">Quizzes com IA personalizada</div>
+                </article>
+                <article class="timeline-item">
+                    <div class="timeline-icon"><i class="fas fa-laptop"></i></div>
+                    <div class="timeline-content">Acesso via computador, tablet ou celular</div>
+                </article>
+                <article class="timeline-item">
+                    <div class="timeline-icon"><i class="fas fa-book"></i></div>
+                    <div class="timeline-content">Sugestão de cursos gratuitos e pagos</div>
+                </article>
             </div>
         </section>
 
-        <section class="notificacoes">
-            <h2>Notificações</h2>
-            <ul>
-                <li>📢 Novo curso de PHP disponível!</li>
-                <li>📌 Aula nova adicionada em "JavaScript Básico".</li>
+        <section class="beneficios-lista">
+            <h2 id="benefits-title">Benefícios</h2>
+            <ul class="beneficios-animados">
+                <li><i class="fas fa-handshake"></i> Aprendizado colaborativo e personalizado</li>
+                <li><i class="fas fa-clock"></i> Flexibilidade e autonomia para estudar</li>
+                <li><i class="fas fa-magic"></i> IA para reforço do aprendizado com quizzes</li>
+                <li><i class="fas fa-graduation-cap"></i> Sugestão de cursos para aprofundamento</li>
+                <li><i class="fas fa-users-cog"></i> Ambiente interativo e inclusivo</li>
             </ul>
         </section>
 
@@ -115,6 +137,7 @@
                 </section>
             </article>
         </section>
+
     </main>
 
     <footer>

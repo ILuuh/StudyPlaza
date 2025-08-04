@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description"
+        content="Conheça o StudyPlaza, uma plataforma de aprendizado colaborativo com quizzes personalizados, grupos de estudo e muito mais." />
+    <meta name="keywords" content="Estudo, Colaborativo, Plataforma, Quiz, Cursos, Comunidade, Educação" />
+    <meta name="author" content="StudyPlaza Team" />
+    <title>StudyPlaza - Plataforma de Aprendizado Colaborativo</title>
+    <link rel="icon" href="img/Logo_Fundo_Roxa.png" type="image/png" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/sobrenos.css">
+</head>
+
+<body>
+    <header>
+        <div class="logo">
+            <a href="/logeed/index.html" aria-label="Voltar para página inicial">
+                <img src="/img/Logo.svg" alt="Logo StudyPlaza" />
+                <h1>StudyPlaza</h1>
+            </a>
+        </div>
+
+        <button class="hamburger" aria-expanded="false" aria-controls="menu">
+            <span class="hamburger-bar"></span>
+            <span class="hamburger-bar"></span>
+            <span class="hamburger-bar"></span>
+        </button>
+
+        <nav class="menu" id="menu-principal" aria-label="Menu principal">
+            <button class="fecharMenu" aria-label="Fechar menu">&times;</button>
+            <a href="dashboard.html" class="linkMenu"><i class="fa-solid fa-chart-line"></i> Painel</a>
+            <a href="cursos.html" class="linkMenu"><i class="fa-solid fa-book"></i> Cursos</a>
+            <a href="quiz.html" class="linkMenu"><i class="fa-solid fa-trophy"></i> Quiz</a>
+            <a href="sobrenos.html" id="ativo" class="linkMenu"><i class="fa-solid fa-users"></i> Sobre Nós</a>
+            <a href="#" class="abrirPerfil linkMenu"><i class="fa-solid fa-user"></i> Perfil</a>
+            <button id="themeToggleBtn" class="theme-btn" aria-label="Alternar tema">
+                <i class="fas fa-moon"></i>
+            </button>
+        </nav>
+    </header>
+
+    <main>
+        <section>
+            <article>
+                <!-- Container VLibras -->
+                <div vw class="enabled">
+                    <div vw-access-button class="active"></div>
+                    <div vw-plugin-wrapper>
+                        <div class="vw-plugin-top-wrapper"></div>
+                    </div>
+                </div>
+                <div class="overlay"></div>
+            </article>
+        </section>
+
+        <section class="sobre-nos">
+            <div class="intro-sobre">
+                <div class="texto-sobre">
+                    <h2>Sobre o Study Plaza</h2>
+                    <p>
+                        No Study Plaza, acreditamos que o aprendizado se torna mais eficiente e motivador quando é
+                        compartilhado. Sabemos que muitos estudantes enfrentam desafios ao estudar sozinhos, como falta
+                        de organização, acesso a bons materiais ou dificuldade em se conectar com outras pessoas.
+
+                        Por isso, criamos uma plataforma que promove o aprendizado colaborativo, onde os usuários podem
+                        participar de grupos de estudo, compartilhar materiais, trocar mensagens e crescer juntos em um
+                        ambiente respeitoso e inclusivo.
+
+                        Além disso, contamos com o apoio de uma inteligência artificial que analisa as postagens dos
+                        grupos e gera quizzes personalizados, ajudando os usuários a testarem seus conhecimentos de
+                        forma prática e interativa.
+
+                        Nosso objetivo é construir uma comunidade ativa e engajada no compartilhamento de conhecimento,
+                        tornando o estudo mais acessível, dinâmico e eficiente para todos.
+                    </p>
+                </div>
+                <div class="imagem-sobre">
+                    <img src="/img/Logo_Fundo_Roxa.png" alt="Logo da StudyPlaza">
+                </div>
+            </div>
+        </section>
+
+        <section class="integrantes">
+            <h2>Conheça nossa equipe</h2>
+            <div class="cards-integrantes">
+
+                <!-- Integrante 1 -->
+                <div class="card-integrante">
+                    <img src="/img/CartoonLuiz.png" alt="Integrante 1">
+                    <h3>Luiz Gustavo</h3>
+                    <button onclick="abrirModal('modalLuiz')">Ver sobre</button>
+                </div>
+
+                <!-- Integrante 2 -->
+                <div class="card-integrante">
+                    <img src="/img/CartoonBianca.png" alt="Integrante 2">
+                    <h3>Bianca</h3>
+                    <button onclick="abrirModal('modalBianca')">Ver sobre</button>
+                </div>
+
+                <!-- Integrante 3 -->
+                <div class="card-integrante">
+                    <img src="/img/CartoonStephani.png" alt="Integrante 3">
+                    <h3>Stephani</h3>
+                    <button onclick="abrirModal('modalStephani')">Ver sobre</button>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <!-- Modais dos integrantes -->
+            <div id="modalLuiz" class="modal-integrante">
+                <div class="modal-conteudo">
+                    <img src="/img/CartoonLuiz.png" class="mini-img" alt="Luiz Gustavo">
+                    <div>
+                        <h3>Luiz Gustavo</h3>
+                        <p>Sou Luiz Gustavo, estudante de TI que gosta muito de desenvolvimento e inovação. Tenho foco
+                            em
+                            criar soluções acessíveis, organizadas e elegantes, com atenção especial à experiência do
+                            usuário.
+                            Busco constantemente me superar, aprendendo novas tecnologias e aplicando-as para entregar
+                            projetos funcionais e impactantes.
+                            Responsável pelo front-end e acessibilidade do projeto. Sempre em busca de surpreender
+                            através
+                            da
+                            tecnologia.</p>
+                    </div>
+                    <button class="fechar-modal" onclick="fecharModal('modalLuiz')">✕</button>
+                </div>
+            </div>
+
+            <div id="modalBianca" class="modal-integrante">
+                <div class="modal-conteudo">
+                    <img src="/img/CartoonBianca.png" class="mini-img" alt="Bianca">
+                    <div>
+                        <h3>Bianca</h3>
+                        <p>Sou a Bianca, estudante de TI, gosto de deixar tudo mais intuitivo e bonito, pensando no
+                            público
+                            geral.
+                            Responsável pelo front-end e acessibilidade do projeto em colaboração com a equipe.
+                            Estou sempre aprendendo, testando, quebrando a cabeça, para entregar um trabalho que
+                            realmente
+                            faça a diferença.</p>
+                    </div>
+                    <button class="fechar-modal" onclick="fecharModal('modalBianca')">✕</button>
+                </div>
+            </div>
+
+            <div id="modalStephani" class="modal-integrante">
+                <div class="modal-conteudo">
+                    <img src="/img/CartoonStephani.png" class="mini-img" alt="Stephani">
+                    <div>
+                        <h3>Stephani</h3>
+                        <p>Meu nome é Stephani, sou formada pela ETEC Dans em informática para internet, e atualmente
+                            sou estudante de Sistemas para Internet na FATEC Taquaritinga. No nosso projeto, atuei junto
+                            aos
+                            meus colegas no desenvolvimento do front-end, com destaque para a implementação do modo
+                            escuro
+                            (dark mode), sempre buscando uma melhor experiência para o usuário.</p>
+                    </div>
+                    <button class="fechar-modal" onclick="fecharModal('modalStephani')">✕</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Modal Perfil -->
+        <section class="modal-perfil" id="modalPerfil">
+            <article class="modal-content">
+                <button class="fechar-modal" id="fecharPerfil">&times;</button>
+
+                <section class="perfil-card">
+                    <div class="perfil-foto">
+                        <img src="/img/perfil_padrao.png" alt="Foto de Perfil" />
+                        <button class="editar-foto">Alterar Foto</button>
+                    </div>
+                    <div class="perfil-info">
+                        <h2>Luiz Gustavo</h2>
+                        <p>Email: luiz@email.com</p>
+                        <button class="editar-perfil">Editar Perfil</button>
+                    </div>
+                </section>
+
+                <section class="perfil-config">
+                    <h3>Configurações</h3>
+                    <div class="config-item">
+                        <label for="senha">Alterar Senha:</label>
+                        <input type="password" id="senha" placeholder="Senha Atual" />
+                        <input type="password" id="novaSenha" placeholder="Nova Senha" />
+                        <input type="password" id="confirmacaoSenha" placeholder="Confirmação de Senha" />
+                    </div>
+                    <button class="salvar">Salvar Alterações</button>
+                </section>
+            </article>
+        </section>
+
+    </main>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-section">
+                <div class="nomeLogo">
+                    <img class="logoFooter" src="/img/Logo.svg" alt="Logo do site" />
+                    <h2 class="textLogoFooter">Study Plaza</h2>
+                </div>
+                <p>Transformando o jeito como você estuda. Conecte-se, compartilhe e aprenda em uma comunidade vibrante.
+                </p>
+            </div>
+
+            <div class="footer-section" id="linksRapidos">
+                <h3>Links Rápidos</h3>
+                <nav aria-label="Links do rodapé">
+                    <ul>
+                        <li><a href="index.html"><i class="fa-solid fa-house"></i> Início</a></li>
+                        <li><a href="dashboard.html"><i class="fa-solid fa-chart-line"></i> Painel</a></li>
+                        <li><a href="cadastro.html"><i class="fa-solid fa-address-card"></i> Cadastro</a></li>
+                        <li><a href="#" class="abrirPerfil"><i class="fa-solid fa-user"></i> Perfil</a></li>
+                        <li><a href="cursos.html"><i class="fa-solid fa-book"></i> Cursos</a></li>
+                        <li><a href="quiz.html"><i class="fa-solid fa-trophy"></i> Quiz</a></li>
+                        <li><a href="sobrenos.html"><i class="fa-solid fa-users"></i> Sobre Nós</a></li>
+                    </ul>
+                </nav>
+            </div>
+
+            <div class="footer-section">
+                <h3>Informações</h3>
+                <ul>
+                    <li><a href="#">Política de Privacidade</a></li>
+                </ul>
+                <div class="social-icons">
+                    <a href="https://www.instagram.com/studyplaza_/?utm_source=ig_web_button_share_sheet"
+                        aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+        <p>&copy; 2025 Study Plaza - Todos os direitos reservados.</p>
+    </footer>
+
+    <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+    <script>
+        new window.VLibras.Widget('https://vlibras.gov.br/app');
+    </script>
+    <script src="js/geral.js"></script>
+    <script src="js/sobrenos.js"></script>
+</body>
+
+</html>
