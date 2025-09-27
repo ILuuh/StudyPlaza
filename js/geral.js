@@ -38,10 +38,9 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   loginLink.addEventListener('click', (e) => {
-    e.preventDefault(); // previne o redirecionamento
+    e.preventDefault();
     openLogin();
 
-    // Fecha o menu se a resolução for menor ou igual a 600px
     if (window.innerWidth <= 600) {
       menu.style.right = "-100%";
     }
@@ -54,30 +53,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
   closeBtn.addEventListener('click', closeLogin);
 
-  // Fecha clicando no overlay
   overlay.addEventListener('click', closeLogin);
 
-  // Fecha com ESC
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && formLogin.classList.contains('active')) {
       closeLogin();
     }
   });
 
-  const themeBtn = document.getElementById('themeToggleBtn');
-  const isDark = window.location.href.includes('dark');
-
-  // Define ícone inicial
-  themeBtn.innerHTML = isDark
-    ? '<i class="fas fa-sun"></i>'
-    : '<i class="fas fa-moon"></i>';
-
-  themeBtn.addEventListener('click', () => {
-    // Alterna entre light e dark
-    if (isDark) {
-      window.location.href = '../index.html'; // volta para claro
-    } else {
-      window.location.href = 'darkMode/index.html'; // vai para dark
-    }
-  });
 });
+
+// Funções de modal
+function abrirModal() {
+  document.getElementById("modalAviso").style.display = "flex";
+}
+
+function fecharModal() {
+  document.getElementById("modalAviso").style.display = "none";
+}

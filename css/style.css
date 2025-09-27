@@ -3,12 +3,26 @@
 /* 1. Tema Claro */
 :root {
   --roxo-claro: #A88BEB;
-  --roxo-principal: #6A4C93;
-  --preto: #333;
-  --amarelo: #FFD166;
-  --branco: #F9F9F9;
+  --roxo-menu: #6A4C93;
+  --cor-Fonte: #333;
+  --efeitoBefore: #231942;
+  --hoverEscuro: #5e548e;
+  --cor-Fundo: #F9F9F9;
   --sombra: rgba(0, 0, 0, 0.1);
   --font-family: 'Poppins', Arial, sans-serif;
+  --gradient: linear-gradient(90deg, var(--roxo-menu), var(--roxo-claro));
+}
+
+.dark-theme {
+  --cor-Fundo: linear-gradient(135deg, #3C096C 0%, #240046 50%, #3C096C 100%);
+  --roxo-claro: #cdb4db;
+  --roxo-menu: #10002B;
+  --efeitoBefore: #9D4EDD;
+  --hoverEscuro: #8338ec;
+  --cor-Fonte: #F9F9F9;
+  --sombra: rgba(111, 66, 193, 0.2);
+  --font-family: 'Poppins', Arial, sans-serif;
+  --gradient: linear-gradient(90deg, #240046 0%, #240046 100%);
 }
 
 * {
@@ -17,22 +31,18 @@
   box-sizing: border-box;
 }
 
-html {
-  scroll-behavior: smooth;
+#obrigatorio::after {
+  content: "*";
+  color: red;
 }
 
 body {
   font-family: var(--font-family);
-  background-color: var(--branco);
-  color: var(--preto);
+  background: var(--cor-Fundo);
+  color: var(--cor-Fonte);
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-}
-
-#obrigatorio::after {
-  content: "*";
-  color: red;
 }
 
 .logo a {
@@ -53,7 +63,7 @@ header {
   align-items: center;
   justify-content: space-between;
   padding: 0.5rem 5%;
-  background: linear-gradient(90deg, var(--roxo-principal), var(--roxo-claro));
+  background: var(--gradient);
   box-shadow: 0 4px 12px var(--sombra);
   position: sticky;
   top: 0;
@@ -69,7 +79,7 @@ header {
 .linkMenu {
   margin: 0 1rem;
   text-decoration: none;
-  color: var(--branco);
+  color: white;
   font-weight: bold;
   position: relative;
   transition: transform 0.3s ease;
@@ -86,7 +96,7 @@ header {
   left: 50%;
   width: 0;
   height: 4px;
-  background-color: var(--amarelo);
+  background-color: var(--efeitoBefore);
   transition: width 0.3s ease, opacity 0.3s ease;
   transform: translateX(-50%);
   opacity: 0;
@@ -98,7 +108,7 @@ header {
 }
 
 #ativo {
-  color: var(--amarelo);
+  color: var(--efeitoBefore);
 }
 
 .fecharMenu {
@@ -106,13 +116,14 @@ header {
   background: none;
   border: none;
   font-size: 1.5rem;
-  color: var(--branco);
+  color: white;
   cursor: pointer;
   display: none;
+  transition: color 0.3s;
 }
 
 .fecharMenu:hover {
-  color: var(--amarelo);
+  color: var(--efeitoBefore);
 }
 
 .hamburger {
@@ -134,22 +145,30 @@ header {
   width: 100%;
   height: 3px;
   border-radius: 10px;
-  background-color: var(--branco);
+  background-color: white;
   transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
-.theme-btn {
-  background: transparent;
+.theme-toggle {
+  background: none;
   border: none;
   cursor: pointer;
-  font-size: 1.3rem;
-  color: white;
-  padding: 0.5rem;
+  font-size: 1.6rem;
   transition: transform 0.3s ease;
 }
 
-.theme-btn:hover {
-  transform: scale(1.2);
+.theme-toggle:hover {
+  transform: rotate(20deg) scale(1.1);
+}
+
+#icon {
+  display: inline-block;
+  transition: transform 0.5s ease, opacity 0.3s ease;
+}
+
+.fade-out {
+  opacity: 0;
+  transform: rotate(180deg) scale(0.5);
 }
 
 .banner {
@@ -158,7 +177,7 @@ header {
   justify-content: space-between;
   padding: 60px;
   flex-wrap: wrap;
-  color: var(--roxo-principal);
+  color: var(--cor-Fonte);
   min-height: 90vh;
 }
 
@@ -182,76 +201,80 @@ header {
   border-radius: 12px;
 }
 
-.funcionalidades {
-  padding: 50px 30px;
-  background: var(--roxo-claro);
-}
-
 /* Timeline */
-.timeline {
-  background: var(--roxo-claro);
-  padding: 50px 30px;
+.funcionalidades-steps {
+  padding: 60px 20px;
+  background: var(--cor-Fundo);
+  text-align: center;
+  min-height: 90vh;
 }
 
-.timeline-container {
+.funcionalidades-steps h2 {
+  font-size: 2rem;
+  margin-bottom: 40px;
+  color: var(--cor-Fonte);
+}
+
+.steps-container {
   display: flex;
-  flex-direction: column;
-  gap: 30px;
-  margin-top: 30px;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 25px;
   position: relative;
-  padding-left: 30px;
+  flex-wrap: wrap;
 }
 
-.timeline-container::before {
+.steps-container::before {
   content: "";
   position: absolute;
-  left: 15px;
-  top: 0;
-  bottom: 0;
-  width: 4px;
-  background: var(--roxo-principal);
+  top: 40px;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: var(--roxo-claro);
+  z-index: 0;
 }
 
-.timeline-item {
-  display: flex;
-  align-items: center;
-  gap: 20px;
+.step {
+  flex: 1;
+  min-width: 140px;
   position: relative;
+  z-index: 1;
 }
 
-.timeline-icon {
-  background: var(--amarelo);
-  color: var(--preto);
-  width: 40px;
-  height: 40px;
+.step-icon {
+  width: 70px;
+  height: 70px;
+  background: var(--efeitoBefore);
+  color: var(--cor-Fundo);
   border-radius: 50%;
   display: grid;
   place-items: center;
-  font-size: 1.2rem;
-  flex-shrink: 0;
-  box-shadow: 0 0 0 4px white, 0 0 0 6px var(--roxo-principal);
+  margin: 0 auto 15px;
+  font-size: 1.5rem;
+  box-shadow: 0 0 0 4px white, 0 0 0 6px var(--roxo-menu);
+  transition: transform 0.3s ease;
 }
 
-.timeline-content {
-  background: white;
-  padding: 15px 20px;
-  border-radius: 10px;
-  box-shadow: 0 4px 10px var(--sombra);
+.step p {
   font-weight: 600;
-  color: var(--preto);
+  font-size: 1rem;
+  max-width: 200px;
+  margin: 0 auto;
+  color: var(--cor-Fonte);
 }
 
 /* Lista de Benefícios Animada */
 .beneficios-lista {
   padding: 50px 30px;
-  background: #fff;
-  min-height: 90vh;
+  background: var(--cor-Fundo);
+  max-height: 90vh;
 }
 
 .beneficios-lista h2 {
   text-align: center;
   font-size: 2rem;
-  color: var(--roxo-principal);
+  color: var(--cor-Fonte);
   margin-bottom: 30px;
 }
 
@@ -274,9 +297,9 @@ header {
   font-size: 1rem;
   font-weight: 500;
   padding: 10px;
-  color: var(--preto);
+  color: var(--cor-Fonte);
   background: none;
-  border-left: 4px solid var(--roxo-principal);
+  border-left: 4px solid;
   border-radius: 0;
   box-shadow: none;
   transition: none;
@@ -284,7 +307,7 @@ header {
 
 .beneficios-animados li i {
   font-size: 1.2rem;
-  color: var(--roxo-principal);
+  color: var(--cor-Fonte);
   margin-top: 3px;
 }
 
@@ -309,7 +332,7 @@ header {
   top: 60%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background: white;
+  background: var(--cor-Fundo);
   padding: 2rem;
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
@@ -326,6 +349,7 @@ header {
 }
 
 .close-login {
+  color: var(--cor-Fonte);
   background: transparent;
   border: none;
   font-size: 1.5rem;
@@ -337,7 +361,8 @@ header {
 
 .login-container h2 {
   font-size: 1.8rem;
-  color: var(--roxo-principal);
+  margin-bottom: 25px;
+  color: var(--cor-Fonte);
   text-align: center;
 }
 
@@ -350,7 +375,7 @@ header {
 label {
   font-weight: 600;
   font-size: 0.9rem;
-  color: var(--roxo-principal);
+  color: var(--cor-Fonte);
 }
 
 input {
@@ -362,13 +387,13 @@ input {
 }
 
 input:focus {
-  border-color: var(--amarelo);
+  border-color: var(--efeitoBefore);
   outline: none;
 }
 
 .btnEntrar {
-  background: var(--amarelo);
-  color: var(--preto);
+  background: var(--efeitoBefore);
+  color: var(--cor-Fundo);
   padding: 12px;
   font-size: 1rem;
   border: none;
@@ -376,12 +401,15 @@ input:focus {
   font-weight: bold;
   text-align: center;
   cursor: pointer;
-  transition: background 0.3s ease, transform 0.3s ease;
+  transition: transform 0.3s ease;
 }
 
 .btnEntrar:hover {
-  background: #e0a63e;
-  transform: translateY(-2px);
+  transform: translateY(-5px);
+}
+
+.login-container p {
+  color: var(--cor-Fonte);
 }
 
 .login-container .linkCadastro {
@@ -421,27 +449,9 @@ textarea.invalid {
   user-select: text;
 }
 
-.links {
-  margin-top: 20px;
-  display: flex;
-  justify-content: space-between;
-  font-size: 0.9rem;
-}
-
-.links a {
-  color: var(--roxo-principal);
-  text-decoration: none;
-  font-weight: bold;
-  transition: color 0.3s;
-}
-
-.links a:hover {
-  color: var(--amarelo);
-}
-
 footer {
-  background: linear-gradient(90deg, var(--roxo-principal), var(--roxo-claro));
-  color: var(--branco);
+  background: var(--gradient);
+  color: white;
   text-align: justify;
   padding: 25px 15px;
   box-shadow: 0 -6px 20px var(--sombra);
@@ -494,7 +504,7 @@ footer .logoFooter {
 }
 
 .footer-section ul li a:hover {
-  color: var(--amarelo);
+  color: var(--efeitoBefore);
 }
 
 .social-icons {
@@ -510,7 +520,7 @@ footer .logoFooter {
 }
 
 .social-icons a:hover {
-  color: var(--amarelo);
+  color: var(--efeitoBefore);
 }
 
 @media screen and (max-width: 992px) {
@@ -560,8 +570,6 @@ footer .logoFooter {
   }
 }
 
-
-
 @media screen and (max-width: 600px) {
 
   .hamburger {
@@ -570,7 +578,7 @@ footer .logoFooter {
 
   .menu {
     position: fixed;
-    background-color: var(--roxo-principal);
+    background-color: var(--roxo-menu);
     top: 0;
     bottom: 0;
     flex-direction: column;
@@ -651,5 +659,4 @@ footer .logoFooter {
   .formLogin {
     padding: 1.5rem;
   }
-
 }

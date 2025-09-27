@@ -1,9 +1,26 @@
+/* 1. Tema Claro */
 :root {
   --roxo-claro: #A88BEB;
-  --roxo-principal: #6A4C93;
-  --preto: #333333;
-  --amarelo: #FFD166;
-  --branco: #F9F9F9;
+  --roxo-menu: #6A4C93;
+  --cor-Fonte: #333;
+  --efeitoBefore: #231942;
+  --hoverEscuro: #5e548e;
+  --cor-Fundo: #F9F9F9;
+  --sombra: rgba(0, 0, 0, 0.1);
+  --font-family: 'Poppins', Arial, sans-serif;
+  --gradient: linear-gradient(90deg, var(--roxo-menu), var(--roxo-claro));
+}
+
+.dark-theme {
+  --cor-Fundo: linear-gradient(135deg, #3C096C 0%, #240046 50%, #3C096C 100%);
+  --roxo-claro: #cdb4db;
+  --roxo-menu: #10002B;
+  --efeitoBefore: #9D4EDD;
+  --hoverEscuro: #8338ec;
+  --cor-Fonte: #F9F9F9;
+  --sombra: rgba(111, 66, 193, 0.2);
+  --font-family: 'Poppins', Arial, sans-serif;
+  --gradient: linear-gradient(90deg, #240046 0%, #240046 100%);
 }
 
 * {
@@ -27,12 +44,12 @@
   align-items: center;
   min-height: 100vh;
   padding: 1rem;
-  background: var(--branco);
+  background: var(--cor-Fundo);
 }
 
 
 .register-container {
-  background: var(--branco);
+  background: var(--cor-Fundo);
   padding: 40px;
   border-radius: 16px;
   width: min(50rem, 100%);
@@ -48,7 +65,7 @@
 .register-container h1 {
   font-size: clamp(1.5rem, 5vw, 2rem);
   margin-bottom: 25px;
-  color: var(--roxo-principal);
+  color: var(--cor-Fonte);
 }
 
 form {
@@ -62,21 +79,22 @@ label {
   font-weight: 600;
   text-align: left;
   font-size: 0.9rem;
-  color: var(--roxo-principal);
+  color: var(--cor-Fonte);
 }
 
 input {
   padding: 12px;
   border-radius: 8px;
   border: 1px solid #ddd;
-  transition: border-color 0.3s;
-  background: #f9f9f9;
+  transition: border-color 0.3s, background 0.3s;
+  background: #ddd;
   font-size: 1rem;
 }
 
 input:focus {
   outline: none;
-  border-color: var(--roxo-principal);
+  border-color: var(--efeitoBefore);
+  background: white;
 }
 
 .password-wrapper {
@@ -106,8 +124,8 @@ input:focus {
 
 
 .confirm {
-  background: var(--amarelo);
-  color: var(--preto);
+  background: var(--efeitoBefore);
+  color: var(--cor-Fundo);
   padding: 12px;
   border: none;
   border-radius: 8px;
@@ -118,7 +136,7 @@ input:focus {
 }
 
 .confirm:hover {
-  background: #e0a63e;
+  background: var(--hoverEscuro);
   transform: translateY(-2px);
 }
 
@@ -132,14 +150,14 @@ input:focus {
 }
 
 .links a {
-  color: var(--roxo-principal);
+  color: var(--cor-Fonte);
   text-decoration: none;
   font-weight: bold;
   transition: color 0.3s;
 }
 
 .links a:hover {
-  color: var(--amarelo);
+  color: var(--efeitoBefore);
 }
 
 @media screen and (max-width: 1100px) {

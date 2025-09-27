@@ -38,8 +38,10 @@
       <a href="cursos.html" class="linkMenu" id="ativo"><i class="fa-solid fa-book"></i> Cursos</a>
       <a href="quiz.html" class="linkMenu"><i class="fa-solid fa-trophy"></i> Quiz</a>
       <a href="sobrenos.html" class="linkMenu"><i class="fa-solid fa-users"></i> Sobre Nós</a>
-      <a href="#" class="abrir-login linkMenu"><i class="fa-solid fa-lock"></i> Login</a>
-      <button id="themeToggleBtn" class="theme-btn" aria-label="Alternar tema"><i class="fas fa-moon"></i></button>
+      <a href="#" class="abrir-login linkMenu"><i class="fa-solid fa-lock"></i> Login</a><!-- 🔘 Botão do switch -->
+      <button id="theme-toggle" class="theme-toggle">
+        <span id="icon" class="sun">☀️</span>
+      </button>
     </nav>
   </header>
 
@@ -228,7 +230,8 @@
     <p>&copy; 2025 StudyPlaza - Todos os direitos reservados.</p>
   </footer>
 
-  <script src="js/cursos.js"></script>
+  <script src="js/geral.js"></script>
+  <script src="js/alterarTemas.js"></script>
   <script src="js/login.js"></script>
   <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
   <script>

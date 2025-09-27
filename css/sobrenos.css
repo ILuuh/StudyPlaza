@@ -1,18 +1,33 @@
+/* 1. Tema Claro */
 :root {
     --roxo-claro: #A88BEB;
-    --roxo-principal: #6A4C93;
-    --preto: #333333;
-    --amarelo: #FFD166;
-    --branco: #F9F9F9;
+    --roxo-menu: #6A4C93;
+    --cor-Fonte: #333;
+    --efeitoBefore: #231942;
+    --hoverEscuro: #5e548e;
+    --cor-Fundo: #F9F9F9;
     --sombra: rgba(0, 0, 0, 0.1);
     --font-family: 'Poppins', Arial, sans-serif;
+    --gradient: linear-gradient(90deg, var(--roxo-menu), var(--roxo-claro));
+}
+
+.dark-theme {
+    --cor-Fundo: linear-gradient(135deg, #3C096C 0%, #240046 50%, #3C096C 100%);
+    --roxo-claro: #cdb4db;
+    --roxo-menu: #10002B;
+    --efeitoBefore: #9D4EDD;
+    --hoverEscuro: #8338ec;
+    --cor-Fonte: #F9F9F9;
+    --sombra: rgba(111, 66, 193, 0.2);
+    --font-family: 'Poppins', Arial, sans-serif;
+    --gradient: linear-gradient(90deg, #240046 0%, #240046 100%);
 }
 
 .sobre-nos {
     padding: 1rem 1.5rem;
     display: flex;
     justify-content: center;
-    background: var(--branco);
+    background: var(--cor-Fundo);
 }
 
 .intro-sobre {
@@ -30,12 +45,12 @@
 }
 
 .texto-sobre h2 {
-    color: var(--roxo-principal);
+    color: var(--cor-Fonte);
     font-size: 2em;
     margin-bottom: 10px;
 }
 
-.texto-sobre p{
+.texto-sobre p {
     text-align: justify;
 }
 
@@ -64,7 +79,7 @@
 }
 
 .card-integrante {
-    background: #fff;
+    background: var(--roxo-menu);
     padding: 20px;
     border-radius: 16px;
     box-shadow: 0 5px 15px var(--sombra);
@@ -80,21 +95,23 @@
 
 .card-integrante h3 {
     margin-top: 10px;
+    color: var(--cor-Fundo);
 }
 
 .card-integrante button {
     margin-top: 10px;
     padding: 8px 12px;
-    background-color: var(--roxo-principal);
+    background-color: var(--roxo-menu);
     color: #fff;
     border: none;
     border-radius: 8px;
+    font-size: 1rem;
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
 
 .card-integrante button:hover {
-    background-color: #5852d6;
+    background-color: var(--hoverEscuro);
 }
 
 .modal-integrante {
@@ -113,7 +130,7 @@
 }
 
 .modal-conteudo {
-    background: #fff;
+    background: var(--cor-Fundo);
     padding: 20px;
     border-radius: 16px;
     max-width: 500px;
@@ -136,6 +153,7 @@
 
 .fechar-modal {
     position: absolute;
+    color: var(--cor-Fonte);
     top: 10px;
     right: 10px;
     background: transparent;
@@ -152,7 +170,8 @@
         gap: 20px;
     }
 
-    .imagem-sobre, .texto-sobre {
+    .imagem-sobre,
+    .texto-sobre {
         min-width: 100%;
     }
 

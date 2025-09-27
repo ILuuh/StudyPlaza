@@ -188,23 +188,4 @@ document.addEventListener('DOMContentLoaded', () => {
       closeLogin();
     }
   });
-  
-  const themeBtn = document.getElementById('themeToggleBtn');
-  const isDark = window.location.href.includes('dark');
-
-  // Define ícone inicial
-  themeBtn.innerHTML = isDark
-    ? '<i class="fas fa-sun"></i>'
-    : '<i class="fas fa-moon"></i>';
-
-  themeBtn.addEventListener('click', () => {
-    // Alterna entre light e dark
-    if (isDark) {
-      window.location.href = '../index.html'; // volta para claro
-    } else {
-      window.location.href = 'darkMode/index.html'; // vai para dark
-    }
-  });
 });
-
-

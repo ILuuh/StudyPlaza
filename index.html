@@ -36,9 +36,12 @@
       <a href="quiz.html" class="linkMenu"><i class="fa-solid fa-trophy"></i> Quiz</a>
       <a href="sobrenos.html" class="linkMenu"><i class="fa-solid fa-users"></i> Sobre Nós</a>
       <a href="#" class="abrir-login linkMenu"><i class="fa-solid fa-lock"></i> Login</a>
-      <button id="themeToggleBtn" class="theme-btn" aria-label="Alternar tema">
-        <i class="fas fa-moon"></i>
+
+      <!-- 🔘 Botão do switch -->
+      <button id="theme-toggle" class="theme-toggle">
+        <span id="icon" class="sun">☀️</span>
       </button>
+
     </nav>
   </header>
 
@@ -65,33 +68,33 @@
       <img src="img/ElfaEstudando2.png" alt="Mascote Elfa Estudando" />
     </section>
 
-    <section class="funcionalidades timeline">
+    <section class="funcionalidades-steps">
       <h2>Funcionalidades em Destaque</h2>
-      <div class="timeline-container">
-        <article class="timeline-item">
-          <div class="timeline-icon"><i class="fas fa-users"></i></div>
-          <div class="timeline-content">Grupos de estudo públicos e privados</div>
-        </article>
-        <article class="timeline-item">
-          <div class="timeline-icon"><i class="fas fa-file-pdf"></i></div>
-          <div class="timeline-content">Compartilhamento de PDFs e links</div>
-        </article>
-        <article class="timeline-item">
-          <div class="timeline-icon"><i class="fas fa-comments"></i></div>
-          <div class="timeline-content">Chat em tempo real</div>
-        </article>
-        <article class="timeline-item">
-          <div class="timeline-icon"><i class="fas fa-brain"></i></div>
-          <div class="timeline-content">Quizzes com IA personalizada</div>
-        </article>
-        <article class="timeline-item">
-          <div class="timeline-icon"><i class="fas fa-laptop"></i></div>
-          <div class="timeline-content">Acesso via computador, tablet ou celular</div>
-        </article>
-        <article class="timeline-item">
-          <div class="timeline-icon"><i class="fas fa-book"></i></div>
-          <div class="timeline-content">Sugestão de cursos gratuitos e pagos</div>
-        </article>
+      <div class="steps-container">
+        <div class="step">
+          <div class="step-icon"><i class="fas fa-users"></i></div>
+          <p>Grupos de estudo públicos e privados</p>
+        </div>
+        <div class="step">
+          <div class="step-icon"><i class="fas fa-file-pdf"></i></div>
+          <p>Compartilhamento de PDFs e links</p>
+        </div>
+        <div class="step">
+          <div class="step-icon"><i class="fas fa-comments"></i></div>
+          <p>Chat em tempo real</p>
+        </div>
+        <div class="step">
+          <div class="step-icon"><i class="fas fa-brain"></i></div>
+          <p>Quizzes com IA personalizada</p>
+        </div>
+        <div class="step">
+          <div class="step-icon"><i class="fas fa-laptop"></i></div>
+          <p>Acesso em qualquer dispositivo</p>
+        </div>
+        <div class="step">
+          <div class="step-icon"><i class="fas fa-book"></i></div>
+          <p>Sugestão de cursos gratuitos e pagos</p>
+        </div>
       </div>
     </section>
 
@@ -170,6 +173,7 @@
   </footer>
 
   <script src="js/geral.js"></script>
+  <script src="js/alterarTemas.js"></script>
   <script src="js/login.js"></script>
   <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
   <script>

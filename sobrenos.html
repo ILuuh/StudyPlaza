@@ -37,8 +37,9 @@
             <a href="sobrenos.html" class="linkMenu" id="ativo"><i class="fa-solid fa-users"></i> Sobre Nós</a>
             <a href="#" class="abrir-login linkMenu"><i class="fa-solid fa-lock"></i> Login</a>
 
-            <button id="themeToggleBtn" class="theme-btn" aria-label="Alternar tema">
-                <i class="fas fa-moon"></i>
+            <!-- 🔘 Botão do switch -->
+            <button id="theme-toggle" class="theme-toggle">
+                <span id="icon" class="sun">☀️</span>
             </button>
 
         </nav>
@@ -94,21 +95,21 @@
                 <div class="card-integrante">
                     <img src="img/CartoonLuiz.png" alt="Integrante 1">
                     <h3>Luiz Gustavo</h3>
-                    <button onclick="abrirModal('modalLuiz')">Ver sobre</button>
+                    <button onclick="abrirModal('modalLuiz')">Ver sobre o integrante</button>
                 </div>
 
                 <!-- Integrante 2 -->
                 <div class="card-integrante">
                     <img src="img/CartoonBianca.png" alt="Integrante 2">
                     <h3>Bianca</h3>
-                    <button onclick="abrirModal('modalBianca')">Ver sobre</button>
+                    <button onclick="abrirModal('modalBianca')">Ver sobre o integrante</button>
                 </div>
 
                 <!-- Integrante 3 -->
                 <div class="card-integrante">
                     <img src="img/CartoonStephani.png" alt="Integrante 3">
                     <h3>Stephani</h3>
-                    <button onclick="abrirModal('modalStephani')">Ver sobre</button>
+                    <button onclick="abrirModal('modalStephani')">Ver sobre o integrante</button>
                 </div>
             </div>
         </section>
@@ -249,6 +250,7 @@
         new window.VLibras.Widget('https://vlibras.gov.br/app');
     </script>
     <script src="js/geral.js"></script>
+  <script src="js/alterarTemas.js"></script>
     <script src="js/sobrenos.js"></script>
     <script src="js/login.js"></script>
 </body>

@@ -71,21 +71,20 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    const themeBtn = document.getElementById('themeToggleBtn');
-    const isDark = window.location.href.includes('dark');
+    const toggleBtn = document.getElementById("theme-toggle");
+    const icon = document.getElementById("icon"); toggleBtn.addEventListener("click", () => {
+        // alterna tema 
+        document.body.classList.toggle("dark-theme");
+        // animação do ícone 
+        icon.classList.add("fade-out"); setTimeout(() => {
+            if (document.body.classList.contains("dark-theme")) {
+                icon.textContent = "🌙";
 
-    // Define ícone inicial
-    themeBtn.innerHTML = isDark
-        ? '<i class="fas fa-sun"></i>'
-        : '<i class="fas fa-moon"></i>';
-
-    themeBtn.addEventListener('click', () => {
-        // Alterna entre light e dark
-        if (isDark) {
-            window.location.href = '../index.html'; // volta para claro
-        } else {
-            window.location.href = 'darkMode/index.html'; // vai para dark
-        }
+            } else {
+                icon.textContent = "☀️";
+            }
+            icon.classList.remove("fade-out");
+        }, 300);
     });
 });
 
