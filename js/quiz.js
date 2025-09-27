@@ -62,11 +62,11 @@ function checkAnswer(selected) {
     if (selected === correct) {
         correctCount++;
         resultEl.textContent = "✅ Resposta correta!";
-        resultEl.style.color = "#2e7d32";
+        resultEl.style.color = "#45b94bff";
     } else {
         wrongCount++;
         resultEl.textContent = `❌ Resposta incorreta. Resposta correta: ${correct}`;
-        resultEl.style.color = "#c62828";
+        resultEl.style.color = "#720000ff";
     }
 
     setTimeout(() => {
