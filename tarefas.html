@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Plataforma de aprendizado colaborativo com IA, quizzes e grupos de estudo." />
+    <meta name="keywords" content="estudo, educação, grupos de estudo, quizzes, IA, aprendizagem colaborativa" />
+    <meta name="author" content="StudyPlaza" />
+    <title>StudyPlaza - Plataforma de Aprendizado Colaborativo</title>
+    <link rel="icon" href="./img/Logo_Fundo_Roxa.png" type="image/svg+xml" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <link rel="stylesheet" href="./css/tarefas.css">
+    <link rel="stylesheet" href="./css/style.css" />
+</head>
+
+<body>
+
+    <header>
+        <div class="logo">
+            <a href="index.html" aria-label="Voltar para página inicial">
+                <img src="img/Logo.svg" alt="Logo StudyPlaza" />
+                <h1>StudyPlaza</h1>
+            </a>
+        </div>
+
+        <button class="hamburger" aria-expanded="false" aria-controls="menu">
+            <span class="hamburger-bar"></span>
+            <span class="hamburger-bar"></span>
+            <span class="hamburger-bar"></span>
+        </button>
+
+        <nav class="menu" id="menu-principal" aria-label="Menu principal">
+            <button class="fecharMenu" aria-label="Fechar menu">&times;</button>
+            <a href="cursos.html" class="linkMenu"><i class="fa-solid fa-book"></i> Cursos</a>
+            <a href="quiz.html" class="linkMenu"><i class="fa-solid fa-trophy"></i> Quiz</a>
+            <a href="sobrenos.html" class="linkMenu"><i class="fa-solid fa-users"></i> Sobre Nós</a>
+            <a href="#" class="abrir-login linkMenu"><i class="fa-solid fa-lock"></i> Login</a>
+
+            <!-- 🔘 Botão do switch -->
+            <button id="theme-toggle" class="theme-toggle">
+                <span id="icon" class="sun">☀️</span>
+            </button>
+
+        </nav>
+    </header>
+
+    <main>
+        <div class="todo-container">
+            <h1 id="titulo">Minhas Tarefas</h1>
+
+            <div class="input-area">
+                <input type="text" id="taskInput" placeholder="Adicionar nova tarefa...">
+                <button onclick="addTask()">Adicionar</button>
+            </div>
+
+            <ul id="taskList">
+                <li id="task1" class="task-item">
+                    <input type="checkbox" onclick="toggleTaskCompletion(this)">
+                    <span>Comprar pão</span>
+                    <button onclick="editTask(this)">Edit</button>
+                    <button onclick="deleteTask(this)">Delete</button>
+                    
+                </li>
+            </ul>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-section">
+                <div class="nomeLogo">
+                    <img class="logoFooter" src="img/Logo.svg" alt="Logo do site" />
+                    <h3 class="textLogoFooter">Study Plaza</h3>
+                </div>
+                <p>Transformando o jeito como você estuda. Conecte-se, compartilhe e aprenda em uma comunidade vibrante.
+                </p>
+            </div>
+
+            <div class="footer-section" id="linksRapidos">
+                <h3>Links Rápidos</h3>
+                <nav aria-label="Links do rodapé">
+                    <ul>
+                        <li><a href="index.html"><i class="fa-solid fa-house"></i> Início</a></li>
+                        <li><a href="cadastro.html"><i class="fa-solid fa-address-card"></i> Cadastro</a></li>
+                        <li><a href="#" id="abrir-login-footer"><i class="fa-solid fa-lock"></i> Login</a></li>
+                        <li><a href="cursos.html"><i class="fa-solid fa-book"></i> Cursos</a></li>
+                        <li><a href="quiz.html"><i class="fa-solid fa-trophy"></i> Quiz</a></li>
+                        <li><a href="sobrenos.html"><i class="fa-solid fa-users"></i> Sobre Nós</a></li>
+                    </ul>
+                </nav>
+            </div>
+
+            <div class="footer-section">
+                <h3>Informações</h3>
+                <ul>
+                    <li><a href="#">Política de Privacidade</a></li>
+                </ul>
+                <div class="social-icons">
+                    <a href="https://www.instagram.com/studyplaza_" aria-label="Instagram StudyPlaza">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <p>&copy; 2025 StudyPlaza - Todos os direitos reservados.</p>
+    </footer>
+
+    <script src="./js/tarefas.js"></script>
+    <script src="js/geral.js"></script>
+    <script src="js/alterarTemas.js"></script>
+</body>
+
+</html>
