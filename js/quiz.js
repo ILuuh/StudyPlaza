@@ -66,7 +66,7 @@ function checkAnswer(selected) {
     } else {
         wrongCount++;
         resultEl.textContent = `❌ Resposta incorreta. Resposta correta: ${correct}`;
-        resultEl.style.color = "#720000ff";
+        resultEl.style.color = "#c90404";
     }
 
     setTimeout(() => {

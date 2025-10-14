@@ -8,6 +8,7 @@
   --efeitoBefore: #231942;
   --hoverEscuro: #5e548e;
   --cor-Fundo: #F9F9F9;
+  --branco: #ffff;
   --sombra: rgba(0, 0, 0, 0.1);
   --font-family: 'Poppins', Arial, sans-serif;
   --gradient: linear-gradient(90deg, var(--roxo-menu), var(--roxo-claro));
@@ -20,6 +21,7 @@
   --efeitoBefore: #9D4EDD;
   --hoverEscuro: #8338ec;
   --cor-Fonte: #F9F9F9;
+  --branco: #ffff;
   --sombra: rgba(111, 66, 193, 0.2);
   --font-family: 'Poppins', Arial, sans-serif;
   --gradient: linear-gradient(90deg, #240046 0%, #240046 100%);
@@ -178,7 +180,7 @@ header {
   padding: 60px;
   flex-wrap: wrap;
   color: var(--cor-Fonte);
-  min-height: 90vh;
+  min-height: 85vh;
 }
 
 .banner-texto {
@@ -206,33 +208,20 @@ header {
   padding: 60px 20px;
   background: var(--cor-Fundo);
   text-align: center;
-  min-height: 90vh;
+  min-height: 80vh;
 }
 
 .funcionalidades-steps h2 {
   font-size: 2rem;
-  margin-bottom: 40px;
+  margin-bottom: 5rem;
   color: var(--cor-Fonte);
 }
 
 .steps-container {
   display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: 25px;
-  position: relative;
   flex-wrap: wrap;
-}
-
-.steps-container::before {
-  content: "";
-  position: absolute;
-  top: 40px;
-  left: 0;
-  right: 0;
-  height: 4px;
-  background: var(--roxo-claro);
-  z-index: 0;
+  justify-content: space-around;
+  margin-bottom: 40px;
 }
 
 .step {
@@ -266,9 +255,9 @@ header {
 
 /* Lista de Benefícios Animada */
 .beneficios-lista {
-  padding: 50px 30px;
+  padding: 60px 60px;
   background: var(--cor-Fundo);
-  max-height: 90vh;
+  min-height: 80vh;
 }
 
 .beneficios-lista h2 {
@@ -283,9 +272,6 @@ header {
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   align-items: center;
   gap: 20px;
-  max-width: 1000px;
-  margin: 0 auto;
-  padding: 0;
   list-style: none;
   height: 20rem;
 }
@@ -522,6 +508,72 @@ footer .logoFooter {
 .social-icons a:hover {
   color: var(--efeitoBefore);
 }
+
+/*Barra de acessibilidade*/
+.ativaredasativarvlibras {
+  display: none;
+  position: fixed;
+  top: 300px;
+}
+
+.divativacaobarradeacessibilidade,
+.divbarradeacessibilidade {
+  position: fixed;
+  top: 400px;
+  z-index: 9999;
+
+}
+
+.divativacaobarradeacessibilidade button,
+.divbarradeacessibilidade button {
+  background-color: var(--branco);
+  color: var(--branco);
+  border: none;
+  padding: 5px;
+  cursor: pointer;
+  border-radius: 25px;
+  transition: 0.4s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+}
+
+.divativacaobarradeacessibilidade .botaoativacaobarra {
+  filter: drop-shadow(2px 4px 2px rgba(0, 0, 0, 0.5));
+}
+
+.divativacaobarradeacessibilidade button:hover {
+  background-color: var(--branco);
+}
+
+.botaoativacaobarra img {
+  width: 2.5rem;
+
+}
+
+.funcaoesbarradeacessibilidade img {
+  width: 1.6rem;
+}
+
+.divbarradeacessibilidade {
+  background-color: var(--branco);
+  border-radius: 28px;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0 0 23px 0;
+  gap: 8px;
+  filter: drop-shadow(5px 5px 3px rgba(0, 0, 0, 0.5));
+  top: 300px;
+
+}
+
+#logodafatecdabarradeacessibilidade {
+  width: 2.5rem;
+}
+
 
 @media screen and (max-width: 992px) {
   .banner {
