@@ -36,6 +36,7 @@ const translations = {
     'login.cadastro': 'Não tem uma conta?',
     'login.cadastro.link': 'Cadastre-se aqui',
     'login.fechar': 'Fechar login',
+    'login.placeholder':'seu@email.com',
     
     // Cadastro
     'cadastro.title': 'Cadastro - StudyPlaza',
@@ -177,6 +178,7 @@ const translations = {
     'login.cadastro': "Don't have an account?",
     'login.cadastro.link': 'Sign up here',
     'login.fechar': 'Close login',
+    'login.placeholder':'your@email.com',
     
     // Cadastro
     'cadastro.title': 'Sign Up - StudyPlaza',
