@@ -34,12 +34,17 @@
     </button>
 
     <nav class="menu" id="menu-principal" aria-label="Menu principal">
-      <button class="fecharMenu" aria-label="Fechar menu">✕</button>
-      <a href="cursos.html" class="linkMenu" id="ativo"><i class="fa-solid fa-book"></i> Cursos</a>
-      <a href="quiz.html" class="linkMenu"><i class="fa-solid fa-trophy"></i> Quiz</a>
-      <a href="sobrenos.html" class="linkMenu"><i class="fa-solid fa-users"></i> Sobre Nós</a>
-      <a href="#" class="abrir-login linkMenu"><i class="fa-solid fa-lock"></i> Login</a><!-- 🔘 Botão do switch -->
+      <button class="fecharMenu" aria-label="Fechar menu" data-translate="menu.fechar">&times;</button>
+      <a href="cursos.html" class="linkMenu"><i class="fa-solid fa-book"></i> <span
+          data-translate="menu.cursos">Cursos</span></a>
+      <a href="quiz.html" class="linkMenu"><i class="fa-solid fa-trophy"></i> <span
+          data-translate="menu.quiz">Quiz</span></a>
+      <a href="sobrenos.html" class="linkMenu"><i class="fa-solid fa-users"></i> <span
+          data-translate="menu.sobrenos">Sobre Nós</span></a>
+      <a href="#" class="abrir-login linkMenu"><i class="fa-solid fa-lock"></i> <span
+          data-translate="menu.login">Login</span></a>
     </nav>
+
   </header>
 
   <main>
@@ -86,100 +91,111 @@
     </section>
 
     <section class="intro-section" aria-labelledby="titulo-intro">
-      <h1 id="titulo-intro">Explore os Melhores Cursos Complementares</h1>
-      <p>Na Study Plaza, reunimos os cursos online mais relevantes para turbinar sua formação acadêmica e profissional.
+      <h1 id="titulo-intro" data-translate="cursos.intro.title">Explore os Melhores Cursos Complementares</h1>
+      <p data-translate="cursos.intro.text">Na Study Plaza, reunimos os cursos online mais relevantes para turbinar sua
+        formação acadêmica e profissional.
         Conheça novas áreas, desenvolva habilidades práticas e fique à frente no mercado. 🚀</p>
     </section>
 
     <section aria-labelledby="courses-title">
-      <h2 id="courses-title">Cursos</h2>
+      <h2 id="courses-title" data-translate="cursos.title.section">Cursos</h2>
       <div class="courses-container" aria-label="Lista de cursos sugeridos">
 
         <article class="course-card" tabindex="0">
-          <h3>Introdução à Programação</h3>
-          <p>Curso gratuito que ensina os conceitos básicos de programação com exercícios práticos.</p>
+          <h3 data-translate="cursos.programacao.title">Introdução à Programação</h3>
+          <p data-translate="cursos.programacao.desc">Curso gratuito que ensina os conceitos básicos de programação com
+            exercícios práticos.</p>
           <a class="linkCurso" href="https://www.coursera.org/learn/programming-fundamentals" target="_blank"
-            rel="noopener noreferrer">Ver curso</a>
-          <a class="linkVerMais" onclick="abrirModal()">Ver mais</a>
+            rel="noopener noreferrer" data-translate="cursos.ver.curso">Ver curso</a>
+          <a class="linkVerMais" onclick="abrirModal()" data-translate="cursos.ver.mais">Ver mais</a>
         </article>
 
         <article class="course-card" tabindex="0">
-          <h3>Machine Learning Aplicado</h3>
-          <p>Aprenda fundamentos de IA e machine learning com exemplos aplicados a diversos setores.</p>
-          <a class="linkCurso" class="linkCurso" href="https://www.udemy.com/course/machine-learning-aplicado/"
-            target="_blank" rel="noopener noreferrer">Ver curso</a>
-          <a class="linkVerMais" onclick="abrirModal()">Ver mais</a>
+          <h3 data-translate="cursos.ml.title">Machine Learning Aplicado</h3>
+          <p data-translate="cursos.ml.desc">Aprenda fundamentos de IA e machine learning com exemplos aplicados a
+            diversos setores.</p>
+          <a class="linkCurso" href="https://www.udemy.com/course/machine-learning-aplicado/" target="_blank"
+            rel="noopener noreferrer" data-translate="cursos.ver.curso">Ver curso</a>
+          <a class="linkVerMais" onclick="abrirModal()" data-translate="cursos.ver.mais">Ver mais</a>
         </article>
 
         <article class="course-card" tabindex="0">
-          <h3>Gestão do Tempo para Estudantes</h3>
-          <p>Dicas práticas e técnicas para melhorar sua produtividade e organização nos estudos.</p>
+          <h3 data-translate="cursos.gestao.title">Gestão do Tempo para Estudantes</h3>
+          <p data-translate="cursos.gestao.desc">Dicas práticas e técnicas para melhorar sua produtividade e organização
+            nos estudos.</p>
           <a class="linkCurso" href="https://www.edx.org/course/time-management-skills" target="_blank"
-            rel="noopener noreferrer">Ver
+            rel="noopener noreferrer" data-translate="cursos.ver.curso">Ver
             curso</a>
-          <a class="linkVerMais" onclick="abrirModal()">Ver mais</a>
+          <a class="linkVerMais" onclick="abrirModal()" data-translate="cursos.ver.mais">Ver mais</a>
         </article>
 
         <article class="course-card" tabindex="0">
-          <h3>Comunicação Eficiente</h3>
-          <p>Aprenda a se comunicar melhor em ambientes colaborativos e acadêmicos.</p>
+          <h3 data-translate="cursos.comunicacao.title">Comunicação Eficiente</h3>
+          <p data-translate="cursos.comunicacao.desc">Aprenda a se comunicar melhor em ambientes colaborativos e
+            acadêmicos.</p>
           <a class="linkCurso" href="https://www.coursera.org/learn/effective-communication" target="_blank"
-            rel="noopener noreferrer">Ver
+            rel="noopener noreferrer" data-translate="cursos.ver.curso">Ver
             curso</a>
-          <a class="linkVerMais" onclick="abrirModal()">Ver mais</a>
+          <a class="linkVerMais" onclick="abrirModal()" data-translate="cursos.ver.mais">Ver mais</a>
         </article>
 
         <article class="course-card" tabindex="0">
-          <h3>Excel e Ferramentas de Produtividade</h3>
-          <p>Domine fórmulas, gráficos e recursos do Excel para otimizar seus estudos e projetos.</p>
+          <h3 data-translate="cursos.excel.title">Excel e Ferramentas de Produtividade</h3>
+          <p data-translate="cursos.excel.desc">Domine fórmulas, gráficos e recursos do Excel para otimizar seus estudos
+            e projetos.</p>
           <a class="linkCurso" href="https://www.udemy.com/course/curso-completo-de-excel/" target="_blank"
-            rel="noopener noreferrer">Ver curso</a>
-          <a class="linkVerMais" onclick="abrirModal()">Ver mais</a>
+            rel="noopener noreferrer" data-translate="cursos.ver.curso">Ver curso</a>
+          <a class="linkVerMais" onclick="abrirModal()" data-translate="cursos.ver.mais">Ver mais</a>
         </article>
 
         <article class="course-card" tabindex="0">
-          <h3>Finanças Pessoais para Jovens</h3>
-          <p>Aprenda a controlar gastos, fazer investimentos iniciais e se organizar financeiramente desde cedo.</p>
+          <h3 data-translate="cursos.financas.title">Finanças Pessoais para Jovens</h3>
+          <p data-translate="cursos.financas.desc">Aprenda a controlar gastos, fazer investimentos iniciais e se
+            organizar financeiramente desde cedo.</p>
           <a class="linkCurso" href="https://www.coursera.org/learn/financas-pessoais" target="_blank"
-            rel="noopener noreferrer">Ver curso</a>
-          <a class="linkVerMais" onclick="abrirModal()">Ver mais</a>
+            rel="noopener noreferrer" data-translate="cursos.ver.curso">Ver curso</a>
+          <a class="linkVerMais" onclick="abrirModal()" data-translate="cursos.ver.mais">Ver mais</a>
         </article>
 
         <article class="course-card" tabindex="0">
-          <h3>Desenvolvimento Web Básico</h3>
-          <p>Construa seu primeiro site com HTML, CSS e JavaScript de forma prática e interativa.</p>
-          <a class="linkCurso" href="https://www.freecodecamp.org/learn" target="_blank" rel="noopener noreferrer">Ver
+          <h3 data-translate="cursos.web.title">Desenvolvimento Web Básico</h3>
+          <p data-translate="cursos.web.desc">Construa seu primeiro site com HTML, CSS e JavaScript de forma prática e
+            interativa.</p>
+          <a class="linkCurso" href="https://www.freecodecamp.org/learn" target="_blank" rel="noopener noreferrer"
+            data-translate="cursos.ver.curso">Ver
             curso</a>
-          <a class="linkVerMais" onclick="abrirModal()">Ver mais</a>
+          <a class="linkVerMais" onclick="abrirModal()" data-translate="cursos.ver.mais">Ver mais</a>
         </article>
 
         <article class="course-card" tabindex="0">
-          <h3>Mindfulness e Gestão do Estresse</h3>
-          <p>Pratique técnicas de respiração e foco para manter a calma nos estudos e na vida pessoal.</p>
+          <h3 data-translate="cursos.mindfulness.title">Mindfulness e Gestão do Estresse</h3>
+          <p data-translate="cursos.mindfulness.desc">Pratique técnicas de respiração e foco para manter a calma nos
+            estudos e na vida pessoal.</p>
           <a class="linkCurso" href="https://www.coursera.org/learn/mindfulness" target="_blank"
-            rel="noopener noreferrer">Ver curso</a>
-          <a class="linkVerMais" onclick="abrirModal()">Ver mais</a>
+            rel="noopener noreferrer" data-translate="cursos.ver.curso">Ver curso</a>
+          <a class="linkVerMais" onclick="abrirModal()" data-translate="cursos.ver.mais">Ver mais</a>
         </article>
 
         <article class="course-card" tabindex="0">
-          <h3>Redação Nota Mil</h3>
-          <p>Descubra estratégias para organizar ideias, escrever com clareza e conquistar ótimas notas em redações.</p>
+          <h3 data-translate="cursos.redacao.title">Redação Nota Mil</h3>
+          <p data-translate="cursos.redacao.desc">Descubra estratégias para organizar ideias, escrever com clareza e
+            conquistar ótimas notas em redações.</p>
           <a class="linkCurso" href="https://www.udemy.com/course/redacao-enem/" target="_blank"
-            rel="noopener noreferrer">Ver curso</a>
-          <a class="linkVerMais" onclick="abrirModal()">Ver mais</a>
+            rel="noopener noreferrer" data-translate="cursos.ver.curso">Ver curso</a>
+          <a class="linkVerMais" onclick="abrirModal()" data-translate="cursos.ver.mais">Ver mais</a>
         </article>
 
 
         <!-- Modal -->
         <div id="modalAviso" class="modal-overlay">
           <div class="modal-content">
-            <h3>Acesse mais conteúdos</h3>
-            <p>Faça login ou cadastre-se para ver mais detalhes sobre este curso.</p>
+            <h3 data-translate="cursos.modal.title">Acesse mais conteúdos</h3>
+            <p data-translate="cursos.modal.text">Faça login ou cadastre-se para ver mais detalhes sobre este curso.</p>
             <div class="modal-as">
-              <a href="#" id="abrir-login-modal" class="login-btn">Login</a>
-              <a href="cadastro.html" class="cadastro-btn">Cadastro</a>
+              <a href="#" id="abrir-login-modal" class="login-btn" data-translate="cursos.modal.login">Login</a>
+              <a href="cadastro.html" class="cadastro-btn" data-translate="cursos.modal.cadastro">Cadastro</a>
             </div>
-            <a class="fechar-btn" onclick="fecharModal()">Fechar</a>
+            <a class="fechar-btn" onclick="fecharModal()" data-translate="cursos.modal.fechar">Fechar</a>
           </div>
         </div>
 
@@ -188,31 +204,33 @@
     </section>
 
     <section class="call-to-action">
-      <h2>Gostou dos cursos? Então, cadastre-se para ter acesso completo!</h2>
-      <p>No Study Plaza você encontra uma seleção exclusiva de cursos complementares, participa de grupos de estudo e
+      <h2 data-translate="cursos.cta.title">Gostou dos cursos? Então, cadastre-se para ter acesso completo!</h2>
+      <p data-translate="cursos.cta.text">No Study Plaza você encontra uma seleção exclusiva de cursos complementares,
+        participa de grupos de estudo e
         ainda testa seus conhecimentos com quizzes inteligentes. O cadastro é rápido e gratuito! Não fique de fora
         dessa comunidade que transforma o aprendizado.</p>
-      <a href="cadastro.html">Quero me cadastrar e acessar tudo!</a>
+      <a href="cadastro.html" data-translate="cursos.cta.button">Quero me cadastrar e acessar tudo!</a>
     </section>
 
     <section class="formLogin" aria-label="Formulário de Login">
       <article class="login-container">
-        <button class="close-login" aria-label="Fechar login">&times;</button>
-        <h2 id="login-title">Bem-vindo ao StudyPlaza</h2>
+        <button class="close-login" aria-label="Fechar login" data-translate="login.fechar">&times;</button>
+        <h2 id="login-title" data-translate="login.title">Bem-vindo ao StudyPlaza</h2>
         <form id="login-form" novalidate autocomplete="off" aria-describedby="form-error">
-          <label for="input-email" id="obrigatorio">Email:</label>
+          <label for="input-email" id="obrigatorio" data-translate="login.email">Email:</label>
           <input type="email" id="input-email" name="email" required placeholder="seu@email.com" aria-required="true" />
           <div id="email-error" class="error-message"></div>
 
-          <label for="input-password" id="obrigatorio">Senha:</label>
+          <label for="input-password" id="obrigatorio" data-translate="login.senha">Senha:</label>
           <input type="password" id="input-password" name="password" required minlength="6" placeholder="••••••••"
             aria-required="true" />
           <div id="password-error" class="error-message"></div>
 
-          <button type="submit" class="btnEntrar">Entrar</button>
+          <button type="submit" class="btnEntrar" data-translate="login.entrar">Entrar</button>
           <div id="form-error" class="error-message"></div>
         </form>
-        <p>Não tem uma conta? <a class="linkCadastro" href="cadastro.html">Cadastre-se aqui</a></p>
+        <p><span data-translate="login.cadastro">Não tem uma conta?</span> <a class="linkCadastro" href="cadastro.html"
+            data-translate="login.cadastro.link">Cadastre-se aqui</a></p>
       </article>
     </section>
 
@@ -225,41 +243,49 @@
           <img class="logoFooter" src="img/Logo.svg" alt="Logo do site" />
           <h2 class="textLogoFooter">Study Plaza</h2>
         </div>
-        <p>Transformando o jeito como você estuda. Conecte-se, compartilhe e aprenda em uma comunidade vibrante.</p>
+        <p data-translate="footer.texto">Transformando o jeito como você estuda. Conecte-se, compartilhe e aprenda em
+          uma comunidade vibrante.</p>
       </div>
 
       <div class="footer-section" id="linksRapidos">
-        <h3>Links Rápidos</h3>
+        <h3 data-translate="footer.links.title">Links Rápidos</h3>
         <nav aria-label="Links rápidos do rodapé">
           <ul>
-            <li><i class="fa-solid fa-house"></i><a href="index.html">Início</a></li>
-            <li><i class="fa-solid fa-address-card"></i><a href="cadastro.html">Cadastro</a></li>
-            <li><i class="fa-solid fa-lock"></i><a href="#" id="abrir-login-footer">Login</a></li>
-            <li><i class="fa-solid fa-book"></i><a href="cursos.html">Cursos</a></li>
-            <li><i class="fa-solid fa-trophy"></i><a href="quiz.html">Quiz</a></li>
-            <li><i class="fa-solid fa-users"></i><a href="sobrenos.html">Sobre Nós</a></li>
+            <li><i class="fa-solid fa-house"></i><a href="index.html"><span
+                  data-translate="footer.links.inicio">Início</span></a></li>
+            <li><i class="fa-solid fa-address-card"></i><a href="cadastro.html"><span
+                  data-translate="footer.links.cadastro">Cadastro</span></a></li>
+            <li><i class="fa-solid fa-lock"></i><a href="#" id="abrir-login-footer"><span
+                  data-translate="footer.links.login">Login</span></a></li>
+            <li><i class="fa-solid fa-book"></i><a href="cursos.html"><span
+                  data-translate="footer.links.cursos">Cursos</span></a></li>
+            <li><i class="fa-solid fa-trophy"></i><a href="quiz.html"><span
+                  data-translate="footer.links.quiz">Quiz</span></a></li>
+            <li><i class="fa-solid fa-users"></i><a href="sobrenos.html"><span
+                  data-translate="footer.links.sobrenos">Sobre Nós</span></a></li>
           </ul>
         </nav>
       </div>
 
       <div class="footer-section">
-        <h3>Informações</h3>
+        <h3 data-translate="footer.info.title">Informações</h3>
         <ul>
-          <li><a href="#">Política de Privacidade</a></li>
+          <li><a href="#" data-translate="footer.privacidade">Política de Privacidade</a></li>
         </ul>
         <div class="social-icons">
           <a href="https://www.instagram.com/studyplaza_/?utm_source=ig_web_button_share_sheet"
             aria-label="Instagram"><i class="fab fa-instagram"></i></a>
         </div>
       </div>
-    </div>
-    <p>&copy; 2025 StudyPlaza - Todos os direitos reservados.</p>
+      <p data-translate="footer.direitos">&copy; 2025 StudyPlaza - Todos os direitos reservados.</p>
   </footer>
 
   <script src="js/geral.js"></script>
   <script src="js/alterarTemas.js"></script>
   <script src="js/login.js"></script>
   <script src="js/acessibilidade.js"></script>
+  <script src="js/translations.js"></script>
+  <script src="js/translate.js"></script>
   <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
   <script>
     new window.VLibras.Widget('https://vlibras.gov.br/app');

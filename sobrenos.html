@@ -30,15 +30,17 @@
         </button>
 
         <nav class="menu" id="menu-principal" aria-label="Menu principal">
-            <button class="fecharMenu" aria-label="Fechar menu">✕</button>
-
-            <a href="cursos.html" class="linkMenu"><i class="fa-solid fa-book"></i> Cursos</a>
-            <a href="quiz.html" class="linkMenu"><i class="fa-solid fa-trophy"></i> Quiz</a>
-            <a href="sobrenos.html" class="linkMenu" id="ativo"><i class="fa-solid fa-users"></i> Sobre Nós</a>
-            <a href="#" class="abrir-login linkMenu"><i class="fa-solid fa-lock"></i> Login</a>
-
+            <button class="fecharMenu" aria-label="Fechar menu" data-translate="menu.fechar">&times;</button>
+            <a href="cursos.html" class="linkMenu"><i class="fa-solid fa-book"></i> <span
+                    data-translate="menu.cursos">Cursos</span></a>
+            <a href="quiz.html" class="linkMenu"><i class="fa-solid fa-trophy"></i> <span
+                    data-translate="menu.quiz">Quiz</span></a>
+            <a href="sobrenos.html" class="linkMenu"><i class="fa-solid fa-users"></i> <span
+                    data-translate="menu.sobrenos">Sobre Nós</span></a>
+            <a href="#" class="abrir-login linkMenu"><i class="fa-solid fa-lock"></i> <span
+                    data-translate="menu.login">Login</span></a>
         </nav>
-        </nav>
+
     </header>
 
     <main>
@@ -87,8 +89,8 @@
         <section class="sobre-nos">
             <div class="intro-sobre">
                 <div class="texto-sobre">
-                    <h2>Sobre o Study Plaza</h2>
-                    <p>
+                    <h2 data-translate="sobrenos.sobre.title">Sobre o Study Plaza</h2>
+                    <p data-translate="sobrenos.sobre.text">
                         No Study Plaza, acreditamos que o aprendizado se torna mais eficiente e motivador quando é
                         compartilhado. Sabemos que muitos estudantes enfrentam desafios ao estudar sozinhos, como falta
                         de organização, acesso a bons materiais ou dificuldade em se conectar com outras pessoas.
@@ -112,28 +114,31 @@
         </section>
 
         <section class="integrantes">
-            <h2>Conheça nossa equipe</h2>
+            <h2 data-translate="sobrenos.equipe.title">Conheça nossa equipe</h2>
             <div class="cards-integrantes">
 
                 <!-- Integrante 1 -->
                 <div class="card-integrante">
                     <img src="img/CartoonLuiz.png" alt="Integrante 1">
                     <h3>Luiz Gustavo</h3>
-                    <button onclick="abrirModal('modalLuiz')">Ver sobre o integrante</button>
+                    <button onclick="abrirModal('modalLuiz')" data-translate="sobrenos.ver.integrante">Ver sobre o
+                        integrante</button>
                 </div>
 
                 <!-- Integrante 2 -->
                 <div class="card-integrante">
                     <img src="img/CartoonBianca.png" alt="Integrante 2">
                     <h3>Bianca</h3>
-                    <button onclick="abrirModal('modalBianca')">Ver sobre o integrante</button>
+                    <button onclick="abrirModal('modalBianca')" data-translate="sobrenos.ver.integrante">Ver sobre o
+                        integrante</button>
                 </div>
 
                 <!-- Integrante 3 -->
                 <div class="card-integrante">
                     <img src="img/CartoonStephani.png" alt="Integrante 3">
                     <h3>Stephani</h3>
-                    <button onclick="abrirModal('modalStephani')">Ver sobre o integrante</button>
+                    <button onclick="abrirModal('modalStephani')" data-translate="sobrenos.ver.integrante">Ver sobre o
+                        integrante</button>
                 </div>
             </div>
         </section>
@@ -145,16 +150,12 @@
                     <img src="img/CartoonLuiz.png" class="mini-img" alt="Luiz Gustavo">
                     <div>
                         <h3>Luiz Gustavo</h3>
-                        <p>Sou Luiz Gustavo, estudante de TI que gosta muito de desenvolvimento e inovação. Tenho foco
-                            em
-                            criar soluções acessíveis, organizadas e elegantes, com atenção especial à experiência do
-                            usuário.
-                            Busco constantemente me superar, aprendendo novas tecnologias e aplicando-as para entregar
-                            projetos funcionais e impactantes.
+                        <p data-translate="sobrenos.luiz.desc">Sou Luiz Gustavo, estudante de TI que gosta muito de
+                            desenvolvimento e inovação. Tenho foco em criar soluções acessíveis, organizadas e
+                            elegantes, com atenção especial à experiência do usuário. Busco constantemente me superar,
+                            aprendendo novas tecnologias e aplicando-as para entregar projetos funcionais e impactantes.
                             Responsável pelo front-end e acessibilidade do projeto. Sempre em busca de surpreender
-                            através
-                            da
-                            tecnologia.</p>
+                            através da tecnologia.</p>
                     </div>
                     <button class="fechar-modal" onclick="fecharModal('modalLuiz')">✕</button>
                 </div>
@@ -165,13 +166,10 @@
                     <img src="img/CartoonBianca.png" class="mini-img" alt="Bianca">
                     <div>
                         <h3>Bianca</h3>
-                        <p>Sou a Bianca, estudante de TI, gosto de deixar tudo mais intuitivo e bonito, pensando no
-                            público
-                            geral.
-                            Responsável pelo front-end e acessibilidade do projeto em colaboração com a equipe.
-                            Estou sempre aprendendo, testando, quebrando a cabeça, para entregar um trabalho que
-                            realmente
-                            faça a diferença.</p>
+                        <p data-translate="sobrenos.bianca.desc">Sou a Bianca, estudante de TI, gosto de deixar tudo
+                            mais intuitivo e bonito, pensando no público geral. Responsável pelo front-end e
+                            acessibilidade do projeto em colaboração com a equipe. Estou sempre aprendendo, testando,
+                            quebrando a cabeça, para entregar um trabalho que realmente faça a diferença.</p>
                     </div>
                     <button class="fechar-modal" onclick="fecharModal('modalBianca')">✕</button>
                 </div>
@@ -182,12 +180,11 @@
                     <img src="img/CartoonStephani.png" class="mini-img" alt="Stephani">
                     <div>
                         <h3>Stephani</h3>
-                        <p>Meu nome é Stephani, sou formada pela ETEC Dans em informática para internet, e atualmente
-                            sou estudante de Sistemas para Internet na FATEC Taquaritinga. No nosso projeto, atuei junto
-                            aos
-                            meus colegas no desenvolvimento do front-end, com destaque para a implementação do modo
-                            escuro
-                            (dark mode), sempre buscando uma melhor experiência para o usuário.</p>
+                        <p data-translate="sobrenos.stephani.desc">Meu nome é Stephani, sou formada pela ETEC Dans em
+                            informática para internet, e atualmente sou estudante de Sistemas para Internet na FATEC
+                            Taquaritinga. No nosso projeto, atuei junto aos meus colegas no desenvolvimento do
+                            front-end, com destaque para a implementação do modo escuro (dark mode), sempre buscando uma
+                            melhor experiência para o usuário.</p>
                     </div>
                     <button class="fechar-modal" onclick="fecharModal('modalStephani')">✕</button>
                 </div>
@@ -196,23 +193,24 @@
 
         <section class="formLogin" aria-label="Formulário de Login">
             <article class="login-container">
-                <button class="close-login" aria-label="Fechar login">&times;</button>
-                <h2 id="login-title">Bem-vindo ao StudyPlaza</h2>
+                <button class="close-login" aria-label="Fechar login" data-translate="login.fechar">&times;</button>
+                <h2 id="login-title" data-translate="login.title">Bem-vindo ao StudyPlaza</h2>
                 <form id="login-form" novalidate autocomplete="off" aria-describedby="form-error">
-                    <label for="input-email" id="obrigatorio">Email:</label>
+                    <label for="input-email" id="obrigatorio" data-translate="login.email">Email:</label>
                     <input type="email" id="input-email" name="email" required placeholder="seu@email.com"
                         aria-required="true" />
                     <div id="email-error" class="error-message"></div>
 
-                    <label for="input-password" id="obrigatorio">Senha:</label>
+                    <label for="input-password" id="obrigatorio" data-translate="login.senha">Senha:</label>
                     <input type="password" id="input-password" name="password" required minlength="6"
                         placeholder="••••••••" aria-required="true" />
                     <div id="password-error" class="error-message"></div>
 
-                    <button type="submit" class="btnEntrar">Entrar</button>
+                    <button type="submit" class="btnEntrar" data-translate="login.entrar">Entrar</button>
                     <div id="form-error" class="error-message"></div>
                 </form>
-                <p>Não tem uma conta? <a class="linkCadastro" href="cadastro.html">Cadastre-se aqui</a></p>
+                <p><span data-translate="login.cadastro">Não tem uma conta?</span> <a class="linkCadastro"
+                        href="cadastro.html" data-translate="login.cadastro.link">Cadastre-se aqui</a></p>
             </article>
         </section>
 
@@ -225,40 +223,47 @@
                     <img class="logoFooter" src="img/Logo.svg" alt="Logo do site" />
                     <h2 class="textLogoFooter">Study Plaza</h2>
                 </div>
-                <p>Transformando o jeito como você estuda. Conecte-se, compartilhe e aprenda em uma comunidade vibrante.
+                <p data-translate="footer.texto">Transformando o jeito como você estuda. Conecte-se, compartilhe e
+                    aprenda em uma comunidade vibrante.
                 </p>
             </div>
 
             <div class="footer-section" id="linksRapidos">
-                <h3>Links Rápidos</h3>
+                <h3 data-translate="footer.links.title">Links Rápidos</h3>
                 <nav aria-label="Links rápidos do rodapé">
                     <ul>
                         <li>
-                            <i class="fa-solid fa-house"></i><a href="index.html">Início</a>
+                            <i class="fa-solid fa-house"></i><a href="index.html"><span
+                                    data-translate="footer.links.inicio">Início</span></a>
                         </li>
                         <li>
-                            <i class="fa-solid fa-address-card"></i><a href="cadastro.html">Cadastro</a>
+                            <i class="fa-solid fa-address-card"></i><a href="cadastro.html"><span
+                                    data-translate="footer.links.cadastro">Cadastro</span></a>
                         </li>
                         <li>
-                            <i class="fa-solid fa-lock"></i><a href="#" id="abrir-login-footer">Login</a>
+                            <i class="fa-solid fa-lock"></i><a href="#" id="abrir-login-footer"><span
+                                    data-translate="footer.links.login">Login</span></a>
                         </li>
                         <li>
-                            <i class="fa-solid fa-book"></i><a href="cursos.html">Cursos</a>
+                            <i class="fa-solid fa-book"></i><a href="cursos.html"><span
+                                    data-translate="footer.links.cursos">Cursos</span></a>
                         </li>
                         <li>
-                            <i class="fa-solid fa-trophy"></i><a href="quiz.html">Quiz</a>
+                            <i class="fa-solid fa-trophy"></i><a href="quiz.html"><span
+                                    data-translate="footer.links.quiz">Quiz</span></a>
                         </li>
                         <li>
-                            <i class="fa-solid fa-users"></i><a href="sobrenos.html">Sobre Nós</a>
+                            <i class="fa-solid fa-users"></i><a href="sobrenos.html"><span
+                                    data-translate="footer.links.sobrenos">Sobre Nós</span></a>
                         </li>
                     </ul>
                 </nav>
             </div>
 
             <div class="footer-section">
-                <h3>Informações</h3>
+                <h3 data-translate="footer.info.title">Informações</h3>
                 <ul>
-                    <li><a href="#">Política de Privacidade</a></li>
+                    <li><a href="#" data-translate="footer.privacidade">Política de Privacidade</a></li>
                 </ul>
                 <div class="social-icons">
                     <a href="https://www.instagram.com/studyplaza_/?utm_source=ig_web_button_share_sheet"
@@ -266,7 +271,7 @@
                 </div>
             </div>
         </div>
-        <p>&copy; 2025 Study Plaza - Todos os direitos reservados.</p>
+        <p data-translate="footer.direitos">&copy; 2025 Study Plaza - Todos os direitos reservados.</p>
     </footer>
 
     <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
@@ -278,6 +283,8 @@
     <script src="js/sobrenos.js"></script>
     <script src="js/login.js"></script>
     <script src="js/acessibilidade.js"></script>
+    <script src="js/translations.js"></script>
+    <script src="js/translate.js"></script>
 </body>
 
 </html>
