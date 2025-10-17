@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description"
+    content="Painel de grupos da StudyPlaza com visão geral, indicadores e acompanhamento de atividades." />
+  <meta name="author" content="StudyPlaza" />
+  <title>Painel de Grupos - StudyPlaza</title>
+  <link rel="icon" href="img/Logo_Fundo_Roxa.png" type="image/png" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/painel-grupos.css" />
+</head>
+
+<body>
+
+  <header>
+    <div class="logo">
+      <a href="index.html" aria-label="Página inicial do Study Plaza">
+        <img src="img/Logo.svg" alt="Logo Study Plaza" />
+        <h1>Study Plaza</h1>
+      </a>
+    </div>
+
+    <button class="hamburger" aria-expanded="false" aria-controls="menu">
+      <span class="hamburger-bar"></span>
+      <span class="hamburger-bar"></span>
+      <span class="hamburger-bar"></span>
+    </button>
+
+    <nav class="menu" id="menu-principal" aria-label="Menu principal">
+      <button class="fecharMenu" aria-label="Fechar menu" data-translate="menu.fechar">&times;</button>
+      <a href="grupos.html" class="linkMenu"><i class="fa-solid fa-people-group"></i> <span
+          data-translate="menu.grupos">Grupos</span></a>
+      <a href="painel-grupos.html" class="linkMenu" id="ativo"><i class="fa-solid fa-gauge-high"></i> <span
+          data-translate="menu.painel">Painel</span></a>
+      <a href="cursos.html" class="linkMenu"><i class="fa-solid fa-book"></i> <span
+          data-translate="menu.cursos">Cursos</span></a>
+      <a href="quiz.html" class="linkMenu"><i class="fa-solid fa-trophy"></i> <span
+          data-translate="menu.quiz">Quiz</span></a>
+      <a href="sobrenos.html" class="linkMenu"><i class="fa-solid fa-users"></i> <span
+          data-translate="menu.sobrenos">Sobre Nós</span></a>
+      <a href="#" class="abrir-login linkMenu"><i class="fa-solid fa-lock"></i> <span
+          data-translate="menu.login">Login</span></a>
+    </nav>
+
+  </header>
+
+  <main>
+    <section>
+      <article>
+        <div vw class="enabled">
+          <div vw-access-button class="active"></div>
+          <div vw-plugin-wrapper>
+            <div class="vw-plugin-top-wrapper"></div>
+          </div>
+        </div>
+        <div class="overlay"></div>
+      </article>
+    </section>
+
+    <section>
+      <article>
+        <div id="barra-acessibilidade" class="divativacaobarradeacessibilidade">
+          <button id="botaobarra" onclick="ativarbarra()" class="botaoativacaobarra">
+            <img src="img/icon.svg" alt="símbolo da onu" />
+          </button>
+        </div>
+
+        <div id="barra" class="divbarradeacessibilidade">
+          <button onclick="desativarbarra()" class="botaoativacaobarra">
+            <img src="img/icon.svg" alt="símbolo da onu" />
+          </button>
+
+          <button onclick="zoommenos()" class="funcaoesbarradeacessibilidade">
+            <img src="img/lupa-.svg" alt="Lupa com um - no centro" />
+          </button>
+
+          <button onclick="zoommais()" class="funcaoesbarradeacessibilidade">
+            <img src="img/lupa+.svg" alt="Lupa com um + no centro" />
+          </button>
+
+          <button id="theme-toggle" class="theme-toggle">
+            <span id="icon" class="sun">☀️</span>
+          </button>
+        </div>
+      </article>
+    </section>
+
+    <section class="painel-hero" aria-labelledby="painel-hero-titulo">
+      <div>
+        <h1 id="painel-hero-titulo" data-translate="painel.hero.title">Painel dos seus grupos</h1>
+        <p data-translate="painel.hero.text">Acompanhe desempenho, atividades e engajamento dos grupos em um só
+          lugar. Personalize as ações do seu time e mantenha tudo organizado.</p>
+        <div class="hero-status">
+          <div>
+            <strong>12</strong>
+            <span data-translate="painel.hero.status.groups">Grupos ativos</span>
+          </div>
+          <div>
+            <strong>84%</strong>
+            <span data-translate="painel.hero.status.goal">Meta semanal concluída</span>
+          </div>
+          <div>
+            <strong>216</strong>
+            <span data-translate="painel.hero.status.messages">Mensagens novas</span>
+          </div>
+        </div>
+      </div>
+      <div class="hero-action">
+        <button type="button" class="btn-primario" data-translate="painel.hero.actions.create">Criar novo grupo</button>
+        <button type="button" class="btn-secundario" data-translate="painel.hero.actions.import">Importar lista de membros</button>
+      </div>
+    </section>
+
+    <section class="painel-layout" aria-label="Visão geral do painel">
+      <aside class="painel-sidebar" aria-label="Filtros do painel">
+        <div class="sidebar-bloco">
+          <h2 data-translate="painel.sidebar.filters.title">Filtros rápidos</h2>
+          <ul>
+            <li><button type="button" class="filtro ativo" data-translate="painel.sidebar.filters.highlights"><i class="fa-solid fa-fire"></i> Destaques</button></li>
+            <li><button type="button" class="filtro" data-translate="painel.sidebar.filters.recent"><i class="fa-solid fa-clock-rotate-left"></i> Recém-criados</button>
+            </li>
+            <li><button type="button" class="filtro" data-translate="painel.sidebar.filters.engaged"><i class="fa-solid fa-users"></i> Mais participativos</button></li>
+            <li><button type="button" class="filtro" data-translate="painel.sidebar.filters.private"><i class="fa-solid fa-lock"></i> Privados</button></li>
+            <li><button type="button" class="filtro" data-translate="painel.sidebar.filters.public"><i class="fa-solid fa-earth-americas"></i> Públicos</button></li>
+          </ul>
+        </div>
+
+        <div class="sidebar-bloco">
+          <h2 data-translate="painel.sidebar.agenda.title">Agenda</h2>
+          <ol class="agenda-lista">
+            <li>
+              <span class="agenda-dia">17 out</span>
+              <div>
+                <strong data-translate="painel.sidebar.agenda.item1.title">ENEM redação</strong>
+                <span data-translate="painel.sidebar.agenda.item1.text">Revisão com professor convidado</span>
+              </div>
+            </li>
+            <li>
+              <span class="agenda-dia">18 out</span>
+              <div>
+                <strong data-translate="painel.sidebar.agenda.item2.title">Front-end colaborativo</strong>
+                <span data-translate="painel.sidebar.agenda.item2.text">Coding dojo acessibilidade</span>
+              </div>
+            </li>
+            <li>
+              <span class="agenda-dia">19 out</span>
+              <div>
+                <strong data-translate="painel.sidebar.agenda.item3.title">Conversação em inglês</strong>
+                <span data-translate="painel.sidebar.agenda.item3.text">Debate guiado sobre séries</span>
+              </div>
+            </li>
+          </ol>
+        </div>
+      </aside>
+
+      <section class="painel-conteudo" aria-labelledby="conteudo-titulo">
+        <div class="painel-métricas">
+          <h2 id="conteudo-titulo" data-translate="painel.metrics.title">Indicadores desta semana</h2>
+          <div class="métricas-grid">
+            <article class="métrica">
+              <div class="métrica-titulo">
+                <i class="fa-solid fa-arrow-trend-up"></i>
+                <span data-translate="painel.metrics.engagement.title">Engajamento médio</span>
+              </div>
+              <strong>78%</strong>
+              <p data-translate="painel.metrics.engagement.text">+6% em relação à semana anterior.</p>
+            </article>
+            <article class="métrica">
+              <div class="métrica-titulo">
+                <i class="fa-solid fa-user-plus"></i>
+                <span data-translate="painel.metrics.members.title">Novos membros</span>
+              </div>
+              <strong>42</strong>
+              <p data-translate="painel.metrics.members.text">Convites convertidos a partir de recomendações.</p>
+            </article>
+            <article class="métrica">
+              <div class="métrica-titulo">
+                <i class="fa-solid fa-list-check"></i>
+                <span data-translate="painel.metrics.tasks.title">Tarefas concluídas</span>
+              </div>
+              <strong>113</strong>
+              <p data-translate="painel.metrics.tasks.text">Atividades finalizadas dentro do prazo.</p>
+            </article>
+            <article class="métrica">
+              <div class="métrica-titulo">
+                <i class="fa-solid fa-lightbulb"></i>
+                <span data-translate="painel.metrics.insights.title">Insights com IA</span>
+              </div>
+              <strong>29</strong>
+              <p data-translate="painel.metrics.insights.text">Resumos e quizzes sugeridos automaticamente.</p>
+            </article>
+          </div>
+        </div>
+
+        <div class="painel-grupos" aria-labelledby="grupos-ativos-titulo">
+          <div class="cabecalho-secao">
+            <h2 id="grupos-ativos-titulo" data-translate="painel.groups.title">Seus grupos ativos</h2>
+            <button type="button" class="btn-secundario" data-translate="painel.groups.export">Exportar dados</button>
+          </div>
+          <div class="tabela-grupos" role="table" aria-label="Resumo dos grupos">
+            <div class="tabela-cabecalho" role="row">
+              <span role="columnheader" data-translate="painel.groups.table.group">Grupo</span>
+              <span role="columnheader" data-translate="painel.groups.table.members">Membros</span>
+              <span role="columnheader" data-translate="painel.groups.table.status">Status</span>
+              <span role="columnheader" data-translate="painel.groups.table.lastactivity">Última atividade</span>
+              <span role="columnheader" data-translate="painel.groups.table.actions">Ações</span>
+            </div>
+
+            <div class="tabela-linha" role="row">
+              <span role="cell" data-translate="painel.groups.frontend.name">Front-end colaborativo</span>
+              <span role="cell" data-translate="painel.groups.frontend.members">24 membros</span>
+              <span role="cell" class="tag-sucesso" data-translate="painel.groups.frontend.status">Alta participação</span>
+              <span role="cell" data-translate="painel.groups.frontend.last">Há 2 horas</span>
+              <span role="cell" class="acoes">
+                <button type="button" aria-label="Abrir painel do grupo"><i class="fa-solid fa-arrow-up-right-from-square"></i></button>
+                <button type="button" aria-label="Editar grupo"><i class="fa-solid fa-pen"></i></button>
+                <button type="button" aria-label="Configurações"><i class="fa-solid fa-gear"></i></button>
+              </span>
+            </div>
+
+            <div class="tabela-linha" role="row">
+              <span role="cell" data-translate="painel.groups.enem.name">ENEM Redação</span>
+              <span role="cell" data-translate="painel.groups.enem.members">18 membros</span>
+              <span role="cell" class="tag-atencao" data-translate="painel.groups.enem.status">Capacidade quase cheia</span>
+              <span role="cell" data-translate="painel.groups.enem.last">Há 5 horas</span>
+              <span role="cell" class="acoes">
+                <button type="button" aria-label="Abrir painel do grupo"><i class="fa-solid fa-arrow-up-right-from-square"></i></button>
+                <button type="button" aria-label="Editar grupo"><i class="fa-solid fa-pen"></i></button>
+                <button type="button" aria-label="Configurações"><i class="fa-solid fa-gear"></i></button>
+              </span>
+            </div>
+
+            <div class="tabela-linha" role="row">
+              <span role="cell" data-translate="painel.groups.english.name">Conversação em inglês</span>
+              <span role="cell" data-translate="painel.groups.english.members">30 membros</span>
+              <span role="cell" class="tag-sucesso" data-translate="painel.groups.english.status">Alta satisfação</span>
+              <span role="cell" data-translate="painel.groups.english.last">Ontem</span>
+              <span role="cell" class="acoes">
+                <button type="button" aria-label="Abrir painel do grupo"><i class="fa-solid fa-arrow-up-right-from-square"></i></button>
+                <button type="button" aria-label="Editar grupo"><i class="fa-solid fa-pen"></i></button>
+                <button type="button" aria-label="Configurações"><i class="fa-solid fa-gear"></i></button>
+              </span>
+            </div>
+
+            <div class="tabela-linha" role="row">
+              <span role="cell" data-translate="painel.groups.finance.name">Finanças pessoais</span>
+              <span role="cell" data-translate="painel.groups.finance.members">16 membros</span>
+              <span role="cell" class="tag-neutra" data-translate="painel.groups.finance.status">Estável</span>
+              <span role="cell" data-translate="painel.groups.finance.last">Há 3 dias</span>
+              <span role="cell" class="acoes">
+                <button type="button" aria-label="Abrir painel do grupo"><i class="fa-solid fa-arrow-up-right-from-square"></i></button>
+                <button type="button" aria-label="Editar grupo"><i class="fa-solid fa-pen"></i></button>
+                <button type="button" aria-label="Configurações"><i class="fa-solid fa-gear"></i></button>
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <section class="painel-atividades" aria-labelledby="atividade-titulo">
+          <div class="cabecalho-secao">
+            <h2 id="atividade-titulo" data-translate="painel.activity.title">Atividades recentes</h2>
+            <button type="button" class="btn-secundario" data-translate="painel.activity.seeall">Ver tudo</button>
+          </div>
+          <ul class="linha-tempo">
+            <li>
+              <div class="icone" aria-hidden="true"><i class="fa-solid fa-comment-dots"></i></div>
+              <div>
+                <strong data-translate="painel.activity.item1.title">Nova discussão</strong>
+                <p data-translate="painel.activity.item1.text">Bianca abriu uma thread sobre padrões de projeto no grupo Front-end.</p>
+                <span data-translate="painel.activity.item1.time">Há 35 minutos</span>
+              </div>
+            </li>
+            <li>
+              <div class="icone" aria-hidden="true"><i class="fa-solid fa-file-arrow-down"></i></div>
+              <div>
+                <strong data-translate="painel.activity.item2.title">Material publicado</strong>
+                <p data-translate="painel.activity.item2.text">Download do checklist de redação disponível para o grupo ENEM.</p>
+                <span data-translate="painel.activity.item2.time">Há 1 hora</span>
+              </div>
+            </li>
+            <li>
+              <div class="icone" aria-hidden="true"><i class="fa-solid fa-lightbulb"></i></div>
+              <div>
+                <strong data-translate="painel.activity.item3.title">Insight gerado</strong>
+                <p data-translate="painel.activity.item3.text">Quiz de revisão criado automaticamente para Conversação em inglês.</p>
+                <span data-translate="painel.activity.item3.time">Há 3 horas</span>
+              </div>
+            </li>
+            <li>
+              <div class="icone" aria-hidden="true"><i class="fa-solid fa-user-plus"></i></div>
+              <div>
+                <strong data-translate="painel.activity.item4.title">Novos membros</strong>
+                <p data-translate="painel.activity.item4.text">5 estudantes ingressaram no grupo de Finanças pessoais.</p>
+                <span data-translate="painel.activity.item4.time">Ontem</span>
+              </div>
+            </li>
+          </ul>
+        </section>
+      </section>
+    </section>
+
+    <section class="insights-grupos" aria-labelledby="insights-titulo">
+      <div class="cabecalho-secao">
+        <h2 id="insights-titulo" data-translate="painel.insights.title">Recomendações inteligentes</h2>
+      </div>
+      <div class="insights-grid">
+        <article class="insight-card">
+          <h3 data-translate="painel.insights.item1.title">Grupo com queda de presença</h3>
+          <p data-translate="painel.insights.item1.text">Reduzir duração dos encontros em 20 minutos e adicionar resumo com IA para reter membros.</p>
+          <button type="button" class="btn-primario" data-translate="painel.insights.item1.button">Aplicar sugestão</button>
+        </article>
+        <article class="insight-card">
+          <h3 data-translate="painel.insights.item2.title">Potencial de expansão</h3>
+          <p data-translate="painel.insights.item2.text">Conversação em inglês recebeu 48 pedidos de entrada. Transforme-o em hub com subgrupos por nível.</p>
+          <button type="button" class="btn-primario" data-translate="painel.insights.item2.button">Ver plano</button>
+        </article>
+        <article class="insight-card">
+          <h3 data-translate="painel.insights.item3.title">Momento de celebrar</h3>
+          <p data-translate="painel.insights.item3.text">Front-end colaborativo concluiu 4 projetos em 60 dias. Envie um certificado coletivo.</p>
+          <button type="button" class="btn-primario" data-translate="painel.insights.item3.button">Criar certificado</button>
+        </article>
+      </div>
+    </section>
+
+    <section class="formLogin" aria-label="Formulário de Login">
+      <article class="login-container">
+        <button class="close-login" aria-label="Fechar login" data-translate="login.fechar">&times;</button>
+        <h2 id="login-title" data-translate="login.title">Bem-vindo ao StudyPlaza</h2>
+        <form id="login-form" novalidate autocomplete="off" aria-describedby="form-error">
+          <label for="input-email" id="obrigatorio" data-translate="login.email">Email:</label>
+          <input type="email" id="input-email" name="email" data-translate="login.placeholder" required
+            placeholder="seu@email.com" aria-required="true" />
+          <div id="email-error" class="error-message"></div>
+
+          <label for="input-password" id="obrigatorio" data-translate="login.senha">Senha:</label>
+          <input type="password" id="input-password" name="password" required minlength="6" placeholder="••••••••"
+            aria-required="true" />
+          <div id="password-error" class="error-message"></div>
+
+          <button type="submit" class="btnEntrar" data-translate="login.entrar">Entrar</button>
+          <div id="form-error" class="error-message"></div>
+        </form>
+        <p><span data-translate="login.cadastro">Não tem uma conta?</span> <a class="linkCadastro" href="cadastro.html"
+            data-translate="login.cadastro.link">Cadastre-se aqui</a></p>
+      </article>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="footer-container">
+      <div class="footer-section">
+        <div class="nomeLogo">
+          <img class="logoFooter" src="img/Logo.svg" alt="Logo do site" />
+          <h3 class="textLogoFooter">Study Plaza</h3>
+        </div>
+        <p data-translate="footer.texto">Transformando o jeito como você estuda. Conecte-se, compartilhe e aprenda em
+          uma comunidade vibrante.</p>
+      </div>
+
+      <div class="footer-section" id="linksRapidos">
+        <h3 data-translate="footer.links.title">Links Rápidos</h3>
+        <nav aria-label="Links rápidos do rodapé">
+          <ul>
+            <li><i class="fa-solid fa-house"></i><a href="index.html"><span
+                  data-translate="footer.links.inicio">Início</span></a></li>
+            <li><i class="fa-solid fa-address-card"></i><a href="cadastro.html"><span
+                  data-translate="footer.links.cadastro">Cadastro</span></a></li>
+            <li><i class="fa-solid fa-book"></i><a href="cursos.html"><span data-translate="footer.links.cursos">Cursos</span></a>
+            </li>
+            <li><i class="fa-solid fa-trophy"></i><a href="quiz.html"><span data-translate="footer.links.quiz">Quiz</span></a></li>
+            <li><i class="fa-solid fa-users"></i><a href="sobrenos.html"><span data-translate="footer.links.sobrenos">Sobre Nós</span></a>
+            </li>
+            <li><i class="fa-solid fa-people-group"></i><a href="grupos.html">Grupos</a></li>
+            <li><i class="fa-solid fa-gauge-high"></i><a href="painel-grupos.html">Painel</a></li>
+          </ul>
+        </nav>
+      </div>
+
+      <div class="footer-section">
+        <h3 data-translate="footer.info.title">Informações</h3>
+        <ul>
+          <li><a href="#" data-translate="footer.privacidade">Política de Privacidade</a></li>
+        </ul>
+        <div class="social-icons">
+          <a href="https://www.instagram.com/studyplaza_" aria-label="Instagram StudyPlaza">
+            <i class="fab fa-instagram"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+    <p data-translate="footer.direitos">&copy; 2025 StudyPlaza - Todos os direitos reservados.</p>
+  </footer>
+
+  <script src="js/geral.js"></script>
+  <script src="js/alterarTemas.js"></script>
+  <script src="js/login.js"></script>
+  <script src="js/acessibilidade.js"></script>
+  <script src="js/translations.js"></script>
+  <script src="js/translate.js"></script>
+  <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+  <script>
+    new window.VLibras.Widget('https://vlibras.gov.br/app');
+  </script>
+</body>
+
+</html>

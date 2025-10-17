@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description"
+    content="Encontre grupos de estudo, filtre por temas e participe da comunidade colaborativa da StudyPlaza." />
+  <meta name="keywords" content="grupos de estudo, comunidade, colaboração, aprendizagem" />
+  <meta name="author" content="StudyPlaza" />
+  <title>Grupos de Estudo - StudyPlaza</title>
+  <link rel="icon" href="img/Logo_Fundo_Roxa.png" type="image/png" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/grupos.css" />
+</head>
+
+<body>
+
+  <header>
+    <div class="logo">
+      <a href="index.html" aria-label="Página inicial do Study Plaza">
+        <img src="img/Logo.svg" alt="Logo Study Plaza" />
+        <h1>Study Plaza</h1>
+      </a>
+    </div>
+
+    <button class="hamburger" aria-expanded="false" aria-controls="menu">
+      <span class="hamburger-bar"></span>
+      <span class="hamburger-bar"></span>
+      <span class="hamburger-bar"></span>
+    </button>
+
+    <nav class="menu" id="menu-principal" aria-label="Menu principal">
+      <button class="fecharMenu" aria-label="Fechar menu" data-translate="menu.fechar">&times;</button>
+      <a href="grupos.html" class="linkMenu" id="ativo"><i class="fa-solid fa-people-group"></i> <span
+          data-translate="menu.grupos">Grupos</span></a>
+      <a href="painel-grupos.html" class="linkMenu"><i class="fa-solid fa-gauge-high"></i> <span
+          data-translate="menu.painel">Painel</span></a>
+      <a href="cursos.html" class="linkMenu"><i class="fa-solid fa-book"></i> <span
+          data-translate="menu.cursos">Cursos</span></a>
+      <a href="quiz.html" class="linkMenu"><i class="fa-solid fa-trophy"></i> <span
+          data-translate="menu.quiz">Quiz</span></a>
+      <a href="sobrenos.html" class="linkMenu"><i class="fa-solid fa-users"></i> <span
+          data-translate="menu.sobrenos">Sobre Nós</span></a>
+      <a href="#" class="abrir-login linkMenu"><i class="fa-solid fa-lock"></i> <span
+          data-translate="menu.login">Login</span></a>
+    </nav>
+
+  </header>
+
+  <main>
+    <section>
+      <article>
+        <div vw class="enabled">
+          <div vw-access-button class="active"></div>
+          <div vw-plugin-wrapper>
+            <div class="vw-plugin-top-wrapper"></div>
+          </div>
+        </div>
+        <div class="overlay"></div>
+      </article>
+    </section>
+
+    <section>
+      <article>
+        <div id="barra-acessibilidade" class="divativacaobarradeacessibilidade">
+          <button id="botaobarra" onclick="ativarbarra()" class="botaoativacaobarra">
+            <img src="img/icon.svg" alt="símbolo da onu" />
+          </button>
+        </div>
+
+        <div id="barra" class="divbarradeacessibilidade">
+          <button onclick="desativarbarra()" class="botaoativacaobarra">
+            <img src="img/icon.svg" alt="símbolo da onu" />
+          </button>
+
+          <button onclick="zoommenos()" class="funcaoesbarradeacessibilidade">
+            <img src="img/lupa-.svg" alt="Lupa com um - no centro" />
+          </button>
+
+          <button onclick="zoommais()" class="funcaoesbarradeacessibilidade">
+            <img src="img/lupa+.svg" alt="Lupa com um + no centro" />
+          </button>
+
+          <button id="theme-toggle" class="theme-toggle">
+            <span id="icon" class="sun">☀️</span>
+          </button>
+        </div>
+      </article>
+    </section>
+
+    <section class="grupos-hero" aria-labelledby="hero-grupos-titulo">
+      <div class="hero-texto">
+        <span class="etiqueta" data-translate="grupos.hero.badge">Comunidade ativa 24/7</span>
+        <h1 id="hero-grupos-titulo" data-translate="grupos.hero.title">Encontre o grupo ideal para evoluir nos
+          estudos</h1>
+        <p data-translate="grupos.hero.text">Explore temas, participe de comunidades engajadas, compartilhe materiais e
+          estude com colegas que têm os mesmos objetivos que você.</p>
+        <div class="hero-acoes">
+          <a href="painel-grupos.html" class="btn-primario" data-translate="grupos.hero.cta.panel">Ir para o
+            painel</a>
+          <a href="#lista-grupos" class="btn-secundario" data-translate="grupos.hero.cta.discover">Descobrir
+            grupos</a>
+        </div>
+      </div>
+      <div class="hero-ilustracao">
+        <img src="img/ElfaEstudando2.png" alt="Mascote StudyPlaza conectada a grupos" />
+        <div class="hero-destaque">
+          <strong>+180</strong>
+          <span data-translate="grupos.hero.stats.active">grupos ativos</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="busca-grupos" aria-labelledby="busca-titulo">
+      <div class="busca-conteudo">
+        <h2 id="busca-titulo" data-translate="grupos.search.title">Busque por áreas, disciplinas ou níveis</h2>
+        <p data-translate="grupos.search.text">Personalize sua jornada utilizando os filtros abaixo ou pesquisando
+          diretamente pelo nome do grupo.</p>
+        <form class="busca-form" role="search" aria-label="Buscar grupos de estudo">
+          <div class="campo-pesquisa">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="search" placeholder="Pesquisar por nome do grupo ou tema"
+              data-translate="grupos.search.placeholder" aria-label="Pesquisar" />
+          </div>
+          <div class="filtros">
+            <label>
+              <span data-translate="grupos.search.filter.level">Nível</span>
+              <select aria-label="Filtrar por nível" data-translate="grupos.search.filter.level.aria">
+                <option data-translate="grupos.search.filter.level.all">Todos</option>
+                <option data-translate="grupos.search.filter.level.beginner">Iniciante</option>
+                <option data-translate="grupos.search.filter.level.intermediate">Intermediário</option>
+                <option data-translate="grupos.search.filter.level.advanced">Avançado</option>
+              </select>
+            </label>
+            <label>
+              <span data-translate="grupos.search.filter.format">Formato</span>
+              <select aria-label="Filtrar por formato" data-translate="grupos.search.filter.format.aria">
+                <option data-translate="grupos.search.filter.format.remote">Remoto</option>
+                <option data-translate="grupos.search.filter.format.inperson">Presencial</option>
+                <option data-translate="grupos.search.filter.format.hybrid">Híbrido</option>
+              </select>
+            </label>
+            <label>
+              <span data-translate="grupos.search.filter.language">Idioma</span>
+              <select aria-label="Filtrar por idioma" data-translate="grupos.search.filter.language.aria">
+                <option data-translate="grupos.search.filter.language.pt">Português</option>
+                <option data-translate="grupos.search.filter.language.en">Inglês</option>
+                <option data-translate="grupos.search.filter.language.es">Espanhol</option>
+              </select>
+            </label>
+          </div>
+          <button type="submit" class="btn-primario" data-translate="grupos.search.button">Aplicar filtros</button>
+        </form>
+      </div>
+    </section>
+
+    <section class="categorias-grupos" aria-labelledby="categorias-titulo">
+      <h2 id="categorias-titulo" data-translate="grupos.categories.title">Principais categorias</h2>
+      <ul class="lista-categorias" role="list">
+        <li><button type="button" class="categoria ativa" data-translate="grupos.categories.technology">Tecnologia</button>
+        </li>
+        <li><button type="button" class="categoria" data-translate="grupos.categories.exams">Vestibulares</button></li>
+        <li><button type="button" class="categoria" data-translate="grupos.categories.languages">Idiomas</button></li>
+        <li><button type="button" class="categoria" data-translate="grupos.categories.finance">Finanças</button></li>
+        <li><button type="button" class="categoria" data-translate="grupos.categories.health">Saúde</button></li>
+        <li><button type="button" class="categoria" data-translate="grupos.categories.softskills">Soft Skills</button>
+        </li>
+        <li><button type="button" class="categoria" data-translate="grupos.categories.projects">Projetos</button></li>
+      </ul>
+    </section>
+
+    <section class="lista-grupos" id="lista-grupos" aria-labelledby="grupos-titulo">
+      <div class="cabecalho-secao">
+        <h2 id="grupos-titulo" data-translate="grupos.recommended.title">Grupos recomendados para você</h2>
+        <a href="painel-grupos.html" class="link-secundario" data-translate="grupos.recommended.link">Ver todos no
+          painel</a>
+      </div>
+      <div class="cards-grupos">
+        <article class="card-grupo">
+          <header>
+            <h3 data-translate="grupos.recommended.frontend.title">Front-end colaborativo</h3>
+            <span class="situacao online"><i class="fa-solid fa-signal"></i>
+              <span data-translate="grupos.status.online">Online</span></span>
+          </header>
+          <p data-translate="grupos.recommended.frontend.description">Estudos semanais focados em React, acessibilidade
+            e boas práticas de UI. Compartilhe códigos e revise projetos em conjunto.</p>
+          <ul>
+            <li><i class="fa-solid fa-user-group"></i> <span data-translate="grupos.recommended.frontend.members">24
+                membros</span></li>
+            <li><i class="fa-solid fa-calendar"></i> <span data-translate="grupos.recommended.frontend.schedule">Encontros
+                às terças</span></li>
+            <li><i class="fa-solid fa-language"></i> <span data-translate="grupos.recommended.frontend.language">Português</span></li>
+          </ul>
+          <button type="button" class="btn-primario" data-translate="grupos.recommended.frontend.button">Participar</button>
+        </article>
+
+        <article class="card-grupo">
+          <header>
+            <h3 data-translate="grupos.recommended.enem.title">Preparatório ENEM Redação</h3>
+            <span class="situacao presencial"><i class="fa-solid fa-people-line"></i>
+              <span data-translate="grupos.status.inperson">Presencial</span></span>
+          </header>
+          <p data-translate="grupos.recommended.enem.description">Grupo com correção coletiva de redações, simulados
+            mensais e materiais comentados por professores convidados.</p>
+          <ul>
+            <li><i class="fa-solid fa-user-group"></i> <span data-translate="grupos.recommended.enem.members">18 membros</span></li>
+            <li><i class="fa-solid fa-calendar"></i> <span data-translate="grupos.recommended.enem.schedule">Sábados de
+                manhã</span></li>
+            <li><i class="fa-solid fa-location-dot"></i> <span data-translate="grupos.recommended.enem.location">Centro
+                Educacional SP</span></li>
+          </ul>
+          <button type="button" class="btn-primario" data-translate="grupos.recommended.enem.button">Reservar vaga</button>
+        </article>
+
+        <article class="card-grupo">
+          <header>
+            <h3 data-translate="grupos.recommended.english.title">Conversação em Inglês</h3>
+            <span class="situacao hibrido"><i class="fa-solid fa-globe"></i>
+              <span data-translate="grupos.status.hybrid">Híbrido</span></span>
+          </header>
+          <p data-translate="grupos.recommended.english.description">Prática guiada de conversação com tutores
+            convidados e desafios temáticos quinzenais para destravar o inglês.</p>
+          <ul>
+            <li><i class="fa-solid fa-user-group"></i> <span data-translate="grupos.recommended.english.members">30
+                membros</span></li>
+            <li><i class="fa-solid fa-calendar"></i> <span data-translate="grupos.recommended.english.schedule">Quartas à
+                noite</span></li>
+            <li><i class="fa-solid fa-language"></i> <span data-translate="grupos.recommended.english.language">Inglês /
+                Português</span></li>
+          </ul>
+          <button type="button" class="btn-primario" data-translate="grupos.recommended.english.button">Quero
+            participar</button>
+        </article>
+      </div>
+    </section>
+
+    <section class="experiencia-grupos" aria-labelledby="experiencia-titulo">
+      <div class="cabecalho-secao">
+        <h2 id="experiencia-titulo" data-translate="grupos.experience.title">Uma experiência completa de aprendizado
+          colaborativo</h2>
+      </div>
+      <div class="itens-experiencia">
+        <article class="item-experiencia">
+          <i class="fa-solid fa-message"></i>
+          <h3 data-translate="grupos.experience.chat.title">Chat organizado</h3>
+          <p data-translate="grupos.experience.chat.text">Mensagens com tópicos, menções diretas e anexos ilimitados
+            para facilitar o acompanhamento dos estudos.</p>
+        </article>
+        <article class="item-experiencia">
+          <i class="fa-solid fa-lightbulb"></i>
+          <h3 data-translate="grupos.experience.insights.title">Insights com IA</h3>
+          <p data-translate="grupos.experience.insights.text">Acompanhe resumos automáticos e quizzes inteligentes
+            gerados a partir das discussões do grupo.</p>
+        </article>
+        <article class="item-experiencia">
+          <i class="fa-solid fa-calendar-check"></i>
+          <h3 data-translate="grupos.experience.agenda.title">Agenda inteligente</h3>
+          <p data-translate="grupos.experience.agenda.text">Sincronize encontros com seu calendário, receba lembretes e
+            registre presença em segundos.</p>
+        </article>
+        <article class="item-experiencia">
+          <i class="fa-solid fa-award"></i>
+          <h3 data-translate="grupos.experience.achievements.title">Trilhas e conquistas</h3>
+          <p data-translate="grupos.experience.achievements.text">Defina metas de estudo, acompanhe o progresso da
+            turma e libere conquistas conforme concluem atividades.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="cta-grupos" aria-labelledby="cta-grupos-titulo">
+      <div class="cta-conteudo">
+        <h2 id="cta-grupos-titulo" data-translate="grupos.cta.title">Pronto para criar seu próprio grupo?</h2>
+        <p data-translate="grupos.cta.text">Organize sua turma, personalize regras, convide novos membros e acompanhe
+          tudo no painel em tempo real.</p>
+        <a href="painel-grupos.html" class="btn-primario" data-translate="grupos.cta.button">Começar agora</a>
+      </div>
+    </section>
+
+    <section class="formLogin" aria-label="Formulário de Login">
+      <article class="login-container">
+        <button class="close-login" aria-label="Fechar login" data-translate="login.fechar">&times;</button>
+        <h2 id="login-title" data-translate="login.title">Bem-vindo ao StudyPlaza</h2>
+        <form id="login-form" novalidate autocomplete="off" aria-describedby="form-error">
+          <label for="input-email" id="obrigatorio" data-translate="login.email">Email:</label>
+          <input type="email" id="input-email" name="email" data-translate="login.placeholder" required
+            placeholder="seu@email.com" aria-required="true" />
+          <div id="email-error" class="error-message"></div>
+
+          <label for="input-password" id="obrigatorio" data-translate="login.senha">Senha:</label>
+          <input type="password" id="input-password" name="password" required minlength="6" placeholder="••••••••"
+            aria-required="true" />
+          <div id="password-error" class="error-message"></div>
+
+          <button type="submit" class="btnEntrar" data-translate="login.entrar">Entrar</button>
+          <div id="form-error" class="error-message"></div>
+        </form>
+        <p><span data-translate="login.cadastro">Não tem uma conta?</span> <a class="linkCadastro" href="cadastro.html"
+            data-translate="login.cadastro.link">Cadastre-se aqui</a></p>
+      </article>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="footer-container">
+      <div class="footer-section">
+        <div class="nomeLogo">
+          <img class="logoFooter" src="img/Logo.svg" alt="Logo do site" />
+          <h3 class="textLogoFooter">Study Plaza</h3>
+        </div>
+        <p data-translate="footer.texto">Transformando o jeito como você estuda. Conecte-se, compartilhe e aprenda em
+          uma comunidade vibrante.</p>
+      </div>
+
+      <div class="footer-section" id="linksRapidos">
+        <h3 data-translate="footer.links.title">Links Rápidos</h3>
+        <nav aria-label="Links rápidos do rodapé">
+          <ul>
+            <li><i class="fa-solid fa-house"></i><a href="index.html"><span
+                  data-translate="footer.links.inicio">Início</span></a></li>
+            <li><i class="fa-solid fa-address-card"></i><a href="cadastro.html"><span
+                  data-translate="footer.links.cadastro">Cadastro</span></a></li>
+            <li><i class="fa-solid fa-book"></i><a href="cursos.html"><span data-translate="footer.links.cursos">Cursos</span></a>
+            </li>
+            <li><i class="fa-solid fa-trophy"></i><a href="quiz.html"><span data-translate="footer.links.quiz">Quiz</span></a></li>
+            <li><i class="fa-solid fa-users"></i><a href="sobrenos.html"><span data-translate="footer.links.sobrenos">Sobre Nós</span></a>
+            </li>
+            <li><i class="fa-solid fa-people-group"></i><a href="grupos.html">Grupos</a></li>
+            <li><i class="fa-solid fa-gauge-high"></i><a href="painel-grupos.html">Painel</a></li>
+          </ul>
+        </nav>
+      </div>
+
+      <div class="footer-section">
+        <h3 data-translate="footer.info.title">Informações</h3>
+        <ul>
+          <li><a href="#" data-translate="footer.privacidade">Política de Privacidade</a></li>
+        </ul>
+        <div class="social-icons">
+          <a href="https://www.instagram.com/studyplaza_" aria-label="Instagram StudyPlaza">
+            <i class="fab fa-instagram"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+    <p data-translate="footer.direitos">&copy; 2025 StudyPlaza - Todos os direitos reservados.</p>
+  </footer>
+
+  <script src="js/geral.js"></script>
+  <script src="js/alterarTemas.js"></script>
+  <script src="js/login.js"></script>
+  <script src="js/acessibilidade.js"></script>
+  <script src="js/translations.js"></script>
+  <script src="js/translate.js"></script>
+  <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+  <script>
+    new window.VLibras.Widget('https://vlibras.gov.br/app');
+  </script>
+</body>
+
+</html>
