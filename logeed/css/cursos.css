@@ -76,21 +76,24 @@ main {
   margin-bottom: 20px;
 }
 
-.course-card .linkCurso {
-  display: none;
-}
-
-.course-card .linkVerMais {
+/* Ajuste para o novo botão de inscrição */
+.course-card .linkInscricao {
   display: inline-block;
   align-self: flex-start;
   background: var(--efeitoBefore);
+  /* Cor do botão (Roxo Escuro) */
   color: var(--cor-Fundo);
+  /* Cor do texto (Branco/Claro) */
   font-weight: 700;
   padding: 10px 18px;
   border-radius: 8px;
   text-decoration: none;
   transition: background 0.3s ease, transform 0.3s ease;
 }
+
+/* Opcional: Se precisar remover o modal (pois não temos mais o "Ver mais") */
+/* Se não for usar o modal nesta página, você pode remover todo o bloco do Modal */
+/* Deixei o modal-overlay com display: none no CSS, então não deve atrapalhar */
 
 .course-card a:hover,
 .course-card a:focus {
@@ -136,101 +139,6 @@ main {
 .call-to-action a:hover {
   box-shadow: 0 0 12px var(--sombra);
   transform: translateY(-3px);
-}
-
-/* Modal */
-.modal-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
-  display: none;
-  align-items: center;
-  justify-content: center;
-  z-index: 1000;
-}
-
-.modal-content {
-  background-color: #fff;
-  padding: 30px;
-  border-radius: 16px;
-  text-align: center;
-  max-width: 400px;
-  width: 90%;
-  animation: fadeIn 0.3s ease-in-out;
-}
-
-.modal-content h3 {
-  font-size: 22px;
-  margin-bottom: 10px;
-  color: #444;
-}
-
-.modal-content p {
-  color: #444;
-  margin-bottom: 20px;
-}
-
-.modal-buttons {
-  display: flex;
-  justify-content: center;
-  gap: 15px;
-  margin-bottom: 2rem;
-}
-
-.modal-as {
-  margin: 1rem 0;
-}
-
-.login-btn,
-.cadastro-btn {
-  padding: 10px 16px;
-  border-radius: 10px;
-  text-decoration: none;
-  font-weight: bold;
-  transition: background 0.3s;
-}
-
-.login-btn {
-  background-color: var(--roxo-menu);
-  color: white;
-}
-
-.login-btn:hover {
-  background-color: var(--hoverEscuro);
-}
-
-.cadastro-btn {
-  background-color: #f0f0f0;
-  color: #333;
-}
-
-.cadastro-btn:hover {
-  background-color: #ddd;
-}
-
-.fechar-btn {
-  background: none;
-  border: none;
-  color: #666;
-  cursor: pointer;
-  font-size: 16px;
-  text-decoration: underline;
-  margin-top: 1rem;
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(-20px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
 }
 
 /* RESPONSIVO */

@@ -3,10 +3,15 @@
 
 <head>
   <meta charset="UTF-8" />
+  <!-- viewport: garante comportamento responsivo em dispositivos móveis -->
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!-- favicon exibido na aba do navegador -->
   <link rel="icon" href="img/Logo_Fundo_Roxa.png" type="image/png" />
   <title>Cadastro - StudyPlaza</title>
+
+  <!-- Font Awesome: ícones usados na navegação e no rodapé -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <!-- estilos globais e específicos da página de cadastro -->
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/cadastro.css" />
 </head>
@@ -14,19 +19,28 @@
 <body>
 
   <header>
+    <!-- Logo: link para a página inicial -->
     <section class="logo">
       <a href="index.html"><img src="img/Logo.svg" alt="Logo">
         <h1>StudyPlaza</h1>
       </a>
     </section>
 
+    <!-- Ícone hamburguer (menu responsivo)
+         - aria-expanded: valor inicial; esperado que o JS atualize quando o menu abrir/fechar
+         - aria-controls refere-se ao id do elemento de navegação controlado
+         - onclick chama função que abre o menu (implementada em JS) -->
     <div class="hamburger" aria-expanded="false" aria-controls="menu" onclick="abrirmenu()">
       <span class="hamburger-bar"></span>
       <span class="hamburger-bar"></span>
       <span class="hamburger-bar"></span>
     </div>
 
+    <!-- Navegação principal:
+         - id="menu-principal" usado pelo CSS/JS para mostrar/ocultar o menu
+         - data-translate é usado pelo sistema de traduções para substituir textos dinamicamente -->
     <nav class="menu" id="menu-principal" aria-label="Menu principal">
+      <!-- botão para fechar o menu em dispositivos móveis -->
       <button class="fecharMenu" aria-label="Fechar menu" data-translate="menu.fechar">✕</button>
 
       <a href="cursos.html" class="linkMenu"><i class="fa-solid fa-book"></i> <span
@@ -35,49 +49,60 @@
           data-translate="menu.quiz">Quiz</span></a>
       <a href="sobrenos.html" class="linkMenu"><i class="fa-solid fa-users"></i> <span
           data-translate="menu.sobrenos">Sobre Nós</span></a>
+      <!-- abrir-login: id usado pelo JS para abrir o modal/área de login -->
       <a href="#" id="abrir-login" class="linkMenu"><i class="fa-solid fa-lock"></i> <span
           data-translate="menu.login">Login</span></a>
 
     </nav>
   </header>
 
+  <!-- Main com role/aria-labelledby para acessibilidade e navegação por leitores de tela -->
   <main role="main" aria-labelledby="register-title">
 
     <section>
       <article>
-        <!-- Container VLibras -->
+        <!-- VLibras: container para o plugin de tradução em Libras -->
         <div vw class="enabled">
           <div vw-access-button class="active"></div>
           <div vw-plugin-wrapper>
             <div class="vw-plugin-top-wrapper"></div>
           </div>
         </div>
+
+        <!-- overlay genérico usado por modais/efeitos visuais -->
         <div class="overlay"></div>
       </article>
     </section>
 
     <section>
       <article>
+        <!-- Botão que ativa a barra de acessibilidade (abre painel com opções) -->
         <div id="barra-acessibilidade" class="divativacaobarradeacessibilidade">
           <button id="botaobarra" onclick="ativarbarra()" class="botaoativacaobarra">
             <img src="img/icon.svg" alt="símbolo da onu" />
           </button>
         </div>
 
+        <!-- Barra de acessibilidade:
+             - contém controles de zoom e alternância de tema
+             - funções chamadas (zoommenos, zoommais, alterar tema) implementadas em JS -->
         <div id="barra" class="divbarradeacessibilidade">
           <button onclick="desativarbarra()" class="botaoativacaobarra">
             <img src="img/icon.svg" alt="símbolo da onu" />
           </button>
 
+          <!-- Diminui o zoom do site (implementação em acessibilidade.js) -->
           <button onclick="zoommenos()" class="funcaoesbarradeacessibilidade">
             <img src="img/lupa-.svg" alt="Lupa com um - no centro" />
           </button>
 
+          <!-- Aumenta o zoom do site (implementação em acessibilidade.js) -->
           <button onclick="zoommais()" class="funcaoesbarradeacessibilidade">
             <img src="img/lupa+.svg" alt="Lupa com um + no centro" />
           </button>
 
-          <!-- 🔘 Botão do switch -->
+          <!-- Botão que alterna entre temas claro/escuro.
+               - o JS alterarTemas.js atualiza o ícone e salva a preferência no localStorage -->
           <button id="theme-toggle" class="theme-toggle">
             <span id="icon" class="sun">☀️</span>
           </button>
@@ -85,25 +110,36 @@
       </article>
     </section>
 
+    <!-- Área de cadastro -->
     <section class="register-wrapper">
 
       <article class="register-container">
-
+        <!-- Imagem ilustrativa e título da página -->
         <img src="img/ElfaEstudando.png" alt="Ilustração de uma elfa estudando">
         <h1 id="register-title" data-translate="cadastro.venha">Venha fazer parte do StudyPlaza</h1>
 
+        <!-- Formulário de cadastro:
+             - novalidate: validação customizada via js/cadastro.js
+             - autocomplete="off" para evitar preenchimento automático em demos -->
         <form id="register-form" novalidate autocomplete="off" aria-describedby="form-error">
 
+          <!-- Campo nome:
+               - aria-describedby aponta para span que exibirá mensagens de erro
+               - required/aria-required melhoram usabilidade e acessibilidade -->
           <label id="obrigatorio" for="name" data-translate="cadastro.nome">Nome:</label>
           <input type="text" id="name" name="name" required aria-required="true" aria-describedby="nameError"
             autocomplete="name" />
+          <!-- Elemento para mostrar mensagens de erro relacionadas ao campo 'name' -->
           <span id="nameError" class="error-message" role="alert" aria-live="assertive"></span>
 
+          <!-- Campo email com tipo apropriado para validação básica pelo navegador -->
           <label id="obrigatorio" for="email" data-translate="cadastro.email">Email:</label>
           <input type="email" id="email" name="email" required aria-required="true" aria-describedby="emailError"
             autocomplete="email" />
           <span id="emailError" class="error-message" role="alert" aria-live="assertive"></span>
 
+          <!-- Senha:
+               - autocomplete="new-password" para evitar preenchimento automático de senhas existentes -->
           <label id="obrigatorio" for="senha" data-translate="cadastro.senha">Senha:</label>
           <div class="password-wrapper">
             <input type="password" id="senha" name="senha" required aria-required="true"
@@ -111,6 +147,8 @@
           </div>
           <span id="passwordError" class="error-message" role="alert" aria-live="assertive"></span>
 
+          <!-- Confirmação de senha:
+               - implementações típicas verificam igualdade entre senha e confirmação no JS -->
           <label id="obrigatorio" for="confirm-password" data-translate="cadastro.confirmar">Confirmar Senha:</label>
           <div class="password-wrapper">
             <input type="password" id="confirm-password" name="confirm-password" required aria-required="true"
@@ -118,11 +156,14 @@
           </div>
           <span id="confirmPassword-error" class="error-message" role="alert" aria-live="assertive"></span>
 
+          <!-- Botão de envio do formulário -->
           <button type="submit" class="confirm" data-translate="cadastro.cadastrar">Cadastrar</button>
+          <!-- Mensagens de erro de nível do formulário (ex.: servidor, validação global) -->
           <div id="form-error" class="error-message" role="alert" aria-live="assertive"></div>
 
         </form>
 
+        <!-- Link de navegação para voltar à página inicial -->
         <div class="links">
           <a href="index.html" data-translate="cadastro.voltar">Voltar</a>
         </div>
@@ -131,6 +172,7 @@
 
     </section>
 
+    <!-- Formulário de login embutido (normalmente oculto via CSS e mostrado por JS) -->
     <section class="formLogin" aria-label="Formulário de Login">
       <article class="login-container">
         <button class="close-login" aria-label="Fechar login" data-translate="login.fechar">&times;</button>
@@ -156,12 +198,17 @@
 
   </main>
 
+  <!-- Scripts:
+       - cadastro.js: validação e envio do formulário de cadastro
+       - alterarTemas.js / login.js / acessibilidade.js: controlam UI e comportamentos
+       - translations.js / translate.js: carregam e aplicam traduções -->
   <script src="js/cadastro.js" defer></script>
   <script src="js/alterarTemas.js"></script>
   <script src="js/login.js"></script>
   <script src="js/acessibilidade.js"></script>
   <script src="js/translations.js"></script>
   <script src="js/translate.js"></script>
+  <!-- VLibras: plugin oficial de Libras; instancia o widget de tradução em Libras -->
   <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
   <script>
     new window.VLibras.Widget('https://vlibras.gov.br/app');

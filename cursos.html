@@ -4,15 +4,22 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <!-- Descrição e keywords para SEO e compartilhamento -->
   <meta name="description"
     content="Cursos complementares gratuitos para estudantes e profissionais - desenvolva habilidades e destaque-se com a Study Plaza." />
   <meta name="keywords"
     content="cursos online, gratuitos, programação, finanças pessoais, produtividade, redação, estudantes, educação" />
   <meta name="author" content="Study Plaza" />
   <title>Cursos Complementares - StudyPlaza</title>
+
+  <!-- Favicon do site -->
   <link rel="icon" href="img/Logo_Fundo_Roxa.png" type="image/png" />
+
+  <!-- Font Awesome (CDN) para ícones. integrity placeholder deve ser substituído pelo hash correto em produção -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
     integrity="sha384-..." crossorigin="anonymous" />
+
+  <!-- Estilos globais e específicos da página de cursos -->
   <link rel="stylesheet" href="css/style.css" />
   <link rel="stylesheet" href="css/cursos.css">
 </head>
@@ -20,6 +27,7 @@
 <body>
 
   <header>
+    <!-- Logo e link para home; aria-label melhora acessibilidade -->
     <div class="logo">
       <a href="index.html" aria-label="Página inicial do Study Plaza">
         <img src="img/Logo.svg" alt="Logo Study Plaza">
@@ -27,20 +35,25 @@
       </a>
     </div>
 
+    <!-- Botão hamburger para menu responsivo.
+         aria-expanded deve ser atualizado dinamicamente pelo JS quando o menu abrir/fechar. -->
     <button class="hamburger" aria-expanded="false" aria-controls="menu">
       <span class="hamburger-bar"></span>
       <span class="hamburger-bar"></span>
       <span class="hamburger-bar"></span>
     </button>
 
+    <!-- Navegação principal com data-translate para multilíngue.
+         O link Cursos tem id="ativo" indicando a página atual (usado para estilos). -->
     <nav class="menu" id="menu-principal" aria-label="Menu principal">
       <button class="fecharMenu" aria-label="Fechar menu" data-translate="menu.fechar">&times;</button>
-      <a href="cursos.html" class="linkMenu"><i class="fa-solid fa-book"></i> <span
+      <a href="cursos.html" class="linkMenu" id="ativo"><i class="fa-solid fa-book"></i> <span
           data-translate="menu.cursos">Cursos</span></a>
       <a href="quiz.html" class="linkMenu"><i class="fa-solid fa-trophy"></i> <span
           data-translate="menu.quiz">Quiz</span></a>
       <a href="sobrenos.html" class="linkMenu"><i class="fa-solid fa-users"></i> <span
           data-translate="menu.sobrenos">Sobre Nós</span></a>
+      <!-- abrir-login abre o modal/login via JS -->
       <a href="#" class="abrir-login linkMenu"><i class="fa-solid fa-lock"></i> <span
           data-translate="menu.login">Login</span></a>
     </nav>
@@ -50,19 +63,23 @@
   <main>
     <section>
       <article>
-        <!-- Container VLibras -->
+        <!-- Container VLibras: widget de Libras para acessibilidade (instanciado no fim do documento) -->
         <div vw class="enabled">
           <div vw-access-button class="active"></div>
           <div vw-plugin-wrapper>
             <div class="vw-plugin-top-wrapper"></div>
           </div>
         </div>
+
+        <!-- Overlay usado para destacar widgets/modais ou aplicar efeitos visuais -->
         <div class="overlay"></div>
       </article>
     </section>
 
     <section>
       <article>
+        <!-- Barra de acessibilidade: botão para abrir/fechar e ações de zoom.
+             As funções ativarbarra(), desativarbarra(), zoommenos(), zoommais() estão em js/acessibilidade.js -->
         <div id="barra-acessibilidade" class="divativacaobarradeacessibilidade">
           <button id="botaobarra" onclick="ativarbarra()" class="botaoativacaobarra">
             <img src="img/icon.svg" alt="símbolo da onu" />
@@ -74,15 +91,18 @@
             <img src="img/icon.svg" alt="símbolo da onu" />
           </button>
 
+          <!-- Zoom out -->
           <button onclick="zoommenos()" class="funcaoesbarradeacessibilidade">
             <img src="img/lupa-.svg" alt="Lupa com um - no centro" />
           </button>
 
+          <!-- Zoom in -->
           <button onclick="zoommais()" class="funcaoesbarradeacessibilidade">
             <img src="img/lupa+.svg" alt="Lupa com um + no centro" />
           </button>
 
-          <!-- 🔘 Botão do switch -->
+          <!-- Botão de alternância de tema (claro/escuro).
+               script alterarTemas.js controla o estado e localStorage -->
           <button id="theme-toggle" class="theme-toggle">
             <span id="icon" class="sun">☀️</span>
           </button>
@@ -90,6 +110,7 @@
       </article>
     </section>
 
+    <!-- Introdução da página -->
     <section class="intro-section" aria-labelledby="titulo-intro">
       <h1 id="titulo-intro" data-translate="cursos.intro.title">Explore os Melhores Cursos Complementares</h1>
       <p data-translate="cursos.intro.text">Na Study Plaza, reunimos os cursos online mais relevantes para turbinar sua
@@ -97,6 +118,8 @@
         Conheça novas áreas, desenvolva habilidades práticas e fique à frente no mercado. 🚀</p>
     </section>
 
+    <!-- Lista de cursos: cada 'course-card' representa um curso sugerido.
+         Os links "Ver curso" abrem recursos externos (target="_blank") com rel attributes para segurança. -->
     <section aria-labelledby="courses-title">
       <h2 id="courses-title" data-translate="cursos.title.section">Cursos</h2>
       <div class="courses-container" aria-label="Lista de cursos sugeridos">
@@ -107,6 +130,7 @@
             exercícios práticos.</p>
           <a class="linkCurso" href="https://www.coursera.org/learn/programming-fundamentals" target="_blank"
             rel="noopener noreferrer" data-translate="cursos.ver.curso">Ver curso</a>
+          <!-- "Ver mais" abre um modal que pede login/cadastro; função abrirModal() definida em js/geral.js -->
           <a class="linkVerMais" onclick="abrirModal()" data-translate="cursos.ver.mais">Ver mais</a>
         </article>
 
@@ -185,13 +209,14 @@
           <a class="linkVerMais" onclick="abrirModal()" data-translate="cursos.ver.mais">Ver mais</a>
         </article>
 
-
-        <!-- Modal -->
+        <!-- Modal que solicita login/cadastro para ver mais detalhes do curso.
+             A visibilidade do modal é controlada via CSS/JS (classe modal-overlay). -->
         <div id="modalAviso" class="modal-overlay">
           <div class="modal-content">
             <h3 data-translate="cursos.modal.title">Acesse mais conteúdos</h3>
             <p data-translate="cursos.modal.text">Faça login ou cadastre-se para ver mais detalhes sobre este curso.</p>
             <div class="modal-as">
+              <!-- abrir-login-modal abre o formulário de login -->
               <a href="#" id="abrir-login-modal" class="login-btn" data-translate="cursos.modal.login">Login</a>
               <a href="cadastro.html" class="cadastro-btn" data-translate="cursos.modal.cadastro">Cadastro</a>
             </div>
@@ -203,6 +228,7 @@
 
     </section>
 
+    <!-- Call to action para incentivar cadastro -->
     <section class="call-to-action">
       <h2 data-translate="cursos.cta.title">Gostou dos cursos? Então, cadastre-se para ter acesso completo!</h2>
       <p data-translate="cursos.cta.text">No Study Plaza você encontra uma seleção exclusiva de cursos complementares,
@@ -212,6 +238,7 @@
       <a href="cadastro.html" data-translate="cursos.cta.button">Quero me cadastrar e acessar tudo!</a>
     </section>
 
+    <!-- Formulário de login embutido (normalmente oculto/condicionado por CSS e exibido via JS) -->
     <section class="formLogin" aria-label="Formulário de Login">
       <article class="login-container">
         <button class="close-login" aria-label="Fechar login" data-translate="login.fechar">&times;</button>
@@ -247,6 +274,7 @@
           uma comunidade vibrante.</p>
       </div>
 
+      <!-- Links rápidos do rodapé; cada item usa ícone FontAwesome -->
       <div class="footer-section" id="linksRapidos">
         <h3 data-translate="footer.links.title">Links Rápidos</h3>
         <nav aria-label="Links rápidos do rodapé">
@@ -272,6 +300,8 @@
         <ul>
           <li><a href="#" data-translate="footer.privacidade">Política de Privacidade</a></li>
         </ul>
+
+        <!-- Ícone de rede social com aria-label para acessibilidade -->
         <div class="social-icons">
           <a href="https://www.instagram.com/studyplaza_/?utm_source=ig_web_button_share_sheet"
             aria-label="Instagram"><i class="fab fa-instagram"></i></a>
@@ -280,12 +310,20 @@
       <p data-translate="footer.direitos">&copy; 2025 StudyPlaza - Todos os direitos reservados.</p>
   </footer>
 
+  <!-- Scripts: ordem importante — scripts gerais/UI primeiro, depois tradução e widget VLibras.
+       - geral.js: interações como abrir/fechar menu e modal
+       - alterarTemas.js: alterna tema e salva preferência
+       - login.js: validação/abertura do formulário de login
+       - acessibilidade.js: ações de acessibilidade (zoom, barra)
+       - translations.js / translate.js: carregam e aplicam textos multilíngues -->
   <script src="js/geral.js"></script>
   <script src="js/alterarTemas.js"></script>
   <script src="js/login.js"></script>
   <script src="js/acessibilidade.js"></script>
   <script src="js/translations.js"></script>
   <script src="js/translate.js"></script>
+
+  <!-- VLibras: plugin oficial de Libras. A linha abaixo instancia o widget que adiciona o tradutor em Libras. -->
   <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
   <script>
     new window.VLibras.Widget('https://vlibras.gov.br/app');

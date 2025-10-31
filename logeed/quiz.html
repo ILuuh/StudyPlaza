@@ -5,55 +5,46 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Quiz Interativo - StudyPlaza</title>
-
-  <!-- Meta tags: descrição, palavras-chave e autor para SEO e compartilhamento -->
   <meta name="description"
     content="Teste seus conhecimentos com o quiz interativo da StudyPlaza. Acesse agora e descubra como aprender pode ser divertido!">
   <meta name="keywords" content="quiz, conhecimento, estudo, interativo, educação, estudantes, aprendizado">
   <meta name="author" content="StudyPlaza">
-
-  <!-- Favicon do site -->
-  <link rel="icon" href="img/Logo_Fundo_Roxa.png" type="image/png" />
-
-  <!-- Font Awesome para ícones (CDN) -->
+  <link rel="icon" href="../img/Logo_Fundo_Roxa.png" type="image/png" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-
-  <!-- Estilos: global e específicos para quiz -->
   <link rel="stylesheet" href="css/style.css" />
-  <link rel="stylesheet" href="css/quiz.css">
+  <link rel="stylesheet" href="../css/quiz.css">
 </head>
 
 <body>
   <header>
-    <!-- Logo com link para home; aria-label melhora a experiência de leitores de tela -->
     <div class="logo">
       <a href="index.html" aria-label="Ir para a página inicial">
-        <img src="img/Logo.svg" alt="Logo Study Plaza">
+        <img src="../img/Logo.svg" alt="Logo Study Plaza">
         <h1>Study Plaza</h1>
       </a>
     </div>
 
-    <!-- Botão hamburger para navegação responsiva.
-         aria-expanded é atualizado por JS conforme o menu abre/fecha -->
     <button class="hamburger" aria-expanded="false" aria-controls="menu">
       <span class="hamburger-bar"></span>
       <span class="hamburger-bar"></span>
       <span class="hamburger-bar"></span>
     </button>
 
-    <!-- Navegação principal:
-         - data-translate usado pelo sistema de tradução para substituir textos dinamicamente
-         - id="ativo" indica a página atual para estilos -->
     <nav class="menu" id="menu-principal" aria-label="Menu principal">
       <button class="fecharMenu" aria-label="Fechar menu" data-translate="menu.fechar">&times;</button>
+      <a href="grupos.html" class="linkMenu"><i class="fa-solid fa-people-group"></i> <span
+          data-translate="menu.grupos">Grupos</span></a>
+      <a href="painel.html" class="linkMenu"><i class="fa-solid fa-gauge-high"></i> <span
+          data-translate="menu.painel">Painel</span></a>
       <a href="cursos.html" class="linkMenu"><i class="fa-solid fa-book"></i> <span
           data-translate="menu.cursos">Cursos</span></a>
       <a href="quiz.html" class="linkMenu" id="ativo"><i class="fa-solid fa-trophy"></i> <span
           data-translate="menu.quiz">Quiz</span></a>
       <a href="sobrenos.html" class="linkMenu"><i class="fa-solid fa-users"></i> <span
           data-translate="menu.sobrenos">Sobre Nós</span></a>
-      <a href="#" class="abrir-login linkMenu"><i class="fa-solid fa-lock"></i> <span
-          data-translate="menu.login">Login</span></a>
+      <a href="chat.html" class="linkMenu"><i class="fa-solid fa-comments"></i> Chat</a>
+      <a href="perfil.html" class="linkMenu perfil-link"><i class="fa-solid fa-circle-user"></i> <span
+          data-translate="menu.perfil">Perfil</span></a>
     </nav>
 
   </header>
@@ -62,47 +53,39 @@
 
     <section>
       <article>
-        <!-- VLibras: container para o plugin de Libras (instanciado no final do documento) -->
+        <!-- Container VLibras -->
         <div vw class="enabled">
           <div vw-access-button class="active"></div>
           <div vw-plugin-wrapper>
             <div class="vw-plugin-top-wrapper"></div>
           </div>
         </div>
-
-        <!-- Overlay genérico usado para focar/modais/efeitos visuais -->
         <div class="overlay"></div>
       </article>
     </section>
 
     <section>
       <article>
-        <!-- Barra de acessibilidade:
-             - botão para abrir/fechar a barra (ativarbarra / desativarbarra em acessibilidade.js)
-             - botões de zoom para aumentar/diminuir tamanho do texto
-             - switch de tema controlado por alterarTemas.js -->
         <div id="barra-acessibilidade" class="divativacaobarradeacessibilidade">
           <button id="botaobarra" onclick="ativarbarra()" class="botaoativacaobarra">
-            <img src="img/icon.svg" alt="símbolo da onu" />
+            <img src="../img/icon.svg" alt="símbolo da onu" />
           </button>
         </div>
 
         <div id="barra" class="divbarradeacessibilidade">
           <button onclick="desativarbarra()" class="botaoativacaobarra">
-            <img src="img/icon.svg" alt="símbolo da onu" />
+            <img src="../img/icon.svg" alt="símbolo da onu" />
           </button>
 
-          <!-- Diminuir zoom -->
           <button onclick="zoommenos()" class="funcaoesbarradeacessibilidade">
-            <img src="img/lupa-.svg" alt="Lupa com um - no centro" />
+            <img src="../img/lupa-.svg" alt="Lupa com um - no centro" />
           </button>
 
-          <!-- Aumentar zoom -->
           <button onclick="zoommais()" class="funcaoesbarradeacessibilidade">
-            <img src="img/lupa+.svg" alt="Lupa com um + no centro" />
+            <img src="../img/lupa+.svg" alt="Lupa com um + no centro" />
           </button>
 
-          <!-- Botão para alternar tema (ícone atualizado por alterarTemas.js) -->
+          <!-- 🔘 Botão do switch -->
           <button id="theme-toggle" class="theme-toggle">
             <span id="icon" class="sun">☀️</span>
           </button>
@@ -110,7 +93,6 @@
       </article>
     </section>
 
-    <!-- Introdução do quiz: texto explicativo usando data-translate para multilíngue -->
     <section class="intro-quiz" aria-labelledby="intro-title">
       <h1 id="intro-title" data-translate="quiz.intro.title">Descubra como é fácil aprender com a Study Plaza!</h1>
       <p data-translate="quiz.intro.text">Esse quiz é apenas uma demonstração do que você terá acesso após fazer login.
@@ -118,9 +100,6 @@
         com base nos seus estudos. Cadastre-se para desbloquear todo o potencial da plataforma!</p>
     </section>
 
-    <!-- Área do quiz:
-         - aria-live="polite" para anunciar atualizações para leitores de tela sem interromper
-         - elementos com IDs (question/options/result/progress-bar) manipulados por js/quiz.js -->
     <section aria-labelledby="quiz-title">
       <h2 id="quiz-title" data-translate="quiz.teste.title">Teste seu conhecimento</h2>
       <div class="quiz-container" aria-live="polite">
@@ -128,37 +107,9 @@
         <div class="options" id="options"></div>
         <div class="result" id="result"></div>
       </div>
-
-      <!-- Barra de progresso visual; atualizada por js/quiz.js -->
       <div class="quiz-progress">
         <div class="progress-bar" id="progress-bar"></div>
       </div>
-    </section>
-
-    <!-- Formulário de login embutido (normalmente oculto via CSS e exibido por JS) -->
-    <section class="formLogin" aria-label="Formulário de Login">
-      <article class="login-container">
-        <button class="close-login" aria-label="Fechar login" data-translate="login.fechar">&times;</button>
-        <h2 id="login-title" data-translate="login.title">Bem-vindo ao StudyPlaza</h2>
-
-        <!-- novalidate: validação feita por login.js; autocomplete="off" para segurança em demos -->
-        <form id="login-form" novalidate autocomplete="off" aria-describedby="form-error">
-          <label for="input-email" id="obrigatorio" data-translate="login.email">Email:</label>
-          <input type="email" id="input-email" name="email" data-translate="login.placeholder" required placeholder="seu@email.com" aria-required="true" />
-          <div id="email-error" class="error-message"></div>
-
-          <label for="input-password" id="obrigatorio" data-translate="login.senha">Senha:</label>
-          <input type="password" id="input-password" name="password" required minlength="6" placeholder="••••••••"
-            aria-required="true" />
-          <div id="password-error" class="error-message"></div>
-
-          <button type="submit" class="btnEntrar" data-translate="login.entrar">Entrar</button>
-          <div id="form-error" class="error-message"></div>
-        </form>
-
-        <p><span data-translate="login.cadastro">Não tem uma conta?</span> <a class="linkCadastro" href="cadastro.html"
-            data-translate="login.cadastro.link">Cadastre-se aqui</a></p>
-      </article>
     </section>
 
   </main>
@@ -167,30 +118,31 @@
     <div class="footer-container">
       <div class="footer-section">
         <div class="nomeLogo">
-          <img class="logoFooter" src="img/Logo.svg" alt="Logo do site" />
+          <img class="logoFooter" src="../img/Logo.svg" alt="Logo do site" />
           <h2 class="textLogoFooter">Study Plaza</h2>
         </div>
         <p data-translate="footer.texto">Transformando o jeito como você estuda. Conecte-se, compartilhe e aprenda em
           uma comunidade vibrante.</p>
       </div>
 
-      <!-- Links rápidos do rodapé com ícones; abrir-login-footer acionado por JS -->
       <div class="footer-section" id="linksRapidos">
         <h3 data-translate="footer.links.title">Links Rápidos</h3>
         <nav aria-label="Links rápidos do rodapé">
           <ul>
             <li><i class="fa-solid fa-house"></i><a href="index.html"><span
                   data-translate="footer.links.inicio">Início</span></a></li>
-            <li><i class="fa-solid fa-address-card"></i><a href="cadastro.html"><span
-                  data-translate="footer.links.cadastro">Cadastro</span></a></li>
-            <li><i class="fa-solid fa-lock"></i><a href="#" id="abrir-login-footer"><span
-                  data-translate="footer.links.login">Login</span></a></li>
             <li><i class="fa-solid fa-book"></i><a href="cursos.html"><span
-                  data-translate="footer.links.cursos">Cursos</span></a></li>
+                  data-translate="footer.links.cursos">Cursos</span></a>
+            </li>
             <li><i class="fa-solid fa-trophy"></i><a href="quiz.html"><span
                   data-translate="footer.links.quiz">Quiz</span></a></li>
             <li><i class="fa-solid fa-users"></i><a href="sobrenos.html"><span
-                  data-translate="footer.links.sobrenos">Sobre Nós</span></a></li>
+                  data-translate="footer.links.sobrenos">Sobre Nós</span></a>
+            </li>
+            <li><i class="fa-solid fa-people-group"></i><a href="grupos.html">Grupos</a></li>
+            <li><i class="fa-solid fa-gauge-high"></i><a href="painel-grupos.html">Painel</a></li>
+            <li><i class="fa-solid fa-circle-user"></i><a href="perfil.html">Perfil</a></li>
+            <li><i class="fa-solid fa-comments"></i><a href="chat.html">Chat</a></li>
           </ul>
         </nav>
       </div>
@@ -207,19 +159,13 @@
         <p data-translate="footer.direitos">&copy; 2025 Study Plaza - Todos os direitos reservados.</p>
   </footer>
 
-  <!-- VLibras: plugin de Libras e instância do widget -->
   <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
   <script>new window.VLibras.Widget('https://vlibras.gov.br/app');</script>
 
-  <!-- Scripts:
-       - quiz.js manipula perguntas, opções e progresso (deferred para carregar após parsing)
-       - alterarTemas.js, geral.js, login.js, acessibilidade.js controlam UI e estado
-       - translations.js / translate.js aplicam textos multilíngues -->
-  <script src="js/quiz.js" defer></script>
-  <script src="js/alterarTemas.js"></script>
+  <script src="../js/quiz.js" defer></script>
+  <script src="../js/alterarTemas.js"></script>
   <script src="js/geral.js"></script>
-  <script src="js/login.js"></script>
-  <script src="js/acessibilidade.js"></script>
+  <script src="../js/acessibilidade.js"></script>
   <script src="js/translations.js"></script>
   <script src="js/translate.js"></script>
 </body>

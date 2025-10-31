@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Plataforma de aprendizado colaborativo com IA, quizzes e grupos de estudo." />
+    <meta name="keywords" content="estudo, educação, grupos de estudo, quizzes, IA, aprendizagem colaborativa" />
+    <meta name="author" content="StudyPlaza" />
+    <title>StudyPlaza - Plataforma de Aprendizado Colaborativo</title>
+    <link rel="icon" href="../img/Logo_Fundo_Roxa.png" type="image/svg+xml" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+        integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/chat.css">
+</head>
+
+<body>
+
+    <header>
+        <div class="logo">
+            <a href="index.html" aria-label="Voltar para página inicial">
+                <img src="../img/Logo.svg" alt="Logo StudyPlaza" />
+                <h1>StudyPlaza</h1>
+            </a>
+        </div>
+
+        <button class="hamburger" aria-expanded="false" aria-controls="menu">
+            <span class="hamburger-bar"></span>
+            <span class="hamburger-bar"></span>
+            <span class="hamburger-bar"></span>
+        </button>
+
+        <nav class="menu" id="menu-principal" aria-label="Menu principal">
+            <button class="fecharMenu" aria-label="Fechar menu" data-translate="menu.fechar">&times;</button>
+            <a href="grupos.html" class="linkMenu"><i class="fa-solid fa-people-group"></i> <span
+                    data-translate="menu.grupos">Grupos</span></a>
+            <a href="painel.html" class="linkMenu"><i class="fa-solid fa-gauge-high"></i> <span
+                    data-translate="menu.painel">Painel</span></a>
+            <a href="cursos.html" class="linkMenu"><i class="fa-solid fa-book"></i> <span
+                    data-translate="menu.cursos">Cursos</span></a>
+            <a href="quiz.html" class="linkMenu"><i class="fa-solid fa-trophy"></i> <span
+                    data-translate="menu.quiz">Quiz</span></a>
+            <a href="sobrenos.html" class="linkMenu"><i class="fa-solid fa-users"></i> <span
+                    data-translate="menu.sobrenos">Sobre Nós</span></a>
+            <a href="chat.html" class="linkMenu" id="ativo"><i class="fa-solid fa-comments"></i> Chat</a>
+            <a href="perfil.html" class="linkMenu perfil-link" ><i class="fa-solid fa-circle-user"></i> <span
+                    data-translate="menu.perfil">Perfil</span></a>
+        </nav>
+    </header>
+
+
+
+    <main>
+        <section>
+            <article>
+                <!-- Container VLibras -->
+                <div vw class="enabled">
+                    <div vw-access-button class="active"></div>
+                    <div vw-plugin-wrapper>
+                        <div class="vw-plugin-top-wrapper"></div>
+                    </div>
+                </div>
+                <div class="overlay"></div>
+            </article>
+        </section>
+        <section>
+            <article>
+                <div id="barra-acessibilidade" class="divativacaobarradeacessibilidade">
+                    <button id="botaobarra" onclick="ativarbarra()" class="botaoativacaobarra">
+                        <img src="../img/icon.svg" alt="símbolo da onu" />
+                    </button>
+                </div>
+
+                <div id="barra" class="divbarradeacessibilidade">
+                    <button onclick="desativarbarra()" class="botaoativacaobarra">
+                        <img src="../img/icon.svg" alt="símbolo da onu" />
+                    </button>
+
+                    <button onclick="zoommenos()" class="funcaoesbarradeacessibilidade">
+                        <img src="../img/lupa-.svg" alt="Lupa com um - no centro" />
+                    </button>
+
+                    <button onclick="zoommais()" class="funcaoesbarradeacessibilidade">
+                        <img src="../img/lupa+.svg" alt="Lupa com um + no centro" />
+                    </button>
+
+                    <!-- 🔘 Botão do switch -->
+                    <button id="theme-toggle" class="theme-toggle">
+                        <span id="icon" class="sun">☀️</span>
+                    </button>
+                </div>
+            </article>
+        </section>
+
+
+
+
+        <!-- Chat Container -->
+        <section class="chat-section">
+            <aside class="chat-users">
+                <h2>Conectados</h2>
+                <ul id="user-list">
+                    <li>Você</li>
+                    <!-- Outros usuários serão listados aqui -->
+                </ul>
+            </aside>
+            <div class="chat-container">
+                <ul class="chat-messages" id="chat-messages">
+                    <!-- Mensagens aparecerão aqui -->
+                </ul>
+                <form class="chat-input-area" id="chat-form" action="">
+                    <input type="text" id="chat-input" placeholder="Digite sua mensagem..." autocomplete="off"
+                        required />
+                    <button><i class="fa-solid fa-paper-plane"></i></button>
+                </form>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-section">
+                <div class="nomeLogo">
+                    <img class="logoFooter" src="../img/Logo.svg" alt="Logo do site" />
+                    <h3 class="textLogoFooter">Study Plaza</h3>
+                </div>
+                <p>Transformando o jeito como você estuda. Conecte-se, compartilhe e aprenda em uma comunidade vibrante.
+                </p>
+            </div>
+
+            <div class="footer-section" id="linksRapidos">
+                <h3>Links Rápidos</h3>
+                <nav aria-label="Links rápidos do rodapé">
+                    <ul>
+                        <li><i class="fa-solid fa-house"></i><a href="index.html"><span
+                                    data-translate="footer.links.inicio">Início</span></a></li>
+                        <li><i class="fa-solid fa-book"></i><a href="cursos.html"><span
+                                    data-translate="footer.links.cursos">Cursos</span></a>
+                        </li>
+                        <li><i class="fa-solid fa-trophy"></i><a href="quiz.html"><span
+                                    data-translate="footer.links.quiz">Quiz</span></a></li>
+                        <li><i class="fa-solid fa-users"></i><a href="sobrenos.html"><span
+                                    data-translate="footer.links.sobrenos">Sobre Nós</span></a>
+                        </li>
+                        <li><i class="fa-solid fa-people-group"></i><a href="grupos.html">Grupos</a></li>
+                        <li><i class="fa-solid fa-gauge-high"></i><a href="painel-grupos.html">Painel</a></li>
+                        <li><i class="fa-solid fa-circle-user"></i><a href="perfil.html">Perfil</a></li>
+                        <li><i class="fa-solid fa-comments"></i><a href="chat.html">Chat</a></li>
+                    </ul>
+                </nav>
+            </div>
+
+            <div class="footer-section">
+                <h3>Informações</h3>
+                <ul>
+                    <li><a href="#">Política de Privacidade</a></li>
+                </ul>
+                <div class="social-icons">
+                    <a href="https://www.instagram.com/studyplaza_" aria-label="Instagram StudyPlaza">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <p>&copy; 2025 StudyPlaza - Todos os direitos reservados.</p>
+    </footer>
+
+    <script src="/socket.io/socket.io.js"></script>
+
+    <script>
+
+        const socket = io();
+        const form = document.getElementById('chat-form');
+        const input = document.getElementById('chat-input');
+        const chatMessages = document.getElementById('chat-messages');
+
+        let myId = null;
+
+        socket.on('connect', () => {
+            myId = socket.id;
+            console.log('Conectado com ID:', myId);
+        });
+
+        form.addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            if (input.value) {
+                socket.emit('chat message', input.value);
+                input.value = '';
+            }
+        });
+
+        socket.on('chat message', function (data) {
+            const messageElement = document.createElement('li');
+            messageElement.textContent = data.msg;
+            if (data.id === myId) {
+                messageElement.classList.add('my-message');
+            } else {
+                messageElement.classList.add('other-message');
+            }
+            chatMessages.appendChild(messageElement);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        });
+
+
+    </script>
+
+    <script src="js/chat.js"></script>
+    <script src="js/geral.js"></script>
+    <script src="../js/alterarTemas.js"></script>
+    <script src="../js/acessibilidade.js"></script>
+    <script src="js/translate.js"></script>
+    <script src="js/translations.js"></script>
+    <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+    <script>
+        new window.VLibras.Widget('https://vlibras.gov.br/app');
+    </script>
+
+
+</body>
+
+</html>

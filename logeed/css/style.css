@@ -576,6 +576,35 @@ footer .logoFooter {
   width: 2.5rem;
 }
 
+@media screen and (max-width: 1390px) {
+
+  .hamburger {
+    display: flex;
+  }
+
+  .menu {w
+    position: fixed;
+    background-color: var(--roxo-menu);
+    top: 0;
+    bottom: 0;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 3rem;
+    width: 100%;
+    right: -100%;
+    transition: right 0.5s;
+    z-index: 1;
+  }
+
+  .menu.open {
+    right: 0;
+  }
+
+  .fecharMenu {
+    display: block;
+  }
+
+}
 
 @media screen and (max-width: 992px) {
   .banner {
@@ -585,6 +614,7 @@ footer .logoFooter {
   .logo img {
     height: 70px;
   }
+
 }
 
 @media screen and (max-width: 768px) {
@@ -626,28 +656,6 @@ footer .logoFooter {
 
 @media screen and (max-width: 600px) {
 
-  .hamburger {
-    display: flex;
-  }
-
-  .menu {
-    position: fixed;
-    background-color: var(--roxo-menu);
-    top: 0;
-    bottom: 0;
-    flex-direction: column;
-    align-items: flex-start;
-    padding: 3rem;
-    width: 100%;
-    right: -100%;
-    transition: right 0.5s;
-    z-index: 1;
-  }
-
-  .menu.open {
-    right: 0;
-  }
-
   .nomeLogo {
     justify-content: center;
   }
@@ -660,10 +668,6 @@ footer .logoFooter {
     display: block;
     width: 100%;
     padding: 1rem;
-  }
-
-  .fecharMenu {
-    display: block;
   }
 
   .cards {

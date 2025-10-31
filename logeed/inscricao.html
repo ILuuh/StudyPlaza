@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description"
+        content="Página de inscrição para os cursos da Study Plaza. Preencha seus dados para garantir sua vaga." />
+    <meta name="keywords" content="inscrição, matrícula, cursos, graduação, faculdade, Study Plaza" />
+    <meta name="author" content="Study Plaza" />
+    <title>Inscrição em Curso - StudyPlaza</title>
+    <link rel="icon" href="../img/Logo_Fundo_Roxa.png" type="image/png" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+        integrity="sha384-..." crossorigin="anonymous" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/inscricao.css">
+</head>
+
+<body>
+
+    <header>
+        <div class="logo">
+            <a href="index.html" aria-label="Página inicial do Study Plaza">
+                <img src="../img/Logo.svg" alt="Logo Study Plaza">
+                <h1>Study Plaza</h1>
+            </a>
+        </div>
+
+        <button class="hamburger" aria-expanded="false" aria-controls="menu">
+            <span class="hamburger-bar"></span>
+            <span class="hamburger-bar"></span>
+            <span class="hamburger-bar"></span>
+        </button>
+
+        <nav class="menu" id="menu-principal" aria-label="Menu principal">
+            <button class="fecharMenu" aria-label="Fechar menu" data-translate="menu.fechar">&times;</button>
+            <a href="grupos.html" class="linkMenu"><i class="fa-solid fa-people-group"></i> <span
+                    data-translate="menu.grupos">Grupos</span></a>
+            <a href="painel.html" class="linkMenu"><i class="fa-solid fa-gauge-high"></i> <span
+                    data-translate="menu.painel">Painel</span></a>
+            <a href="cursos.html" class="linkMenu"><i class="fa-solid fa-book"></i> <span
+                    data-translate="menu.cursos">Cursos</span></a>
+            <a href="quiz.html" class="linkMenu"><i class="fa-solid fa-trophy"></i> <span
+                    data-translate="menu.quiz">Quiz</span></a>
+            <a href="sobrenos.html" class="linkMenu"><i class="fa-solid fa-users"></i> <span
+                    data-translate="menu.sobrenos">Sobre Nós</span></a>
+            <a href="chat.html" class="linkMenu"><i class="fa-solid fa-comments"></i> Chat</a>
+            <a href="perfil.html" class="linkMenu perfil-link"><i class="fa-solid fa-circle-user"></i> <span
+                    data-translate="menu.perfil">Perfil</span></a>
+        </nav>
+    </header>
+
+    <main>
+        <section>
+            <article>
+                <div vw class="enabled">
+                    <div vw-access-button class="active"></div>
+                    <div vw-plugin-wrapper>
+                        <div class="vw-plugin-top-wrapper"></div>
+                    </div>
+                </div>
+                <div class="overlay"></div>
+            </article>
+        </section>
+
+        <section>
+            <article>
+                <div id="barra-acessibilidade" class="divativacaobarradeacessibilidade">
+                    <button id="botaobarra" onclick="ativarbarra()" class="botaoativacaobarra">
+                        <img src="../img/icon.svg" alt="símbolo da onu" />
+                    </button>
+                </div>
+
+                <div id="barra" class="divbarradeacessibilidade">
+                    <button onclick="desativarbarra()" class="botaoativacaobarra">
+                        <img src="../img/icon.svg" alt="símbolo da onu" />
+                    </button>
+
+                    <button onclick="zoommenos()" class="funcaoesbarradeacessibilidade">
+                        <img src="../img/lupa-.svg" alt="Lupa com um - no centro" />
+                    </button>
+
+                    <button onclick="zoommais()" class="funcaoesbarradeacessibilidade">
+                        <img src="../img/lupa+.svg" alt="Lupa com um + no centro" />
+                    </button>
+
+                    <button id="theme-toggle" class="theme-toggle">
+                        <span id="icon" class="sun">☀️</span>
+                    </button>
+                </div>
+            </article>
+        </section>
+
+        <section class="inscricao-section" aria-labelledby="inscricao-titulo">
+            <div class="form-container">
+                <h1 id="inscricao-titulo">Inscrição para o Curso</h1>
+                <h2 id="curso-selecionado">Análise e Desenvolvimento de Software</h2>
+                <p class="intro-texto">Preencha o formulário abaixo para garantir sua vaga e iniciar seu processo de
+                    matrícula.</p>
+
+                <form id="form-inscricao" action="processar_inscricao.php" method="POST">
+
+                    <fieldset>
+                        <legend>Dados Pessoais</legend>
+
+                        <div class="form-group">
+                            <label for="nome" id="obrigatorio">Nome Completo</label>
+                            <input type="text" id="nome" name="nome" required placeholder="Seu nome completo">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email" id="obrigatorio">E-mail</label>
+                            <input type="email" id="email" name="email" required placeholder="exemplo@dominio.com">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="telefone">Telefone</label>
+                            <input type="tel" id="telefone" name="telefone" placeholder="(XX) XXXXX-XXXX">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="cpf" id="obrigatorio">CPF</label>
+                            <input type="text" id="cpf" name="cpf" required placeholder="000.000.000-00">
+                        </div>
+                    </fieldset>
+
+                    <fieldset>
+                        <legend>Seleção do Curso</legend>
+
+                        <div class="form-group">
+                            <label for="curso" id="obrigatorio">Curso Escolhido</label>
+                            <select id="curso" name="curso" required>
+                                <option value="" disabled selected>Selecione um curso</option>
+                                <option value="agronegocio">Agronegócio</option>
+                                <option value="ads">Análise e Desenvolvimento de Software</option>
+                                <option value="ads-ams">Análise e Desenvolvimento de Software - AMS</option>
+                                <option value="ge-ead">Gestão Empresarial - EAD</option>
+                                <option value="gpi">Gestão da Produção Industrial</option>
+                                <option value="si">Sistemas para Internet</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="modalidade" id="obrigatorio">Modalidade</label>
+                            <div class="radio-group">
+                                <input type="radio" id="presencial" name="modalidade" value="presencial" required>
+                                <label for="presencial">Presencial</label>
+                                <input type="radio" id="ead" name="modalidade" value="ead">
+                                <label for="ead">EAD (Educação a Distância)</label>
+                            </div>
+                        </div>
+                    </fieldset>
+
+                    <div class="form-group termos">
+                        <input type="checkbox" id="termos" name="termos" required>
+                        <label for="termos" id="obrigatorio">Li e concordo com os <a href="#" target="_blank">Termos de
+                                Uso e Política de Privacidade</a>.</label>
+                    </div>
+
+                    <button type="submit" class="btn-submit">Finalizar Inscrição</button>
+
+                </form>
+
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-section">
+                <div class="nomeLogo">
+                    <img class="logoFooter" src="../img/Logo.svg" alt="Logo do site" />
+                    <h2 class="textLogoFooter">Study Plaza</h2>
+                </div>
+                <p data-translate="footer.texto">Transformando o jeito como você estuda. Conecte-se, compartilhe e
+                    aprenda em
+                    uma comunidade vibrante.</p>
+            </div>
+
+            <div class="footer-section" id="linksRapidos">
+                <h3 data-translate="footer.links.title">Links Rápidos</h3>
+                <nav aria-label="Links rápidos do rodapé">
+                    <ul>
+                        <li><i class="fa-solid fa-house"></i><a href="index.html"><span
+                                    data-translate="footer.links.inicio">Início</span></a></li>
+                        <li><i class="fa-solid fa-book"></i><a href="cursos.html"><span
+                                    data-translate="footer.links.cursos">Cursos</span></a>
+                        </li>
+                        <li><i class="fa-solid fa-trophy"></i><a href="quiz.html"><span
+                                    data-translate="footer.links.quiz">Quiz</span></a></li>
+                        <li><i class="fa-solid fa-users"></i><a href="sobrenos.html"><span
+                                    data-translate="footer.links.sobrenos">Sobre Nós</span></a>
+                        </li>
+                        <li><i class="fa-solid fa-people-group"></i><a href="grupos.html">Grupos</a></li>
+                        <li><i class="fa-solid fa-gauge-high"></i><a href="painel-grupos.html">Painel</a></li>
+                        <li><i class="fa-solid fa-circle-user"></i><a href="perfil.html">Perfil</a></li>
+                        <li><i class="fa-solid fa-comments"></i><a href="chat.html">Chat</a></li>
+                    </ul>
+                </nav>
+            </div>
+
+            <div class="footer-section">
+                <h3 data-translate="footer.info.title">Informações</h3>
+                <ul>
+                    <li><a href="#" data-translate="footer.privacidade">Política de Privacidade</a></li>
+                </ul>
+                <div class="social-icons">
+                    <a href="https://www.instagram.com/studyplaza_/?utm_source=ig_web_button_share_sheet"
+                        aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+            <p data-translate="footer.direitos">&copy; 2025 StudyPlaza - Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <script src="js/geral.js"></script>
+    <script src="../js/alterarTemas.js"></script>
+    <script src="../js/acessibilidade.js"></script>
+    <script src="js/translations.js"></script>
+    <script src="js/translate.js"></script>
+    <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+    <script>
+        new window.VLibras.Widget('https://vlibras.gov.br/app');
+    </script>
+</body>
+
+</html>

@@ -1,28 +1,3 @@
-/* 1. Tema Claro */
-:root {
-  --roxo-claro: #A88BEB;
-  --roxo-menu: #6A4C93;
-  --cor-Fonte: #333;
-  --efeitoBefore: #231942;
-  --hoverEscuro: #5e548e;
-  --cor-Fundo: #F9F9F9;
-  --sombra: rgba(0, 0, 0, 0.1);
-  --font-family: 'Poppins', Arial, sans-serif;
-  --gradient: linear-gradient(90deg, var(--roxo-menu), var(--roxo-claro));
-}
-
-.dark-theme {
-  --cor-Fundo: linear-gradient(135deg, #3C096C 0%, #240046 50%, #3C096C 100%);
-  --roxo-claro: #cdb4db;
-  --roxo-menu: #10002B;
-  --efeitoBefore: #9D4EDD;
-  --hoverEscuro: #8338ec;
-  --cor-Fonte: #F9F9F9;
-  --sombra: rgba(111, 66, 193, 0.2);
-  --font-family: 'Poppins', Arial, sans-serif;
-  --gradient: linear-gradient(90deg, #240046 0%, #240046 100%);
-}
-
 /* Introdução */
 .intro-quiz {
   max-width: 900px;
