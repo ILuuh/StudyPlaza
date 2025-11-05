@@ -427,6 +427,7 @@ textarea.invalid {
   font-size: 0.85rem;
   text-align: start;
   user-select: text;
+  display: none;
 }
 
 .char-count {

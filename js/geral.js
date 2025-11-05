@@ -63,11 +63,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
 });
 
-// Funções de modal
-function abrirModal() {
-  document.getElementById("modalAviso").style.display = "flex";
-}
+function mostrarAviso() {
+  const modal = document.getElementById("mostrarAviso");
+  if (!modal) return;
+  modal.classList.add("show");
 
-function fecharModal() {
-  document.getElementById("modalAviso").style.display = "none";
+  // Oculta automaticamente após 4 segundos
+  setTimeout(() => {
+    modal.classList.remove("show");
+  }, 4000);
 }

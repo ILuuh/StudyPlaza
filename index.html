@@ -183,17 +183,28 @@
 
         <form id="login-form" novalidate autocomplete="off" aria-describedby="form-error">
           <label for="input-email" id="obrigatorio" data-translate="login.email">Email:</label>
-          <input type="email" id="input-email" name="email" data-translate="login.placeholder" required placeholder="seu@email.com" aria-required="true" />
-          <div id="email-error" class="error-message"></div>
+          <input type="email" id="input-email" name="email" data-translate="login.placeholder" required
+            placeholder="seu@email.com" aria-required="true" />
+          <div id="email-error" class="error-message" data-dynamic="true">
+            <p data-translate="login.error-message.email">O campo E-mail é obrigatório.</p>
+          </div>
 
           <label for="input-password" id="obrigatorio" data-translate="login.senha">Senha:</label>
           <input type="password" id="input-password" name="password" required minlength="6" placeholder="••••••••"
             aria-required="true" />
-          <div id="password-error" class="error-message"></div>
+          <div id="password-error" class="error-message" data-dynamic="true">
+            <p data-translate="login.error-message.password">O campo Senha é obrigatória.</p>
+          </div>
 
           <button type="submit" class="btnEntrar" data-translate="login.entrar">Entrar</button>
           <div id="form-error" class="error-message"></div>
+          <div id="password-error" class="error-message"></div>
         </form>
+
+        <!-- Modal aviso temporário -->
+        <div id="mostrarAviso" class="modal-aviso">
+          <p data-translate="cursos.modal.text">Faça login ou cadastre-se para ver mais detalhes sobre este curso.</p>
+        </div>
 
         <!-- Link para página de cadastro -->
         <p><span data-translate="login.cadastro">Não tem uma conta?</span> <a class="linkCadastro" href="cadastro.html"

@@ -186,7 +186,7 @@ class TranslationSystem {
   // Muda o idioma
   changeLanguage(lang) {
     if (lang === this.currentLanguage) return;
-    
+
     this.currentLanguage = lang;
     this.storeLanguage(lang);
     this.applyTranslations();
@@ -198,29 +198,27 @@ class TranslationSystem {
   // Aplica as traduções
   applyTranslations() {
     const elements = document.querySelectorAll('[data-translate]');
-    
+
     elements.forEach(element => {
+      // Evita traduzir mensagens de erro ou conteúdo gerado dinamicamente
+      if (element.closest('[data-dynamic="true"]')) return;
+    
       const key = element.getAttribute('data-translate');
       const translation = this.getTranslation(key);
-      
+    
       if (translation) {
-        // Verifica se é um placeholder
         if (element.hasAttribute('placeholder')) {
           element.setAttribute('placeholder', translation);
-        }
-        // Verifica se é um title/aria-label
-        else if (element.hasAttribute('title')) {
+        } else if (element.hasAttribute('title')) {
           element.setAttribute('title', translation);
-        }
-        else if (element.hasAttribute('aria-label')) {
+        } else if (element.hasAttribute('aria-label')) {
           element.setAttribute('aria-label', translation);
-        }
-        // Caso contrário, altera o conteúdo
-        else {
+        } else {
           element.textContent = translation;
         }
       }
     });
+    
 
     // Atualiza o título da página
     this.updatePageTitle();
@@ -237,8 +235,8 @@ class TranslationSystem {
   updatePageTitle() {
     const currentPage = this.getCurrentPage();
     let titleKey = '';
-    
-    switch(currentPage) {
+
+    switch (currentPage) {
       case 'index':
         titleKey = 'index.title';
         break;
@@ -255,7 +253,7 @@ class TranslationSystem {
         titleKey = 'sobrenos.title';
         break;
     }
-    
+
     if (titleKey) {
       const title = this.getTranslation(titleKey);
       if (title) {
@@ -280,11 +278,11 @@ class TranslationSystem {
   updateLanguageSelector() {
     const languageText = document.querySelector('.language-text');
     const options = document.querySelectorAll('.language-option');
-    
+
     if (languageText) {
       languageText.textContent = this.currentLanguage === 'pt' ? 'PT' : 'EN';
     }
-    
+
     options.forEach(option => {
       const lang = option.getAttribute('data-lang');
       option.classList.toggle('active', lang === this.currentLanguage);
@@ -328,7 +326,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // Função global para mudança de idioma (pode ser chamada de outros scripts)
-window.changeLanguage = function(lang) {
+window.changeLanguage = function (lang) {
   if (window.translationSystem) {
     window.translationSystem.changeLanguage(lang);
   }

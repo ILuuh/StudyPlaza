@@ -39,6 +39,10 @@ const translations = {
     'login.cadastro.link': 'Cadastre-se aqui',
     'login.fechar': 'Fechar login',
     'login.placeholder': 'seu@email.com',
+    'login.error-message.email':'O campo E-mail é obrigatório.',
+    'login.invalid-message.email':'Por favor, insira um e-mail válido.',
+    'login.error-message.password':'O campo Senha é obrigatório.',
+    'login.invalid-message.password':'A senha deve ter pelo menos 6 caracteres.',
 
     // Cadastro
     'cadastro.title': 'Cadastro - StudyPlaza',
@@ -77,9 +81,6 @@ const translations = {
     'cursos.ver.mais': 'Ver mais',
     'cursos.modal.title': 'Acesse mais conteúdos',
     'cursos.modal.text': 'Faça login ou cadastre-se para ver mais detalhes sobre este curso.',
-    'cursos.modal.login': 'Login',
-    'cursos.modal.cadastro': 'Cadastro',
-    'cursos.modal.fechar': 'Fechar',
     'cursos.cta.title': 'Gostou dos cursos? Então, cadastre-se para ter acesso completo!',
     'cursos.cta.text': 'No Study Plaza você encontra uma seleção exclusiva de cursos complementares, participa de grupos de estudo e ainda testa seus conhecimentos com quizzes inteligentes. O cadastro é rápido e gratuito! Não fique de fora dessa comunidade que transforma o aprendizado.',
     'cursos.cta.button': 'Quero me cadastrar e acessar tudo!',
@@ -183,6 +184,10 @@ const translations = {
     'login.cadastro.link': 'Sign up here',
     'login.fechar': 'Close login',
     'login.placeholder': 'your@email.com',
+    'login.error-message.email':'The Email field is required.',
+    'login.invalid-message.email':'Please enter a valid email address.',
+    'login.error-message.password':'The Password field is required.',
+    'login.invalid-message.password':'The password must be at least 6 characters long.',
 
     // Cadastro
     'cadastro.title': 'Sign Up - StudyPlaza',
@@ -221,9 +226,6 @@ const translations = {
     'cursos.ver.mais': 'See more',
     'cursos.modal.title': 'Access more content',
     'cursos.modal.text': 'Login or sign up to see more details about this course.',
-    'cursos.modal.login': 'Login',
-    'cursos.modal.cadastro': 'Sign Up',
-    'cursos.modal.fechar': 'Close',
     'cursos.cta.title': 'Liked the courses? Then sign up for full access!',
     'cursos.cta.text': 'At Study Plaza you find an exclusive selection of complementary courses, participate in study groups and test your knowledge with intelligent quizzes. Registration is quick and free! Don\'t miss out on this community that transforms learning.',
     'cursos.cta.button': 'I want to sign up and access everything!',
