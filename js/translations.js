@@ -43,6 +43,14 @@ const translations = {
     'login.invalid-message.email':'Por favor, insira um e-mail válido.',
     'login.error-message.password':'O campo Senha é obrigatório.',
     'login.invalid-message.password':'A senha deve ter pelo menos 6 caracteres.',
+    'cadastro.error-message.name': 'O campo Nome é obrigatório.',
+    'cadastro.error-message.email': 'O campo E-mail é obrigatório.',
+    'cadastro.invalid-message.email': 'Por favor, insira um e-mail válido.',
+    'cadastro.error-message.password': 'O campo Senha é obrigatório.',
+    'cadastro.invalid-message.password': 'A senha deve ter pelo menos 6 caracteres.',
+    'cadastro.error-message.confirm-password': 'O campo Confirmar Senha é obrigatório.',
+    'cadastro.invalid-message.confirm-password': 'As senhas não coincidem.',
+    'validation.review-field': 'revise o campo',
 
     // Cadastro
     'cadastro.title': 'Cadastro - StudyPlaza',
@@ -137,7 +145,7 @@ const translations = {
     'footer.links.sobrenos': 'Sobre Nós',
     'footer.info.title': 'Informações',
     'footer.privacidade': 'Política de Privacidade',
-    'footer.direitos': '© 2025 StudyPlaza - Todos os direitos reservados.',
+    'footer.direitos': ' StudyPlaza - Todos os direitos reservados.',
 
     // Botão de idioma
     'language.button': 'Idioma',
@@ -188,6 +196,14 @@ const translations = {
     'login.invalid-message.email':'Please enter a valid email address.',
     'login.error-message.password':'The Password field is required.',
     'login.invalid-message.password':'The password must be at least 6 characters long.',
+    'cadastro.error-message.name': 'The Name field is required.',
+    'cadastro.error-message.email': 'The Email field is required.',
+    'cadastro.invalid-message.email': 'Please enter a valid email address.',
+    'cadastro.error-message.password': 'The Password field is required.',
+    'cadastro.invalid-message.password': 'The password must be at least 6 characters long.',
+    'cadastro.error-message.confirm-password': 'The Confirm Password field is required.',
+    'cadastro.invalid-message.confirm-password': 'Passwords do not match.',
+    'validation.review-field': 'Review this field',
 
     // Cadastro
     'cadastro.title': 'Sign Up - StudyPlaza',

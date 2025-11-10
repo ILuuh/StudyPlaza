@@ -25,6 +25,39 @@ function clearMessage(id) {
   }
 }
 
+function getTranslation(key, fallback) {
+  return window.translationSystem?.getTranslation(key) || fallback;
+}
+
+function toggleReviewMessage(inputElement, shouldShow, messageKey = 'validation.review-field', fallback = 'revise o campo') {
+  if (!inputElement) return;
+
+  const reviewId = `${inputElement.id}-review`;
+  let reviewSpan = document.getElementById(reviewId);
+  const insertionTarget = inputElement.closest('.password-wrapper') || inputElement;
+
+  if (!reviewSpan) {
+    reviewSpan = document.createElement('span');
+    reviewSpan.id = reviewId;
+    reviewSpan.classList.add('error-message', 'review-message');
+    reviewSpan.setAttribute('role', 'alert');
+    reviewSpan.setAttribute('aria-live', 'assertive');
+  }
+
+  if (shouldShow) {
+    if (messageKey) {
+      reviewSpan.setAttribute('data-translate', messageKey);
+      reviewSpan.textContent = getTranslation(messageKey, fallback);
+    } else {
+      reviewSpan.removeAttribute('data-translate');
+      reviewSpan.textContent = fallback;
+    }
+  }
+
+  insertionTarget.insertAdjacentElement('afterend', reviewSpan);
+  reviewSpan.style.display = shouldShow ? 'block' : 'none';
+}
+
 // Validação do campo Nome
 function validateName() {
   const nameInput = document.getElementById('name');
@@ -34,12 +67,14 @@ function validateName() {
   if (name === '') {
     nameInput.classList.add('invalid');
     nameInput.classList.remove('valid');
-    nameError.textContent = 'O campo Nome é obrigatório.';
+    nameError.textContent = getTranslation('cadastro.error-message.name', 'O campo Nome é obrigatório.');
+    toggleReviewMessage(nameInput, true, 'cadastro.error-message.name', 'O campo Nome é obrigatório.');
     return false;
   } else {
     nameInput.classList.remove('invalid');
     nameInput.classList.add('valid');
     nameError.textContent = '';
+    toggleReviewMessage(nameInput, false);
     return true;
   }
 }
@@ -49,22 +84,25 @@ function validateEmail() {
   const emailInput = document.getElementById('email');
   const emailError = document.getElementById('emailError');
   const value = emailInput.value.trim();
-  const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 
   if (value === '') {
     emailInput.classList.add('invalid');
     emailInput.classList.remove('valid');
-    emailError.textContent = 'O campo E-mail é obrigatório.';
+    emailError.textContent = getTranslation('cadastro.error-message.email', 'O campo E-mail é obrigatório.');
+    toggleReviewMessage(emailInput, true, 'cadastro.error-message.email', 'O campo E-mail é obrigatório.');
     return false;
   } else if (!emailPattern.test(value)) {
     emailInput.classList.add('invalid');
     emailInput.classList.remove('valid');
-    emailError.textContent = 'Por favor, insira um e-mail válido.';
+    emailError.textContent = getTranslation('cadastro.invalid-message.email', 'Por favor, insira um e-mail válido.');
+    toggleReviewMessage(emailInput, true, 'cadastro.invalid-message.email', 'Por favor, insira um e-mail válido.');
     return false;
   } else {
     emailInput.classList.remove('invalid');
     emailInput.classList.add('valid');
     emailError.textContent = '';
+    toggleReviewMessage(emailInput, false);
     return true;
   }
 }
@@ -78,17 +116,20 @@ function validatePassword() {
   if (value === '') {
     passwordInput.classList.add('invalid');
     passwordInput.classList.remove('valid');
-    passwordError.textContent = 'O campo Senha é obrigatório.';
+    passwordError.textContent = getTranslation('cadastro.error-message.password', 'O campo Senha é obrigatório.');
+    toggleReviewMessage(passwordInput, true, 'cadastro.error-message.password', 'O campo Senha é obrigatório.');
     return false;
   } else if (value.length < 6) {
     passwordInput.classList.add('invalid');
     passwordInput.classList.remove('valid');
-    passwordError.textContent = 'A senha deve ter pelo menos 6 caracteres.';
+    passwordError.textContent = getTranslation('cadastro.invalid-message.password', 'A senha deve ter pelo menos 6 caracteres.');
+    toggleReviewMessage(passwordInput, true, 'cadastro.invalid-message.password', 'A senha deve ter pelo menos 6 caracteres.');
     return false;
   } else {
     passwordInput.classList.remove('invalid');
     passwordInput.classList.add('valid');
     passwordError.textContent = '';
+    toggleReviewMessage(passwordInput, false);
     return true;
   }
 }
@@ -103,17 +144,20 @@ function validateConfirmPassword() {
   if (value === '') {
     confirmPasswordInput.classList.add('invalid');
     confirmPasswordInput.classList.remove('valid');
-    confirmPasswordError.textContent = 'O campo Confirmar Senha é obrigatório.';
+    confirmPasswordError.textContent = getTranslation('cadastro.error-message.confirm-password', 'O campo Confirmar Senha é obrigatório.');
+    toggleReviewMessage(confirmPasswordInput, true, 'cadastro.error-message.confirm-password', 'O campo Confirmar Senha é obrigatório.');
     return false;
   } else if (passwordInput.value !== confirmPasswordInput.value) {
     confirmPasswordInput.classList.add('invalid');
     confirmPasswordInput.classList.remove('valid');
-    confirmPasswordError.textContent = "As senhas não coincidem.";
+    confirmPasswordError.textContent = getTranslation('cadastro.invalid-message.confirm-password', 'As senhas não coincidem.');
+    toggleReviewMessage(confirmPasswordInput, true, 'cadastro.invalid-message.confirm-password', 'As senhas não coincidem.');
     return false;
   } else {
     confirmPasswordInput.classList.remove('invalid');
     confirmPasswordInput.classList.add('valid');
     confirmPasswordError.textContent = '';
+    toggleReviewMessage(confirmPasswordInput, false);
     return true;
   }
 }
@@ -124,10 +168,22 @@ document.getElementById('email').addEventListener('blur', validateEmail);
 document.getElementById('senha').addEventListener('blur', validatePassword);
 document.getElementById('confirm-password').addEventListener('blur', validateConfirmPassword);
 
-document.getElementById('name').addEventListener('focus', () => clearMessage('nameError'));
-document.getElementById('email').addEventListener('focus', () => clearMessage('emailError'));
-document.getElementById('senha').addEventListener('focus', () => clearMessage('passwordError'));
-document.getElementById('confirm-password').addEventListener('focus', () => clearMessage('confirmPassword-error'));
+document.getElementById('name').addEventListener('focus', () => {
+  clearMessage('nameError');
+  toggleReviewMessage(document.getElementById('name'), false);
+});
+document.getElementById('email').addEventListener('focus', () => {
+  clearMessage('emailError');
+  toggleReviewMessage(document.getElementById('email'), false);
+});
+document.getElementById('senha').addEventListener('focus', () => {
+  clearMessage('passwordError');
+  toggleReviewMessage(document.getElementById('senha'), false);
+});
+document.getElementById('confirm-password').addEventListener('focus', () => {
+  clearMessage('confirmPassword-error');
+  toggleReviewMessage(document.getElementById('confirm-password'), false);
+});
 
 // Validação no envio do formulário
 document.getElementById('register-form').addEventListener('submit', function (e) {
