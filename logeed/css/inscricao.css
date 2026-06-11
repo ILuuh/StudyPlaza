@@ -1,19 +1,17 @@
 /* Importa as variáveis de tema do style.css */
 @import url('style.css');
 
-main {
-    flex-grow: 1;
+.inscricao-section {
+    text-align: center;
+        flex-grow: 1;
     max-width: 1000px;
     margin: 50px auto 80px auto;
     padding: 0 20px;
 }
 
-.inscricao-section {
-    text-align: center;
-}
-
 .form-container {
-    background-color: var(--branco); /* Fundo claro para o formulário */
+    background-color: var(--branco);
+    /* Fundo claro para o formulário */
     padding: 40px;
     border-radius: 12px;
     box-shadow: 0 4px 20px var(--sombra);
@@ -39,7 +37,7 @@ main {
 
 .intro-texto {
     font-size: 1.1rem;
-    color: var(--cor-Fonte);
+    color: var(--cor-Fonte2, --cor-Fonte);
     margin-bottom: 30px;
     text-align: center;
 }
@@ -53,7 +51,7 @@ fieldset {
 
 legend {
     font-weight: 700;
-    color: var(--roxo-menu);
+    color: var(--cor-Fonte);
     padding: 0 10px;
     font-size: 1.1rem;
 }
@@ -66,7 +64,7 @@ legend {
     display: block;
     margin-bottom: 8px;
     font-weight: 600;
-    color: var(--cor-Fonte);
+    color: var(--cor-Fonte2, --cor-Fonte);
 }
 
 .form-group input[type="text"],
@@ -129,9 +127,9 @@ legend {
 .btn-submit {
     width: 100%;
     background: var(--roxo-menu);
+    border: 2px solid var(--roxo-claro);
     color: var(--branco);
     padding: 15px;
-    border: none;
     border-radius: 8px;
     font-size: 1.1rem;
     font-weight: bold;
@@ -143,6 +141,41 @@ legend {
     background: var(--efeitoBefore);
     transform: translateY(-2px);
 }
+
+.toast-container {
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    z-index: 9999;
+}
+
+.toast {
+    opacity: 0;
+    transform: translateY(-20px);
+    padding: 0.75rem 1.25rem;
+    border-radius: 8px;
+    color: #fff;
+    font-weight: 500;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.toast.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.toast.success {
+    background-color: #4caf50;
+}
+
+.toast.error {
+    background-color: #f44336;
+}
+
 
 /* Responsividade */
 @media (max-width: 768px) {

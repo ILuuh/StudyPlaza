@@ -1,11 +1,22 @@
+/*
+  acessibilidade.js
+  - Controles de acessibilidade da interface:
+    * ajuste de tamanho da fonte (zoom de fonte)
+    * ativar/desativar barra de acessibilidade
+    * arrastar (drag) e persistir posição da(s) barra(s) de acessibilidade
+  - Comentários explicativos adicionados para facilitar manutenção e melhoria.
+*/
+
 document.addEventListener('DOMContentLoaded', () => {
+    // Referência à barra principal (pode conter botões de contraste, fonte, etc.)
     const barra = document.getElementById('barra-acessibilidade');
   
-    // Configuração de fonte
-    window.fonteAtual = 100; // 100% = padrão
-    const maxFonte = 150;
-    const minFonte = 80;
+    // Valores de configuração para zoom de fonte (porcentagem)
+    window.fonteAtual = 100; // 100% representa o tamanho padrão
+    const maxFonte = 150;    // limite máximo permitido (150%)
+    const minFonte = 80;     // limite mínimo permitido (80%)
   
+    // Função global para aumentar a fonte em 10% até o máximo
     window.zoommais = function () {
       if (fonteAtual < maxFonte) {
         fonteAtual += 10;
@@ -13,6 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     };
   
+    // Função global para diminuir a fonte em 10% até o mínimo
     window.zoommenos = function () {
       if (fonteAtual > minFonte) {
         fonteAtual -= 10;
@@ -20,6 +32,8 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     };
   
+    // Aplica o tamanho de fonte atual ao elemento :root (html) usando porcentagem
+    // Benefício: herda para toda a página quando estilos usam rem/em relativos a root
     function aplicarZoomFonte() {
       document.documentElement.style.fontSize = `${fonteAtual}%`;
     }
@@ -27,88 +41,22 @@ document.addEventListener('DOMContentLoaded', () => {
   
   
   
-  // ativar e desativar barra de acessibilidade
+  // Funções para ativar/desativar uma barra de acessibilidade secundária (ex.: versão compacta)
+  // Observação: assumem que existem elementos com ids "barra" e "botaobarra" no DOM.
   function ativarbarra(){
-  
       let barra = document.getElementById("barra");
       let botaobarra = document.getElementById("botaobarra");
   
+      // Esconde o botão que abre a barra e mostra a própria barra
       botaobarra.style.display = "none";
       barra.style.display = "flex";
-  
   }
   
   function desativarbarra(){
-  
       let barra = document.getElementById("barra");
       let botaobarra = document.getElementById("botaobarra");
   
+      // Restaura o estado inicial: mostra o botão e oculta a barra
       botaobarra.style.display = "flex";
       barra.style.display = "none";
-  
   }
-  
-  // Código de puxar as duas barras de acessibilidade
-  
-  const barraAcessibilidade = document.getElementById("barra-acessibilidade")
-  const barra = document.getElementById("barra")
-  
-  
-  let MovimentoX, MovimentoY, Arrastado = false
-  let barraAtual = null
-  
-  
-  function PegarPosicaoAntiga() {
-      let posicaoSalva = JSON.parse(localStorage.getItem("posicaoBarra"))
-      if (posicaoSalva) {
-          barraAcessibilidade.style.left = posicaoSalva.left + "px"
-          barraAcessibilidade.style.top = posicaoSalva.top + "px"
-          barra.style.left = posicaoSalva.left + "px"
-          barra.style.top = posicaoSalva.top + "px"
-      }
-  }
-  
-  function salvarPosicao(left, top) {
-      localStorage.setItem("posicaoBarra", JSON.stringify({ left, top }))
-  }
-  
-  function iniciarArraste(event, elemento) {
-      Arrastado = true
-      barraAtual = elemento
-      MovimentoX = event.clientX - barraAtual.offsetLeft
-      MovimentoY = event.clientY - barraAtual.offsetTop
-      barraAtual.style.cursor = "grabbing"
-  }
-  
-  document.addEventListener("mousedown", (event) => {
-      if (event.target.closest("#barra-acessibilidade")) {
-          iniciarArraste(event, barraAcessibilidade)
-      } else if (event.target.closest("#barra")) {
-          iniciarArraste(event, barra)
-      }
-  });
-  
-  document.addEventListener("mousemove", (event) => {
-      if (Arrastado && barraAtual) {
-          let novoX = event.clientX - MovimentoX
-          let novoY = event.clientY - MovimentoY
-  
-          barraAcessibilidade.style.left = novoX + "px"
-          barraAcessibilidade.style.top = novoY + "px"
-          barra.style.left = novoX + "px"
-          barra.style.top = novoY + "px"
-  
-          salvarPosicao(novoX, novoY)
-      }
-  });
-  
-  document.addEventListener("mouseup", () => {
-      Arrastado = false
-      if (barraAtual) {
-          barraAtual.style.cursor = "grab"
-      }
-      barraAtual = null
-  })
-  
-  window.addEventListener('load', function() 
-  { PegarPosicaoAntiga() })

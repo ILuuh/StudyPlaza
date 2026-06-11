@@ -1,3 +1,6 @@
+/* Importa as variáveis de tema do style.css */
+@import url('style.css');
+
 .perfil-container {
     max-width: 900px;
     margin: 40px auto;
@@ -16,7 +19,7 @@
     gap: 30px;
     padding-bottom: 20px;
     margin-bottom: 20px;
-    border-bottom: 2px solid var(--cor-borda);
+    border-bottom: 2px solid var(--efeitoBefore);
 }
 
 .perfil-avatar {
@@ -24,7 +27,7 @@
     width: 130px;
     height: 120px;
     border-radius: 50%;
-    background-color: var(--cor-primaria);
+    background-color: var(--cor-Fundo);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -33,17 +36,17 @@
 
 .perfil-avatar i {
     font-size: 50px;
-    color: var(--cor-texto-claro);
+    color: var(--efeitoBefore);
 }
 
 .btn-mudar-foto {
     position: absolute;
     bottom: 0;
     right: 0;
-    background-color: var(--cor-destaque);
+    background-color: transparent;
     /* Cor de destaque para o botão */
     color: #333;
-    border: 3px solid var(--cor-fundo-secundaria);
+    border: 3px solid var(--cor-Fundo);
     border-radius: 50%;
     width: 35px;
     height: 35px;
@@ -57,7 +60,7 @@
 .perfil-info-basica h1 {
     margin: 0 0 5px 0;
     font-size: 2em;
-    color: var(--cor-primaria);
+    color: var(--cor-texto-principal);
 }
 
 .perfil-username {
@@ -95,7 +98,7 @@
     gap: 15px;
     margin-bottom: 20px;
     padding-bottom: 5px;
-    border-bottom: 1px solid var(--cor-borda);
+    border-bottom: 1px solid var(--cor-Fundo);
 }
 
 .perfil-nav-item {
@@ -223,7 +226,7 @@
 }
 
 .btn-primario {
-    background-color: var(--cor-primaria);
+    background-color: var(--roxo-menu);
     color: white;
     padding: 10px 20px;
     border: none;
@@ -235,7 +238,7 @@
 }
 
 .btn-primario:hover {
-    background-color: var(--cor-primaria-hover);
+    background-color: var(--efeitoBefore);
 }
 
 .btn-primario i {
@@ -265,6 +268,27 @@
     color: var(--cor-primaria);
     margin-right: 15px;
     font-size: 1.1em;
+}
+
+/* --------------------------------- */
+/* Visualização estática de campos  */
+/* --------------------------------- */
+.config-view .form-group { margin-bottom: 15px; }
+.field-value {
+    padding: 10px;
+    background-color: var(--cor-fundo-principal);
+    border: 1px solid var(--cor-borda);
+    border-radius: 6px;
+    color: var(--cor-texto-principal);
+    min-height: 40px;
+    display: flex;
+    align-items: center;
+    white-space: pre-wrap;
+    word-break: break-word;
+}
+
+@media (max-width: 500px) {
+    .field-value { padding: 8px; font-size: 0.95em; }
 }
 
 

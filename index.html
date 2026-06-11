@@ -7,8 +7,8 @@
   <!-- Descrição e palavras-chave ajudam SEO e compartilhamento. -->
   <meta name="description" content="Plataforma de aprendizado colaborativo com IA, quizzes e grupos de estudo." />
   <meta name="keywords" content="estudo, educação, grupos de estudo, quizzes, IA, aprendizagem colaborativa" />
-  <meta name="author" content="StudyPlaza" />
-  <title>StudyPlaza - Plataforma de Aprendizado Colaborativo</title>
+  <meta name="author" content="Study Plaza" />
+  <title>Study Plaza - Plataforma de Aprendizado Colaborativo</title>
 
   <!-- Ícone do site -->
   <link rel="icon" href="img/Logo_Fundo_Roxa.png" type="image/svg+xml" />
@@ -18,6 +18,8 @@
     integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
 
   <!-- Estilos locais -->
+  <link rel="stylesheet" href="css/login.css">
+  <link rel="stylesheet" href="css/btnAcessibilidade.css">
   <link rel="stylesheet" href="css/style.css" />
 </head>
 
@@ -27,8 +29,8 @@
     <!-- Logo e título: link para a página inicial. aria-label melhora acessibilidade para leitores de tela -->
     <div class="logo">
       <a href="index.html" aria-label="Voltar para página inicial">
-        <img src="img/Logo.svg" alt="Logo StudyPlaza" />
-        <h1>StudyPlaza</h1>
+        <img src="img/Logo.svg" alt="Logo Study Plaza" />
+        <h1>Study Plaza</h1>
       </a>
     </div>
 
@@ -44,22 +46,22 @@
     <!-- Navegação principal.
          - data-translate: usado pelo sistema de tradução/idioma para substituir textos dinamicamente -->
     <nav class="menu" id="menu-principal" aria-label="Menu principal">
-      <button class="fecharMenu" aria-label="Fechar menu" data-translate="menu.fechar">&times;</button>
+      <button class="fecharMenu" aria-label="Fechar menu">&times;</button>
 
       <!-- Cada link possui ícone e <span> com data-translate para multilíngue -->
-      <a href="cursos.html" class="linkMenu"><i class="fa-solid fa-book"></i> <span
-          data-translate="menu.cursos">Cursos</span></a>
-      <a href="quiz.html" class="linkMenu"><i class="fa-solid fa-trophy"></i> <span
-          data-translate="menu.quiz">Quiz</span></a>
-      <a href="sobrenos.html" class="linkMenu"><i class="fa-solid fa-users"></i> <span
-          data-translate="menu.sobrenos">Sobre Nós</span></a>
-      <a href="#" class="abrir-login linkMenu"><i class="fa-solid fa-lock"></i> <span
-          data-translate="menu.login">Login</span></a>
+      <a href="cursos.html" class="linkMenu"><i class="fa-solid fa-book"></i> <span>Cursos</span></a>
+      <a href="quiz.html" class="linkMenu"><i class="fa-solid fa-trophy"></i> <span>Quiz</span></a>
+      <a href="sobrenos.html" class="linkMenu"><i class="fa-solid fa-users"></i> <span>Sobre Nós</span></a>
+      <a href="#" class="abrir-login linkMenu"><i class="fa-solid fa-lock"></i> <span>Login</span></a>
     </nav>
 
   </header>
 
   <main>
+
+
+    
+
     <section>
       <article>
         <!-- Container VLibras:
@@ -114,8 +116,8 @@
          - data-translate permite trocar texto conforme o idioma selecionado -->
     <section class="banner">
       <div class="banner-texto">
-        <h2 data-translate="index.banner.title">Descubra o futuro do aprendizado colaborativo!</h2>
-        <p data-translate="index.banner.text">Na StudyPlaza, você se conecta com estudantes como você, compartilha
+        <h2>Descubra o futuro do aprendizado colaborativo!</h2>
+        <p>Na Study Plaza, você se conecta com estudantes como você, compartilha
           materiais, participa de grupos e ainda
           aprende de forma interativa com quizzes gerados por inteligência artificial.</p>
       </div>
@@ -127,48 +129,48 @@
     <!-- Seção de funcionalidades em destaques: ícones + textos.
          - Estrutura repetitiva facilita manutenção e tradução -->
     <section class="funcionalidades-steps">
-      <h2 data-translate="index.funcionalidades.title">Funcionalidades em Destaque</h2>
+      <h2>Funcionalidades em Destaque</h2>
       <div class="steps-container">
         <div class="step">
           <div class="step-icon"><i class="fas fa-users"></i></div>
-          <p data-translate="index.funcionalidades.grupos">Grupos de estudo públicos e privados</p>
+          <p>Grupos de estudo públicos e privados</p>
         </div>
         <div class="step">
           <div class="step-icon"><i class="fas fa-file-pdf"></i></div>
-          <p data-translate="index.funcionalidades.compartilhamento">Compartilhamento de PDFs e links</p>
+          <p>Compartilhamento de PDFs e links</p>
         </div>
         <div class="step">
           <div class="step-icon"><i class="fas fa-comments"></i></div>
-          <p data-translate="index.funcionalidades.chat">Chat em tempo real</p>
+          <p>Chat em tempo real</p>
         </div>
         <div class="step">
           <div class="step-icon"><i class="fas fa-brain"></i></div>
-          <p data-translate="index.funcionalidades.quizzes">Quizzes com IA personalizada</p>
+          <p>Quizzes com IA personalizada</p>
         </div>
         <div class="step">
           <div class="step-icon"><i class="fas fa-laptop"></i></div>
-          <p data-translate="index.funcionalidades.acesso">Acesso em qualquer dispositivo</p>
+          <p>Acesso em qualquer dispositivo</p>
         </div>
         <div class="step">
           <div class="step-icon"><i class="fas fa-book"></i></div>
-          <p data-translate="index.funcionalidades.cursos">Sugestão de cursos gratuitos e pagos</p>
+          <p>Sugestão de cursos dos nossos parceiros</p>
         </div>
       </div>
     </section>
 
     <!-- Lista de benefícios com ícones -->
     <section class="beneficios-lista">
-      <h2 id="benefits-title" data-translate="index.beneficios.title">Benefícios</h2>
+      <h2 id="benefits-title">Benefícios</h2>
       <ul class="beneficios-animados">
-        <li><i class="fas fa-handshake"></i> <span data-translate="index.beneficios.colaborativo">Aprendizado
+        <li><i class="fas fa-handshake"></i> <span>Aprendizado
             colaborativo e personalizado</span></li>
-        <li><i class="fas fa-clock"></i> <span data-translate="index.beneficios.flexibilidade">Flexibilidade e autonomia
+        <li><i class="fas fa-clock"></i> <span>Flexibilidade e autonomia
             para estudar</span></li>
-        <li><i class="fas fa-magic"></i> <span data-translate="index.beneficios.ia">IA para reforço do aprendizado com
+        <li><i class="fas fa-magic"></i> <span>IA para reforço do aprendizado com
             quizzes</span></li>
-        <li><i class="fas fa-graduation-cap"></i> <span data-translate="index.beneficios.sugestao">Sugestão de cursos
-            para aprofundamento</span></li>
-        <li><i class="fas fa-users-cog"></i> <span data-translate="index.beneficios.ambiente">Ambiente interativo e
+        <li><i class="fas fa-graduation-cap"></i> <span>Sugestão de cursos
+            para acompanhamento</span></li>
+        <li><i class="fas fa-users-cog"></i> <span>Ambiente interativo e
             inclusivo</span></li>
       </ul>
     </section>
@@ -178,101 +180,63 @@
          - aria-describedby aponta para área de erro geral -->
     <section class="formLogin" aria-label="Formulário de Login">
       <article class="login-container">
-        <button class="close-login" aria-label="Fechar login" data-translate="login.fechar">&times;</button>
-        <h2 id="login-title" data-translate="login.title">Bem-vindo ao StudyPlaza</h2>
+        <button class="close-login" aria-label="Fechar login">&times;</button>
+        <h2 id="login-title">Bem-vindo ao Study Plaza</h2>
 
         <form id="login-form" novalidate autocomplete="off" aria-describedby="form-error">
-          <label for="input-email" id="obrigatorio" data-translate="login.email">Email:</label>
-          <input type="email" id="input-email" name="email" data-translate="login.placeholder" required
-            placeholder="seu@email.com" aria-required="true" />
+          <label for="input-email" id="obrigatorio">Email:</label>
+          <input type="email" id="input-email" name="email" required placeholder="seu@email.com" aria-required="true" />
           <div id="email-error" class="error-message" data-dynamic="true">
-            <p data-translate="login.error-message.email">O campo E-mail é obrigatório.</p>
+            <p>O campo E-mail é obrigatório.</p>
           </div>
 
-          <label for="input-password" id="obrigatorio" data-translate="login.senha">Senha:</label>
+          <label for="input-password" id="obrigatorio">Senha:</label>
           <input type="password" id="input-password" name="password" required minlength="6" placeholder="••••••••"
             aria-required="true" />
           <div id="password-error" class="error-message" data-dynamic="true">
-            <p data-translate="login.error-message.password">O campo Senha é obrigatória.</p>
+            <p>O campo Senha é obrigatória.</p>
           </div>
 
-          <button type="submit" class="btnEntrar" data-translate="login.entrar">Entrar</button>
+          <button type="submit" class="btnEntrar">Entrar</button>
           <div id="form-error" class="error-message"></div>
           <div id="password-error" class="error-message"></div>
         </form>
 
-        <!-- Modal aviso temporário -->
-        <div id="mostrarAviso" class="modal-aviso">
-          <p data-translate="cursos.modal.text">Faça login ou cadastre-se para ver mais detalhes sobre este curso.</p>
-        </div>
-
         <!-- Link para página de cadastro -->
-        <p><span data-translate="login.cadastro">Não tem uma conta?</span> <a class="linkCadastro" href="cadastro.html"
-            data-translate="login.cadastro.link">Cadastre-se aqui</a></p>
+        <p><span>Não tem uma conta?</span> <a class="linkCadastro" href="cadastro.html">Cadastre-se aqui</a></p>
       </article>
     </section>
 
   </main>
 
   <footer>
-    <div class="footer-container">
-      <div class="footer-section">
+    <section class="footer-container">
+      <article class="footer-section">
         <div class="nomeLogo">
-          <img class="logoFooter" src="img/Logo.svg" alt="Logo do site" />
+          <img class="logoFooter" src="./img/Logo.svg" alt="Logo do site" />
           <h3 class="textLogoFooter">Study Plaza</h3>
         </div>
-        <p data-translate="footer.texto">Transformando o jeito como você estuda. Conecte-se, compartilhe e aprenda em
-          uma comunidade vibrante.</p>
-      </div>
-
-      <div class="footer-section" id="linksRapidos">
-        <h3 data-translate="footer.links.title">Links Rápidos</h3>
-        <nav aria-label="Links do rodapé">
-          <ul>
-            <!-- Links rápidos do rodapé com ícones; abrir login do rodapé aciona JS -->
-            <li><a href="index.html"><i class="fa-solid fa-house"></i> <span
-                  data-translate="footer.links.inicio">Início</span></a></li>
-            <li><a href="cadastro.html"><i class="fa-solid fa-address-card"></i> <span
-                  data-translate="footer.links.cadastro">Cadastro</span></a></li>
-            <li><a href="#" id="abrir-login-footer"><i class="fa-solid fa-lock"></i> <span
-                  data-translate="footer.links.login">Login</span></a></li>
-            <li><a href="cursos.html"><i class="fa-solid fa-book"></i> <span
-                  data-translate="footer.links.cursos">Cursos</span></a></li>
-            <li><a href="quiz.html"><i class="fa-solid fa-trophy"></i> <span
-                  data-translate="footer.links.quiz">Quiz</span></a></li>
-            <li><a href="sobrenos.html"><i class="fa-solid fa-users"></i> <span
-                  data-translate="footer.links.sobrenos">Sobre Nós</span></a></li>
-          </ul>
-        </nav>
-      </div>
-
-      <div class="footer-section">
-        <h3 data-translate="footer.info.title">Informações</h3>
-        <ul>
-          <li><a href="#" data-translate="footer.privacidade">Política de Privacidade</a></li>
-        </ul>
-
-        <!-- Ícones de redes sociais -->
+        <p>Transformando o jeito como você estuda. Conecte-se, compartilhe e aprenda em uma comunidade vibrante.</p>
         <div class="social-icons">
-          <a href="https://www.instagram.com/studyplaza_" aria-label="Instagram StudyPlaza">
-            <i class="fab fa-instagram"></i>
-          </a>
-        </div>
-      </div>
-    </div>
+          <p> Quer conhecer um pouco mais de nós?
+            Conheça nosso
 
-    <!-- Aviso de direitos autorais -->
-    <p data-translate="footer.direitos">&copy; 2025 StudyPlaza - Todos os direitos reservados.</p>
+            <a href="https://www.instagram.com/studyplaza_" aria-label="Instagram Study Plaza">
+              <i class="fab fa-instagram"></i> Instagram
+            </a>
+        </div>
+        </p>
+      </article>
+    </section>
+    <p>&copy; <span id="anoAtual">2025</span> Study Plaza - Todos os direitos reservados.</p>
   </footer>
 
-  <!-- Scripts de tradução, funcionalidades gerais, tema, login e acessibilidade.
-       A ordem importa: translations.js define os textos, translate.js aplica; geral.js lida com UI; alterarTemas.js e login.js gerenciam estado. -->
-  <script src="js/translations.js"></script>
-  <script src="js/translate.js"></script>
   <script src="js/geral.js"></script>
   <script src="js/alterarTemas.js"></script>
   <script src="js/login.js"></script>
   <script src="js/acessibilidade.js"></script>
+  <script>window.gtranslateSettings = { "default_language": "pt", "native_language_names": true, "detect_browser_language": true, "languages": ["pt", "en", "es"], "wrapper_selector": ".gtranslate_wrapper", "switcher_horizontal_position": "inline", "float_switcher_open_direction": "bottom", "alt_flags": { "en": "usa", "pt": "brazil" } }</script>
+  <script src="https://cdn.gtranslate.net/widgets/latest/float.js" defer></script>
 
   <!-- VLibras: plugin oficial para Libras. O widget abaixo instancia o assistente de Libras. -->
   <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>

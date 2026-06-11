@@ -9,12 +9,14 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
     <link rel="stylesheet" href="css/style.css" />
     <link rel="stylesheet" href="css/perfil.css">
+    <link rel="stylesheet" href="../css/btnAcessibilidade.css">
 </head>
 
 <body>
     <header>
         <div class="logo">
-            <a href="index.html"><img src="../img/Logo.svg" alt="Logo">
+            <a href="index.html" aria-label="Voltar para página inicial">
+                <img src="../img/Logo.svg" alt="Logo Study Plaza" />
                 <h1>Study Plaza</h1>
             </a>
         </div>
@@ -26,27 +28,72 @@
         </button>
 
         <nav class="menu" id="menu-principal" aria-label="Menu principal">
-            <button class="fecharMenu" aria-label="Fechar menu" data-translate="menu.fechar">&times;</button>
-            <a href="grupos.html" class="linkMenu"><i class="fa-solid fa-people-group"></i> <span
-                    data-translate="menu.grupos">Grupos</span></a>
-            <a href="painel.html" class="linkMenu"><i class="fa-solid fa-gauge-high"></i> <span
-                    data-translate="menu.painel">Painel</span></a>
-            <a href="cursos.html" class="linkMenu"><i class="fa-solid fa-book"></i> <span
-                    data-translate="menu.cursos">Cursos</span></a>
-            <a href="quiz.html" class="linkMenu"><i class="fa-solid fa-trophy"></i> <span
-                    data-translate="menu.quiz">Quiz</span></a>
-            <a href="sobrenos.html" class="linkMenu"><i class="fa-solid fa-users"></i> <span
-                    data-translate="menu.sobrenos">Sobre Nós</span></a>
-            <a href="chat.html" class="linkMenu"><i class="fa-solid fa-comments"></i> Chat</a>
-            <a href="perfil.html" class="linkMenu perfil-link" id="ativo"><i class="fa-solid fa-circle-user"></i> <span
-                    data-translate="menu.perfil">Perfil</span></a>
-        </nav>
 
+            <!-- BOTÃO FECHAR (mobile) -->
+            <button class="fecharMenu" aria-label="Fechar menu">&times;</button>
+
+            <!-- LINKS PRINCIPAIS -->
+            <div class="menu-links">
+                <a href="grupos.html" class="linkMenu">
+                    <i class="fa-solid fa-people-group"></i>
+                    <span>Grupos</span>
+                </a>
+
+                <a href="painel.html" class="linkMenu">
+                    <i class="fa-solid fa-gauge-high"></i>
+                    <span>Painel</span>
+                </a>
+
+                <a href="cursos.html" class="linkMenu">
+                    <i class="fa-solid fa-book"></i>
+                    <span>Cursos</span>
+                </a>
+
+                <a href="http://localhost:9000" class="linkMenu destaque">
+                    <i class="fa-solid fa-comments"></i>
+                    <span>Chat</span>
+                </a>
+            </div>
+
+            <!-- AÇÕES / USUÁRIO -->
+            <div class="menu-acoes">
+
+                <a href="sobrenos.html" class="linkMenu">
+                    <i class="fa-solid fa-users"></i>
+                    <span>Sobre</span>
+                </a>
+
+                <!-- PERFIL -->
+                <div class="dropdown-perfil">
+                    <button class="perfil-btn" aria-expanded="false">
+                        <i class="fa-solid fa-circle-user"></i>
+                        <span>Perfil</span>
+                        <i class="fa-solid fa-chevron-down seta"></i>
+                    </button>
+
+                    <div class="dropdown-conteudo">
+                        <a href="perfil.html">
+                            <i class="fa-solid fa-user"></i> Meu Perfil
+                        </a>
+
+                        <a href="cursosinscritos.html">
+                            <i class="fa-solid fa-book"></i> Meus Cursos
+                        </a>
+
+                        <hr>
+
+                        <a href="#" id="logout-btn" class="logout">
+                            <i class="fa-solid fa-right-from-bracket"></i> Sair
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+
+        </nav>
     </header>
 
     <main>
-
-
 
         <section>
             <article>
@@ -95,120 +142,129 @@
 
             <div class="perfil-header-card">
                 <div class="perfil-avatar">
-                    <img width="150" height="150" style="border-radius: 50%;" src="../img/CartoonLuiz.png">
-                    <button class="btn-mudar-foto" title="Mudar foto de perfil"><i class="fa-solid fa-camera"
-                            id="camera"></i></button>
+                    <img width="150" height="150" style="border-radius: 50%;" src="../img/icon-7797704_1280.png">
                 </div>
                 <div class="perfil-info-basica">
                     <h1>Luiz Gustavo</h1>
                     <p class="perfil-username">@luiz.study</p>
-                    <p class="perfil-membro-desde" data-translate="perfil.membro-desde">Membro desde: Janeiro 2024</p>
-                    <div class="perfil-badges">
-                        <i class="fa-solid fa-graduation-cap"></i><span class="badge" data-translate="perfil.profissao">
-                            Estudante</span>
-                        <i class="fa-solid fa-fire"></i><span class="badge" data-translate="perfil.ofensiva">30
-                            dias de Ofensiva</span>
-                    </div>
                 </div>
             </div>
 
             <nav class="perfil-nav">
-                <a href="#estatisticas" class="perfil-nav-item active" data-translate="perfil.estatistica"><i
-                        class="fa-solid fa-chart-line"></i>
-                    Estatísticas</a>
-                <a href="#configuracoes" class="perfil-nav-item" data-translate="perfil.config"><i
-                        class="fa-solid fa-sliders"></i> Configurações</a>
-                <a href="#historico" class="perfil-nav-item" data-translate="perfil.historico"><i
-                        class="fa-solid fa-history"></i> Histórico</a>
+                <a href="#configuracoes" class="perfil-nav-item active"><i class="fa-solid fa-sliders"></i>
+                    Configurações</a>
+                <!-- <a href="#estatisticas" class="perfil-nav-item active"><i
+                    class="fa-solid fa-chart-line"></i>
+                    Estatísticas</a> -->
+                <!-- <a href="#historico" class="perfil-nav-item"><i
+                        class="fa-solid fa-history"></i> Histórico</a> -->
             </nav>
 
             <div class="perfil-content">
+                <section id="configuracoes" class="perfil-section active-section">
+                    <h2>Configurações da Conta</h2>
+                    <div class="config-view">
+                        <div class="form-group">
+                            <label>Nome Completo</label>
+                            <div id="nome" class="field-value" aria-live="polite"></div>
+                        </div>
+                        <div class="form-group">
+                            <label>E-mail</label>
+                            <div id="email" class="field-value" aria-live="polite"></div>
+                        </div>
 
-                <section id="estatisticas" class="perfil-section active-section">
-                    <h2 data-translate="perfil.estatistica.title">Desempenho e Progresso</h2>
+                        <div class="form-group">
+                            <label>Profissão</label>
+                            <div id="tipo_usuario" class="field-value" aria-live="polite"></div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- <section id="estatisticas" class="perfil-section active-section">
+                    <h2 >Desempenho e Progresso</h2>
                     <div class="stats-grid">
                         <div class="stat-card">
                             <i class="fa-solid fa-trophy"></i>
-                            <h3 data-translate="perfil.estatistica.quizzes.title">Quizzes Concluídos</h3>
+                            <h3 >Quizzes Concluídos</h3>
                             <p>45</p>
                         </div>
                         <div class="stat-card">
                             <i class="fa-solid fa-percent"></i>
-                            <h3 data-translate="perfil.estatistica.media.title">Média Geral</h3>
+                            <h3 >Média Geral</h3>
                             <p>85%</p>
                         </div>
                         <div class="stat-card">
                             <i class="fa-solid fa-users"></i>
-                            <h3 data-translate="perfil.estatistica.grupos.title">Grupos Ativos</h3>
+                            <h3 >Grupos Ativos</h3>
                             <p>4</p>
                         </div>
                         <div class="stat-card">
                             <i class="fa-solid fa-clock"></i>
-                            <h3 data-translate="perfil.estatistica.estudo.title">Horas de Estudo (Mês)</h3>
+                            <h3 >Horas de Estudo (Mês)</h3>
                             <p>22.5h</p>
                         </div>
                     </div>
 
-                </section>
+                </section> -->
 
-                <section id="configuracoes" class="perfil-section">
-                    <h2 data-translate="perfil.config.title">Configurações da Conta</h2>
-                    <form class="config-form">
-                        <div class="form-group">
-                            <label for="nome" data-translate="perfil.config.informacao.nome">Nome Completo</label>
-                            <input type="text" id="nome" value="Luiz Gustavo Silva" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="email">E-mail</label>
-                            <input type="email" id="email" value="luiz.g@email.com" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="senha" data-translate="perfil.config.informacao.senha">Alterar Senha</label>
-                            <input type="password" id="senha"
-                                data-translate="perfil.config.informacao.senha.placeholder" placeholder="Nova senha">
-                        </div>
-                        <button type="submit" class="btn-primario"><i class="fa-solid fa-save"></i><span
-                                data-translate="perfil.config.informacao.btn-salvar"> Salvar
-                                Alterações</span></button>
-                    </form>
-                </section>
 
-                <section id="historico" class="perfil-section">
-                    <h2 data-translate="perfil.historico.title">Atividade Recente</h2>
+                <!-- <section id="historico" class="perfil-section">
+                    <h2 >Atividade Recente</h2>
                     <ul class="historico-list">
-                        <li data-translate="perfil.historico.primeiro"><i class="fa-solid fa-comment"></i> Enviou
+                        <li ><i class="fa-solid fa-comment"></i> Enviou
                             mensagem no grupo **Cálculo 101** - 10/05/2025
                         </li>
-                        <li data-translate="perfil.historico.segundo"><i class="fa-solid fa-trophy"></i> Concluiu o Quiz
+                        <li ><i class="fa-solid fa-trophy"></i> Concluiu o Quiz
                             de **JavaScript Intermediário** -
                             08/05/2025</li>
-                        <li data-translate="perfil.historico.terceiro"><i class="fa-solid fa-book"></i> Iniciou o curso
+                        <li ><i class="fa-solid fa-book"></i> Iniciou o curso
                             **Design Responsivo** - 07/05/2025</li>
-                        <li data-translate="perfil.historico.quarto"><i class="fa-solid fa-chart-line"></i> Atingiu 90%
+                        <li ><i class="fa-solid fa-chart-line"></i> Atingiu 90%
                             de média no mês de Abril - 01/05/2025
                         </li>
                     </ul>
-                </section>
+                </section> -->
 
             </div>
         </section>
     </main>
 
+    <div class="gtranslate_wrapper"></div>
     <footer>
-        <div class="footer-container">
-        </div>
-        <p>&copy; 2025 Study Plaza - Todos os direitos reservados.</p>
+        <section class="footer-container">
+            <article class="footer-section">
+                <div class="nomeLogo">
+                    <img class="logoFooter" src="../img/Logo.svg" alt="Logo do site" />
+                    <h3 class="textLogoFooter">Study Plaza</h3>
+                </div>
+                <p>Transformando o jeito como você estuda. Conecte-se, compartilhe e aprenda em uma comunidade vibrante.
+                </p>
+                <div class="social-icons">
+                    <p> Quer conhecer um pouco mais de nós?
+                        Conheça nosso
+
+                        <a href="https://www.instagram.com/studyplaza_" aria-label="Instagram Study Plaza">
+                            <i class="fab fa-instagram"></i> Instagram
+                        </a>
+                </div>
+                </p>
+            </article>
+        </section>
+        <p>&copy; <span id="anoAtual">2025</span> Study Plaza - Todos os direitos reservados.</p>
     </footer>
 
+    <script> window.chtlConfig = { chatbotId: "1666361565" } </script>
+    <script async data-id="1666361565" id="chtl-script" type="text/javascript"
+        src="https://chatling.ai/js/embed.js"></script>
     <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+    <script>window.gtranslateSettings = { "default_language": "pt", "native_language_names": true, "detect_browser_language": true, "languages": ["pt", "en", "es"], "wrapper_selector": ".gtranslate_wrapper", "switcher_horizontal_position": "inline", "float_switcher_open_direction": "bottom", "alt_flags": { "en": "usa", "pt": "brazil" } }</script>
+    <script src="https://cdn.gtranslate.net/widgets/latest/float.js" defer></script>
     <script>
         new window.VLibras.Widget('https://vlibras.gov.br/app');
     </script>
     <script src="../js/alterarTemas.js"></script>
     <script src="js/geral.js"></script>
     <script src="../js/acessibilidade.js"></script>
-    <script src="js/translate.js"></script>
-    <script src="js/translations.js"></script>
     <script src="js/perfil.js"></script>
 </body>
 

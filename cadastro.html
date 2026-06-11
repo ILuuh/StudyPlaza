@@ -7,12 +7,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <!-- favicon exibido na aba do navegador -->
   <link rel="icon" href="img/Logo_Fundo_Roxa.png" type="image/png" />
-  <title>Cadastro - StudyPlaza</title>
+  <title>Cadastro - Study Plaza</title>
 
   <!-- Font Awesome: ícones usados na navegação e no rodapé -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <!-- estilos globais e específicos da página de cadastro -->
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/login.css" />
+  <link rel="stylesheet" href="css/btnAcessibilidade.css">
   <link rel="stylesheet" href="css/cadastro.css" />
 </head>
 
@@ -22,7 +24,7 @@
     <!-- Logo: link para a página inicial -->
     <section class="logo">
       <a href="index.html"><img src="img/Logo.svg" alt="Logo">
-        <h1>StudyPlaza</h1>
+        <h1>Study Plaza</h1>
       </a>
     </section>
 
@@ -41,17 +43,13 @@
          - data-translate é usado pelo sistema de traduções para substituir textos dinamicamente -->
     <nav class="menu" id="menu-principal" aria-label="Menu principal">
       <!-- botão para fechar o menu em dispositivos móveis -->
-      <button class="fecharMenu" aria-label="Fechar menu" data-translate="menu.fechar">✕</button>
+      <button class="fecharMenu" aria-label="Fechar menu">✕</button>
 
-      <a href="cursos.html" class="linkMenu"><i class="fa-solid fa-book"></i> <span
-          data-translate="menu.cursos">Cursos</span></a>
-      <a href="quiz.html" class="linkMenu"><i class="fa-solid fa-trophy"></i> <span
-          data-translate="menu.quiz">Quiz</span></a>
-      <a href="sobrenos.html" class="linkMenu"><i class="fa-solid fa-users"></i> <span
-          data-translate="menu.sobrenos">Sobre Nós</span></a>
+      <a href="cursos.html" class="linkMenu"><i class="fa-solid fa-book"></i> <span>Cursos</span></a>
+      <a href="quiz.html" class="linkMenu"><i class="fa-solid fa-trophy"></i> <span>Quiz</span></a>
+      <a href="sobrenos.html" class="linkMenu"><i class="fa-solid fa-users"></i> <span>Sobre Nós</span></a>
       <!-- abrir-login: id usado pelo JS para abrir o modal/área de login -->
-      <a href="#" id="abrir-login" class="linkMenu"><i class="fa-solid fa-lock"></i> <span
-          data-translate="menu.login">Login</span></a>
+      <a href="#" id="abrir-login" class="linkMenu"><i class="fa-solid fa-lock"></i> <span>Login</span></a>
 
     </nav>
   </header>
@@ -116,7 +114,7 @@
       <article class="register-container">
         <!-- Imagem ilustrativa e título da página -->
         <img src="img/ElfaEstudando.png" alt="Ilustração de uma elfa estudando">
-        <h1 id="register-title" data-translate="cadastro.venha">Venha fazer parte do StudyPlaza</h1>
+        <h1 id="register-title">Venha fazer parte do Study Plaza</h1>
 
         <!-- Formulário de cadastro:
              - novalidate: validação customizada via js/cadastro.js
@@ -126,21 +124,21 @@
           <!-- Campo nome:
                - aria-describedby aponta para span que exibirá mensagens de erro
                - required/aria-required melhoram usabilidade e acessibilidade -->
-          <label id="obrigatorio" for="name" data-translate="cadastro.nome">Nome:</label>
+          <label id="obrigatorio" for="name">Nome:</label>
           <input type="text" id="name" name="name" required aria-required="true" aria-describedby="nameError"
             autocomplete="name" />
           <!-- Elemento para mostrar mensagens de erro relacionadas ao campo 'name' -->
           <span id="nameError" class="error-message" role="alert" aria-live="assertive"></span>
 
           <!-- Campo email com tipo apropriado para validação básica pelo navegador -->
-          <label id="obrigatorio" for="email" data-translate="cadastro.email">Email:</label>
+          <label id="obrigatorio" for="email">Email:</label>
           <input type="email" id="email" name="email" required aria-required="true" aria-describedby="emailError"
             autocomplete="email" />
           <span id="emailError" class="error-message" role="alert" aria-live="assertive"></span>
 
           <!-- Senha:
                - autocomplete="new-password" para evitar preenchimento automático de senhas existentes -->
-          <label id="obrigatorio" for="senha" data-translate="cadastro.senha">Senha:</label>
+          <label id="obrigatorio" for="senha">Senha:</label>
           <div class="password-wrapper">
             <input type="password" id="senha" name="senha" required aria-required="true"
               aria-describedby="passwordError" autocomplete="new-password" />
@@ -149,15 +147,31 @@
 
           <!-- Confirmação de senha:
                - implementações típicas verificam igualdade entre senha e confirmação no JS -->
-          <label id="obrigatorio" for="confirm-password" data-translate="cadastro.confirmar">Confirmar Senha:</label>
+          <label id="obrigatorio" for="confirm-password">Confirmar Senha:</label>
           <div class="password-wrapper">
             <input type="password" id="confirm-password" name="confirm-password" required aria-required="true"
               aria-describedby="confirmPassword-error" autocomplete="new-password" />
           </div>
           <span id="confirmPassword-error" class="error-message" role="alert" aria-live="assertive"></span>
 
+          <!-- Tipo de usuário:
+               - implementações típicas verificam igualdade entre senha e confirmação no JS -->
+          <label id="obrigatorio" for="tipo_usuario">Qual é sua profissão:</label>
+          <div class="select-wrapper">
+            <select id="profissao">
+              <option value="estudante" selected>
+                Estudante
+              </option>
+
+              <option value="professor">
+                Professor
+              </option>
+            </select>
+          </div>
+          <span id="profissaoError" class="error-message" role="alert" aria-live="assertive"></span>
+
           <!-- Botão de envio do formulário -->
-          <button type="submit" class="confirm" data-translate="cadastro.cadastrar">Cadastrar</button>
+          <button type="submit" class="confirm">Cadastrar</button>
           <!-- Mensagens de erro de nível do formulário (ex.: servidor, validação global) -->
           <div id="form-error" class="error-message" role="alert" aria-live="assertive"></div>
 
@@ -165,7 +179,7 @@
 
         <!-- Link de navegação para voltar à página inicial -->
         <div class="links">
-          <a href="index.html" data-translate="cadastro.voltar">Voltar</a>
+          <a href="index.html">Voltar</a>
         </div>
 
       </article>
@@ -177,48 +191,68 @@
          - aria-describedby aponta para área de erro geral -->
     <section class="formLogin" aria-label="Formulário de Login">
       <article class="login-container">
-        <button class="close-login" aria-label="Fechar login" data-translate="login.fechar">&times;</button>
-        <h2 id="login-title" data-translate="login.title">Bem-vindo ao StudyPlaza</h2>
+        <button class="close-login" aria-label="Fechar login">&times;</button>
+        <h2 id="login-title">Bem-vindo ao Study Plaza</h2>
 
         <form id="login-form" novalidate autocomplete="off" aria-describedby="form-error">
-          <label for="input-email" id="obrigatorio" data-translate="login.email">Email:</label>
-          <input type="email" id="input-email" name="email" data-translate="login.placeholder" required
-            placeholder="seu@email.com" aria-required="true" />
+          <label for="input-email" id="obrigatorio">Email:</label>
+          <input type="email" id="input-email" name="email" required placeholder="seu@email.com" aria-required="true" />
           <div id="email-error" class="error-message" data-dynamic="true">
-            <p data-translate="login.error-message.email">O campo E-mail é obrigatório.</p>
+            <p>O campo E-mail é obrigatório.</p>
           </div>
 
-          <label for="input-password" id="obrigatorio" data-translate="login.senha">Senha:</label>
+          <label for="input-password" id="obrigatorio">Senha:</label>
           <input type="password" id="input-password" name="password" required minlength="6" placeholder="••••••••"
             aria-required="true" />
           <div id="password-error" class="error-message" data-dynamic="true">
-            <p data-translate="login.error-message.password">O campo Senha é obrigatória.</p>
+            <p>O campo Senha é obrigatória.</p>
           </div>
 
-          <button type="submit" class="btnEntrar" data-translate="login.entrar">Entrar</button>
-          <div id="form-error" class="error-message"></div>
+          <button type="submit" class="btnEntrar">Entrar</button>
+          <div id="login-form-error" class="error-message"></div>
           <div id="password-error" class="error-message"></div>
         </form>
 
         <!-- Link para página de cadastro -->
-        <p><span data-translate="login.cadastro">Não tem uma conta?</span> <a class="linkCadastro" href="cadastro.html"
-            data-translate="login.cadastro.link">Cadastre-se aqui</a></p>
+        <p><span>Não tem uma conta?</span> <a class="linkCadastro" href="cadastro.html">Cadastre-se aqui</a></p>
       </article>
-    </section>>
+    </section>
 
 
   </main>
 
+  <footer>
+    <section class="footer-container">
+      <article class="footer-section">
+        <div class="nomeLogo">
+          <img class="logoFooter" src="../img/Logo.svg" alt="Logo do site" />
+          <h3 class="textLogoFooter">Study Plaza</h3>
+        </div>
+        <p>Transformando o jeito como você estuda. Conecte-se, compartilhe e aprenda em uma comunidade vibrante.</p>
+        <div class="social-icons">
+          <p> Quer conhecer um pouco mais de nós?
+            Conheça nosso
+
+            <a href="https://www.instagram.com/studyplaza_" aria-label="Instagram Study Plaza">
+              <i class="fab fa-instagram"></i> Instagram
+            </a>
+        </div>
+        </p>
+      </article>
+    </section>
+    <p>&copy; <span id="anoAtual">2025</span> Study Plaza - Todos os direitos reservados.</p>
+  </footer>
+
   <!-- Scripts:
        - cadastro.js: validação e envio do formulário de cadastro
-       - alterarTemas.js / login.js / acessibilidade.js: controlam UI e comportamentos
-       - translations.js / translate.js: carregam e aplicam traduções -->
+       - alterarTemas.js / login.js / acessibilidade.js: controlam UI e comportamentos -->
   <script src="js/cadastro.js" defer></script>
+  <script src="js/geral.js"></script>
   <script src="js/alterarTemas.js"></script>
   <script src="js/login.js"></script>
   <script src="js/acessibilidade.js"></script>
-  <script src="js/translations.js"></script>
-  <script src="js/translate.js"></script>
+  <script>window.gtranslateSettings = { "default_language": "pt", "native_language_names": true, "detect_browser_language": true, "languages": ["pt", "en", "es"], "wrapper_selector": ".gtranslate_wrapper", "switcher_horizontal_position": "inline", "float_switcher_open_direction": "bottom", "alt_flags": { "en": "usa", "pt": "brazil" } }</script>
+  <script src="https://cdn.gtranslate.net/widgets/latest/float.js" defer></script>
   <!-- VLibras: plugin oficial de Libras; instancia o widget de tradução em Libras -->
   <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
   <script>

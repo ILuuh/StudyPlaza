@@ -1,3 +1,5 @@
+@import url('style.css');
+
 /* Introdução */
 .intro-quiz {
   max-width: 900px;
@@ -23,7 +25,9 @@
 }
 
 /* Área principal */
-main {
+
+
+.conteudo-quiz{
   max-width: 800px;
   min-height: 85vh;
   margin: 50px auto;
@@ -48,7 +52,7 @@ main {
 
 .question {
   font-size: 1.2rem;
-  color: var(--cor-Fundo);
+  color: var(--branco);
   margin-bottom: 20px;
 }
 
@@ -57,7 +61,7 @@ main {
   width: 100%;
   margin: 10px 0;
   padding: 12px;
-  border: none;
+  border: 1px solid ;
   border-radius: 8px;
   background: var(--roxo-menu);
   color: var(--cor-Fundo);
@@ -74,7 +78,7 @@ main {
 
 .result {
   font-size: 1.1rem;
-  color: #4a3a60;
+  color: var(--cor-Fonte);
   margin-top: 30px;
   font-weight: bold;
   background-color: white;

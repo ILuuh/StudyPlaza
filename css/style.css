@@ -1,19 +1,24 @@
+/* =========================
+   IMPORTS & ROOT
+========================= */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;600;700&display=swap');
 
 :root {
   --roxo-claro: #A88BEB;
   --roxo-menu: #6A4C93;
   --cor-Fonte: #333;
-  --ativo:#BFDFFF;
+  --ativo: #BFDFFF;
   --efeitoBefore: #231942;
-  --hoverEscuro: #5e548e;
+  --hoverEscuro: #231942;
   --cor-Fundo: #F9F9F9;
-  --branco: #ffff;
+  --branco: #fff;
   --sombra: rgba(0, 0, 0, 0.08);
   --font-family: 'Poppins', Arial, sans-serif;
   --gradient: linear-gradient(100deg, var(--roxo-menu), var(--roxo-claro));
+  --error-mensage: #e63946;
 }
 
+/* DARK MODE */
 .dark-theme {
   --cor-Fundo: linear-gradient(135deg, #3C096C 0%, #240046 50%, #3C096C 100%);
   --roxo-claro: #cdb4db;
@@ -23,15 +28,29 @@
   --hoverEscuro: #8338ec;
   --cor-Fonte: #F9F9F9;
   --cor-Fonte2: #333;
-  --branco: #ffff;
+  --branco: #fff;
   --sombra: rgba(111, 66, 193, 0.2);
   --gradient: linear-gradient(90deg, #240046 0%, #240046 100%);
+  --error-mensage: #FF8080;
 }
 
+/* =========================
+   RESET & BASE
+========================= */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+
+  font-family: var(--font-family);
+  background: var(--cor-Fundo);
+  color: var(--cor-Fonte);
 }
 
 #obrigatorio::after {
@@ -39,19 +58,29 @@
   color: red;
 }
 
-body {
-  font-family: var(--font-family);
-  background: var(--cor-Fundo);
-  color: var(--cor-Fonte);
+/* =========================
+   HEADER / NAVBAR
+========================= */
+header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+
   display: flex;
-  flex-direction: column;
-  min-height: 100vh;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 0.5rem 5%;
+  background: var(--gradient);
+  box-shadow: 0 4px 12px var(--sombra);
 }
 
+/* LOGO */
 .logo a {
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
+
   text-decoration: none;
   color: white;
   font-size: 0.75rem;
@@ -61,31 +90,22 @@ body {
   height: 100px;
 }
 
-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0.5rem 5%;
-  background: var(--gradient);
-  box-shadow: 0 4px 12px var(--sombra);
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-}
-
+/* MENU */
 .menu {
   display: flex;
-  gap: 18px;
   flex-wrap: wrap;
+  gap: 18px;
 }
 
 .linkMenu {
+  position: relative;
+
   margin: 0 1rem;
+  font-weight: bold;
   text-decoration: none;
   color: white;
-  font-weight: bold;
-  position: relative;
-  transition: transform 0.3s ease;
+
+  transition: 0.3s ease;
 }
 
 .linkMenu:hover {
@@ -93,16 +113,20 @@ header {
 }
 
 .linkMenu::before {
-  content: '';
+  content: "";
   position: absolute;
   bottom: 0;
   left: 50%;
+
   width: 0;
   height: 4px;
-  background-color: var(--efeitoBefore);
-  transition: width 0.3s ease, opacity 0.3s ease;
+
+  background: var(--efeitoBefore);
+
   transform: translateX(-50%);
   opacity: 0;
+
+  transition: 0.3s;
 }
 
 .linkMenu:hover::before {
@@ -114,50 +138,61 @@ header {
   color: var(--ativo);
 }
 
-.fecharMenu {
-  align-self: flex-end;
-  background: none;
-  border: none;
-  font-size: 1.5rem;
-  color: white;
-  cursor: pointer;
-  display: none;
-  transition: color 0.3s;
-}
-
-.fecharMenu:hover {
-  color: var(--efeitoBefore);
-}
-
+/* =========================
+   MENU MOBILE
+========================= */
 .hamburger {
-  height: 2rem;
-  width: 2.5rem;
-  background: transparent;
-  border: none;
   display: none;
   flex-direction: column;
   gap: 0.4rem;
-  cursor: pointer;
-}
 
-.hamburger:focus {
-  transform: translateY(-2px);
+  width: 2.5rem;
+  height: 2rem;
+
+  border: none;
+  background: transparent;
+  cursor: pointer;
 }
 
 .hamburger-bar {
   width: 100%;
   height: 3px;
   border-radius: 10px;
-  background-color: white;
-  transition: background-color 0.3s ease, transform 0.3s ease;
+  background: white;
+
+  transition: 0.3s;
 }
 
-.theme-toggle {
-  background: none;
+.fecharMenu {
+  display: none;
+
+  align-self: flex-end;
+
   border: none;
+  background: none;
+
+  font-size: 1.5rem;
+  color: white;
+
   cursor: pointer;
+  transition: 0.3s;
+}
+
+.fecharMenu:hover {
+  color: var(--efeitoBefore);
+}
+
+/* =========================
+   THEME TOGGLE
+========================= */
+.theme-toggle {
+  border: none;
+  background: none;
+
   font-size: 1.6rem;
-  transition: transform 0.3s ease;
+  cursor: pointer;
+
+  transition: 0.3s ease;
 }
 
 .theme-toggle:hover {
@@ -166,7 +201,7 @@ header {
 
 #icon {
   display: inline-block;
-  transition: transform 0.5s ease, opacity 0.3s ease;
+  transition: 0.5s ease;
 }
 
 .fade-out {
@@ -174,13 +209,16 @@ header {
   transform: rotate(180deg) scale(0.5);
 }
 
+/* =========================
+   HERO / BANNER
+========================= */
 .banner {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
+
   padding: 60px;
-  flex-wrap: wrap;
-  color: var(--cor-Fonte);
   min-height: 85vh;
 }
 
@@ -190,8 +228,8 @@ header {
 }
 
 .banner-texto h2 {
-  font-size: 2.8rem;
   margin-bottom: 20px;
+  font-size: 2.8rem;
 }
 
 .banner-texto p {
@@ -204,253 +242,115 @@ header {
   border-radius: 12px;
 }
 
-/* Timeline */
+/* =========================
+   FUNCIONALIDADES
+========================= */
 .funcionalidades-steps {
   padding: 60px 20px;
-  background: var(--cor-Fundo);
   text-align: center;
   min-height: 80vh;
 }
 
 .funcionalidades-steps h2 {
-  font-size: 2rem;
   margin-bottom: 5rem;
-  color: var(--cor-Fonte);
+  font-size: 2rem;
 }
 
 .steps-container {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
-  margin-bottom: 40px;
   gap: 20px;
 }
 
 .step {
   flex: 1;
   min-width: 140px;
-  position: relative;
-  z-index: 1;
 }
 
 .step-icon {
-  width: 70px;
-  height: 70px;
-  background: var(--efeitoBefore);
-  color: var(--cor-Fundo);
-  border-radius: 50%;
   display: grid;
   place-items: center;
+
+  width: 70px;
+  height: 70px;
   margin: 0 auto 15px;
-  font-size: 1.5rem;
+
+  border-radius: 50%;
+  background: var(--efeitoBefore);
+  color: var(--cor-Fundo);
+
   box-shadow: 0 0 0 4px white, 0 0 0 6px var(--roxo-menu);
-  transition: transform 0.3s ease;
+
+  transition: 0.3s;
 }
 
 .step p {
-  font-weight: 600;
-  font-size: 1rem;
   max-width: 200px;
   margin: 0 auto;
-  color: var(--cor-Fonte);
+
+  font-size: 1rem;
+  font-weight: 600;
 }
 
-/* Lista de Benefícios Animada */
+/* =========================
+   BENEFÍCIOS
+========================= */
 .beneficios-lista {
-  padding: 60px 60px;
-  background: var(--cor-Fundo);
+  padding: 60px;
   min-height: 80vh;
 }
 
 .beneficios-lista h2 {
+  margin-bottom: 30px;
   text-align: center;
   font-size: 2rem;
-  color: var(--cor-Fonte);
-  margin-bottom: 30px;
 }
 
 .beneficios-animados {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  align-items: center;
+
   gap: 20px;
   list-style: none;
-  height: 20rem;
 }
 
 .beneficios-animados li {
   display: flex;
   align-items: flex-start;
   gap: 12px;
+
+  padding: 10px;
   font-size: 1rem;
   font-weight: 500;
-  padding: 10px;
-  color: var(--cor-Fonte);
-  background: none;
-  border-left: 4px solid;
-  border-radius: 0;
-  box-shadow: none;
-  transition: none;
 }
 
 .beneficios-animados li i {
-  font-size: 1.2rem;
-  color: var(--cor-Fonte);
   margin-top: 3px;
+  font-size: 1.2rem;
 }
 
-.overlay {
-  display: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
-  z-index: 998;
-}
-
-.overlay.active {
-  display: block;
-}
-
-.formLogin {
-  display: none;
-  position: fixed;
-  top: 60%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background: var(--cor-Fundo);
-  padding: 2rem;
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-  z-index: 999;
-  max-width: 400px;
-  width: 90%;
-  opacity: 0;
-  transition: opacity 0.3s ease, transform 0.3s ease;
-}
-
-.formLogin.active {
-  display: block;
-  opacity: 1;
-}
-
-.close-login {
-  color: var(--cor-Fonte);
-  background: transparent;
-  border: none;
-  font-size: 1.5rem;
-  position: absolute;
-  top: 10px;
-  right: 15px;
-  cursor: pointer;
-}
-
-.login-container h2 {
-  font-size: 1.8rem;
-  margin-bottom: 25px;
-  color: var(--cor-Fonte);
-  text-align: center;
-}
-
-#login-form {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-}
-
-label {
-  font-weight: 600;
-  font-size: 0.9rem;
-  color: var(--cor-Fonte);
-}
-
-input {
-  padding: 12px;
-  border-radius: 8px;
-  border: 1px solid #ddd;
-  background: #f9f9f9;
-  transition: border-color 0.3s;
-}
-
-input:focus {
-  border-color: var(--efeitoBefore);
-  outline: none;
-}
-
-.btnEntrar {
-  background: var(--efeitoBefore);
-  color: var(--cor-Fundo);
-  padding: 12px;
-  font-size: 1rem;
-  border: none;
-  border-radius: 8px;
-  font-weight: bold;
-  text-align: center;
-  cursor: pointer;
-  transition: transform 0.3s ease;
-}
-
-.btnEntrar:hover {
-  transform: translateY(-5px);
-}
-
-.login-container p {
-  color: var(--cor-Fonte);
-}
-
-.login-container .linkCadastro {
-  text-decoration: none;
-  color: var(--roxo-claro);
-  font-weight: bold;
-}
-
-.login-container .linkCadastro:hover {
-  text-decoration: underline;
-}
-
-/* Classes para validação */
-input.valid,
-textarea.valid {
-  border-color: green;
-}
-
-input.invalid,
-textarea.invalid {
-  border-color: #e63946;
-  background-color: #ffe5e5;
-}
-
-.error-message {
-  color: #e63946;
-  font-size: 0.85rem;
-  text-align: start;
-  user-select: text;
-  display: none;
-}
-
-.char-count {
-  text-align: right;
-  font-size: 0.8rem;
-  color: var(--preto);
-  margin-top: 4px;
-  user-select: text;
-}
-
+/* =========================
+   FOOTER
+========================= */
 footer {
+  margin-top: auto;
+  padding: 25px 15px;
+
   background: var(--gradient);
   color: white;
   text-align: justify;
-  padding: 25px 15px;
+
   box-shadow: 0 -6px 20px var(--sombra);
-  margin-top: auto;
+}
+
+.footer-container {
+  margin-bottom: 1rem;
 }
 
 footer .nomeLogo {
   display: flex;
   align-items: center;
-  justify-content: justify;
 }
 
 footer .logoFooter {
@@ -461,257 +361,187 @@ footer .logoFooter {
   font-size: 1.2rem;
 }
 
-.footer-container {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 2.5rem;
-  margin-bottom: 1rem;
-}
-
-#linksRapidos {
-  margin: 0 0 0 50px;
-}
-
 .footer-section {
-  padding: 0 0 1rem;
+  padding: 0 1rem;
 }
 
 .footer-section h3 {
   margin-bottom: 10px;
 }
 
-.footer-section ul {
-  list-style: none;
-  padding: 0;
-}
-
-.footer-section ul li a {
-  color: #eee;
-  text-decoration: none;
-  transition: color 0.3s;
-  padding-left: 0.5rem;
-}
-
-.footer-section ul li a:hover {
-  color: var(--efeitoBefore);
-}
-
 .social-icons {
   display: flex;
-  justify-content: justify;
-  gap: 0.5rem;
 }
 
 .social-icons a {
+  text-decoration: none;
   color: #eee;
-  font-size: 30px;
-  transition: color 0.3s;
+
+  transition: 0.3s;
 }
 
 .social-icons a:hover {
   color: var(--efeitoBefore);
 }
 
-/*Barra de acessibilidade*/
-.ativaredasativarvlibras {
-  display: none;
-  position: fixed;
-  top: 300px;
-}
+/* =========================
+   TABLET (até 1024px)
+========================= */
+@media (max-width: 1024px) {
 
-.divativacaobarradeacessibilidade,
-.divbarradeacessibilidade {
-  position: fixed;
-  top: 400px;
-  z-index: 9999;
-
-}
-
-.divativacaobarradeacessibilidade button,
-.divbarradeacessibilidade button {
-  background-color: var(--branco);
-  color: var(--branco);
-  border: none;
-  padding: 5px;
-  cursor: pointer;
-  border-radius: 25px;
-  transition: 0.4s;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-}
-
-.divativacaobarradeacessibilidade .botaoativacaobarra {
-  filter: drop-shadow(2px 4px 2px rgba(0, 0, 0, 0.5));
-}
-
-.divativacaobarradeacessibilidade button:hover {
-  background-color: var(--branco);
-}
-
-.botaoativacaobarra img {
-  width: 2.5rem;
-
-}
-
-.funcaoesbarradeacessibilidade img {
-  width: 1.6rem;
-}
-
-.divbarradeacessibilidade {
-  background-color: var(--branco);
-  border-radius: 28px;
-  display: none;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 0 0 23px 0;
-  gap: 8px;
-  filter: drop-shadow(5px 5px 3px rgba(0, 0, 0, 0.5));
-  top: 300px;
-
-}
-
-#logodafatecdabarradeacessibilidade {
-  width: 2.5rem;
-}
-
-
-@media screen and (max-width: 992px) {
   .banner {
-    padding: 40px 20px;
+    padding: 40px 30px;
   }
 
-  .logo img {
-    height: 70px;
-  }
-}
-
-@media screen and (max-width: 768px) {
-  .banner {
-    flex-direction: column;
-    text-align: center;
+  .banner-texto h2 {
+    font-size: 2.2rem;
   }
 
-  .banner-texto {
-    padding-right: 0;
-    margin-bottom: 20px;
-  }
-
-  .banner img {
-    max-width: 80%;
-  }
-
-  .beneficios-animados {
-    height: auto;
-  }
-
-  .timeline-container {
-    padding-left: 20px;
-  }
-
-  .timeline-container::before {
-    left: 8px;
-  }
-
-  .timeline-item {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .timeline-icon {
-    margin-bottom: 8px;
+  .beneficios-lista {
+    padding: 40px 30px;
   }
 }
 
-@media screen and (max-width: 600px) {
+/* =========================
+   MOBILE (até 768px)
+========================= */
+@media (max-width: 768px) {
 
+  /* HEADER */
   .hamburger {
     display: flex;
   }
 
   .menu {
     position: fixed;
-    background-color: var(--roxo-menu);
     top: 0;
-    bottom: 0;
-    flex-direction: column;
-    align-items: flex-start;
-    padding: 3rem;
-    width: 100%;
     right: -100%;
-    transition: right 0.5s;
-    z-index: 1;
-  }
+    height: 100vh;
+    width: 250px;
 
-  .menu.open {
-    right: 0;
-  }
-
-  .nomeLogo {
+    flex-direction: column;
+    align-items: center;
     justify-content: center;
+    gap: 25px;
+
+    background: var(--roxo-menu);
+    box-shadow: -5px 0 15px var(--sombra);
+
+    transition: right 0.3s ease;
   }
 
-  header h1 {
-    font-size: 1.2rem;
-  }
-
-  .linkMenu {
-    display: block;
-    width: 100%;
-    padding: 1rem;
+  .menu.active {
+    right: 0;
   }
 
   .fecharMenu {
     display: block;
+    position: absolute;
+    top: 20px;
+    right: 20px;
   }
 
-  .cards {
-    grid-template-columns: 1fr;
-  }
-
-  .card {
-    padding: 1rem;
-    font-size: 0.9rem;
-  }
-
-  .funcionalidades ul {
-    grid-template-columns: 1fr;
-  }
-
-  footer {
-    text-align: justify;
-  }
-
-  .footer-container {
-    grid-template-columns: 1fr;
-  }
-}
-
-@media screen and (max-width: 480px) {
-  html {
-    font-size: 90%;
-  }
-
-  .theme-btn {
+  .linkMenu {
+    margin: 0;
     font-size: 1.1rem;
   }
 
-  .banner-texto h1 {
+  /* BANNER */
+  .banner {
+    flex-direction: column;
+    text-align: center;
+    padding: 40px 20px;
+    gap: 30px;
+  }
+
+  .banner-texto {
+    padding-right: 0;
+  }
+
+  .banner-texto h2 {
     font-size: 2rem;
   }
 
+  .banner-texto p {
+    font-size: 1rem;
+  }
+
+  .banner img {
+    max-width: 220px;
+  }
+
+  /* FUNCIONALIDADES */
+  .steps-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .step {
+    max-width: 250px;
+  }
+
+  /* BENEFÍCIOS */
+  .beneficios-lista {
+    padding: 40px 20px;
+  }
+
+  .beneficios-animados {
+    grid-template-columns: 1fr;
+  }
+
+  /* FOOTER */
+  footer {
+    text-align: center;
+  }
+
+  footer .nomeLogo {
+    justify-content: center;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .footer-section {
+    padding: 0.5rem 0;
+  }
+
+  .social-icons {
+    justify-content: center;
+    gap: 10px;
+  }
+}
+
+/* =========================
+   MOBILE PEQUENO (até 480px)
+========================= */
+@media (max-width: 480px) {
+
+  /* LOGO */
+  .logo img {
+    height: 70px;
+  }
+
+  /* TEXTO */
+  .banner-texto h2 {
+    font-size: 1.6rem;
+  }
+
+  .banner-texto p {
+    font-size: 0.95rem;
+  }
+
+  .funcionalidades-steps h2,
   .beneficios-lista h2 {
     font-size: 1.5rem;
   }
 
-  .btnEntrar {
-    font-size: 0.95rem;
-    padding: 10px;
+  /* BOTÃO MENU */
+  .hamburger {
+    width: 2rem;
+    height: 1.5rem;
   }
 
-  .formLogin {
-    padding: 1.5rem;
+  /* BENEFÍCIOS */
+  .beneficios-lista {
+    padding: 30px 15px;
   }
 }
