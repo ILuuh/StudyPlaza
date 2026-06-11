@@ -10,7 +10,7 @@
   <meta name="keywords"
     content="cursos online, gratuitos, programação, finanças pessoais, produtividade, redação, estudantes, educação" />
   <meta name="author" content="Study Plaza" />
-  <title>Cursos Complementares - StudyPlaza</title>
+  <title>Cursos Complementares - Study Plaza</title>
 
   <!-- Favicon do site -->
   <link rel="icon" href="img/Logo_Fundo_Roxa.png" type="image/png" />
@@ -21,6 +21,8 @@
 
   <!-- Estilos globais e específicos da página de cursos -->
   <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/btnAcessibilidade.css">
+  <link rel="stylesheet" href="css/login.css">
   <link rel="stylesheet" href="css/cursos.css">
 </head>
 
@@ -46,21 +48,22 @@
     <!-- Navegação principal com data-translate para multilíngue.
          O link Cursos tem id="ativo" indicando a página atual (usado para estilos). -->
     <nav class="menu" id="menu-principal" aria-label="Menu principal">
-      <button class="fecharMenu" aria-label="Fechar menu" data-translate="menu.fechar">&times;</button>
-      <a href="cursos.html" class="linkMenu" id="ativo"><i class="fa-solid fa-book"></i> <span
-          data-translate="menu.cursos">Cursos</span></a>
-      <a href="quiz.html" class="linkMenu"><i class="fa-solid fa-trophy"></i> <span
-          data-translate="menu.quiz">Quiz</span></a>
-      <a href="sobrenos.html" class="linkMenu"><i class="fa-solid fa-users"></i> <span
-          data-translate="menu.sobrenos">Sobre Nós</span></a>
+      <button class="fecharMenu" aria-label="Fechar menu">&times;</button>
+      <a href="cursos.html" class="linkMenu" id="ativo"><i class="fa-solid fa-book"></i> <span>Cursos</span></a>
+      <a href="quiz.html" class="linkMenu"><i class="fa-solid fa-trophy"></i> <span>Quiz</span></a>
+      <a href="sobrenos.html" class="linkMenu"><i class="fa-solid fa-users"></i> <span>Sobre Nós</span></a>
       <!-- abrir-login abre o modal/login via JS -->
-      <a href="#" class="abrir-login linkMenu"><i class="fa-solid fa-lock"></i> <span
-          data-translate="menu.login">Login</span></a>
+      <a href="#" class="abrir-login linkMenu"><i class="fa-solid fa-lock"></i> <span>Login</span></a>
     </nav>
 
   </header>
 
   <main>
+
+    <script> window.chtlConfig = { chatbotId: "1666361565" } </script>
+    <script async data-id="1666361565" id="chtl-script" type="text/javascript"
+      src="https://chatling.ai/js/embed.js"></script>
+
     <section>
       <article>
         <!-- Container VLibras: widget de Libras para acessibilidade (instanciado no fim do documento) -->
@@ -112,10 +115,12 @@
 
     <!-- Introdução da página -->
     <section class="intro-section" aria-labelledby="titulo-intro">
-      <h1 id="titulo-intro" data-translate="cursos.intro.title">Explore os Melhores Cursos Complementares</h1>
-      <p data-translate="cursos.intro.text">Na Study Plaza, reunimos os cursos online mais relevantes para turbinar sua
-        formação acadêmica e profissional.
-        Conheça novas áreas, desenvolva habilidades práticas e fique à frente no mercado. 🚀</p>
+      <h1 id="titulo-intro">Explore os Melhores Cursos Complementares</h1>
+      <p>Na Study Plaza, reunimos cursos de nossos patrocinadores para que você possa acompanhar seu progresso em um só
+        lugar. Aqui, você visualiza seu andamento, recebe recomendações e descobre novas formações para continuar
+        evoluindo.
+      </p>
+      <p>Veja nossos cursos oferecidos abaixo:</p>
     </section>
 
     <!-- Lista de cursos: cada 'course-card' representa um curso sugerido.
@@ -128,90 +133,6 @@
           <h3 data-translate="cursos.programacao.title">Introdução à Programação</h3>
           <p data-translate="cursos.programacao.desc">Curso gratuito que ensina os conceitos básicos de programação com
             exercícios práticos.</p>
-          <a class="linkCurso" href="https://www.coursera.org/learn/programming-fundamentals" target="_blank"
-            rel="noopener noreferrer" data-translate="cursos.ver.curso">Ver curso</a>
-          <!-- "Ver mais" abre um modal que pede login/cadastro; função mostrarAviso() definida em js/geral.js -->
-          <a class="linkVerMais" onclick="mostrarAviso()" data-translate="cursos.ver.mais">Ver mais</a>
-        </div>
-
-        <div class="course-card" tabindex="0">
-          <h3 data-translate="cursos.ml.title">Machine Learning Aplicado</h3>
-          <p data-translate="cursos.ml.desc">Aprenda fundamentos de IA e machine learning com exemplos aplicados a
-            diversos setores.</p>
-          <a class="linkCurso" href="https://www.udemy.com/course/machine-learning-aplicado/" target="_blank"
-            rel="noopener noreferrer" data-translate="cursos.ver.curso">Ver curso</a>
-          <a class="linkVerMais" onclick="mostrarAviso()" data-translate="cursos.ver.mais">Ver mais</a>
-        </div>
-
-        <div class="course-card" tabindex="0">
-          <h3 data-translate="cursos.gestao.title">Gestão do Tempo para Estudantes</h3>
-          <p data-translate="cursos.gestao.desc">Dicas práticas e técnicas para melhorar sua produtividade e organização
-            nos estudos.</p>
-          <a class="linkCurso" href="https://www.edx.org/course/time-management-skills" target="_blank"
-            rel="noopener noreferrer" data-translate="cursos.ver.curso">Ver
-            curso</a>
-          <a class="linkVerMais" onclick="mostrarAviso()" data-translate="cursos.ver.mais">Ver mais</a>
-        </div>
-
-        <div class="course-card" tabindex="0">
-          <h3 data-translate="cursos.comunicacao.title">Comunicação Eficiente</h3>
-          <p data-translate="cursos.comunicacao.desc">Aprenda a se comunicar melhor em ambientes colaborativos e
-            acadêmicos.</p>
-          <a class="linkCurso" href="https://www.coursera.org/learn/effective-communication" target="_blank"
-            rel="noopener noreferrer" data-translate="cursos.ver.curso">Ver
-            curso</a>
-          <a class="linkVerMais" onclick="mostrarAviso()" data-translate="cursos.ver.mais">Ver mais</a>
-        </div>
-
-        <div class="course-card" tabindex="0">
-          <h3 data-translate="cursos.excel.title">Excel e Ferramentas de Produtividade</h3>
-          <p data-translate="cursos.excel.desc">Domine fórmulas, gráficos e recursos do Excel para otimizar seus estudos
-            e projetos.</p>
-          <a class="linkCurso" href="https://www.udemy.com/course/curso-completo-de-excel/" target="_blank"
-            rel="noopener noreferrer" data-translate="cursos.ver.curso">Ver curso</a>
-          <a class="linkVerMais" onclick="mostrarAviso()" data-translate="cursos.ver.mais">Ver mais</a>
-        </div>
-
-        <div class="course-card" tabindex="0">
-          <h3 data-translate="cursos.financas.title">Finanças Pessoais para Jovens</h3>
-          <p data-translate="cursos.financas.desc">Aprenda a controlar gastos, fazer investimentos iniciais e se
-            organizar financeiramente desde cedo.</p>
-          <a class="linkCurso" href="https://www.coursera.org/learn/financas-pessoais" target="_blank"
-            rel="noopener noreferrer" data-translate="cursos.ver.curso">Ver curso</a>
-          <a class="linkVerMais" onclick="mostrarAviso()" data-translate="cursos.ver.mais">Ver mais</a>
-        </div>
-
-        <div class="course-card" tabindex="0">
-          <h3 data-translate="cursos.web.title">Desenvolvimento Web Básico</h3>
-          <p data-translate="cursos.web.desc">Construa seu primeiro site com HTML, CSS e JavaScript de forma prática e
-            interativa.</p>
-          <a class="linkCurso" href="https://www.freecodecamp.org/learn" target="_blank" rel="noopener noreferrer"
-            data-translate="cursos.ver.curso">Ver
-            curso</a>
-          <a class="linkVerMais" onclick="mostrarAviso()" data-translate="cursos.ver.mais">Ver mais</a>
-        </div>
-
-        <div class="course-card" tabindex="0">
-          <h3 data-translate="cursos.mindfulness.title">Mindfulness e Gestão do Estresse</h3>
-          <p data-translate="cursos.mindfulness.desc">Pratique técnicas de respiração e foco para manter a calma nos
-            estudos e na vida pessoal.</p>
-          <a class="linkCurso" href="https://www.coursera.org/learn/mindfulness" target="_blank"
-            rel="noopener noreferrer" data-translate="cursos.ver.curso">Ver curso</a>
-          <a class="linkVerMais" onclick="mostrarAviso()" data-translate="cursos.ver.mais">Ver mais</a>
-        </div>
-
-        <div class="course-card" tabindex="0">
-          <h3 data-translate="cursos.redacao.title">Redação Nota Mil</h3>
-          <p data-translate="cursos.redacao.desc">Descubra estratégias para organizar ideias, escrever com clareza e
-            conquistar ótimas notas em redações.</p>
-          <a class="linkCurso" href="https://www.udemy.com/course/redacao-enem/" target="_blank"
-            rel="noopener noreferrer" data-translate="cursos.ver.curso">Ver curso</a>
-          <a class="linkVerMais" onclick="mostrarAviso()" data-translate="cursos.ver.mais">Ver mais</a>
-        </div>
-
-        <!-- Modal aviso temporário -->
-        <div id="mostrarAviso" class="modal-aviso">
-          <p data-translate="cursos.modal.text">Faça login ou cadastre-se para ver mais detalhes sobre este curso.</p>
         </div>
 
       </article>
@@ -220,12 +141,12 @@
 
     <!-- Call to action para incentivar cadastro -->
     <section class="call-to-action">
-      <h2 data-translate="cursos.cta.title">Gostou dos cursos? Então, cadastre-se para ter acesso completo!</h2>
-      <p data-translate="cursos.cta.text">No Study Plaza você encontra uma seleção exclusiva de cursos complementares,
+      <h2>Gostou dos cursos? Então, cadastre-se para ter acesso completo!</h2>
+      <p>No Study Plaza você encontra uma seleção exclusiva de cursos complementares,
         participa de grupos de estudo e
         ainda testa seus conhecimentos com quizzes inteligentes. O cadastro é rápido e gratuito! Não fique de fora
         dessa comunidade que transforma o aprendizado.</p>
-      <a href="cadastro.html" data-translate="cursos.cta.button">Quero me cadastrar e acessar tudo!</a>
+      <a href="cadastro.html">Quero me cadastrar e acessar tudo!</a>
     </section>
 
     <!-- Formulário de login (inicialmente oculto via CSS/JS).
@@ -233,82 +154,55 @@
          - aria-describedby aponta para área de erro geral -->
     <section class="formLogin" aria-label="Formulário de Login">
       <article class="login-container">
-        <button class="close-login" aria-label="Fechar login" data-translate="login.fechar">&times;</button>
-        <h2 id="login-title" data-translate="login.title">Bem-vindo ao StudyPlaza</h2>
+        <button class="close-login" aria-label="Fechar login">&times;</button>
+        <h2 id="login-title">Bem-vindo ao Study Plaza</h2>
 
         <form id="login-form" novalidate autocomplete="off" aria-describedby="form-error">
-          <label for="input-email" id="obrigatorio" data-translate="login.email">Email:</label>
-          <input type="email" id="input-email" name="email" data-translate="login.placeholder" required
-            placeholder="seu@email.com" aria-required="true" />
+          <label for="input-email" id="obrigatorio">Email:</label>
+          <input type="email" id="input-email" name="email" required placeholder="seu@email.com" aria-required="true" />
           <div id="email-error" class="error-message" data-dynamic="true">
-            <p data-translate="login.error-message.email">O campo E-mail é obrigatório.</p>
+            <p>O campo E-mail é obrigatório.</p>
           </div>
 
-          <label for="input-password" id="obrigatorio" data-translate="login.senha">Senha:</label>
+          <label for="input-password" id="obrigatorio">Senha:</label>
           <input type="password" id="input-password" name="password" required minlength="6" placeholder="••••••••"
             aria-required="true" />
-          <div id="password-error" class="error-message" data-dynamic="true">
-            <p data-translate="login.error-message.password">O campo Senha é obrigatória.</p>
+          <div id="password-error" class="error-message">
+            <p>O campo Senha é obrigatória.</p>
           </div>
 
-          <button type="submit" class="btnEntrar" data-translate="login.entrar">Entrar</button>
+          <button type="submit" class="btnEntrar">Entrar</button>
           <div id="form-error" class="error-message"></div>
           <div id="password-error" class="error-message"></div>
         </form>
 
         <!-- Link para página de cadastro -->
-        <p><span data-translate="login.cadastro">Não tem uma conta?</span> <a class="linkCadastro" href="cadastro.html"
-            data-translate="login.cadastro.link">Cadastre-se aqui</a></p>
+        <p><span>Não tem uma conta?</span> <a class="linkCadastro" href="cadastro.html">Cadastre-se aqui</a></p>
       </article>
     </section>
 
   </main>
 
   <footer>
-    <div class="footer-container">
-      <div class="footer-section">
+    <section class="footer-container">
+      <article class="footer-section">
         <div class="nomeLogo">
-          <img class="logoFooter" src="img/Logo.svg" alt="Logo do site" />
-          <h2 class="textLogoFooter">Study Plaza</h2>
+          <img class="logoFooter" src="./img/Logo.svg" alt="Logo do site" />
+          <h3 class="textLogoFooter">Study Plaza</h3>
         </div>
-        <p data-translate="footer.texto">Transformando o jeito como você estuda. Conecte-se, compartilhe e aprenda em
-          uma comunidade vibrante.</p>
-      </div>
-
-      <!-- Links rápidos do rodapé; cada item usa ícone FontAwesome -->
-      <div class="footer-section" id="linksRapidos">
-        <h3 data-translate="footer.links.title">Links Rápidos</h3>
-        <nav aria-label="Links rápidos do rodapé">
-          <ul>
-            <li><i class="fa-solid fa-house"></i><a href="index.html"><span
-                  data-translate="footer.links.inicio">Início</span></a></li>
-            <li><i class="fa-solid fa-address-card"></i><a href="cadastro.html"><span
-                  data-translate="footer.links.cadastro">Cadastro</span></a></li>
-            <li><i class="fa-solid fa-lock"></i><a href="#" id="abrir-login-footer"><span
-                  data-translate="footer.links.login">Login</span></a></li>
-            <li><i class="fa-solid fa-book"></i><a href="cursos.html"><span
-                  data-translate="footer.links.cursos">Cursos</span></a></li>
-            <li><i class="fa-solid fa-trophy"></i><a href="quiz.html"><span
-                  data-translate="footer.links.quiz">Quiz</span></a></li>
-            <li><i class="fa-solid fa-users"></i><a href="sobrenos.html"><span
-                  data-translate="footer.links.sobrenos">Sobre Nós</span></a></li>
-          </ul>
-        </nav>
-      </div>
-
-      <div class="footer-section">
-        <h3 data-translate="footer.info.title">Informações</h3>
-        <ul>
-          <li><a href="#" data-translate="footer.privacidade">Política de Privacidade</a></li>
-        </ul>
-
-        <!-- Ícone de rede social com aria-label para acessibilidade -->
+        <p>Transformando o jeito como você estuda. Conecte-se, compartilhe e aprenda em uma comunidade vibrante.</p>
         <div class="social-icons">
-          <a href="https://www.instagram.com/studyplaza_/?utm_source=ig_web_button_share_sheet"
-            aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          <p> Quer conhecer um pouco mais de nós?
+            Conheça nosso
+
+            <a href="https://www.instagram.com/studyplaza_" aria-label="Instagram Study Plaza">
+              <i class="fab fa-instagram"></i> Instagram
+            </a>
         </div>
-      </div>
-      <p data-translate="footer.direitos">&copy; 2025 StudyPlaza - Todos os direitos reservados.</p>
+        </p>
+      </article>
+    </section>
+    <p>&copy; <span id="anoAtual">2025</span> Study Plaza - Todos os direitos reservados.</p>
   </footer>
 
   <!-- Scripts: ordem importante — scripts gerais/UI primeiro, depois tradução e widget VLibras.
@@ -321,14 +215,70 @@
   <script src="js/alterarTemas.js"></script>
   <script src="js/login.js"></script>
   <script src="js/acessibilidade.js"></script>
-  <script src="js/translations.js"></script>
-  <script src="js/translate.js"></script>
+  <script>window.gtranslateSettings = { "default_language": "pt", "native_language_names": true, "detect_browser_language": true, "languages": ["pt", "en", "es"], "wrapper_selector": ".gtranslate_wrapper", "switcher_horizontal_position": "inline", "float_switcher_open_direction": "bottom", "alt_flags": { "en": "usa", "pt": "brazil" } }</script>
+  <script src="https://cdn.gtranslate.net/widgets/latest/float.js" defer></script>
 
   <!-- VLibras: plugin oficial de Libras. A linha abaixo instancia o widget que adiciona o tradutor em Libras. -->
   <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
   <script>
     new window.VLibras.Widget('https://vlibras.gov.br/app');
   </script>
+
+  <script>
+
+    const API_URL = "http://localhost:3500/api"; // sua API
+    const cursosContainer = document.querySelector(".courses-container");
+
+    /**
+     * Cria dinamicamente os cards de cursos com base nos dados da API
+     * @param {string} endpoint - endpoint da API (ex: "cursos")
+     */
+    async function carregarCursos(endpoint) {
+      try {
+        console.log(`📡 Buscando cursos em: ${API_URL}/${endpoint}`);
+
+        const response = await fetch(`${API_URL}/${endpoint}`);
+
+        if (!response.ok) {
+          throw new Error(`Erro ao buscar cursos: ${response.status}`);
+        }
+
+        const data = await response.json();
+
+        if (!Array.isArray(data) || data.length === 0) {
+          cursosContainer.innerHTML = "<p>Nenhum curso encontrado.</p>";
+          return;
+        }
+
+        // Limpa os cards padrões
+        cursosContainer.innerHTML = "";
+
+        data.forEach(curso => {
+          const card = document.createElement("div");
+          card.classList.add("course-card");
+          card.tabIndex = 0;
+
+          card.innerHTML = `
+            <h3>${curso.titulo || "Curso Sem Título"}</h3>
+            <p>${curso.descricao || "Sem descrição disponível."}</p>
+          `;
+
+          cursosContainer.appendChild(card);
+        });
+
+
+      } catch (erro) {
+        console.error("❌ Erro ao criar cards:", erro);
+        cursosContainer.innerHTML =
+          `<p style="color:red;">Erro ao carregar cursos. Verifique a API.</p>`;
+      }
+    }
+
+    // Chamar automaticamente quando carregar
+    carregarCursos("cursos"); // <-- coloque o nome do endpoint real
+
+  </script>
+
 </body>
 
 </html>
