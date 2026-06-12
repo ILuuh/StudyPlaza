@@ -101,6 +101,57 @@ router.get(
   }
 );
 
+router.put(
+  "/usuarios/:id",
+  async (req: Request, res: Response): Promise<any> => {
+    try {
+      const { id } = req.params;
+      const { nome, email } = req.body;
+
+      const [usuarioExistente]: any = await pool.query(
+        `
+        SELECT id
+        FROM usuarios
+        WHERE email = ?
+          AND id <> ?
+        `,
+        [email, id]
+      );
+
+      if (usuarioExistente.length > 0) {
+        return res.status(400).json({
+          sucesso: false,
+          mensagem: "E-mail já está em uso",
+        });
+      }
+
+      await pool.query(
+        `
+        UPDATE usuarios
+        SET
+          nome = ?,
+          email = ?
+        WHERE id = ?
+        `,
+        [nome, email, id]
+      );
+
+      return res.json({
+        sucesso: true,
+        mensagem: "Perfil atualizado com sucesso",
+      });
+
+    } catch (error) {
+      console.log(error);
+
+      return res.status(500).json({
+        sucesso: false,
+        mensagem: "Erro ao atualizar perfil",
+      });
+    }
+  }
+);
+
 router.post(
   "/inscricoes",
   async (req: Request, res: Response): Promise<any> => {

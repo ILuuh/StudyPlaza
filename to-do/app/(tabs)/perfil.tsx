@@ -17,6 +17,8 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import api from "../../services/api";
 
 import { styles } from "./estilo_perfil";
+import { useFocusEffect } from "@react-navigation/native";
+import { useCallback } from "react";
 
 type Usuario = {
     id: number;
@@ -49,6 +51,10 @@ export default function PerfilScreen() {
         }
     }
 
+    function handleEditarPerfil() {
+        router.push("/editarPerfil");
+    }
+
     async function handleLogout() {
 
         try {
@@ -63,9 +69,11 @@ export default function PerfilScreen() {
         router.push("/meusCursos");
     }
 
-    useEffect(() => {
-        carregarPerfil();
-    }, []);
+    useFocusEffect(
+        useCallback(() => {
+            carregarPerfil();
+        }, [])
+    );
 
     return (
         <ScrollView style={styles.container}>
@@ -132,6 +140,20 @@ export default function PerfilScreen() {
                         </View>
                     </View>
                 </View>
+                <TouchableOpacity
+                    style={styles.salvarButton}
+                    onPress={handleEditarPerfil}
+                >
+                    <Ionicons
+                        name="create-outline"
+                        size={22}
+                        color="#fff"
+                    />
+
+                    <Text style={styles.salvarText}>
+                        Editar Perfil
+                    </Text>
+                </TouchableOpacity>
 
                 <TouchableOpacity
                     style={styles.meusCursosButton}

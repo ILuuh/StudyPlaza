@@ -141,4 +141,29 @@ export const styles = StyleSheet.create({
         marginLeft: 8,
     },
 
+    input: {
+        backgroundColor: "#fff",
+        borderWidth: 1,
+        borderColor: "#ddd",
+        borderRadius: 10,
+        paddingHorizontal: 12,
+        paddingVertical: 10,
+        fontSize: 16,
+    },
+
+    salvarButton: {
+        backgroundColor: "#28a745",
+        borderRadius: 10,
+        padding: 14,
+        marginBottom: 15,
+        flexDirection: "row",
+        justifyContent: "center",
+        alignItems: "center",
+    },
+
+    salvarText: {
+        color: "#fff",
+        fontWeight: "bold",
+        marginLeft: 8,
+    },
 });
