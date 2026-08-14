@@ -11,7 +11,7 @@ import {
   View,
 } from "react-native";
 
-import { styles } from "./estilo_index";
+import styles from "./estilo_index";
 
 export default function Login() {
   const router = useRouter();
@@ -52,8 +52,6 @@ export default function Login() {
         email: email,
         senha: password,
       });
-
-      console.log(response.data);
 
       if (response.data.sucesso) {
 

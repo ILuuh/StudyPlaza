@@ -1,4 +1,4 @@
-import { Link } from "expo-router";
+import { Link, router } from "expo-router";
 import { useState } from 'react';
 import {
   View,
@@ -7,8 +7,7 @@ import {
   TouchableOpacity
 } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
-import { styles } from "./estilo_register";
-import { router } from "expo-router";
+import styles from "./estilo_register";
 
 import api from "../../services/api";
 
@@ -61,8 +60,6 @@ export default function Register() {
       setEmail("");
       setPassword("");
       setConfirmPassword("");
-
-      alert("Cadastro realizado com sucesso!");
 
       router.replace("/");
     } catch (error: any) {

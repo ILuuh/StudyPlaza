@@ -10,7 +10,7 @@ import {
 } from "react-native";
 
 import api from "../../services/api";
-import { styles } from "../(tabs)/estilo_cursos";
+import styles from "../(tabs)/estilo_cursos";
 import { Link } from "expo-router";
 
 type Curso = {

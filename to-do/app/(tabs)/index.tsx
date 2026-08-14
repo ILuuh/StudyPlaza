@@ -6,7 +6,7 @@ import {
 } from 'react-native';
 import { Ionicons, FontAwesome5, MaterialIcons } from '@expo/vector-icons';
 
-import {styles} from "./estilo_index";
+import styles from "./estilo_index";
 
 export default function HomeScreen() {
   return (

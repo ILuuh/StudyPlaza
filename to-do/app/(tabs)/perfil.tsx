@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, {useState, useCallback  } from "react";
 
 import {
     View,
@@ -16,9 +16,8 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 
 import api from "../../services/api";
 
-import { styles } from "./estilo_perfil";
+import styles from "./estilo_perfil";
 import { useFocusEffect } from "@react-navigation/native";
-import { useCallback } from "react";
 
 type Usuario = {
     id: number;

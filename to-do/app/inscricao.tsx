@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from "react";
 
 import {
-    View,
-    Text,
-    ScrollView,
-    TextInput,
-    TouchableOpacity,
+  View,
+  Text,
+  ScrollView,
+  TouchableOpacity,
 } from "react-native";
 
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -14,154 +13,110 @@ import api from "../services/api";
 
 import { Picker } from "@react-native-picker/picker";
 
-import { styles } from "./(tabs)/estilo_inscricao";
+import styles from "./(tabs)/estilo_inscricao";
 import { router } from "expo-router";
 
 type Curso = {
-    id: number;
-    titulo: string;
+  id: number;
+  titulo: string;
 };
 
 export default function InscricaoScreen() {
-    const [curso, setCurso] = useState("");
+  const [curso, setCurso] = useState("");
 
-    const [cursos, setCursos] =
-        useState<Curso[]>([]);
+  const [cursos, setCursos] = useState<Curso[]>([]);
 
-    async function buscarCursos() {
-        try {
+  async function buscarCursos() {
+    try {
+      const response = await api.get("/cursos");
 
-            const response =
-                await api.get("/cursos");
+      setCursos(response.data);
+    } catch (error) {
+      console.log("Erro ao buscar cursos:", error);
+    }
+  }
 
-            setCursos(response.data);
+  async function finalizarInscricao() {
+    if (!curso) {
+      alert("Selecione um curso.");
 
-        } catch (error) {
-
-            console.log(
-                "Erro ao buscar cursos:",
-                error
-            );
-
-        }
+      return;
     }
 
-    async function finalizarInscricao() {
+    try {
+      const usuarioStorage = await AsyncStorage.getItem("usuario");
 
-        if (!curso) {
+      if (!usuarioStorage) {
+        alert("Usuário não encontrado.");
 
-            alert("Selecione um curso.");
+        return;
+      }
 
-            return;
-        }
+      const usuario = JSON.parse(usuarioStorage);
 
-        try {
+      await api.post("/inscricoes", {
+        id_usuario: usuario.id,
+        id_curso: Number(curso),
+      });
 
-            const usuarioStorage =
-                await AsyncStorage.getItem(
-                    "usuario"
-                );
+      alert("Inscrição realizada com sucesso!");
 
-            if (!usuarioStorage) {
+      router.push("/meusCursos");
 
-                alert(
-                    "Usuário não encontrado."
-                );
+      setCurso("");
+    } catch (error) {
+      console.log(error);
 
-                return;
-            }
-
-            const usuario =
-                JSON.parse(usuarioStorage);
-
-            await api.post(
-                "/inscricoes",
-                {
-                    id_usuario: usuario.id,
-                    id_curso: Number(curso)
-                }
-            );
-
-            alert(
-                "Inscrição realizada com sucesso!"
-            );
-
-            router.push("/meusCursos");
-
-            setCurso("");
-
-
-
-        } catch (error) {
-
-            console.log(error);
-
-            alert(
-                "Erro ao realizar inscrição."
-            );
-
-        }
+      alert("Erro ao realizar inscrição.");
     }
+  }
 
-    useEffect(() => {
-        buscarCursos();
-    }, []);
+  useEffect(() => {
+    buscarCursos();
+  }, []);
 
-    return (
-        <ScrollView style={styles.container}>
-            <View style={styles.formContainer}>
-                <Text style={styles.title}>
-                    Inscrição para o Curso
-                </Text>
+  return (
+    <ScrollView style={styles.container}>
+      <View style={styles.formContainer}>
+        <Text style={styles.title}>Inscrição para o Curso</Text>
 
-                <Text style={styles.introText}>
-                    Preencha o formulário abaixo para garantir sua vaga
-                    e iniciar seu processo de matrícula.
-                </Text>
+        <Text style={styles.introText}>
+          Preencha o formulário abaixo para garantir sua vaga e iniciar seu
+          processo de matrícula.
+        </Text>
 
-                <View style={styles.fieldset}>
-                    <Text style={styles.legend}>
-                        Seleção do Curso
-                    </Text>
+        <View style={styles.fieldset}>
+          <Text style={styles.legend}>Seleção do Curso</Text>
 
-                    <View style={styles.formGroup}>
-                        <Text style={styles.label}>
-                            Curso Escolhido *
-                        </Text>
+          <View style={styles.formGroup}>
+            <Text style={styles.label}>Curso Escolhido *</Text>
 
-                        <View style={styles.pickerContainer}>
-                            <Picker
-                                selectedValue={curso}
-                                onValueChange={(itemValue) =>
-                                    setCurso(itemValue)
-                                }
-                            >
-                                <Picker.Item
-                                    label="Selecione um curso"
-                                    value=""
-                                />
+            <View style={styles.pickerContainer}>
+              <Picker
+                selectedValue={curso}
+                onValueChange={(itemValue) => setCurso(itemValue)}
+              >
+                <Picker.Item label="Selecione um curso" value="" />
 
-                                {cursos.map((item) => (
-                                    <Picker.Item
-                                        key={item.id}
-                                        label={item.titulo}
-                                        value={item.id.toString()}
-                                    />
-                                ))}
-                            </Picker>
-                        </View>
-                    </View>
-                </View>
-
-                <TouchableOpacity
-                    style={styles.submitButton}
-                    onPress={finalizarInscricao}
-                >
-                    <Text style={styles.submitButtonText}>
-                        Finalizar Inscrição
-                    </Text>
-                </TouchableOpacity>
+                {cursos.map((item) => (
+                  <Picker.Item
+                    key={item.id}
+                    label={item.titulo}
+                    value={item.id.toString()}
+                  />
+                ))}
+              </Picker>
             </View>
-        </ScrollView>
-    );
+          </View>
+        </View>
+
+        <TouchableOpacity
+          style={styles.submitButton}
+          onPress={finalizarInscricao}
+        >
+          <Text style={styles.submitButtonText}>Finalizar Inscrição</Text>
+        </TouchableOpacity>
+      </View>
+    </ScrollView>
+  );
 }
