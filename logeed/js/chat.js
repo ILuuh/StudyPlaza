@@ -83,7 +83,7 @@ app.use('/logeed', express.static(path.join(__dirname, '../')));
 
 // Rota raiz que envia index.html (útil ao abrir http://localhost:9000)
 app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, '../..', 'homeChat.html'));
+  res.sendFile(path.join(__dirname, '../..', '/logeed/homeChat.html'));
 });
 
 
