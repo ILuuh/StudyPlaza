@@ -15,7 +15,7 @@ import AsyncStorage
 
 import api from "../services/api";
 
-import styles from "./(tabs)/estilo_meusCursos";
+import styles from "./estilo_meusCursos";
 
 type Curso = {
   id: number;

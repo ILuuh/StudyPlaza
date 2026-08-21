@@ -16,7 +16,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 
 import api from "../../services/api";
 
-import styles from "./estilo_perfil";
+import styles from "../estilo_perfil";
 import { useFocusEffect } from "@react-navigation/native";
 
 type Usuario = {

@@ -8,7 +8,7 @@ import {
   ScrollView,
 } from "react-native";
 
-import styles from "../(tabs)/estilo_sobre-nos";
+import styles from "../estilo_sobre-nos";
 
 export default function SobreNosScreen() {
   const [modalVisible, setModalVisible] = useState(null);

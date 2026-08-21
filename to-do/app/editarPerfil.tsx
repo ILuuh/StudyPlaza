@@ -11,7 +11,7 @@ import { router } from "expo-router";
 import api from "../services/api";
 
 
-import styles from "./(tabs)/estilo_editarperfil";
+import styles from "./estilo_editarperfil";
 
 export default function EditarPerfil() {
     const [id, setId] = useState<number | null>(null);

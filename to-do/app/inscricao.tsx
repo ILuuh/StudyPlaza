@@ -13,7 +13,7 @@ import api from "../services/api";
 
 import { Picker } from "@react-native-picker/picker";
 
-import styles from "./(tabs)/estilo_inscricao";
+import styles from "./estilo_inscricao";
 import { router } from "expo-router";
 
 type Curso = {
