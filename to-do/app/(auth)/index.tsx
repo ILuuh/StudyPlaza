@@ -5,6 +5,7 @@ import { useState } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 import {
+  Image, // 1. Importado aqui
   Text,
   TextInput,
   TouchableOpacity,
@@ -12,6 +13,8 @@ import {
 } from "react-native";
 
 import styles from "./estilo_index";
+
+
 
 export default function Login() {
   const router = useRouter();
@@ -75,6 +78,9 @@ export default function Login() {
   return (
     <View style={styles.container}>
       <View style={styles.loginBox}>
+       <Image source={require("../../assets/images/Logo_Fundo_Roxa.png")} style={styles.logo} resizeMode="contain"
+/>
+
         <Text style={styles.title}>
           Bem-vindo ao Study Plaza
         </Text>
