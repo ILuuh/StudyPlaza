@@ -68,7 +68,14 @@ const styles = StyleSheet.create({
         color: '#e63946',
         fontSize: 12,
         marginBottom: 5,
-    }
+    },
+
+    logo: {
+    width: 120,
+    height: 120,
+    alignSelf: "center",
+    marginBottom: 20,
+  },
 
 })
 
