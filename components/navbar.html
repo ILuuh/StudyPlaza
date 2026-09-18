@@ -1,0 +1,31 @@
+<!-- Logo e título: link para a página inicial. aria-label melhora acessibilidade para leitores de tela -->
+<div class="logo">
+  <a href="../index.html" aria-label="Voltar para página inicial">
+    <img src="./assets/img/Logo.svg" alt="Logo Study Plaza" />
+    <h1>Study Plaza</h1>
+  </a>
+</div>
+
+<!-- Botão hamburger para menu responsivo.
+         - aria-expanded deve ser atualizado por JS quando o menu abrir/fechar
+         - aria-controls aponta para o menu que esse botão controla -->
+<button class="hamburger" aria-expanded="false" aria-controls="menu">
+  <span class="hamburger-bar"></span>
+  <span class="hamburger-bar"></span>
+  <span class="hamburger-bar"></span>
+</button>
+
+<!-- Navegação principal.
+         - data-translate: usado pelo sistema de tradução/idioma para substituir textos dinamicamente -->
+<nav class="menu" id="menu-principal" aria-label="Menu principal">
+  <button class="fecharMenu" aria-label="Fechar menu">&times;</button>
+
+  <!-- Cada link possui ícone e <span> com data-translate para multilíngue -->
+  <a href="../cursos.html" class="linkMenu"><i class="fa-solid fa-book"></i> <span>Cursos</span></a>
+  <a href="../quiz.html" class="linkMenu"><i class="fa-solid fa-trophy"></i> <span>Quiz</span></a>
+  <a href="../sobrenos.html" class="linkMenu"><i class="fa-solid fa-users"></i> <span>Sobre Nós</span></a>
+  <button
+    type="button" id="abrir-login" data-bs-toggle="modal" data-bs-target="#loginModal">
+    Entrar
+  </button>
+</nav>

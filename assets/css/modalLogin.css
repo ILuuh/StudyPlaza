@@ -1,0 +1,344 @@
+/* =========================================================
+   IMPORTS
+========================================================= */
+
+@import url("style.css");
+
+/* =========================================================
+   MODAL DE LOGIN — STUDY PLAZA
+========================================================= */
+
+#abrir-login {
+  padding: 0.65rem 1.3rem;
+
+  border: none;
+  border-radius: 8px;
+
+  background: var(--gradient-principal);
+  color: var(--cor-fonte-invertida);
+
+  font-family: var(--font-family);
+  font-size: 0.95rem;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    background 0.2s ease;
+}
+
+/* Efeito ao passar o mouse */
+#abrir-login:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px var(--sombra);
+}
+
+/* Efeito ao clicar */
+#abrir-login:active {
+  transform: translateY(0);
+  box-shadow: 0 3px 8px var(--sombra);
+}
+
+/* Acessibilidade - foco pelo teclado */
+#abrir-login:focus-visible {
+  outline: 2px solid var(--cor-foco);
+  outline-offset: 3px;
+}
+
+/* Reduz animações para usuários que preferem menos movimento */
+@media (prefers-reduced-motion: reduce) {
+  #abrir-login {
+    transition: none;
+  }
+}
+
+/* =========================================================
+   MODAL
+========================================================= */
+
+.login-modal {
+  background-color: var(--cor-superficie);
+
+  color: var(--cor-fonte);
+
+  border: 1px solid var(--cor-borda);
+
+  border-radius: 16px;
+
+  box-shadow: 0 15px 40px var(--sombra);
+
+  overflow: hidden;
+}
+
+/* =========================================================
+   CABEÇALHO
+========================================================= */
+
+.login-modal-header {
+  border-bottom: 1px solid var(--cor-borda);
+
+  background: var(--gradient-principal);
+
+  color: var(--cor-fonte-invertida);
+
+  padding: 1.25rem 1.5rem;
+}
+
+.login-modal-header img{
+  width: 100px;
+}
+
+.login-modal-header .modal-title {
+  width: 100%;
+
+  font-family: var(--font-family);
+
+  font-size: 1.4rem;
+
+  font-weight: 700;
+
+  text-align: center;
+}
+
+/* Botão fechar */
+
+.login-modal-header .btn-close {
+  filter: brightness(0) invert(1);
+
+  opacity: 0.9;
+}
+
+.login-modal-header .btn-close:hover {
+  opacity: 1;
+}
+
+.login-modal-header .btn-close:focus {
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.3);
+}
+
+/* =========================================================
+   CORPO
+========================================================= */
+
+.login-modal .modal-body {
+  padding: 1.75rem;
+}
+
+/* =========================================================
+   LABELS
+========================================================= */
+
+.login-modal .form-label {
+  margin-bottom: 0.5rem;
+
+  color: var(--cor-fonte);
+
+  font-family: var(--font-family);
+
+  font-size: 0.9rem;
+
+  font-weight: 600;
+}
+
+/* Campo obrigatório */
+
+.login-modal .obrigatorio::after {
+  content: " *";
+
+  color: var(--cor-erro);
+}
+
+/* =========================================================
+   INPUTS
+========================================================= */
+
+.login-modal .form-control {
+  padding: 0.7rem 0.85rem;
+
+  border: 1px solid var(--cor-borda);
+
+  border-radius: 9px;
+
+  background-color: var(--cor-superficie-secundaria);
+
+  color: var(--cor-fonte);
+
+  font-family: var(--font-family);
+
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    background-color 0.2s ease;
+}
+
+.login-modal .form-control::placeholder {
+  color: var(--cor-fonte-secundaria);
+
+  opacity: 0.8;
+}
+
+.login-modal .form-control:focus {
+  border-color: var(--cor-foco);
+
+  background-color: var(--cor-superficie);
+
+  color: var(--cor-fonte);
+
+  box-shadow: 0 0 0 3px rgba(168, 139, 235, 0.2);
+}
+
+/* =========================================================
+   VALIDAÇÃO
+========================================================= */
+
+.login-modal .form-control.valid {
+  border-color: var(--cor-sucesso);
+}
+
+.login-modal .form-control.invalid {
+  border-color: var(--cor-erro);
+
+  background-color: rgba(230, 57, 70, 0.08);
+}
+
+/* =========================================================
+   MENSAGENS DE ERRO
+========================================================= */
+
+.error-message {
+  display: none;
+
+  margin-top: 0.4rem;
+
+  color: var(--cor-erro);
+
+  font-family: var(--font-family);
+
+  font-size: 0.8rem;
+
+  line-height: 1.4;
+}
+
+.error-message.active {
+  display: block;
+}
+
+/* =========================================================
+   BOTÃO ENTRAR
+========================================================= */
+
+.btnEntrar {
+  margin-top: 0.5rem;
+
+  padding: 0.7rem 1rem;
+
+  border: none;
+
+  border-radius: 9px;
+
+  background: var(--gradient-principal);
+
+  color: var(--cor-fonte-invertida);
+
+  font-family: var(--font-family);
+
+  font-size: 1rem;
+
+  font-weight: 600;
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.btnEntrar:hover {
+  background: var(--gradient-principal);
+
+  color: var(--cor-fonte-invertida);
+
+  transform: translateY(-2px);
+
+  box-shadow: 0 7px 18px var(--sombra);
+}
+
+.btnEntrar:active {
+  transform: translateY(0);
+}
+
+.btnEntrar:focus-visible {
+  outline: 2px solid var(--cor-foco);
+
+  outline-offset: 3px;
+}
+
+/* =========================================================
+   CADASTRO
+========================================================= */
+
+.cadastro-texto {
+  margin: 1.25rem 0 0;
+
+  color: var(--cor-fonte-secundaria);
+
+  font-family: var(--font-family);
+
+  font-size: 0.9rem;
+
+  text-align: center;
+}
+
+.linkCadastro {
+  color: var(--roxo-principal);
+
+  font-weight: 600;
+
+  text-decoration: none;
+}
+
+.linkCadastro:hover {
+  color: var(--cor-hover);
+
+  text-decoration: underline;
+}
+
+.linkCadastro:focus-visible {
+  outline: 2px solid var(--cor-foco);
+
+  outline-offset: 3px;
+}
+
+/* =========================================================
+   RESPONSIVIDADE
+========================================================= */
+
+@media (max-width: 480px) {
+  .login-modal .modal-body {
+    padding: 1.4rem;
+  }
+
+  .login-modal-header {
+    padding: 1rem 1.2rem;
+  }
+
+  .login-modal-header .modal-title {
+    font-size: 1.2rem;
+  }
+
+  .login-modal .form-control {
+    padding: 0.65rem 0.75rem;
+  }
+}
+
+/* =========================================================
+   ACESSIBILIDADE
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .login-modal,
+  .login-modal .form-control,
+  .btnEntrar {
+    transition: none;
+  }
+}

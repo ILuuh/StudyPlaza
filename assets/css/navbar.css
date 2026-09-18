@@ -1,0 +1,355 @@
+/* =========================================================
+   IMPORTS
+========================================================= */
+
+@import url("style.css");
+
+/* =========================================================
+   HEADER / NAVBAR
+========================================================= */
+
+header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 0.5rem 5%;
+
+  background: var(--gradient-principal);
+
+  box-shadow: 0 4px 12px var(--sombra);
+
+  transition:
+    background 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+/* =========================================================
+   LOGO
+========================================================= */
+
+.logo a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: var(--cor-fonte-invertida);
+
+  font-size: 0.75rem;
+
+  text-decoration: none;
+}
+.logo a h1{
+  font-size: 1.5rem;
+}
+.logo img {
+  height: 100px;
+
+  object-fit: contain;
+}
+
+/* =========================================================
+   MENU
+========================================================= */
+
+.menu {
+  display: flex;
+  flex-wrap: wrap;
+
+  gap: 18px;
+}
+
+.linkMenu {
+  position: relative;
+
+  margin: 0 1rem;
+
+  color: var(--cor-fonte-invertida);
+
+  font-weight: 600;
+  text-decoration: none;
+
+  transition:
+    color 0.3s ease,
+    transform 0.3s ease;
+}
+
+.linkMenu:hover {
+  color: var(--cor-fonte-invertida);
+
+  transform: translateY(-4px);
+}
+
+/* -------------------------
+   Indicador inferior
+------------------------- */
+
+.linkMenu::before {
+  content: "";
+
+  position: absolute;
+
+  bottom: -5px;
+  left: 50%;
+
+  width: 0;
+  height: 3px;
+
+  border-radius: 10px;
+
+  background: var(--cor-foco);
+
+  transform: translateX(-50%);
+
+  opacity: 0;
+
+  transition:
+    width 0.3s ease,
+    opacity 0.3s ease;
+}
+
+.linkMenu:hover::before {
+  width: 100%;
+
+  opacity: 1;
+}
+
+/* -------------------------
+   Link ativo
+------------------------- */
+
+#ativo {
+  color: var(--cor-ativo);
+}
+
+#ativo::before {
+  width: 100%;
+
+  opacity: 1;
+
+  background: var(--cor-ativo);
+}
+
+/* =========================================================
+   ACESSIBILIDADE — FOCO
+========================================================= */
+
+.linkMenu:focus-visible,
+.theme-toggle:focus-visible,
+.hamburger:focus-visible,
+.fecharMenu:focus-visible {
+  outline: 3px solid var(--cor-foco);
+  outline-offset: 4px;
+}
+
+/* =========================================================
+   MENU MOBILE
+========================================================= */
+
+.hamburger {
+  display: none;
+
+  flex-direction: column;
+
+  gap: 0.4rem;
+
+  width: 2.5rem;
+  height: 2rem;
+
+  padding: 0;
+
+  border: none;
+
+  background: transparent;
+
+  cursor: pointer;
+}
+
+.hamburger-bar {
+  width: 100%;
+  height: 3px;
+
+  border-radius: 10px;
+
+  background: var(--cor-fonte-invertida);
+
+  transition:
+    transform 0.3s ease,
+    opacity 0.3s ease;
+}
+
+/* =========================================================
+   BOTÃO FECHAR MENU
+========================================================= */
+
+.fecharMenu {
+  display: none;
+
+  align-self: flex-end;
+
+  padding: 0;
+
+  border: none;
+
+  background: transparent;
+
+  color: var(--cor-fonte-invertida);
+
+  font-size: 1.5rem;
+
+  cursor: pointer;
+
+  transition:
+    color 0.3s ease,
+    transform 0.3s ease;
+}
+
+.fecharMenu:hover {
+  color: var(--cor-foco);
+
+  transform: scale(1.1);
+}
+
+/* =========================================================
+   THEME TOGGLE
+========================================================= */
+
+.theme-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 42px;
+  height: 42px;
+
+  padding: 0;
+
+  border: none;
+  border-radius: 50%;
+
+  background: rgba(255, 255, 255, 0.12);
+
+  color: var(--cor-fonte-invertida);
+
+  font-size: 1.4rem;
+
+  cursor: pointer;
+
+  transition:
+    background 0.3s ease,
+    transform 0.3s ease;
+}
+
+.theme-toggle:hover {
+  background: rgba(255, 255, 255, 0.22);
+
+  transform: rotate(20deg) scale(1.1);
+}
+
+/* =========================================================
+   ÍCONE DO TEMA
+========================================================= */
+
+#icon {
+  display: inline-block;
+
+  transition:
+    opacity 0.3s ease,
+    transform 0.5s ease;
+}
+
+.fade-out {
+  opacity: 0;
+
+  transform: rotate(180deg) scale(0.5);
+}
+
+/* =========================================================
+   RESPONSIVIDADE
+========================================================= */
+
+@media (max-width: 768px) {
+  header {
+    padding: 0.5rem 20px;
+  }
+
+  .hamburger {
+    display: flex;
+  }
+
+  .menu {
+    position: fixed;
+
+    top: 0;
+    right: -100%;
+
+    width: 250px;
+    height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 25px;
+
+    padding: 40px 20px;
+
+    background: var(--roxo-escuro);
+
+    box-shadow: -5px 0 15px var(--sombra);
+
+    transition: right 0.3s ease;
+  }
+
+  .menu.active {
+    right: 0;
+  }
+
+  .linkMenu {
+    margin: 0;
+
+    font-size: 1.1rem;
+  }
+
+  .fecharMenu {
+    display: block;
+
+    position: absolute;
+
+    top: 20px;
+    right: 20px;
+  }
+
+  .theme-toggle {
+    margin-top: 10px;
+  }
+}
+
+/* =========================================================
+   MOBILE PEQUENO
+========================================================= */
+
+@media (max-width: 480px) {
+  .logo img {
+    height: 70px;
+  }
+
+  .hamburger {
+    width: 2rem;
+    height: 1.5rem;
+  }
+
+  .hamburger-bar {
+    height: 2.5px;
+  }
+
+  .menu {
+    width: 220px;
+  }
+}

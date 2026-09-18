@@ -1,0 +1,30 @@
+<article>
+    <!-- Barra de acessibilidade: botões para ativar/desativar, zoom e alternar tema.
+             Os handlers onclick referenciam funções definidas em js/acessibilidade.js e alterarTemas.js -->
+    <div id="barra-acessibilidade" class="divativacaobarradeacessibilidade">
+        <button id="botaobarra" onclick="ativarbarra()" class="botaoativacaobarra">
+            <img src="./assets/img/icon.svg" alt="símbolo da onu" />
+        </button>
+    </div>
+
+    <div id="barra" class="divbarradeacessibilidade">
+        <button onclick="desativarbarra()" class="botaoativacaobarra">
+            <img src="./assets/img/icon.svg" alt="símbolo da onu" />
+        </button>
+
+        <!-- Botões de zoom: chamam funções que alteram tamanho do texto/escala -->
+        <button onclick="zoommenos()" class="funcaoesbarradeacessibilidade">
+            <img src="./assets/img/lupa-.svg" alt="Lupa com um - no centro" />
+        </button>
+
+        <button onclick="zoommais()" class="funcaoesbarradeacessibilidade">
+            <img src="./assets/img/lupa+.svg" alt="Lupa com um + no centro" />
+        </button>
+
+        <button type="button" id="theme-toggle" class="btn btn-outline-secondary rounded-circle"
+            aria-label="Alternar tema" title="Alternar tema">
+            <span id="theme-icon" aria-hidden="true">☀️</span>
+        </button>
+
+    </div>
+</article>

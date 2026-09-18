@@ -1,0 +1,35 @@
+# Ativa o módulo de reescrita
+RewriteEngine On
+
+# Bloqueia acesso direto a pastas sensíveis
+RewriteRule ^(app|config|vendor)/ - [F,L]
+
+# Bloqueia acesso a arquivos sensíveis
+<FilesMatch "(\.env|\.git|\.htaccess|composer\.json|readme\.md)">
+    Require all denied
+</FilesMatch>
+
+# Impede reescrita se for arquivo ou diretório real
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# Redireciona todas as requisições para index.php
+RewriteRule ^ index.html [QSA,L]
+
+# Define charset padrão
+AddDefaultCharset UTF-8
+
+# Bloqueia listagem de diretórios
+Options -Indexes
+IndexIgnore *
+
+# Cache para arquivos estáticos (opcional, mas interessante)
+<IfModule mod_expires.c>
+    ExpiresActive On
+    ExpiresByType image/jpeg "access plus 1 month"
+    ExpiresByType image/jpg "access plus 1 month"
+    ExpiresByType image/webp "access plus 1 month"
+    ExpiresByType image/png  "access plus 1 month"
+    ExpiresByType text/css   "access plus 1 week"
+    ExpiresByType application/javascript "access plus 1 week"
+</IfModule>
