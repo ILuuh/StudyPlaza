@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", () => {
     return;
   }
 
-  fetch("./components/navbar.html")
+  fetch("../components/navbarLogeed.html")
     .then((response) => {
       if (!response.ok) {
         throw new Error("Não foi possível carregar a Navbar.");

@@ -43,7 +43,7 @@ header {
 
   text-decoration: none;
 }
-.logo a h1{
+.logo a h1 {
   font-size: 1.5rem;
 }
 .logo img {
@@ -53,7 +53,7 @@ header {
 }
 
 /* =========================================================
-   MENU
+   MENU (DESKTOP)
 ========================================================= */
 
 .menu {
@@ -61,6 +61,7 @@ header {
   flex-wrap: wrap;
 
   gap: 18px;
+  align-items: center;
 }
 
 .linkMenu {
@@ -147,71 +148,164 @@ header {
 }
 
 /* =========================================================
-   MENU MOBILE
+   MENU MOBILE (BOTÕES HAMBÚRGUER E FECHAR)
 ========================================================= */
 
 .hamburger {
   display: none;
-
   flex-direction: column;
-
-  gap: 0.4rem;
-
-  width: 2.5rem;
-  height: 2rem;
-
+  justify-content: space-between;
+  width: 2rem;
+  height: 1.5rem;
   padding: 0;
-
   border: none;
-
   background: transparent;
-
   cursor: pointer;
+  z-index: 1002;
 }
 
 .hamburger-bar {
   width: 100%;
   height: 3px;
-
   border-radius: 10px;
-
   background: var(--cor-fonte-invertida);
-
   transition:
     transform 0.3s ease,
     opacity 0.3s ease;
 }
 
-/* =========================================================
-   BOTÃO FECHAR MENU
-========================================================= */
-
 .fecharMenu {
   display: none;
-
-  align-self: flex-end;
-
-  padding: 0;
-
+  position: absolute;
+  top: 25px;
+  right: 25px;
+  padding: 5px;
   border: none;
-
   background: transparent;
-
   color: var(--cor-fonte-invertida);
-
-  font-size: 1.5rem;
-
+  font-size: 1.8rem;
   cursor: pointer;
-
   transition:
     color 0.3s ease,
     transform 0.3s ease;
+  z-index: 1002;
 }
 
 .fecharMenu:hover {
   color: var(--cor-foco);
-
   transform: scale(1.1);
+}
+
+/* =========================================================
+LINK / BOTÃO DE LOGIN
+========================================================= */
+
+.btnLogin {
+display: inline-flex;
+align-items: center;
+justify-content: center;
+
+gap: 8px;
+
+min-width: 105px;
+
+padding: 10px 18px;
+
+border: 2px solid rgba(255, 255, 255, 0.8);
+border-radius: 10px;
+
+background: rgba(255, 255, 255, 0.12);
+
+color: var(--cor-fonte-invertida);
+
+font-family: var(--font-family);
+font-size: 0.95rem;
+font-weight: 700;
+
+line-height: 1;
+
+text-decoration: none;
+
+cursor: pointer;
+
+transition:
+background 0.3s ease,
+color 0.3s ease,
+border-color 0.3s ease,
+transform 0.3s ease,
+box-shadow 0.3s ease;
+}
+
+/* =========================================================
+ÍCONE
+========================================================= */
+
+.btnLogin i {
+font-size: 0.9rem;
+
+transition: transform 0.3s ease;
+}
+
+/* =========================================================
+HOVER
+========================================================= */
+
+.btnLogin:hover {
+background: var(--cor-fonte-invertida);
+
+color: var(--roxo-principal);
+
+border-color: var(--cor-fonte-invertida);
+
+transform: translateY(-2px);
+
+box-shadow:
+0 6px 15px rgba(0, 0, 0, 0.2);
+
+text-decoration: none;
+}
+
+/* Movimento do ícone */
+
+.btnLogin:hover i {
+transform: translateX(3px);
+}
+
+/* =========================================================
+CLIQUE
+========================================================= */
+
+.btnLogin:active {
+transform: translateY(0);
+
+box-shadow:
+0 3px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* =========================================================
+FOCO — ACESSIBILIDADE
+========================================================= */
+
+.btnLogin:focus-visible {
+outline: 3px solid var(--cor-foco);
+outline-offset: 4px;
+}
+
+/* =========================================================
+REDUÇÃO DE MOVIMENTO
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+.btnLogin,
+.btnLogin i {
+transition: none;
+}
+
+.btnLogin:hover,
+.btnLogin:hover i {
+transform: none;
+}
 }
 
 /* =========================================================
@@ -269,7 +363,7 @@ header {
 }
 
 /* =========================================================
-   RESPONSIVIDADE
+   RESPONSIVIDADE (MOBILE / TABLET < 768px)
 ========================================================= */
 
 @media (max-width: 768px) {
@@ -277,34 +371,61 @@ header {
     padding: 0.5rem 20px;
   }
 
+  /* Exibe o botão hambúrguer no mobile */
   .hamburger {
     display: flex;
   }
 
+  /* Overlay escurecido de fundo (fundo translúcido) */
+  body::after {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(3px);
+    opacity: 0;
+    visibility: hidden;
+    transition:
+      opacity 0.3s ease,
+      visibility 0.3s ease;
+    z-index: 998;
+  }
+
+  body.menu-open::after {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  /* Estilização moderna do menu lateral tipo "Drawer" */
   .menu {
     position: fixed;
-
     top: 0;
     right: -100%;
 
-    width: 250px;
+    width: 80%;
+    max-width: 300px;
     height: 100vh;
 
     display: flex;
     flex-direction: column;
-
     align-items: center;
     justify-content: center;
 
-    gap: 25px;
+    gap: 30px;
+    padding: 60px 30px;
 
-    padding: 40px 20px;
+    /* Efeito Glassmorphism moderno combinando com a cor roxa */
+    background: rgba(45, 15, 75, 0.95);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
 
-    background: var(--roxo-escuro);
+    box-shadow: -10px 0 30px rgba(0, 0, 0, 0.3);
 
-    box-shadow: -5px 0 15px var(--sombra);
-
-    transition: right 0.3s ease;
+    transition: right 0.4s cubic-bezier(0.77, 0, 0.175, 1);
+    z-index: 1001;
   }
 
   .menu.active {
@@ -313,21 +434,44 @@ header {
 
   .linkMenu {
     margin: 0;
-
-    font-size: 1.1rem;
+    font-size: 1.25rem;
+    opacity: 0;
+    transform: translateY(20px);
+    transition:
+      opacity 0.3s ease,
+      transform 0.3s ease,
+      color 0.3s ease;
   }
 
+  /* Animação escalonada dos links ao abrir o menu */
+  .menu.active .linkMenu {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .menu.active .linkMenu:nth-child(1) {
+    transition-delay: 0.1s;
+  }
+  .menu.active .linkMenu:nth-child(2) {
+    transition-delay: 0.15s;
+  }
+  .menu.active .linkMenu:nth-child(3) {
+    transition-delay: 0.2s;
+  }
+  .menu.active .linkMenu:nth-child(4) {
+    transition-delay: 0.25s;
+  }
+  .menu.active .linkMenu:nth-child(5) {
+    transition-delay: 0.3s;
+  }
+
+  /* Exibe o botão de fechar dentro do menu mobile */
   .fecharMenu {
     display: block;
-
-    position: absolute;
-
-    top: 20px;
-    right: 20px;
   }
 
   .theme-toggle {
-    margin-top: 10px;
+    margin-top: 15px;
   }
 }
 
@@ -337,19 +481,14 @@ header {
 
 @media (max-width: 480px) {
   .logo img {
-    height: 70px;
+    height: 55px;
   }
 
-  .hamburger {
-    width: 2rem;
-    height: 1.5rem;
-  }
-
-  .hamburger-bar {
-    height: 2.5px;
+  .logo h1 {
+    font-size: 1.2rem;
   }
 
   .menu {
-    width: 220px;
+    width: 85%;
   }
 }

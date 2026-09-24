@@ -14,7 +14,6 @@ document.addEventListener("DOMContentLoaded", () => {
         "style",
         "navbar",
         "footer",
-        "login",
         "btnAcessibilidade"
     ];
 
@@ -53,7 +52,7 @@ function carregarArquivoCSS(nomeArquivo) {
 
     link.rel = "stylesheet";
 
-    link.href = `../assets/css/${nomeArquivo}.css`;
+    link.href = `../assets/css-logeed/${nomeArquivo}.css`;
 
     document.head.appendChild(link);
 

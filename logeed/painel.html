@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-BR" data-bs-theme="light">
 
 <head>
   <meta charset="UTF-8" />
@@ -8,156 +8,28 @@
     content="Painel de grupos da StudyPlaza com visão geral, indicadores e acompanhamento de atividades." />
   <meta name="author" content="StudyPlaza" />
   <title>Painel de Grupos - StudyPlaza</title>
-  <link rel="icon" href="../img/Logo_Fundo_Roxa.png" type="image/png" />
+  <link rel="icon" href="../assets/img/Logo_Fundo_Roxa.png" type="image/png" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-  <link rel="stylesheet" href="css/style.css" />
-  <link rel="stylesheet" href="css/painel.css" />
-  <link rel="stylesheet" href="../css/btnAcessibilidade.css">
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+
+  <script src="../assets/js-logeed/carregarCSS.js"></script>
+
   <!-- Cabeçalho: inclui metadados e estilos. Manter a ordem dos CSS para que painel.css
        sobrescreva regras gerais definidas em style.css quando necessário. -->
 </head>
 
-<body>
+<body data-css="painel">
 
-  <header>
-    <div class="logo">
-      <a href="index.html" aria-label="Voltar para página inicial">
-        <img src="../img/Logo.svg" alt="Logo Study Plaza" />
-        <h1>Study Plaza</h1>
-      </a>
-    </div>
-
-    <button class="hamburger" aria-expanded="false" aria-controls="menu">
-      <span class="hamburger-bar"></span>
-      <span class="hamburger-bar"></span>
-      <span class="hamburger-bar"></span>
-    </button>
-
-    <nav class="menu" id="menu-principal" aria-label="Menu principal">
-
-      <!-- BOTÃO FECHAR (mobile) -->
-      <button class="fecharMenu" aria-label="Fechar menu">&times;</button>
-
-      <!-- LINKS PRINCIPAIS -->
-      <div class="menu-links">
-        <a href="grupos.html" class="linkMenu">
-          <i class="fa-solid fa-people-group"></i>
-          <span>Grupos</span>
-        </a>
-
-        <a href="painel.html" class="linkMenu">
-          <i class="fa-solid fa-gauge-high"></i>
-          <span>Painel</span>
-        </a>
-
-        <a href="cursos.html" class="linkMenu">
-          <i class="fa-solid fa-book"></i>
-          <span>Cursos</span>
-        </a>
-        <a href="http://localhost:9000" class="linkMenu destaque">
-          <i class="fa-solid fa-comments"></i>
-          <span>Chat</span>
-        </a>
-
-      </div>
-
-      <!-- AÇÕES / USUÁRIO -->
-      <div class="menu-acoes">
-
-        <a href="sobrenos.html" class="linkMenu">
-          <i class="fa-solid fa-users"></i>
-          <span>Sobre</span>
-        </a>
-
-        <!-- PERFIL -->
-        <div class="dropdown-perfil">
-          <button class="perfil-btn" aria-expanded="false">
-            <i class="fa-solid fa-circle-user"></i>
-            <span>Perfil</span>
-            <i class="fa-solid fa-chevron-down seta"></i>
-          </button>
-
-          <div class="dropdown-conteudo">
-            <a href="perfil.html">
-              <i class="fa-solid fa-user"></i> Meu Perfil
-            </a>
-
-            <a href="cursosinscritos.html">
-              <i class="fa-solid fa-book"></i> Meus Cursos
-            </a>
-
-            <hr>
-
-            <a href="#" id="logout-btn" class="logout">
-              <i class="fa-solid fa-right-from-bracket"></i> Sair
-            </a>
-          </div>
-        </div>
-
-      </div>
-
-    </nav>
+  <header id="navbar">
   </header>
 
   <main>
-    <section>
-      <article>
-        <!-- Widget de acessibilidade externo (VLibras). Mantido no topo do conteúdo para fácil alcance. -->
-        <div vw class="enabled">
-          <div vw-access-button class="active"></div>
-          <div vw-plugin-wrapper>
-            <div class="vw-plugin-top-wrapper"></div>
-          </div>
-        </div>
-
-        <!-- Overlay usado por modais (ex.: login). Display controlado por JS adicionando/removendo classes. -->
-        <div class="overlay"></div>
-      </article>
+    <section id="vLibras">
     </section>
 
-    <section>
-      <article>
-        <!-- Barra de acessibilidade: botão inicial (botaobarra) mostra a barra completa -->
-        <div id="barra-acessibilidade" class="divativacaobarradeacessibilidade">
-          <button id="botaobarra" onclick="ativarbarra()" class="botaoativacaobarra">
-            <img src="../img/icon.svg" alt="símbolo da onu" />
-          </button>
-        </div>
-
-        <!-- Barra completa: controles de zoom e alternância de tema.
-             Funções zoommais/zoommenos e alterarTemas.js vinculam-se a esses botões. -->
-        <div id="barra" class="divbarradeacessibilidade">
-          <button onclick="desativarbarra()" class="botaoativacaobarra">
-            <img src="../img/icon.svg" alt="símbolo da onu" />
-          </button>
-
-          <button onclick="zoommenos()" class="funcaoesbarradeacessibilidade" aria-label="Diminuir fonte">
-            <img src="../img/lupa-.svg" alt="Lupa com um - no centro" />
-          </button>
-
-          <button onclick="zoommais()" class="funcaoesbarradeacessibilidade" aria-label="Aumentar fonte">
-            <img src="../img/lupa+.svg" alt="Lupa com um + no centro" />
-          </button>
-
-          <!-- Botão de alternância de tema. O script alterarTemas.js atualiza o ícone e salva a preferência. -->
-          <button id="theme-toggle" class="theme-toggle" aria-pressed="false" aria-label="Alternar tema">
-            <span id="icon" class="sun">☀️</span>
-          </button>
-        </div>
-      </article>
-    </section>
-
-    <section>
-      <article>
-        <!-- Container VLibras -->
-        <div vw class="enabled">
-          <div vw-access-button class="active"></div>
-          <div vw-plugin-wrapper>
-            <div class="vw-plugin-top-wrapper"></div>
-          </div>
-        </div>
-        <div class="overlay"></div>
-      </article>
+    <section id="acessibilidade">
     </section>
 
     <!-- Conteúdo principal do painel: título, métricas e lista de grupos.
@@ -241,27 +113,15 @@
   </main>
 
   <div class="gtranslate_wrapper"></div>
-  <footer>
-    <section class="footer-container">
-      <article class="footer-section">
-        <div class="nomeLogo">
-          <img class="logoFooter" src="../img/Logo.svg" alt="Logo do site" />
-          <h3 class="textLogoFooter">Study Plaza</h3>
-        </div>
-        <p>Transformando o jeito como você estuda. Conecte-se, compartilhe e aprenda em uma comunidade vibrante.</p>
-        <div class="social-icons">
-          <p> Quer conhecer um pouco mais de nós?
-            Conheça nosso
+  <footer id="footer" class="footer"></footer>
 
-            <a href="https://www.instagram.com/studyplaza_" aria-label="Instagram Study Plaza">
-              <i class="fab fa-instagram"></i> Instagram
-            </a>
-        </div>
-        </p>
-      </article>
-    </section>
-    <p>&copy; <span id="anoAtual">2025</span> Study Plaza - Todos os direitos reservados.</p>
-  </footer>
+  <script src="../assets/js-logeed/footer.js"></script>
+  <script src="../assets/js-logeed/navbar.js"></script>
+  <script src="../assets/js/acessibilidade.js"></script>
+  <script src="../assets/js/alterarTemas.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js">
+  </script>
 
   <script> window.chtlConfig = { chatbotId: "1666361565" } </script>
   <script async data-id="1666361565" id="chtl-script" type="text/javascript"
@@ -272,7 +132,7 @@
   <script>window.gtranslateSettings = { "default_language": "pt", "native_language_names": true, "detect_browser_language": true, "languages": ["pt", "en", "es"], "wrapper_selector": ".gtranslate_wrapper", "switcher_horizontal_position": "inline", "float_switcher_open_direction": "bottom", "alt_flags": { "en": "usa", "pt": "brazil" } }</script>
   <script src="https://cdn.gtranslate.net/widgets/latest/float.js" defer></script>
 
-  <script src="js/painel.js"></script>
+  <script src="../assets/js-logeed/painel.js"></script>
 
   <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
   <script>

@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
     return;
   }
 
-  fetch("/components/acessibilidade.html")
+  fetch("../components/acessibilidade.html")
     .then((response) => {
       if (!response.ok) {
         throw new Error("Não foi possível carregar o botão de acessibilidade.");

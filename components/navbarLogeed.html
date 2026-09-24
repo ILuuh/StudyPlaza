@@ -1,0 +1,81 @@
+<!-- Logo e título: link para a página inicial. aria-label melhora acessibilidade para leitores de tela -->
+<div class="logo">
+  <a href="../logeed/index.html" aria-label="Voltar para página inicial">
+    <img src="../assets/img/Logo.svg" alt="Logo Study Plaza" />
+    <h1>Study Plaza</h1>
+  </a>
+</div>
+
+<!-- Botão hamburger para menu responsivo.
+         - aria-expanded deve ser atualizado por JS quando o menu abrir/fechar
+         - aria-controls aponta para o menu que esse botão controla -->
+<button class="hamburger" aria-expanded="false" aria-controls="menu">
+  <span class="hamburger-bar"></span>
+  <span class="hamburger-bar"></span>
+  <span class="hamburger-bar"></span>
+</button>
+
+<nav class="menu" id="menu-principal" aria-label="Menu principal">
+
+  <!-- BOTÃO FECHAR (mobile) -->
+  <button class="fecharMenu" aria-label="Fechar menu">&times;</button>
+
+  <!-- LINKS PRINCIPAIS -->
+  <div class="menu-links">
+    <a href="../logeed/grupos/gruposDisponiveis.html" class="linkMenu">
+      <i class="fa-solid fa-people-group"></i>
+      <span>Grupos</span>
+    </a>
+
+    <a href="../logeed/painel.html" class="linkMenu">
+      <i class="fa-solid fa-gauge-high"></i>
+      <span>Painel</span>
+    </a>
+
+    <a href="../logeed/cursos/cursosDisponiveis.html" class="linkMenu">
+      <i class="fa-solid fa-book"></i>
+      <span>Cursos</span>
+    </a>
+    <a href="http://localhost:9000" class="linkMenu destaque">
+      <i class="fa-solid fa-comments"></i>
+      <span>Chat</span>
+    </a>
+
+  </div>
+
+  <!-- AÇÕES / USUÁRIO -->
+  <div class="menu-acoes">
+
+    <a href="../logeed/sobrenos.html" class="linkMenu">
+      <i class="fa-solid fa-users"></i>
+      <span>Sobre</span>
+    </a>
+
+    <!-- PERFIL -->
+    <div class="dropdown-perfil">
+      <button class="perfil-btn" aria-expanded="false">
+        <i class="fa-solid fa-circle-user"></i>
+        <span>Perfil</span>
+        <i class="fa-solid fa-chevron-down seta"></i>
+      </button>
+
+      <div class="dropdown-conteudo">
+        <a href="../logeed/perfil.html">
+          <i class="fa-solid fa-user"></i> Meu Perfil
+        </a>
+
+        <a href="../logeed/cursos/meuscursos.html">
+          <i class="fa-solid fa-book"></i> Meus Cursos
+        </a>
+
+        <hr>
+
+        <a href="#" id="logout-btn" class="logout">
+          <i class="fa-solid fa-right-from-bracket"></i> Sair
+        </a>
+      </div>
+    </div>
+
+  </div>
+
+</nav>

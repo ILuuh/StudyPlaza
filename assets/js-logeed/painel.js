@@ -27,9 +27,9 @@ function t(key, fallback = "") {
 const storedUser = JSON.parse(localStorage.getItem('studyplaza-user'));
 const storedToken = localStorage.getItem('studyplaza-token');
 
-if (!storedUser || !storedToken) {
-    window.location.href = "login.html";
-}
+// if (!storedUser || !storedToken) {
+//     window.location.href = "../login.html";
+// }
 
 const userId = storedUser.id;
 

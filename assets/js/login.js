@@ -1,108 +1,73 @@
 /*
   login.js
-  - Validação do formulário de login
-  - Comunicação com a API
-  - Armazenamento dos dados do usuário
+  - Valida os campos do formulário de login
+  - Mostra mensagens de erro em português
+  - Realiza a autenticação na API
 */
 
-document.addEventListener("DOMContentLoaded", () => {
-  // =====================================================
-  // SELETORES
-  // =====================================================
+// Flags de interação do usuário
+let emailTouched = false;
+let passwordTouched = false;
 
-  const loginForm = document.getElementById("login-form");
-
-  const emailInput = document.getElementById("input-email");
-
-  const passwordInput = document.getElementById("input-password");
-
-  const emailError = document.getElementById("email-error");
-
-  const passwordError = document.getElementById("password-error");
-
-  const formError = document.getElementById("form-error");
-
-
-  // =====================================================
-  // IMPORTAÇÃO DO MODAL
-  // =====================================================
-
-  const loginModal = document.getElementById("loginModal");
-
-  if (!loginModal) {
-    return;
-  }
-
-  fetch("./components/loginModal.html")
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error("Não foi possível carregar a Navbar.");
-      }
-
-      return response.text();
-    })
-    .then((html) => {
-      loginModal.innerHTML = html;
-    })
-    .catch((error) => {
-      console.error("Erro ao carregar a o modal Login:", error);
-    });
-
-  // =====================================================
-  // VERIFICAÇÃO
-  // =====================================================
-
-  if (!loginForm) {
-    return;
-  }
-
-  // =====================================================
-  // FUNÇÕES DE ERRO
-  // =====================================================
-
-  function showError(element, message) {
+/**
+ * Exibe uma mensagem de erro.
+ */
+function showError(element, message) {
     if (!element) return;
 
     element.textContent = message;
+    element.style.display = message ? "block" : "none";
+}
 
-    element.classList.add("active");
-  }
-
-  function clearError(element) {
+/**
+ * Limpa uma mensagem de erro.
+ */
+function clearError(element) {
     if (!element) return;
 
     element.textContent = "";
+    element.style.display = "none";
+}
 
-    element.classList.remove("active");
-  }
+/**
+ * Validação do e-mail
+ */
+function validateEmail() {
+    const emailInput = document.getElementById("input-email");
+    const emailError = document.getElementById("email-error");
 
-  // =====================================================
-  // VALIDAÇÃO DO E-MAIL
-  // =====================================================
-
-  function validateEmail() {
+    // Verifica se os elementos existem antes de utilizá-los
     if (!emailInput) return false;
 
-    const email = emailInput.value.trim();
+    // Se ainda não houve interação, não exibe erro
+    if (!emailTouched) return false;
+
+    const value = emailInput.value.trim();
 
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 
-    if (email === "") {
-      emailInput.classList.add("invalid");
-      emailInput.classList.remove("valid");
+    if (value === "") {
+        emailInput.classList.add("invalid");
+        emailInput.classList.remove("valid");
 
-      showError(emailError, "O campo E-mail é obrigatório.");
+        showError(
+            emailError,
+            "O campo E-mail é obrigatório."
+        );
 
-      return false;
+        return false;
     }
 
-    if (!emailPattern.test(email)) {
-      emailInput.classList.add("invalid");
-      emailInput.classList.remove("valid");
+    if (!emailPattern.test(value)) {
+        emailInput.classList.add("invalid");
+        emailInput.classList.remove("valid");
 
-      showError(emailError, "Por favor, insira um e-mail válido.");
+        showError(
+            emailError,
+            "Por favor, insira um e-mail válido."
+        );
 
-      return false;
+        return false;
     }
 
     emailInput.classList.add("valid");
@@ -111,33 +76,46 @@ document.addEventListener("DOMContentLoaded", () => {
     clearError(emailError);
 
     return true;
-  }
+}
 
-  // =====================================================
-  // VALIDAÇÃO DA SENHA
-  // =====================================================
+/**
+ * Validação da senha
+ */
+function validatePassword() {
+    const passwordInput = document.getElementById("input-password");
+    const passwordError = document.getElementById("password-error");
 
-  function validatePassword() {
+    // Verifica se o elemento existe antes de utilizá-lo
     if (!passwordInput) return false;
 
-    const password = passwordInput.value;
+    // Se ainda não houve interação, não exibe erro
+    if (!passwordTouched) return false;
 
-    if (password === "") {
-      passwordInput.classList.add("invalid");
-      passwordInput.classList.remove("valid");
+    // Não usamos trim() na senha
+    const value = passwordInput.value;
 
-      showError(passwordError, "O campo Senha é obrigatório.");
+    if (value === "") {
+        passwordInput.classList.add("invalid");
+        passwordInput.classList.remove("valid");
 
-      return false;
+        showError(
+            passwordError,
+            "O campo Senha é obrigatório."
+        );
+
+        return false;
     }
 
-    if (password.length < 6) {
-      passwordInput.classList.add("invalid");
-      passwordInput.classList.remove("valid");
+    if (value.length < 6) {
+        passwordInput.classList.add("invalid");
+        passwordInput.classList.remove("valid");
 
-      showError(passwordError, "A senha deve ter pelo menos 6 caracteres.");
+        showError(
+            passwordError,
+            "A senha deve ter pelo menos 6 caracteres."
+        );
 
-      return false;
+        return false;
     }
 
     passwordInput.classList.add("valid");
@@ -146,90 +124,249 @@ document.addEventListener("DOMContentLoaded", () => {
     clearError(passwordError);
 
     return true;
-  }
+}
 
-  // =====================================================
-  // VALIDAÇÃO AO DIGITAR
-  // =====================================================
 
-  if (emailInput) {
-    emailInput.addEventListener("input", () => {
-      validateEmail();
-    });
-  }
+/**
+ * Inicialização da página
+ */
+document.addEventListener("DOMContentLoaded", () => {
 
-  if (passwordInput) {
-    passwordInput.addEventListener("input", () => {
-      validatePassword();
-    });
-  }
+    const emailInput = document.getElementById("input-email");
+    const passwordInput = document.getElementById("input-password");
+    const loginForm = document.getElementById("login-form");
 
-  // =====================================================
-  // ENVIO
-  // =====================================================
+    /*
+      Caso a página não possua o formulário,
+      o script simplesmente não faz nada.
+    */
+    if (!loginForm) return;
 
-  loginForm.addEventListener("submit", async (event) => {
-    event.preventDefault();
 
-    clearError(formError);
+    /* =========================
+       E-MAIL
+       ========================= */
 
-    const emailValid = validateEmail();
+    if (emailInput) {
 
-    const passwordValid = validatePassword();
+        emailInput.addEventListener("focus", () => {
+            emailTouched = true;
 
-    if (!emailValid || !passwordValid) {
-      showError(formError, "Por favor, corrija os erros antes de continuar.");
+            clearError(
+                document.getElementById("email-error")
+            );
+        });
 
-      return;
+        emailInput.addEventListener("blur", () => {
+            validateEmail();
+        });
+
+        emailInput.addEventListener("input", () => {
+            if (emailTouched) {
+                validateEmail();
+            }
+        });
     }
 
-    const email = emailInput.value.trim();
 
-    const password = passwordInput.value;
+    /* =========================
+       SENHA
+       ========================= */
 
-    // =================================================
-    // API
-    // =================================================
+    if (passwordInput) {
 
-    try {
-      const response = await fetch("http://localhost:3500/api/auth", {
-        method: "POST",
+        passwordInput.addEventListener("focus", () => {
+            passwordTouched = true;
 
-        headers: {
-          "Content-Type": "application/json",
-        },
+            clearError(
+                document.getElementById("password-error")
+            );
+        });
 
-        body: JSON.stringify({
-          email: email,
-          senha: password,
-        }),
-      });
+        passwordInput.addEventListener("blur", () => {
+            validatePassword();
+        });
 
-      if (response.ok) {
-        const user = await response.json();
+        passwordInput.addEventListener("input", () => {
+            if (passwordTouched) {
+                validatePassword();
+            }
+        });
+    }
 
-        localStorage.setItem("studyplaza-user", JSON.stringify(user));
 
-        if (user.token) {
-          localStorage.setItem("studyplaza-token", user.token);
+    /* =========================
+       ENVIO DO FORMULÁRIO
+       ========================= */
+
+    loginForm.addEventListener("submit", async (event) => {
+
+        event.preventDefault();
+
+        /*
+          Ao tentar enviar o formulário,
+          consideramos os dois campos como utilizados.
+        */
+        emailTouched = true;
+        passwordTouched = true;
+
+        const isEmailValid = validateEmail();
+        const isPasswordValid = validatePassword();
+
+        /*
+          Impede o envio caso exista algum erro.
+        */
+        if (!isEmailValid || !isPasswordValid) {
+
+            const message =
+                "Por favor, corrija os erros antes de enviar o formulário.";
+
+            if (typeof showToast === "function") {
+                showToast(message, "error");
+            } else {
+                alert(message);
+            }
+
+            return;
         }
 
-        window.location.href = "logeed/painel.html";
 
-        return;
-      }
+        /*
+          Recupera os valores.
+          O e-mail pode receber trim().
+          A senha NÃO deve receber trim().
+        */
+        const email = emailInput.value.trim();
+        const password = passwordInput.value;
 
-      if (response.status === 401) {
-        showError(formError, "Email ou senha inválidos.");
 
-        return;
-      }
+        try {
 
-      showError(formError, "Erro ao realizar o login.");
-    } catch (error) {
-      console.error("Erro ao autenticar:", error);
+            const response = await fetch(
+                "http://localhost:3500/api/auth",
+                {
+                    method: "POST",
 
-      showError(formError, "Não foi possível conectar ao servidor.");
-    }
-  });
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+
+                    body: JSON.stringify({
+                        email: email,
+                        senha: password
+                    })
+                }
+            );
+
+
+            /* =========================
+               LOGIN REALIZADO
+               ========================= */
+
+            if (response.status === 200) {
+
+                const user = await response.json();
+
+                /*
+                  Salva os dados do usuário.
+                */
+                try {
+
+                    localStorage.setItem(
+                        "studyplaza-user",
+                        JSON.stringify(user)
+                    );
+
+                    /*
+                      Só salva o token se ele realmente existir.
+                    */
+                    if (user.token) {
+                        localStorage.setItem(
+                            "studyplaza-token",
+                            user.token
+                        );
+                    }
+
+                } catch (storageError) {
+
+                    console.error(
+                        "Erro ao salvar dados no localStorage:",
+                        storageError
+                    );
+                }
+
+
+                if (typeof showToast === "function") {
+
+                    showToast(
+                        "Login realizado com sucesso!",
+                        "success"
+                    );
+
+                }
+
+
+                /*
+                  Redireciona para o painel.
+                */
+                setTimeout(() => {
+
+                    window.location.href =
+                        "./logeed/painel.html";
+
+                }, 600);
+
+                return;
+            }
+
+
+            /* =========================
+               E-MAIL OU SENHA INCORRETOS
+               ========================= */
+
+            if (response.status === 401) {
+
+                const message =
+                    "E-mail ou senha inválidos.";
+
+                if (typeof showToast === "function") {
+                    showToast(message, "error");
+                } else {
+                    alert(message);
+                }
+
+                return;
+            }
+
+
+            /* =========================
+               OUTROS ERROS
+               ========================= */
+
+            const message =
+                "Erro ao comunicar com o servidor.";
+
+            if (typeof showToast === "function") {
+                showToast(message, "error");
+            } else {
+                alert(message);
+            }
+
+        } catch (error) {
+
+            console.error(
+                "Erro ao autenticar:",
+                error
+            );
+
+            const message =
+                "Não foi possível conectar ao servidor.";
+
+            if (typeof showToast === "function") {
+                showToast(message, "error");
+            } else {
+                alert(message);
+            }
+        }
+    });
 });

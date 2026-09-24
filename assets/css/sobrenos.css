@@ -1,194 +1,193 @@
 /* =========================
    IMPORTS
 ========================= */
-@import url('style.css');
+@import url("style.css");
 
 /* =========================
    SEÇÃO SOBRE
 ========================= */
 .sobre-nos {
-    display: flex;
-    justify-content: center;
+  display: flex;
+  justify-content: center;
 
-    padding: 1rem 1.5rem;
-    background: var(--cor-Fundo);
+  padding: 1rem 1.5rem;
+  background: var(--cor-fundo);
 }
 
 .intro-sobre {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 40px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 40px;
 
-    width: 100%;
-    max-width: 1200px;
+  width: 100%;
+  max-width: 1200px;
 }
 
 /* TEXTO */
 .texto-sobre {
-    flex: 1;
-    min-width: 280px;
+  flex: 1;
+  min-width: 280px;
 }
 
 .texto-sobre h2 {
-    margin-bottom: 10px;
+  margin-bottom: 10px;
 
-    font-size: 2rem;
-    color: var(--cor-Fonte);
+  font-size: 2rem;
+  color: var(--cor-fonte);
 }
 
 .texto-sobre p {
-    text-align: justify;
+  text-align: justify;
+  color: var(--cor-fonte-secundaria);
 }
 
 /* IMAGEM */
 .imagem-sobre {
-    flex: 1;
-    min-width: 280px;
+  flex: 1;
+  min-width: 280px;
 }
 
 .imagem-sobre img {
-    width: 100%;
-    height: auto;
-    border-radius: 12px;
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
 }
 
 /* =========================
    INTEGRANTES
 ========================= */
 .integrantes {
-    padding: 1rem 1.5rem;
-    text-align: center;
+  padding: 1rem 1.5rem;
+  text-align: center;
+  background: var(--cor-fundo);
 }
 
 .cards-integrantes {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 40px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 40px;
 
-    margin: 1rem 0 5rem;
+  margin: 1rem 0 5rem;
 }
 
 /* CARD */
 .card-integrante {
-    width: 220px;
-    flex-shrink: 0;
+  width: 220px;
+  flex-shrink: 0;
 
-    padding: 20px;
-    border-radius: 16px;
+  padding: 20px;
+  border-radius: 16px;
 
-    background: var(--roxo-menu);
-    box-shadow: 0 5px 15px var(--sombra);
+  background: var(--cor-superficie);
+  box-shadow: 0 5px 15px var(--sombra);
 
-    transition: 0.3s ease;
+  transition: 0.3s ease;
 }
 
 .card-integrante:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 25px var(--sombra);
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px var(--sombra);
 }
 
 .card-integrante img {
-    width: 100%;
-    height: auto;
-    border-radius: 12px;
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
 }
 
 .card-integrante h3 {
-    margin-top: 10px;
-    color: var(--cor-Fundo);
+  margin-top: 10px;
+  color: var(--cor-fonte);
 }
 
 /* BOTÃO */
 .card-integrante button {
-    margin-top: 10px;
-    padding: 8px 12px;
+  margin-top: 10px;
+  padding: 8px 12px;
 
-    border: none;
-    border-radius: 8px;
+  border: none;
+  border-radius: 8px;
 
-    font-size: 1rem;
-    cursor: pointer;
+  font-size: 1rem;
+  cursor: pointer;
 
-    background: var(--roxo-menu);
-    color: #fff;
+  background: var(--gradient-principal);
+  color: var(--cor-fonte-invertida);
 
-    transition: 0.3s;
+  transition: 0.3s;
 }
 
 .card-integrante button:hover {
-    background: var(--hoverEscuro);
+  background: var(--cor-hover);
+  color: var(--cor-fonte-invertida);
 }
 
 /* =========================
    MODAL
 ========================= */
 .modal-integrante {
-    display: none;
-    position: fixed;
-    inset: 0;
+  display: none;
+  position: fixed;
+  inset: 0;
 
-    justify-content: center;
-    align-items: center;
+  justify-content: center;
+  align-items: center;
 
-    padding: 1rem;
+  padding: 1rem;
 
-    background: rgba(0, 0, 0, 0.6);
-    z-index: 1000;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 1000;
 }
 
-
 .modal-conteudo {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
 
-    width: 100%;
-    max-width: 500px;
-    padding: 20px;
-    border-radius: 16px;
+  width: 100%;
+  max-width: 500px;
+  padding: 20px;
+  border-radius: 16px;
 
-    background: var(--cor-Fundo);
-    text-align: justify;
+  background: var(--cor-superficie);
+  color: var(--cor-fonte);
+  text-align: justify;
 
-    position: relative;
-}
-
-
-.modal-conteudo {
-    transform: scale(0.9);
-    transition: transform 0.3s ease;
+  position: relative;
+  transform: scale(0.9);
+  transition: transform 0.3s ease;
 }
 
 .modal-integrante.active .modal-conteudo {
-    transform: scale(1);
+  transform: scale(1);
 }
 
 /* IMAGEM DO MODAL */
 .modal-conteudo .mini-img {
-    width: 80px;
-    height: 80px;
+  width: 80px;
+  height: 80px;
 
-    border-radius: 12px;
-    object-fit: cover;
+  border-radius: 12px;
+  object-fit: cover;
 
-    flex-shrink: 0;
+  flex-shrink: 0;
 }
 
 /* BOTÃO FECHAR */
 .fechar-modal {
-    position: absolute;
-    top: 10px;
-    right: 10px;
+  position: absolute;
+  top: 10px;
+  right: 10px;
 
-    border: none;
-    background: transparent;
+  border: none;
+  background: transparent;
 
-    font-size: 18px;
-    color: var(--cor-Fonte);
+  font-size: 18px;
+  color: var(--cor-fonte);
 
-    cursor: pointer;
+  cursor: pointer;
 }
 
 /* =========================
@@ -197,40 +196,40 @@
 
 /* Tablet */
 @media (max-width: 900px) {
-    .intro-sobre {
-        flex-direction: column;
-        gap: 20px;
-    }
+  .intro-sobre {
+    flex-direction: column;
+    gap: 20px;
+  }
 
-    .imagem-sobre,
-    .texto-sobre {
-        min-width: 100%;
-    }
+  .imagem-sobre,
+  .texto-sobre {
+    min-width: 100%;
+  }
 
-    .cards-integrantes {
-        gap: 20px;
-    }
+  .cards-integrantes {
+    gap: 20px;
+  }
 
-    .card-integrante {
-        width: 45%;
-        max-width: 300px;
-    }
+  .card-integrante {
+    width: 45%;
+    max-width: 300px;
+  }
 }
 
 /* Mobile */
 @media (max-width: 480px) {
-    .card-integrante {
-        width: 100%;
-        max-width: none;
-    }
+  .card-integrante {
+    width: 100%;
+    max-width: none;
+  }
 
-    .modal-conteudo {
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-    }
+  .modal-conteudo {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
 
-    .modal-conteudo .mini-img {
-        margin-bottom: 15px;
-    }
+  .modal-conteudo .mini-img {
+    margin-bottom: 15px;
+  }
 }
