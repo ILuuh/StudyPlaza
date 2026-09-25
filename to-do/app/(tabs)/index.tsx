@@ -21,7 +21,7 @@ export default function QuickStartHomeScreen() {
       description: 'Continue de onde parou',
       icon: 'book-outline',
       color: '#7A58B8',
-      route: '/(tabs)/courses', // ajuste para a sua rota
+      route: '/(tabs)/cursos', // ajuste para a sua rota
     },
     {
       id: '2',
@@ -29,7 +29,7 @@ export default function QuickStartHomeScreen() {
       description: '3 pendentes esta semana',
       icon: 'document-text-outline',
       color: '#38A169',
-      route: '/(tabs)/tasks',
+      route: '/(tabs)',
     },
     {
       id: '3',
@@ -37,7 +37,7 @@ export default function QuickStartHomeScreen() {
       description: 'Veja suas estatísticas',
       icon: 'stats-chart-outline',
       color: '#DD6B20',
-      route: '/(tabs)/stats',
+      route: '/(tabs)',
     },
     {
       id: '4',

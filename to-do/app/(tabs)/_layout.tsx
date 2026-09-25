@@ -52,6 +52,16 @@ export default function TabsLayout() {
         }}
       />
 
+            <Tabs.Screen
+        name="cursos/index"
+        options={{
+          title: 'Cursos',
+          tabBarIcon: ({ color }) => (
+            <FontAwesome6 name="book" size={22} color={color} />
+          ),
+        }}
+      />
+
       <Tabs.Screen
         name="profile/index"
         options={{

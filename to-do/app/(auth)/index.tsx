@@ -68,11 +68,15 @@ export default function Login() {
 
   return (
     <View style={styles.container}>
+              <View style={{alignItems: "center", flexDirection: "column"}}>
+        <Logo width={130} height={130} style={styles.logoImage}/>
+          <Text style={styles.title}>Study Plaza</Text>    
+          </View>   
       <View style={styles.card}>
         {/* CABEÇALHO COM A CORUJA SVG E O TÍTULO */}
         <View style={styles.headerContainer}>
-          <Logo width={36} height={36} style={styles.logoImage} />
-          <Text style={styles.title}>Bem-vindo ao Study Plaza</Text>
+
+          <Text style={styles.title2}>Bem-vindo a Nossa Plataforma!</Text>
         </View>
 
         <Text style={styles.label}>Email:</Text>
@@ -125,7 +129,7 @@ const createStyles = (theme: ThemeType) =>
   StyleSheet.create({
     container: {
       flex: 1,
-      backgroundColor: theme.corFundo,
+      backgroundColor: theme.roxoPrincipal,
       justifyContent: "center",
       alignItems: "center",
       padding: 20,
@@ -147,18 +151,25 @@ const createStyles = (theme: ThemeType) =>
       backgroundColor: theme.roxoPrincipal,
       borderRadius: 8,
       padding: 14,
-      flexDirection: "row",
+      flexDirection: "column",
       alignItems: "center",
       marginBottom: 20,
     },
     logoImage: {
-      marginRight: 12,
+      padding:0,
+      margin:0,
+      top:25,
     },
     title: {
-      fontSize: 16,
+      fontSize: 32,
       fontWeight: "bold",
       color: "#ffffff",
-      flex: 1,
+      marginBottom: 30,
+    },
+    title2: {
+      fontSize: 20,
+      fontWeight: "bold",
+      color: "#ffffff",
     },
     label: {
       color: theme.corFonte,

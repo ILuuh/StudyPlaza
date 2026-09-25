@@ -1,65 +1,225 @@
-import React from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { 
   Text, 
   View, 
   ScrollView, 
-  TouchableOpacity 
+  TouchableOpacity,
+  Modal,
+  TextInput,
+  Alert,
+  ActivityIndicator,
+  KeyboardAvoidingView,
+  Platform
 } from 'react-native';
-import { router } from 'expo-router';
 import { FontAwesome6 } from '@expo/vector-icons';
+import { useRouter } from 'expo-router';
 
 import { useAppTheme } from '../../../hooks/use-theme-context';
 import Logo from '../../../assets/images/Logo.svg';
+import { useAuth } from '../../../contexts/AuthContext';
+import api from '@/services/api';
 
-// Importa os estilos que separamos
-import { createStyles } from './styles';
+import { createStyles } from '@/styles/dash';
+
+interface IGrupo {
+  id: number;
+  nome: string;
+  descricao: string;
+  idioma: 'português' | 'inglês';
+  privado: number;
+  criado_por: number;
+  criador: string;
+  total_membros: number;
+}
+
+const GRUPO_DEMO: IGrupo = {
+  id: 0,
+  nome: 'Front-end Colaborativo',
+  descricao: 'Estudos semanais focados em React, React Native e boas práticas de UI/UX. Compartilhe código e revise projetos em conjunto.',
+  idioma: 'português',
+  privado: 0,
+  criado_por: 999,
+  criador: 'Study Plaza Team',
+  total_membros: 12,
+};
 
 export default function Dashboard() {
   const { theme, toggleTheme } = useAppTheme();
-  
-  // Chama a função importada passando o tema atual
+  const { user } = useAuth();
+  const router = useRouter();
   const styles = createStyles(theme);
 
-  // Dados mockados baseados no seu HTML
-  const gruposRecomendados = [
-    {
-      id: 1,
-      titulo: 'Front-end colaborativo',
-      situacao: 'Online',
-      iconeSituacao: 'signal',
-      descricao: 'Estudos semanais focados em React, acessibilidade e boas práticas de UI. Compartilhe códigos e revise projetos em conjunto.',
-      membros: '24 membros',
-      horario: 'Encontros às terças',
-      extra: 'Português',
-      iconeExtra: 'language',
-    },
-    {
-      id: 2,
-      titulo: 'Preparatório ENEM Redação',
-      situacao: 'Presencial',
-      iconeSituacao: 'people-line',
-      descricao: 'Grupo com correção coletiva de redações, simulados mensais e materiais comentados por professores convidados.',
-      membros: '18 membros',
-      horario: 'Sábados de manhã',
-      extra: 'Centro Educacional SP',
-      iconeExtra: 'location-dot',
-    },
-    {
-      id: 3,
-      titulo: 'Conversação em Inglês',
-      situacao: 'Híbrido',
-      iconeSituacao: 'globe',
-      descricao: 'Prática guiada de conversação com tutores convidados e desafios temáticos quinzenais para destravar o inglês.',
-      membros: '30 membros',
-      horario: 'Quartas à noite',
-      extra: 'Inglês / Português',
-      iconeExtra: 'language',
+  const scrollViewRef = useRef<ScrollView>(null);
+  const [gruposSectionY, setGruposSectionY] = useState(0);
+
+  const [grupos, setGrupos] = useState<IGrupo[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [modalVisible, setModalVisible] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+
+  const [nome, setNome] = useState('');
+  const [descricao, setDescricao] = useState('');
+  const [idioma, setIdioma] = useState<'português' | 'inglês'>('português');
+
+  const carregarGrupos = async () => {
+    try {
+      setLoading(true);
+      const response = await api.get('/grupos');
+      
+      if (Array.isArray(response.data) && response.data.length > 0) {
+        setGrupos(response.data);
+      } else {
+        setGrupos([GRUPO_DEMO]);
+      }
+    } catch (error) {
+      console.log('Erro ao buscar grupos:', error);
+      setGrupos([GRUPO_DEMO]);
+    } finally {
+      setLoading(false);
     }
-  ];
+  };
+
+  useEffect(() => {
+    carregarGrupos();
+  }, []);
+
+  const handleScrollToGrupos = () => {
+    scrollViewRef.current?.scrollTo({
+      y: gruposSectionY,
+      animated: true,
+    });
+  };
+
+  // AÇÃO: PARTICIPAR
+  const handleParticipar = async (grupo: IGrupo) => {
+    if (!user?.id) {
+      Alert.alert('Atenção', 'Você precisa estar logado para entrar em um grupo.');
+      return;
+    }
+
+    if (grupo.criado_por === user.id) {
+      Alert.alert('Aviso', 'Você é o criador deste grupo e já faz parte dele!');
+      return;
+    }
+
+    Alert.alert(
+      'Inscrição no Grupo',
+      `Deseja se juntar ao grupo "${grupo.nome}"?`,
+      [
+        { text: 'Cancelar', style: 'cancel' },
+        { 
+          text: 'Confirmar', 
+          onPress: async () => {
+            try {
+              if (grupo.id === 0) {
+                Alert.alert('Sucesso', 'Você entrou no grupo de demonstração!');
+                return;
+              }
+
+              const response = await api.post('/grupos/participar', {
+                id_usuario: user.id,
+                id_grupo: grupo.id,
+              });
+
+              if (response.data.sucesso) {
+                Alert.alert('Sucesso', `Você entrou no grupo "${grupo.nome}"!`);
+                carregarGrupos();
+              }
+            } catch (err: any) {
+              const msg = err.response?.data?.mensagem || 'Erro ao entrar no grupo.';
+              Alert.alert('Aviso', msg);
+            }
+          } 
+        }
+      ]
+    );
+  };
+
+  // AÇÃO: EXCLUIR GRUPO
+  const handleExcluirGrupo = (grupo: IGrupo) => {
+    if (!user?.id) return;
+
+    Alert.alert(
+      'Excluir Grupo',
+      `Tem certeza de que deseja excluir o grupo "${grupo.nome}"? Esta ação não poderá ser desfeita.`,
+      [
+        { text: 'Cancelar', style: 'cancel' },
+        {
+          text: 'Excluir',
+          style: 'destructive',
+          onPress: async () => {
+            try {
+              // Se for o grupo de demonstração
+              if (grupo.id === 0) {
+                setGrupos((prev) => prev.filter((g) => g.id !== 0));
+                Alert.alert('Sucesso', 'Grupo de demonstração removido!');
+                return;
+              }
+
+              const response = await api.delete(`/grupos/${grupo.id}`, {
+                data: { id_usuario: user.id },
+              });
+
+              if (response.data.sucesso) {
+                Alert.alert('Sucesso', 'Grupo excluído com sucesso!');
+                carregarGrupos();
+              }
+            } catch (err: any) {
+              const msg = err.response?.data?.mensagem || 'Erro ao excluir o grupo.';
+              Alert.alert('Erro', msg);
+            }
+          },
+        },
+      ]
+    );
+  };
+
+  // AÇÃO: CRIAR NOVO GRUPO
+  const handleCriarGrupo = async () => {
+    if (!nome.trim() || !descricao.trim()) {
+      Alert.alert('Atenção', 'Por favor, preencha o nome e a descrição do grupo.');
+      return;
+    }
+
+    if (!user?.id) {
+      Alert.alert('Erro', 'Você precisa estar logado para criar um grupo.');
+      return;
+    }
+
+    try {
+      setSubmitting(true);
+
+      const response = await api.post('/grupos', {
+        nome: nome.trim(),
+        descricao: descricao.trim(),
+        idioma,
+        privado: 0,
+        criado_por: user.id,
+      });
+
+      if (response.data.sucesso) {
+        Alert.alert('Sucesso!', 'Seu grupo foi criado!');
+        setModalVisible(false);
+
+        setNome('');
+        setDescricao('');
+        setIdioma('português');
+        carregarGrupos();
+      }
+    } catch (err: any) {
+      console.log('Erro ao criar grupo:', err);
+      Alert.alert('Erro', 'Não foi possível criar o grupo. Tente novamente.');
+    } finally {
+      setSubmitting(false);
+    }
+  };
 
   return (
-    <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
-      
+    <ScrollView 
+      ref={scrollViewRef}
+      style={styles.container} 
+      showsVerticalScrollIndicator={false}
+    >
       {/* CABEÇALHO */}
       <View style={styles.header}>
         <View style={styles.logoContainer}>
@@ -71,7 +231,10 @@ export default function Dashboard() {
           <TouchableOpacity onPress={toggleTheme} style={styles.iconButton}>
             <FontAwesome6 name="moon" size={20} color={theme.corFonte} />
           </TouchableOpacity>
-          <TouchableOpacity style={styles.iconButton} onPress={() => {/* Ir para perfil */}}>
+          <TouchableOpacity 
+            style={styles.iconButton} 
+            onPress={() => router.push('/(tabs)/profile' as any)}
+          >
             <FontAwesome6 name="circle-user" size={24} color={theme.corFonte} />
           </TouchableOpacity>
         </View>
@@ -80,7 +243,7 @@ export default function Dashboard() {
       {/* HERO SECTION */}
       <View style={styles.heroCard}>
         <View style={styles.badgeAtivos}>
-          <Text style={styles.badgeText}>+180 grupos ativos</Text>
+          <Text style={styles.badgeText}>+{grupos.length} grupos ativos</Text>
         </View>
 
         <Text style={styles.heroTitle}>Encontre o grupo ideal para evoluir nos estudos</Text>
@@ -90,56 +253,98 @@ export default function Dashboard() {
         </Text>
 
         <View style={styles.heroButtonsContainer}>
-          <TouchableOpacity style={styles.btnPrimaryHero}>
+          <TouchableOpacity 
+            style={styles.btnPrimaryHero}
+            onPress={() => router.push('/(tabs)/cursos' as any)}
+          >
             <Text style={styles.btnPrimaryHeroText}>Ir para o painel</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.btnSecondaryHero}>
+
+          <TouchableOpacity 
+            style={styles.btnSecondaryHero}
+            onPress={handleScrollToGrupos}
+          >
             <Text style={styles.btnSecondaryHeroText}>Descobrir grupos</Text>
           </TouchableOpacity>
         </View>
       </View>
 
       {/* LISTA DE GRUPOS RECOMENDADOS */}
-      <View style={styles.sectionContainer}>
+      <View 
+        style={styles.sectionContainer}
+        onLayout={(event) => {
+          setGruposSectionY(event.nativeEvent.layout.y);
+        }}
+      >
         <View style={styles.sectionHeaderRow}>
           <Text style={styles.sectionTitle}>Grupos recomendados</Text>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={handleScrollToGrupos}>
             <Text style={styles.seeAllText}>Ver todos</Text>
           </TouchableOpacity>
         </View>
 
-        {gruposRecomendados.map((grupo) => (
-          <View key={grupo.id} style={styles.cardGrupo}>
-            <View style={styles.cardHeader}>
-              <Text style={styles.cardTitle}>{grupo.titulo}</Text>
-              <View style={styles.badgeSituacao}>
-                <FontAwesome6 name={grupo.iconeSituacao as any} size={10} color={theme.roxoPrincipal} />
-                <Text style={styles.badgeSituacaoText}>{grupo.situacao}</Text>
-              </View>
-            </View>
+        {loading ? (
+          <ActivityIndicator size="large" color={theme.roxoPrincipal} style={{ marginVertical: 20 }} />
+        ) : (
+          grupos.map((grupo) => {
+            const ehCriador = user?.id === grupo.criado_por;
 
-            <Text style={styles.cardDescription}>{grupo.descricao}</Text>
+            return (
+              <View key={grupo.id} style={styles.cardGrupo}>
+                <View style={styles.cardHeader}>
+                  <Text style={styles.cardTitle}>{grupo.nome}</Text>
+                  <View style={styles.badgeSituacao}>
+                    <FontAwesome6 name="globe" size={10} color={theme.roxoPrincipal} />
+                    <Text style={styles.badgeSituacaoText}>
+                      {grupo.privado ? 'Privado' : 'Público'}
+                    </Text>
+                  </View>
+                </View>
 
-            <View style={styles.cardDetails}>
-              <View style={styles.detailRow}>
-                <FontAwesome6 name="user-group" size={14} color={theme.corFonteSecundaria} />
-                <Text style={styles.detailText}>{grupo.membros}</Text>
-              </View>
-              <View style={styles.detailRow}>
-                <FontAwesome6 name="calendar" size={14} color={theme.corFonteSecundaria} />
-                <Text style={styles.detailText}>{grupo.horario}</Text>
-              </View>
-              <View style={styles.detailRow}>
-                <FontAwesome6 name={grupo.iconeExtra as any} size={14} color={theme.corFonteSecundaria} />
-                <Text style={styles.detailText}>{grupo.extra}</Text>
-              </View>
-            </View>
+                <Text style={styles.cardDescription}>{grupo.descricao}</Text>
 
-            <TouchableOpacity style={styles.btnParticipar}>
-              <Text style={styles.btnParticiparText}>Participar</Text>
-            </TouchableOpacity>
-          </View>
-        ))}
+                <View style={styles.cardDetails}>
+                  <View style={styles.detailRow}>
+                    <FontAwesome6 name="user-group" size={14} color={theme.corFonteSecundaria} />
+                    <Text style={styles.detailText}>{grupo.total_membros || 1} membro(s)</Text>
+                  </View>
+                  <View style={styles.detailRow}>
+                    <FontAwesome6 name="user" size={14} color={theme.corFonteSecundaria} />
+                    <Text style={styles.detailText}>
+                      Por: {ehCriador ? 'Você' : (grupo.criador || 'Anônimo')}
+                    </Text>
+                  </View>
+                  <View style={styles.detailRow}>
+                    <FontAwesome6 name="language" size={14} color={theme.corFonteSecundaria} />
+                    <Text style={styles.detailText}>
+                      {grupo.idioma === 'português' ? 'Português' : 'Inglês'}
+                    </Text>
+                  </View>
+                </View>
+
+                {/* BOTÕES DE AÇÃO DO CARD */}
+                {ehCriador ? (
+                  <TouchableOpacity 
+                    style={[styles.btnParticipar, { backgroundColor: '#EF4444' }]}
+                    onPress={() => handleExcluirGrupo(grupo)}
+                  >
+                    <FontAwesome6 name="trash-can" size={14} color="#FFF" style={{ marginRight: 6 }} />
+                    <Text style={[styles.btnParticiparText, { color: '#FFF' }]}>
+                      Excluir Grupo
+                    </Text>
+                  </TouchableOpacity>
+                ) : (
+                  <TouchableOpacity 
+                    style={styles.btnParticipar}
+                    onPress={() => handleParticipar(grupo)}
+                  >
+                    <Text style={styles.btnParticiparText}>Participar</Text>
+                  </TouchableOpacity>
+                )}
+              </View>
+            );
+          })
+        )}
       </View>
 
       {/* CTA: CRIAR PRÓPRIO GRUPO */}
@@ -148,17 +353,160 @@ export default function Dashboard() {
         <Text style={styles.ctaDescription}>
           Organize sua turma, personalize regras, convide novos membros e acompanhe tudo no painel em tempo real.
         </Text>
-        <TouchableOpacity style={styles.btnCta}>
+        <TouchableOpacity 
+          style={styles.btnCta} 
+          onPress={() => setModalVisible(true)}
+        >
           <Text style={styles.btnCtaText}>Começar agora</Text>
         </TouchableOpacity>
       </View>
 
-      {/* FOOTER BÁSICO */}
+      {/* FOOTER */}
       <View style={styles.footer}>
         <Text style={styles.footerText}>© 2026 Study Plaza - Todos os direitos reservados.</Text>
       </View>
 
       <View style={{ height: 30 }} />
+
+      {/* MODAL DE CRIAÇÃO DE GRUPO */}
+      <Modal
+        animationType="slide"
+        transparent={true}
+        visible={modalVisible}
+        onRequestClose={() => setModalVisible(false)}
+      >
+        <KeyboardAvoidingView
+          behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+          style={{
+            flex: 1,
+            backgroundColor: 'rgba(0,0,0,0.5)',
+            justifyContent: 'center',
+            padding: 20,
+          }}
+        >
+          <View
+            style={{
+              backgroundColor: theme.corFundo || '#FFFFFF',
+              borderRadius: 16,
+              padding: 20,
+              elevation: 5,
+            }}
+          >
+            <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: 16 }}>
+              <Text style={{ fontSize: 18, fontWeight: 'bold', color: theme.corFonte || '#111' }}>
+                Criar Novo Grupo
+              </Text>
+              <TouchableOpacity onPress={() => setModalVisible(false)}>
+                <FontAwesome6 name="xmark" size={20} color={theme.corFonteSecundaria || '#666'} />
+              </TouchableOpacity>
+            </View>
+
+            <Text style={{ fontSize: 14, fontWeight: '600', color: theme.corFonte, marginBottom: 4 }}>
+              Nome do Grupo *
+            </Text>
+            <TextInput
+              placeholder="Ex: Grupo de Estudos React Native"
+              placeholderTextColor="#9CA3AF"
+              value={nome}
+              onChangeText={setNome}
+              style={{
+                borderWidth: 1,
+                borderColor: theme.corBorda || '#E5E7EB',
+                borderRadius: 8,
+                padding: 10,
+                color: theme.corFonte,
+                marginBottom: 12,
+              }}
+            />
+
+            <Text style={{ fontSize: 14, fontWeight: '600', color: theme.corFonte, marginBottom: 4 }}>
+              Descrição *
+            </Text>
+            <TextInput
+              placeholder="Descreva o foco, regras e objetivos do grupo..."
+              placeholderTextColor="#9CA3AF"
+              multiline
+              numberOfLines={3}
+              value={descricao}
+              onChangeText={setDescricao}
+              style={{
+                borderWidth: 1,
+                borderColor: theme.corBorda || '#E5E7EB',
+                borderRadius: 8,
+                padding: 10,
+                color: theme.corFonte,
+                textAlignVertical: 'top',
+                marginBottom: 12,
+              }}
+            />
+
+            <Text style={{ fontSize: 14, fontWeight: '600', color: theme.corFonte, marginBottom: 6 }}>
+              Idioma do Grupo
+            </Text>
+            <View style={{ flexDirection: 'row', gap: 8, marginBottom: 20 }}>
+              {(['português', 'inglês'] as const).map((item) => (
+                <TouchableOpacity
+                  key={item}
+                  onPress={() => setIdioma(item)}
+                  style={{
+                    flex: 1,
+                    paddingVertical: 10,
+                    borderRadius: 6,
+                    alignItems: 'center',
+                    borderWidth: 1,
+                    borderColor: idioma === item ? theme.roxoPrincipal : theme.corBorda || '#E5E7EB',
+                    backgroundColor: idioma === item ? '#F3E8FF' : 'transparent',
+                  }}
+                >
+                  <Text style={{ 
+                    fontSize: 13, 
+                    fontWeight: 'bold', 
+                    color: idioma === item ? theme.roxoPrincipal : theme.corFonteSecundaria,
+                    textTransform: 'capitalize'
+                  }}>
+                    {item}
+                  </Text>
+                </TouchableOpacity>
+              ))}
+            </View>
+
+            <View style={{ flexDirection: 'row', gap: 12 }}>
+              <TouchableOpacity
+                onPress={() => setModalVisible(false)}
+                style={{
+                  flex: 1,
+                  paddingVertical: 12,
+                  borderRadius: 8,
+                  alignItems: 'center',
+                  borderWidth: 1,
+                  borderColor: theme.corBorda || '#E5E7EB',
+                }}
+              >
+                <Text style={{ color: theme.corFonte, fontWeight: '600' }}>Cancelar</Text>
+              </TouchableOpacity>
+
+              <TouchableOpacity
+                disabled={submitting}
+                onPress={handleCriarGrupo}
+                style={{
+                  flex: 1,
+                  backgroundColor: theme.roxoPrincipal || '#7A58B8',
+                  paddingVertical: 12,
+                  borderRadius: 8,
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                }}
+              >
+                {submitting ? (
+                  <ActivityIndicator color="#FFF" size="small" />
+                ) : (
+                  <Text style={{ color: '#FFFFFF', fontWeight: 'bold' }}>Cadastrar Grupo</Text>
+                )}
+              </TouchableOpacity>
+            </View>
+          </View>
+        </KeyboardAvoidingView>
+      </Modal>
     </ScrollView>
   );
 }

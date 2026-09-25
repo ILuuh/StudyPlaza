@@ -267,6 +267,151 @@ router.delete(
   }
 );
 
+
+router.get("/grupos", async (req: Request, res: Response): Promise<any> => {
+  try {
+    const [rows]: any = await pool.query(`
+      SELECT 
+        g.id,
+        g.nome,
+        g.descricao,
+        g.idioma,
+        g.privado,
+        g.criado_por,
+        u.nome AS criador,
+        COUNT(ug.id_usuario) AS total_membros
+      FROM grupos g
+      LEFT JOIN usuarios u ON g.criado_por = u.id
+      LEFT JOIN usuarios_grupos ug ON ug.id_grupo = g.id
+      WHERE g.ativo = 1
+      GROUP BY g.id
+      ORDER BY g.id DESC
+    `);
+
+    return res.json(rows);
+  } catch (error) {
+    console.log("Erro ao buscar grupos:", error);
+    return res.status(500).json({ mensagem: "Erro ao buscar grupos." });
+  }
+});
+
+// 2. CRIAR UM NOVO GRUPO
+router.post("/grupos", async (req: Request, res: Response): Promise<any> => {
+  try {
+    const { nome, descricao, idioma, privado, criado_por } = req.body;
+
+    if (!nome || !criado_por) {
+      return res.status(400).json({ mensagem: "Nome e criador são obrigatórios." });
+    }
+
+    // Insere o grupo
+    const [result]: any = await pool.query(
+      `
+      INSERT INTO grupos (nome, descricao, idioma, privado, criado_por)
+      VALUES (?, ?, ?, ?, ?)
+      `,
+      [nome, descricao, idioma || 'português', privado ? 1 : 0, criado_por]
+    );
+
+    const id_grupo = result.insertId;
+
+    // Coloca o criador dentro da tabela de membros
+    await pool.query(
+      `
+      INSERT INTO usuarios_grupos (id_usuario, id_grupo, papel)
+      VALUES (?, ?, 'admin')
+      `,
+      [criado_por, id_grupo]
+    );
+
+    return res.json({ sucesso: true, id: id_grupo });
+  } catch (error) {
+    console.log("Erro ao criar grupo:", error);
+    return res.status(500).json({ mensagem: "Erro ao criar grupo." });
+  }
+});
+
+// 3. PARTICIPAR DE UM GRUPO
+// PARTICIPAR DE UM GRUPO
+router.post("/grupos/participar", async (req: Request, res: Response): Promise<any> => {
+  try {
+    const { id_usuario, id_grupo } = req.body;
+
+    if (!id_usuario || !id_grupo) {
+      return res.status(400).json({ mensagem: "Usuário e grupo são obrigatórios." });
+    }
+
+    // 1. Verifica se o usuário é o criador do grupo
+    const [grupo]: any = await pool.query(
+      `SELECT criado_por FROM grupos WHERE id = ?`,
+      [id_grupo]
+    );
+
+    if (grupo.length > 0 && grupo[0].criado_por === Number(id_usuario)) {
+      return res.status(400).json({
+        mensagem: "Você é o criador deste grupo e já faz parte dele!",
+      });
+    }
+
+    // 2. Tenta inserir na tabela pivô
+    await pool.query(
+      `
+      INSERT INTO usuarios_grupos (id_usuario, id_grupo, papel)
+      VALUES (?, ?, 'membro')
+      `,
+      [id_usuario, id_grupo]
+    );
+
+    return res.json({ sucesso: true, mensagem: "Entrou no grupo com sucesso!" });
+  } catch (error: any) {
+    if (error.code === 'ER_DUP_ENTRY') {
+      return res.status(400).json({ mensagem: "Você já faz parte deste grupo." });
+    }
+    console.log("Erro ao participar:", error);
+    return res.status(500).json({ mensagem: "Erro ao entrar no grupo." });
+  }
+});
+
+// EXCLUIR GRUPO
+router.delete("/grupos/:id", async (req: Request, res: Response): Promise<any> => {
+  try {
+    const { id } = req.params;
+    const { id_usuario } = req.body; // Passado no body ou via headers/token
+
+    if (!id_usuario) {
+      return res.status(400).json({ mensagem: "Usuário é obrigatório." });
+    }
+
+    // 1. Verifica se o grupo existe e se o usuário é o criador
+    const [grupo]: any = await pool.query(
+      `SELECT criado_por FROM grupos WHERE id = ?`,
+      [id]
+    );
+
+    if (grupo.length === 0) {
+      return res.status(404).json({ mensagem: "Grupo não encontrado." });
+    }
+
+    if (grupo[0].criado_por !== Number(id_usuario)) {
+      return res.status(403).json({
+        mensagem: "Apenas o criador do grupo pode excluí-lo.",
+      });
+    }
+
+    // 2. Remove primeiro as relações na tabela pivô (membros do grupo)
+    await pool.query(`DELETE FROM usuarios_grupos WHERE id_grupo = ?`, [id]);
+
+    // 3. Deleta o grupo da tabela principal
+    await pool.query(`DELETE FROM grupos WHERE id = ?`, [id]);
+
+    return res.json({ sucesso: true, mensagem: "Grupo excluído com sucesso!" });
+  } catch (error: any) {
+    console.log("Erro ao excluir grupo:", error);
+    return res.status(500).json({ mensagem: "Erro ao excluir o grupo." });
+  }
+});
+
+
 router.post(
   "/register",
   async (req: Request, res: Response): Promise<any> => {
