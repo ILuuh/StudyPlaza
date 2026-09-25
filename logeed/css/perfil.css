@@ -287,6 +287,64 @@
     word-break: break-word;
 }
 
+/* =========================================================
+   BOTÃO EDITAR
+========================================================= */
+
+.btn-editar {
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font-family: var(--font-family);
+}
+
+.btn-editar:hover {
+  color: var(--roxo-principal);
+}
+
+/* =========================================================
+   AÇÕES DO FORMULÁRIO
+========================================================= */
+
+.config-acoes {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.btn-cancelar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  margin-top: 10px;
+  padding: 10px 20px;
+
+  border: 1px solid var(--cor-borda);
+  border-radius: 6px;
+
+  background: var(--cor-superficie-secundaria);
+  color: var(--cor-fonte);
+
+  cursor: pointer;
+
+  font-family: var(--font-family);
+  font-weight: 600;
+
+  transition:
+    background-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.btn-cancelar:hover {
+  background-color: var(--cor-borda);
+  transform: translateY(-2px);
+}
+
+.btn-cancelar i {
+  margin-right: 8px;
+}
+
 @media (max-width: 500px) {
     .field-value { padding: 8px; font-size: 0.95em; }
 }

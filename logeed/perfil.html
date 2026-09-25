@@ -151,36 +151,90 @@
             </div>
 
             <nav class="perfil-nav">
-                <a href="#configuracoes" class="perfil-nav-item active"><i class="fa-solid fa-sliders"></i>
-                    Configurações</a>
-                <!-- <a href="#estatisticas" class="perfil-nav-item active"><i
-                    class="fa-solid fa-chart-line"></i>
-                    Estatísticas</a> -->
-                <!-- <a href="#historico" class="perfil-nav-item"><i
-                        class="fa-solid fa-history"></i> Histórico</a> -->
+                <a href="#configuracoes" class="perfil-nav-item active">
+                    <i class="fa-solid fa-sliders"></i>
+                    Configurações
+                </a>
+
+                <button type="button" id="btnEditar" class="perfil-nav-item btn-editar">
+                    <i class="fa-solid fa-pen"></i>
+                    Editar
+                </button>
             </nav>
 
-            <div class="perfil-content">
-                <section id="configuracoes" class="perfil-section active-section">
+            <section id="configuracoes" class="perfil-section active-section">
+
+                <div class="config-header">
                     <h2>Configurações da Conta</h2>
-                    <div class="config-view">
-                        <div class="form-group">
-                            <label>Nome Completo</label>
-                            <div id="nome" class="field-value" aria-live="polite"></div>
-                        </div>
-                        <div class="form-group">
-                            <label>E-mail</label>
-                            <div id="email" class="field-value" aria-live="polite"></div>
-                        </div>
+                </div>
 
-                        <div class="form-group">
-                            <label>Profissão</label>
-                            <div id="tipo_usuario" class="field-value" aria-live="polite"></div>
-                        </div>
+                <!-- Modo visualização -->
+                <div id="configView" class="config-view">
+
+                    <div class="form-group">
+                        <label>Nome Completo</label>
+                        <div id="nome" class="field-value" aria-live="polite"></div>
                     </div>
-                </section>
 
-                <!-- <section id="estatisticas" class="perfil-section active-section">
+                    <div class="form-group">
+                        <label>E-mail</label>
+                        <div id="email" class="field-value" aria-live="polite"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Tipo de Usuário</label>
+                        <div id="tipo_usuario" class="field-value" aria-live="polite"></div>
+                    </div>
+
+                </div>
+
+
+                <!-- Modo edição -->
+                <form id="configForm" class="config-form" style="display: none;">
+
+                    <div class="form-group">
+                        <label for="inputNome">Nome Completo</label>
+
+                        <input type="text" id="inputNome" name="nome" required autocomplete="name">
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="inputEmail">E-mail</label>
+
+                        <input type="email" id="inputEmail" name="email" required autocomplete="email">
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="inputTipoUsuario">Tipo de Usuário</label>
+
+                        <select id="inputTipoUsuario" name="tipo_usuario" required>
+                            <option value="estudante">Estudante</option>
+                            <option value="professor">Professor</option>
+                        </select>
+                    </div>
+
+
+                    <div class="config-acoes">
+
+                        <button type="submit" id="btnSalvar" class="btn-primario">
+                            <i class="fa-solid fa-check"></i>
+                            Salvar
+                        </button>
+
+                        <button type="button" id="btnCancelar" class="btn-cancelar">
+                            <i class="fa-solid fa-xmark"></i>
+                            Cancelar
+                        </button>
+
+                    </div>
+
+                </form>
+
+            </section>
+
+            <!-- <section id="estatisticas" class="perfil-section active-section">
                     <h2 >Desempenho e Progresso</h2>
                     <div class="stats-grid">
                         <div class="stat-card">
@@ -208,7 +262,7 @@
                 </section> -->
 
 
-                <!-- <section id="historico" class="perfil-section">
+            <!-- <section id="historico" class="perfil-section">
                     <h2 >Atividade Recente</h2>
                     <ul class="historico-list">
                         <li ><i class="fa-solid fa-comment"></i> Enviou

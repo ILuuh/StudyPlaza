@@ -10,6 +10,7 @@
 
   --cor-Fonte: #333;
   --cor-Fonte2: #555;
+  --cor-Fonte3: #F5F5F5;
 
   --ativo: #BFDFFF;
   --efeitoBefore: #231942;
@@ -43,6 +44,7 @@
 
   --cor-Fonte: #F5F5F5;
   --cor-Fonte2: #D6D6D6;
+  --cor-Fonte3: #F5F5F5;
 
   --branco: var(--cor-Card);
 
@@ -240,8 +242,8 @@ header {
   top: 120%;
   right: 0;
 
-  background: var(--gradient);
-  color: var(--cor-Fonte);
+  background: var(--roxo-claro);
+  color: var(--branco);
 
   border-radius: 8px;
   box-shadow: 0 5px 15px var(--sombra);
@@ -262,6 +264,7 @@ header {
 
 .dropdown-conteudo a:hover {
   background: var(--cor-Fundo);
+  color: var(--cor-Fonte2);
   border-radius: 6px;
 }
 
