@@ -1,6 +1,6 @@
 @host = http://localhost
-@port = 3500
-@endpoint = users
+@port = 3501
+@endpoint = clientes
 
 @url = {{host}}:{{port}}/{{endpoint}} 
 
@@ -12,19 +12,15 @@ GET {{url}}
 GET {{url}}/1
 
 ###
-# getByEmail
-GET {{url}}/email/provara022@fatec.com
-
-###
 # inclui novos registros
 POST  {{url}}
 Content-Type: application/json; charset=utf-8
 
 {
-      "name": "Teste3",
-      "password": "123",
-      "login" : "teste3@fatec.com"
-      
+      "nome": "prova 022",
+      "celular": "16 99999-1114",
+      "email" : "provara022@fatec.com",
+      "avatar" : ""
     }
 
 ###
@@ -33,10 +29,11 @@ PUT  {{url}}/2
 Content-Type: application/json; charset=utf-8
 
 {
-    "name": "teste.022",
-    "password": "022",
-    "password": "123-456"    
-}
+      "nome": "prova 022",
+      "celular": "16 99999-1114",
+      "email" : "provara022@fatec.com",
+      "avatar" : ""
+    }
 
 ###
 DELETE  {{url}}/3
