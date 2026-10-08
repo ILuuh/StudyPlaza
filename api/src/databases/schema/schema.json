@@ -64,6 +64,11 @@
         "bairro": { "type": "string", "size": 100, "nullable": false },
         "created_at" : {"type": "datetime", "nullable": false, "default": true }
       }
+    },
+    "courses" : {
+      "columns":{
+        "id" : {"type":"int", "primaryKey":true, "autoIncrement":true}
+      }
     }
   }
 }
