@@ -5,48 +5,61 @@
         "id": { "type": "int", "primaryKey": true, "autoIncrement": true },
         "name": { "type": "string", "size": 100, "nullable": false },
         "login": { "type": "string", "size": 150, "nullable": false },
-        "password": { "type": "string", "size":254, "nullable": false },
-        "created_at" : {"type": "datetime", "nullable": false, "default":true},
-        "actived":{ "type":"boolean", "nullabre": false, "default":true}
+        "password": { "type": "string", "size": 254, "nullable": false },
+        "created_at": {
+          "type": "datetime",
+          "nullable": false,
+          "default": true
+        },
+        "actived": { "type": "boolean", "nullable": false, "default": true }
       }
     },
-    "roles" : {
+    "roles": {
       "columns": {
-      "id": { "type": "int", "primaryKey": true, "autoIncrement": true },
-      "role": { "type": "string", "size": 100, "nullable": false },
-      "created_at" : {"type": "datetime", "nullable": false, "default":true}
+        "id": { "type": "int", "primaryKey": true, "autoIncrement": true },
+        "role": { "type": "string", "size": 100, "nullable": false },
+        "created_at": { "type": "datetime", "nullable": false, "default": true }
       }
     },
-    "usersroles" : {
+    "usersroles": {
       "columns": {
-      "id": { "type": "int", "primaryKey": true, "autoIncrement": true },
-      "idroler": { "type": "int", "nullable": false },
-      "iduser": { "type": "int", "nullable": false },      
-      "created_at" : {"type": "datetime", "nullable": false, "default":true}
+        "id": { "type": "int", "primaryKey": true, "autoIncrement": true },
+        "idroler": { "type": "int", "nullable": false },
+        "iduser": { "type": "int", "nullable": false },
+        "created_at": { "type": "datetime", "nullable": false, "default": true }
       }
     },
-    "alunos" : {
+    "alunos": {
       "columns": {
         "id": { "type": "int", "primaryKey": true, "autoIncrement": true },
         "nome": { "type": "string", "size": 100, "nullable": false },
         "email": { "type": "string", "size": 150, "nullable": false },
-        "avatar": { "type": "string", "size":254, "nullable": false },
-        "celular": { "type": "string", "size":16, "nullable": false },
-        "github": { "type": "string", "size":254, "nullable": false },
-        "linkdin": { "type": "string", "size":254, "nullable": false },
-        "cidade": { "type": "string", "size":120, "nullable": false },
+        "avatar": { "type": "string", "size": 254, "nullable": false },
+        "celular": { "type": "string", "size": 16, "nullable": false },
+        "github": { "type": "string", "size": 254, "nullable": false },
+        "linkdin": { "type": "string", "size": 254, "nullable": false },
+        "cidade": { "type": "string", "size": 120, "nullable": false },
         "iduser": { "type": "int", "nullable": false },
-        "created_at" : {"type": "datetime", "nullable": false, "default":true},
-        "actived":{ "type":"boolean", "nullabre": false, "default":true}
+        "created_at": {
+          "type": "datetime",
+          "nullable": false,
+          "default": true
+        },
+        "actived": { "type": "boolean", "nullable": false, "default": true }
       }
     },
     "estados": {
       "columns": {
         "id": { "type": "int", "primaryKey": true, "autoIncrement": true },
-        "estado": { "type": "string", "nullable": false , "size": 80 , "decimal": 0 },
-        "regiao": { "type": "string", "size": 30 ,"nullable": true },
-        "uf": { "type": "string", "size": 2 ,"nullable": false },
-        "created_at" : {"type": "datetime", "nullable": false, "default":true}
+        "estado": {
+          "type": "string",
+          "nullable": false,
+          "size": 80,
+          "decimal": 0
+        },
+        "regiao": { "type": "string", "size": 30, "nullable": true },
+        "uf": { "type": "string", "size": 2, "nullable": false },
+        "created_at": { "type": "datetime", "nullable": false, "default": true }
       }
     },
     "municipios": {
@@ -55,19 +68,29 @@
         "municipio": { "type": "string", "size": 100, "nullable": false },
         "uf": { "type": "string", "size": 2, "nullable": false },
         "populacao": { "type": "int", "nullable": true },
-        "created_at" : {"type": "datetime", "nullable": false, "default": true }
+        "created_at": { "type": "datetime", "nullable": false, "default": true }
       }
     },
     "bairros": {
       "columns": {
         "id": { "type": "int", "primaryKey": true, "autoIncrement": true },
         "bairro": { "type": "string", "size": 100, "nullable": false },
-        "created_at" : {"type": "datetime", "nullable": false, "default": true }
+        "created_at": { "type": "datetime", "nullable": false, "default": true }
       }
     },
-    "courses" : {
-      "columns":{
-        "id" : {"type":"int", "primaryKey":true, "autoIncrement":true}
+    "courses": {
+      "columns": {
+        "id": { "type": "int", "primaryKey": true, "autoIncrement": true },
+        "title": { "type": "string", "size": 150, "nullable": false },
+        "description": { "type": "string", "size": 500, "nullable": true },
+        "platform": { "type": "string", "size": 100, "nullble": true },
+        "category": { "type": "string", "size": 50, "nullable": false },
+        "duration": { "type": "string", "size": 150, "nullable": false }
+      }
+    },
+    "groups":{
+      "columns": {
+        "id":{"type":"int", "primaryKey":true, "autoIncrement":true}
       }
     }
   }
