@@ -78,7 +78,7 @@
         "created_at": { "type": "datetime", "nullable": false, "default": true }
       }
     },
-    "courses": {
+    "cursos": {
       "columns": {
         "id": { "type": "int", "primaryKey": true, "autoIncrement": true },
         "title": { "type": "string", "size": 150, "nullable": false },
@@ -88,9 +88,37 @@
         "duration": { "type": "string", "size": 150, "nullable": false }
       }
     },
-    "groups":{
+    "grupos":{
       "columns": {
-        "id":{"type":"int", "primaryKey":true, "autoIncrement":true}
+        "id":{"type":"int", "primaryKey":true, "autoIncrement":true},
+        "name":{"type":"string", "size":120, "nullable":false},
+        "description":{"type":"string","size":300, "nullable":true},
+        "created_by":{"type":"datetime", "nullable":false, "default":true},
+        "actived":{"type":"boolean", "nullable":false, "default":true}        
+      }
+    },
+    "usuariosgrupos":{
+      "columns":{
+        "id":{"type":"int", "autoIncrement":true, "primaryKey":true},
+        "iduser":{"type":"int", "nullable":false},
+        "idgrupo":{"type":"int", "nullable":false},
+        "role":{"type":"string", "size":50,"nullable":false}
+      }
+    },
+    "inscricoes":{
+      "columns":{
+        "id":{"type":"int", "autoIncrement":true, "primaryKey":true},
+        "iduser":{"type":"int", "nullable":false},
+        "idcurso":{"type":"int", "nullable":false}
+      }
+    },
+    "mensagens":{
+      "columns":{
+        "id":{"type":"int", "autoIncrement":true, "primaryKey":true},
+        "iduser":{"type":"int", "nullable":false},
+        "idgrupo":{"type":"int", "nullable":false},
+        "message":{"type":"string", "size":500, "nullable":false},
+        "created_at":{"type":"datetime", "nullable":false, "default":true}
       }
     }
   }
