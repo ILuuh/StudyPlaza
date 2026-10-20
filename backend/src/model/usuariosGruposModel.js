@@ -7,15 +7,15 @@ export async function Get(req, res) {
   try {
     const results = await db.execute(
       `SELECT 
-            ur.id,
-            ur.idgrupo
-            ur.iduser,
-            ur.created_at,
+            ug.id,
+            ug.idgrupo,
+            ug.iduser,
+            ug.created_at,
             u.name,
-            r.role
-            FROM ${tableName} ur
-            INNER JOIN users u ON (u.id = ur.iduser)
-            INNER JOIN grupos r ON (r.id = ur.idgrupo)
+            ug.role
+            FROM ${tableName} ug
+            INNER JOIN users u ON (u.id = ug.iduser)
+            INNER JOIN grupos g ON (g.id = ug.idgrupo)
             ORDER BY id`,
     );
     return { message: "Success", data: results[0] };
@@ -29,16 +29,16 @@ export async function GetById(id) {
   try {
     const results = await db.execute(
       `SELECT 
-            ur.id,
-            ur.idgrupo,
-            ur.iduser,
-            ur.created_at,
+            ug.id,
+            ug.idgrupo,
+            ug.iduser,
+            ug.created_at,
             u.name,
-            r.role
-            FROM ${tableName} ur
-            INNER JOIN users u ON (u.id = ur.iduser)
-            INNER JOIN grupos r ON (r.id = ur.idgrupo)
-            WHERE ur.id = ?
+            ug.role
+            FROM ${tableName} ug
+            INNER JOIN users u ON (u.id = ug.iduser)
+            INNER JOIN grupos g ON (g.id = ug.idgrupo)
+            WHERE ug.id = ?
             ORDER BY id`,
       [id],
     );
@@ -52,16 +52,16 @@ export async function GetByUser(id) {
   try {
     const results = await db.execute(
       `SELECT 
-            ur.id,
-            ur.idgrupo,
-            ur.iduser,
-            ur.created_at,
+            ug.id,
+            ug.idgrupo,
+            ug.iduser,
+            ug.created_at,
             u.name,
-            r.role
-            FROM ${tableName} ur
-            INNER JOIN users u ON (u.id = ur.iduser)
-            INNER JOIN grupos r ON (r.id = ur.idgrupo)
-            WHERE ur.iduser = ?
+            ug.role
+            FROM ${tableName} ug
+            INNER JOIN users u ON (u.id = ug.iduser)
+            INNER JOIN grupos g ON (g.id = ug.idgrupo)
+            WHERE ug.iduser = ?
             ORDER BY id`,
       [id],
     );
@@ -75,16 +75,16 @@ export async function GetByEmail(email) {
   try {
     const results = await db.execute(
       `SELECT 
-            ur.id,
-            ur.idgrupo,
-            ur.iduser,
-            ur.created_at,
+            ug.id,
+            ug.idgrupo,
+            ug.iduser,
+            ug.created_at,
             u.login,
             u.name,
-            r.role
-            FROM ${tableName} ur
-            INNER JOIN users u ON (u.id = ur.iduser)
-            INNER JOIN grupos r ON (r.id = ur.idgrupo)
+            ug.role
+            FROM ${tableName} ug
+            INNER JOIN users u ON (u.id = ug.iduser)
+            INNER JOIN grupos g ON (g.id = ug.idgrupo)
             WHERE login = ?
             ORDER BY id`,
       [email],
@@ -92,6 +92,25 @@ export async function GetByEmail(email) {
     if (results[0].length === 0) {
       return { message: "error", Error: "resgistro não localizado" };
     }
+    return { message: "Success", data: results[0] };
+  } catch (error) {
+    return { message: "error", Error: error.message };
+  }
+}
+
+export async function GetByGruposTotalMembros() {
+  try {
+    const results = await db.execute(
+      `SELECT
+          g.name AS grupo,
+          g.created_by AS data_criacao,
+          u.name AS criador,
+          COUNT(ug.iduser) AS quantMembros
+        FROM ${tableName} ug
+        INNER JOIN  grupos g ON (g.id = ug.idgrupo)
+        INNER JOIN users u ON (u.id = ug.iduser)
+        GROUP BY g.name, g.created_by;`,
+    );
     return { message: "Success", data: results[0] };
   } catch (error) {
     return { message: "error", Error: error.message };

@@ -21,9 +21,9 @@ POST  {{url}}
 Content-Type: application/json; charset=utf-8
 
 {
-      "name": "Teste3",
+      "name": "Teste2",
       "password": "123",
-      "login" : "teste3@fatec.com"
+      "login" : "teste2@fatec.com"
       
     }
 

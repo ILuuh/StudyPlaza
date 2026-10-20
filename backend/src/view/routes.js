@@ -6,8 +6,12 @@ import dependenciasRoutes from "./dependenciaRoutes.js"
 import authRoutes from "./authRoutes.js"
 import clientes from "./clientesRoutes.js";
 import rolesRoutes from "./rolesRoutes.js";
-import usersRoles from "./usersRolesRoutes.js"
-import alunosRoles from "./alunosRoutes.js"
+import usersRoles from "./usersRolesRoutes.js";
+import alunosRoles from "./alunosRoutes.js";
+import cursosRoutes from "./cursosRoutes.js";
+import inscricoesRoutes from "./inscricoesRoutes.js";
+import gruposRoutes from "./gruposRoutes.js";
+import usuariosGruposRoutes from "./usuariosGruposRoutes.js";
 
 const swRoutes = Router();
 
@@ -22,5 +26,9 @@ swRoutes.use( estadosRoutes);
 swRoutes.use(dependenciasRoutes);
 swRoutes.use( rolesRoutes);
 swRoutes.use( usersRoles);
+swRoutes.use( cursosRoutes);
+swRoutes.use( usuariosGruposRoutes);
+swRoutes.use( gruposRoutes);
+swRoutes.use( inscricoesRoutes);
 
 export default swRoutes;
