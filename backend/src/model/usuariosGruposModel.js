@@ -25,6 +25,25 @@ export async function Get(req, res) {
   }
 }
 
+export async function GetByGruposTotalMembros(req, res) {
+  try {
+    const results = await db.execute(
+      `SELECT
+          g.name AS grupo,
+          g.created_by AS data_criacao,
+          u.name AS criador,
+          COUNT(ug.iduser) AS quantMembros
+        FROM ${tableName} ug
+        INNER JOIN users u ON (u.id = ug.iduser)
+        INNER JOIN grupos g ON (g.id = ug.idgrupo)
+        GROUP BY g.name, g.created_by;`,
+    );
+    return { message: "Success", data: results[0] };
+  } catch (error) {
+    return { message: "error", Error: error.message };
+  }
+}
+
 export async function GetById(id) {
   try {
     const results = await db.execute(
@@ -98,18 +117,21 @@ export async function GetByEmail(email) {
   }
 }
 
-export async function GetByGruposTotalMembros() {
+export async function GetByMembro(id) {
   try {
     const results = await db.execute(
-      `SELECT
-          g.name AS grupo,
-          g.created_by AS data_criacao,
-          u.name AS criador,
-          COUNT(ug.iduser) AS quantMembros
-        FROM ${tableName} ug
-        INNER JOIN  grupos g ON (g.id = ug.idgrupo)
-        INNER JOIN users u ON (u.id = ug.iduser)
-        GROUP BY g.name, g.created_by;`,
+      `SELECT 
+            ug.id,
+            ug.iduser,
+            ug.created_at,
+            u.name,
+            u.login,
+            ug.role
+            FROM ${tableName} ug
+            INNER JOIN users u ON (u.id = ug.iduser)
+            WHERE ug.idgrupo = ?
+            ORDER BY u.name`,
+      [id],
     );
     return { message: "Success", data: results[0] };
   } catch (error) {

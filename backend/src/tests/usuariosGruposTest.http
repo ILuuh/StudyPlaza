@@ -13,11 +13,19 @@ GET {{url}}/3
 
 ###
 # getByUser
-GET {{url}}/user/1
+GET {{url}}/user/2
 
 ###
 # getByEmail
 GET {{url}}/email/teste@fatec.com
+
+###
+# getByGruposTotalMembros
+GET {{url}}/totalMembros
+
+###
+# getByMembros
+GET {{url}}/membros/3
 
 ###
 # inclui novos registros
@@ -26,8 +34,8 @@ Content-Type: application/json; charset=utf-8
 
 {
     "iduser": 2,
-    "idgrupo": 3,
-    "role": "membro"
+    "idgrupo": 2,
+    "role": "Admin"
 }
 
 ###

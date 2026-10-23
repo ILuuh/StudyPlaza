@@ -13,6 +13,16 @@ export async function Get(req, res) {
   }
 }
 
+export async function GettotalGrupos(req, res) {
+  try {
+    const results = await db.execute(`SELECT COUNT(*) as total_grupos FROM ${tableName} WHERE actived = 1 ORDER BY id`);
+    return { message: "Success", data: results[0] };
+  } catch (error) {
+    console.log(error);
+    return { message: "error", Error: error.message };
+  }
+}
+
 export async function GetById(id) {
   try {
     const results = await db.execute(
@@ -58,6 +68,24 @@ export async function Delete(id) {
 }
 
 export async function Post(data) {
+  try {
+    const payload = data;
+    sqlutils.extrair_dados(payload);
+    const sqlFields = sqlutils.gerar_sqlFields();
+    const sqlParms = sqlutils.gerar_sqlParams();
+    const sqlValuesParms = sqlutils.listParms();
+    const sqlTexto = `INSERT INTO ${tableName} ( ${sqlFields} )  VALUES ( ${sqlParms} )`;
+    console.log(`grupos :${sqlTexto}`);
+
+    const results = await db.execute(sqlTexto, sqlValuesParms);
+    
+    return { message: "Success", data: results };
+  } catch (error) {
+    return { message: "error", Error: error.message };
+  }
+}
+
+export async function Post_old(data) {
   try {
     const payload = data;
     sqlutils.extrair_dados(payload);
