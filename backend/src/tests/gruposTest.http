@@ -26,8 +26,8 @@ Content-Type: application/json; charset=utf-8
 
 {
     "iduser": 1,
-    "name": "Grupo8",
-    "description": "meu teste"      
+    "name": "Sistemas para Internet",
+    "description": "grupo si"      
 }
 
 ###

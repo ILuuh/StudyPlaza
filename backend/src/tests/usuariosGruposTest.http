@@ -24,8 +24,8 @@ GET {{url}}/email/teste@fatec.com
 GET {{url}}/totalMembros
 
 ###
-# getByMembros
-GET {{url}}/membros/3
+# getByMembrosdoGrupo
+GET {{url}}/membros/2
 
 ###
 # inclui novos registros
@@ -33,9 +33,9 @@ POST  {{url}}
 Content-Type: application/json; charset=utf-8
 
 {
-    "iduser": 2,
+    "iduser": 1,
     "idgrupo": 2,
-    "role": "Admin"
+    "role": "Membro"
 }
 
 ###

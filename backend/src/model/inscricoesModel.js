@@ -27,6 +27,25 @@ export async function GetById(id){
     }
 }
 
+export async function GetByInscricoesDoUser(id) {
+  try {
+    const results = await db.execute(
+      ` SELECT
+	        c.title, c.duration
+        FROM ${tableName} i
+        INNER JOIN cursos c ON c.id = i.idcurso
+        WHERE i.iduser = ?
+        GROUP BY i.id
+        ORDER BY i.id ASC
+    `,
+      [id],
+    );
+    return { message: "Success", data: results[0] };
+  } catch (error) {
+    return { message: "error", Error: error.message };
+  }
+}
+
 export async function Delete(id){
     try {
         const results = await db.execute(

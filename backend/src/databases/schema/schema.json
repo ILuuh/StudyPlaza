@@ -3,8 +3,8 @@
     "users": {
       "columns": {
         "id": { "type": "int", "primaryKey": true, "autoIncrement": true },
-        "name": { "type": "string", "size": 100, "nullable": false },
-        "login": { "type": "string", "size": 150, "nullable": false },
+        "name": { "type": "string", "size": 100, "nullable": false , "unique": true},
+        "login": { "type": "string", "size": 150, "nullable": false , "unique": true},
         "password": { "type": "string", "size": 254, "nullable": false },
         "created_at": {
           "type": "datetime",
@@ -17,7 +17,7 @@
     "roles": {
       "columns": {
         "id": { "type": "int", "primaryKey": true, "autoIncrement": true },
-        "role": { "type": "string", "size": 100, "nullable": false },
+        "role": { "type": "string", "size": 100, "nullable": false, "unique": true },
         "created_at": { "type": "datetime", "nullable": false, "default": true }
       }
     },
@@ -25,7 +25,7 @@
       "columns": {
         "id": { "type": "int", "primaryKey": true, "autoIncrement": true },
         "idroler": { "type": "int", "nullable": false },
-        "iduser": { "type": "int", "nullable": false },
+        "iduser": { "type": "int", "nullable": false , "unique": true},
         "created_at": { "type": "datetime", "nullable": false, "default": true }
       }
     },
@@ -43,7 +43,7 @@
       "columns": {
         "id":{"type":"int", "primaryKey":true, "autoIncrement":true},
         "iduser":{"type":"int", "nullable":false},
-        "name":{"type":"string", "size":50, "nullable":false},
+        "name":{"type":"string", "size":50, "nullable":false, "unique": true},
         "description":{"type":"string","size":300, "nullable":true},
         "created_by":{"type":"datetime", "nullable":false, "default":true},
         "actived":{"type":"boolean", "nullable":false, "default":true}        
@@ -62,7 +62,7 @@
       "columns":{
         "id":{"type":"int", "autoIncrement":true, "primaryKey":true},
         "iduser":{"type":"int", "nullable":false},
-        "idcurso":{"type":"int", "nullable":false}
+        "idcurso":{"type":"int", "nullable":false, "unique": true}
       }
     },
     "mensagens":{

@@ -9,7 +9,8 @@ const TYPE_MAP = {
         datetime: "TEXT",
         string: "TEXT",
         autoIncrement: "AUTOINCREMENT",
-        primaryKey: "PRIMARY KEY"
+        primaryKey: "PRIMARY KEY",
+        unique: "UNIQUE"
     },
     mysql: {
         int: "INT",
@@ -22,7 +23,8 @@ const TYPE_MAP = {
         size: "100",
         decimal : "3",
         autoIncrement: "AUTO_INCREMENT",
-        primaryKey: "PRIMARY KEY"
+        primaryKey: "PRIMARY KEY",
+        unique: "UNIQUE"
     },
     sqlserver: {
         int: "INT",
@@ -35,7 +37,8 @@ const TYPE_MAP = {
         size: "100",
         decimal : "3",
         autoIncrement: "AUTO_INCREMENT",
-        primaryKey: "PRIMARY KEY"
+        primaryKey: "PRIMARY KEY",
+        unique: "UNIQUE"
     }
 };
 
@@ -93,6 +96,7 @@ export class DatabaseSchema {
 
                 if (colConfig.primaryKey) def += ` ${map.primaryKey}`;
                 if (colConfig.autoIncrement) def += ` ${map.autoIncrement}`;
+                if (colConfig.unique) def += ` ${map.unique}`;
 
                 if (colConfig.nullable === false && !colConfig.primaryKey) {
                     def += " NOT NULL";
