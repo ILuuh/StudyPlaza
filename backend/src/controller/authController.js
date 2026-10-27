@@ -24,7 +24,6 @@ export const register = async (req, res) => {
 
 export const login = async (req, res) => {
     const { login, password } = req.body;
-    console.log( login, password);
     const user = await UserModel.GetByEmail(login);    
     if (user.message !== "Success") 
         return res.status(401).json({ message: 'Credenciais inválidas ***' });
