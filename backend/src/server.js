@@ -1,8 +1,11 @@
+
 import dotenv from "dotenv";
 import express from "express";
+import cors from "cors";
 import os from "os";
 import path from "path";
 import { fileURLToPath } from "url";
+
 import uploads from "./middlewares/upload.js";
 import swRoutes from "./view/routes.js";
 
@@ -19,7 +22,38 @@ const app = express();
 // MIDDLEWARES
 // ========================================
 
-app.use(express.json({ limit: "100mb" }));
+// ========================================
+// CONFIGURAÇÃO DO CORS
+// ========================================
+
+app.use(cors({
+    origin: [
+        "http://localhost:8081",
+        "http://127.0.0.1:8081"
+    ],
+
+    methods: [
+        "GET",
+        "POST",
+        "PUT",
+        "PATCH",
+        "DELETE",
+        "OPTIONS"
+    ],
+
+    allowedHeaders: [
+        "Content-Type",
+        "Authorization"
+    ]
+}));
+
+// ========================================
+// CONFIGURAÇÃO DO EXPRESS
+// ========================================
+
+app.use(express.json({
+    limit: "100mb"
+}));
 
 app.use(express.urlencoded({
     limit: "100mb",
@@ -37,10 +71,12 @@ app.use(swRoutes);
 // ========================================
 
 app.get("/test", (req, res) => {
+
     res.status(200).json({
         message: "servidor rodando",
         port: Port
     });
+
 });
 
 // ========================================
@@ -79,6 +115,7 @@ app.get("/ip-servidor", (req, res) => {
         ipServidor: serverIp,
         porta: Port
     });
+
 });
 
 // ========================================
@@ -110,6 +147,7 @@ app.post(
         return res.status(200).json({
             message: "Arquivo enviado com sucesso!"
         });
+
     }
 );
 
@@ -117,7 +155,7 @@ app.post(
 // SERVIDOR
 // ========================================
 
-app.listen(Port, () => {
+app.listen(Port, "0.0.0.0", () => {
 
     const ipServidor = getLocalIp();
 
@@ -132,4 +170,5 @@ app.listen(Port, () => {
     console.log(
         "CTRL+C para encerrar o servidor"
     );
+
 });

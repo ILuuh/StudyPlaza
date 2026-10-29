@@ -1,6 +1,7 @@
 import { Redirect, Stack } from "expo-router";
 import { useContext } from "react";
 import { AuthContext } from "../utils/authContext";
+import { ThemeProvider } from "../utils/themeContext";
 
 export default function AuthLayout() {
   const auth = useContext(AuthContext);
@@ -14,17 +15,19 @@ export default function AuthLayout() {
   }
 
   return (
-    <Stack
-      screenOptions={{
-        headerShown: false,
-      }}
-    >
-      <Stack.Screen
-        name="(dash)"
-        options={{
+    <ThemeProvider>
+      <Stack
+        screenOptions={{
           headerShown: false,
         }}
-      />
-    </Stack>
+      >
+        <Stack.Screen
+          name="(dash)"
+          options={{
+            headerShown: false,
+          }}
+        />
+      </Stack>
+    </ThemeProvider>
   );
 }
