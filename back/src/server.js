@@ -5,6 +5,7 @@ import path from "path";
 import { fileURLToPath } from "url";
 import uploads from "./middlewares/upload.js";
 import swRoutes from "./view/routes.js";
+import cors from "cors"
 
 dotenv.config();
 
@@ -14,6 +15,22 @@ const __dirname = path.dirname(__filename);
 const Port = process.env.API_PORT || 3600;
 
 const app = express();
+
+// ========================================
+// CORS
+// ========================================
+// Configuração básica: Permite todas as origens (Útil para teste, evite em produção)
+app.use(cors());
+
+// Configuração recomendada para produção:
+// const corsOptions = {
+//   origin: 'http://localhost:5500', // URL padrão do seu frontend Vite
+//   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+//   credentials: true, // Permite o envio de cookies/headers de autenticação se necessário
+//   optionsSuccessStatus: 200 
+// };
+
+// app.use(cors(corsOptions));
 
 // ========================================
 // MIDDLEWARES

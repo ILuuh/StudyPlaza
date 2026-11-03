@@ -1,8 +1,9 @@
 ### Variáveis Globais
-@baseUrl = http://localhost:3500
-@name = User1
-@email = teste@fatec.com
-@password = 123
+@baseUrl = http://localhost:4001
+@name = User 4
+@email = teste4@fatec.com
+teste@fatec.com
+@password = 123456789
 
 ### 1. Criar um novo usuário (Sign Up)
 POST {{baseUrl}}/auth/register

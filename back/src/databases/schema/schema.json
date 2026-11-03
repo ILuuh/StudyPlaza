@@ -55,6 +55,7 @@
         "iduser":{"type":"int", "nullable":false},
         "idgrupo":{"type":"int", "nullable":false},
         "role":{"type":"string", "size":7,"nullable":false},
+        "actived":{"type":"boolean", "nullable":false, "default":true},
         "created_at": { "type": "datetime", "nullable": false, "default": true }
       }
     },

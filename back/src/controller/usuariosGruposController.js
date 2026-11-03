@@ -47,6 +47,20 @@ export async function GetByUser(req, res) {
   }
 }
 
+export async function GetByTotalGruposAtivosUser(req, res) {
+  try {
+    const id = req.params.id;
+    const response = await myModel.GetByTotalGruposAtivosUser(id);
+    if (response.message.toLowerCase() == "success".toLowerCase()) {
+      res.status(200).json(response);
+    } else {
+      res.status(400).json(response);
+    }
+  } catch (error) {
+    res.status(403).json({ message: "erro", Error: error.message });
+  }
+}
+
 export async function GetByEmail(req, res) {
   try {
     const email = req.params.email;

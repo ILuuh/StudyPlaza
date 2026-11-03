@@ -4,6 +4,7 @@
   - Mostra mensagens de erro/feedback em português fixo
   - Sem sistema de tradução
 */
+import { URL_API } from "./apiconfig.js";
 
 // Flags de interação do usuário
 let emailTouched = false;
@@ -143,19 +144,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
       const email = (emailInput && emailInput.value || '').trim();
       const password = (passwordInput && passwordInput.value || '').trim();
-
+      const url = `${URL_API}/auth/login`;
+      
       try {
-        const resp = await fetch('http://localhost:3500/api/auth', {
+        const resp = await fetch( url , {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ email, senha: password })
+          body: JSON.stringify({ login:email, password: password })
         });
-
-        if (resp.status === 200) {
+        const statushttp = resp.status
+        
+        if ( statushttp === 200) {
           const user = await resp.json();
+          
           try {
-            localStorage.setItem('studyplaza-user', JSON.stringify(user));
-            localStorage.setItem('studyplaza-token', user.token);
+            localStorage.setItem('studyplaza-user', JSON.stringify(user.user));
+            localStorage.setItem('studyplaza-token', user.data);
           } catch (e) {}
 
           if (typeof showToast === 'function') showToast('Login realizado com sucesso!', 'success');

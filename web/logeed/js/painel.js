@@ -1,6 +1,7 @@
 // painel.js — integração real com API + tradução
+import { URL_API } from "../../js/apiconfig.js";
 
-const API_URL = "http://localhost:3500/api";
+const API_URL = URL_API;
 
 // ======================================================
 // 0. Helper seguro de tradução (igual ao perfil.js)
@@ -33,21 +34,24 @@ if (!storedUser || !storedToken) {
 
 const userId = storedUser.id;
 
-
 // ==========================
 // 2. Mostrar grupos ativos
 // ==========================
 async function mostrarGruposAtivosUsuario() {
     const container = document.querySelector(".hero-status div strong");
     container.textContent = "...";
-
+    const idUser = storedUser.id;
+    
     try {
-        const response = await fetch(`${API_URL}/grupos/gruposAtivosUsuario/${storedUser.id}`, {
+        const response = await fetch(`${API_URL}/usuariosgrupos/totalgruposativosuser/${userId}`, {
             headers: { "Authorization": `Bearer ${storedToken}` }
         });
 
-        const data = await response.json();
-        const total = data.total ?? 0;
+        const responseData = await response.json();
+        const user = responseData.data[0];
+
+        console.log( user );
+        const total = user.quantMembros ?? 0;
 
         container.textContent = total;
 
@@ -73,7 +77,7 @@ async function carregarGrupos() {
     try {
 
         const response = await fetch(
-            `${API_URL}/usuarios_grupos/todosgruposusuarioparticipa/${userId}`,
+            `${API_URL}/usuariosgrupos/membros/${userId}`,
             {
                 headers: {
                     "Authorization": `Bearer ${storedToken}`

@@ -44,6 +44,29 @@ export async function GetByGruposTotalMembros(req, res) {
   }
 }
 
+export async function GetByTotalGruposAtivosUser(id) {
+  try {
+    const results = await db.execute(
+      `SELECT
+          g.name AS grupo,
+          g.created_by AS data_criacao,
+          u.name AS criador,
+          COUNT(ug.iduser) AS quantMembros
+        FROM ${tableName} ug
+        INNER JOIN users u ON (u.id = ug.iduser)
+        INNER JOIN grupos g ON (g.id = ug.idgrupo)
+        WHERE ug.iduser = ? AND g.actived = true
+        GROUP BY g.name, g.created_by;`,
+      [id],
+    );
+    console.log( `id: ${id}`);
+    console.log( results[0] );
+    return { message: "Success", data: results[0] };
+  } catch (error) {
+    return { message: "error", Error: error.message };
+  }
+}
+
 export async function GetById(id) {
   try {
     const results = await db.execute(
