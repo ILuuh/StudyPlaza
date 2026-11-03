@@ -30,9 +30,9 @@ export default function Login() {
 
     try {
       // 2. Requisição para a rota de login
-      const response = await api.post("/login", {
-        email,
-        senha: password,
+      const response = await api.post("/auth/login", {
+        login: email,
+        password: password,
       });
 
       await signIn({
