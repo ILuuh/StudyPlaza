@@ -61,6 +61,34 @@ export async function GetByTotalGruposAtivosUser(req, res) {
   }
 }
 
+export async function GetByGruposAtivosUser(req, res) {
+  try {
+    const id = req.params.id;
+    const response = await myModel.GetByGruposAtivosUser(id);
+    if (response.message.toLowerCase() == "success".toLowerCase()) {
+      res.status(200).json(response);
+    } else {
+      res.status(400).json(response);
+    }
+  } catch (error) {
+    res.status(403).json({ message: "erro", Error: error.message });
+  }
+}
+
+export async function GetByBuscarPapelDoUser(req, res) {
+  try {
+    const id = req.params.id;
+    const idgrupo = req.params.idgrupo;
+    const response = await myModel.GetByBuscarPapelDoUser(id, idgrupo);
+    if (response.message.toLowerCase() == "success".toLowerCase()) {
+      res.status(200).json(response);
+    } else {
+      res.status(400).json(response);
+    }
+  } catch (error) {
+    res.status(403).json({ message: "erro", Error: error.message });
+  }
+}
 export async function GetByEmail(req, res) {
   try {
     const email = req.params.email;

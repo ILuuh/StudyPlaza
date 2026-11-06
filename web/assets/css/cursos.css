@@ -1,0 +1,303 @@
+/* =========================
+   IMPORTS
+========================= */
+@import url('style.css');
+
+/* =========================================================
+   PÁGINA DE CURSOS
+   ========================================================= */
+
+
+/* =========================================================
+   BASE
+   ========================================================= */
+
+body {
+    display: flex;
+    flex-direction: column;
+
+    min-height: 100vh;
+
+    font-family: var(--font-family);
+    background-color: var(--cor-fundo);
+    color: var(--cor-fonte);
+
+    transition:
+        background-color 0.3s ease,
+        color 0.3s ease;
+}
+
+
+/* =========================================================
+   INTRODUÇÃO
+   ========================================================= */
+
+.intro-section {
+    margin: 40px 20px;
+
+    text-align: center;
+}
+
+.intro-section h1 {
+    margin-bottom: 10px;
+
+    font-size: 2.5rem;
+    font-weight: 700;
+
+    color: var(--roxo-principal);
+}
+
+.intro-section p {
+    max-width: 800px;
+
+    margin: 0 auto;
+
+    font-size: 1.2rem;
+    line-height: 1.6;
+
+    color: var(--cor-fonte-secundaria);
+}
+
+
+/* =========================================================
+   CURSOS
+   ========================================================= */
+
+#courses-title {
+    margin-bottom: 30px;
+
+    text-align: center;
+
+    font-size: 2.2rem;
+    font-weight: 700;
+
+    color: var(--cor-fonte);
+}
+
+
+/* =========================================================
+   CONTAINER DOS CURSOS
+   ========================================================= */
+
+.courses-container {
+    display: grid;
+
+    grid-template-columns:
+        repeat(auto-fit, minmax(260px, 1fr));
+
+    gap: 30px;
+
+    margin: 0 5%;
+}
+
+
+/* =========================================================
+   CARD DO CURSO
+   ========================================================= */
+
+.course-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    padding: 25px;
+
+    border: 1px solid var(--cor-borda);
+    border-radius: 12px;
+
+    background: var(--gradient-principal);
+
+    box-shadow: 0 4px 25px var(--sombra);
+
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+
+/* Hover */
+
+.course-card:hover {
+    transform: translateY(-5px);
+
+    box-shadow: 0 8px 30px var(--sombra);
+}
+
+
+/* Título */
+
+.course-card h3 {
+    margin-bottom: 15px;
+
+    font-size: 1.25rem;
+    font-weight: 600;
+
+    color: var(--cor-fonte-invertida);
+}
+
+
+/* Descrição */
+
+.course-card p {
+    flex-grow: 1;
+
+    margin-bottom: 20px;
+
+    line-height: 1.5;
+
+    color: var(--cor-fonte-invertida);
+}
+
+
+/* =========================================================
+   CALL TO ACTION
+   ========================================================= */
+
+.call-to-action {
+    margin: 50px 20px;
+    padding: 30px 20px;
+
+    border: 1px solid var(--cor-borda);
+    border-radius: 12px;
+
+    text-align: center;
+
+    background-color: var(--cor-superficie);
+
+    box-shadow: 0 4px 20px var(--sombra);
+}
+
+
+/* Título */
+
+.call-to-action h2 {
+    margin-bottom: 15px;
+
+    font-size: 2rem;
+    font-weight: 700;
+
+    color: var(--roxo-principal);
+}
+
+
+/* Texto */
+
+.call-to-action p {
+    max-width: 600px;
+
+    margin: 0 auto 25px;
+
+    font-size: 1.3rem;
+    line-height: 1.5;
+
+    color: var(--cor-fonte-secundaria);
+}
+
+
+/* Botão */
+
+.call-to-action a {
+    display: inline-block;
+
+    padding: 12px 24px;
+
+    border: none;
+    border-radius: 8px;
+
+    background: var(--gradient-principal);
+    color: var(--cor-fonte-invertida);
+
+    text-decoration: none;
+    font-weight: 600;
+
+    box-shadow: 0 4px 12px var(--sombra);
+
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+
+/* Hover do botão */
+
+.call-to-action a:hover {
+    transform: translateY(-3px);
+
+    box-shadow: 0 7px 18px var(--sombra);
+}
+
+
+/* Foco acessível */
+
+.call-to-action a:focus-visible {
+    outline: 2px solid var(--cor-foco);
+    outline-offset: 3px;
+}
+
+
+/* =========================================================
+   RESPONSIVIDADE
+   ========================================================= */
+
+
+/* ---------------------------------------------------------
+   TABLET
+   --------------------------------------------------------- */
+
+@media (max-width: 768px) {
+
+    .intro-section h1 {
+        font-size: 2rem;
+    }
+
+    .intro-section p {
+        padding: 0 10px;
+
+        font-size: 1rem;
+    }
+
+    #courses-title {
+        font-size: 1.9rem;
+    }
+
+    .call-to-action h2 {
+        font-size: 1.6rem;
+    }
+
+    .call-to-action p {
+        font-size: 1rem;
+    }
+}
+
+
+/* ---------------------------------------------------------
+   MOBILE
+   --------------------------------------------------------- */
+
+@media (max-width: 480px) {
+
+    .intro-section {
+        margin: 30px 15px;
+    }
+
+    .intro-section h1 {
+        font-size: 1.8rem;
+    }
+
+    .courses-container {
+        grid-template-columns: 1fr;
+
+        margin: 0 15px;
+    }
+
+    .course-card {
+        padding: 20px;
+    }
+
+    .call-to-action {
+        margin: 40px 15px;
+
+        padding: 20px 15px;
+    }
+
+}

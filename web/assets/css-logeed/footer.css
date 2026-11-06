@@ -1,0 +1,304 @@
+/* =========================================================
+   IMPORTS
+========================================================= */
+
+@import url("style.css");
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+.footer {
+  margin-top: auto;
+  padding: 60px 30px 0;
+
+  background: var(--gradient-principal);
+  color: var(--cor-fonte-invertida);
+
+  box-shadow: 0 -8px 30px var(--sombra);
+
+  transition:
+    background 0.3s ease,
+    color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+/* =========================================================
+   CONTAINER PRINCIPAL
+========================================================= */
+
+.footer-container {
+  width: min(1200px, 100%);
+  margin: 0 auto;
+
+  display: grid;
+
+  grid-template-columns:
+    2fr
+    1fr
+    1fr
+    1.5fr;
+
+  gap: 50px;
+
+  padding-bottom: 45px;
+}
+
+/* =========================================================
+   IDENTIDADE
+========================================================= */
+
+.footer-brand {
+  max-width: 420px;
+}
+
+.footer-logo {
+  display: inline-flex;
+  align-items: center;
+
+  gap: 12px;
+
+  margin-bottom: 18px;
+
+  color: var(--cor-fonte-invertida);
+
+  text-decoration: none;
+
+  transition: opacity 0.3s ease;
+}
+
+.footer-logo:hover {
+  opacity: 0.85;
+}
+
+.footer-logo img {
+  width: 55px;
+  height: 55px;
+
+  object-fit: contain;
+}
+
+.footer-logo span {
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.footer-brand > p {
+  max-width: 400px;
+
+  margin: 0;
+
+  line-height: 1.7;
+
+  color: rgba(255, 255, 255, 0.85);
+}
+
+/* =========================================================
+   REDES SOCIAIS
+========================================================= */
+
+.footer-social {
+  display: flex;
+  flex-direction: column;
+
+  gap: 10px;
+
+  margin-top: 25px;
+}
+
+.footer-social > span {
+  font-size: 0.9rem;
+
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.footer-social a {
+  width: fit-content;
+
+  display: inline-flex;
+  align-items: center;
+
+  gap: 8px;
+
+  color: var(--cor-fonte-invertida);
+
+  font-weight: 500;
+
+  text-decoration: none;
+
+  transition:
+    transform 0.3s ease,
+    color 0.3s ease,
+    opacity 0.3s ease;
+}
+
+.footer-social a:hover {
+  color: var(--cor-foco);
+
+  transform: translateX(4px);
+}
+
+.footer-social i {
+  font-size: 1.2rem;
+}
+
+/* =========================================================
+   COLUNAS
+========================================================= */
+
+.footer-column {
+  display: flex;
+  flex-direction: column;
+
+  gap: 13px;
+}
+
+.footer-column h3,
+.footer-highlight h3 {
+  margin: 0 0 8px;
+
+  font-size: 1rem;
+}
+
+.footer-column a {
+  width: fit-content;
+
+  color: rgba(255, 255, 255, 0.8);
+
+  text-decoration: none;
+
+  transition:
+    color 0.3s ease,
+    transform 0.3s ease;
+}
+
+.footer-column a:hover {
+  color: var(--cor-fonte-invertida);
+
+  transform: translateX(4px);
+}
+
+/* =========================================================
+   BOTÃO
+========================================================= */
+
+.footer-button {
+  display: inline-flex;
+  align-items: center;
+
+  gap: 10px;
+
+  padding: 11px 17px;
+
+  border-radius: 10px;
+
+  background: var(--cor-superficie);
+  color: var(--roxo-principal);
+
+  text-decoration: none;
+
+  font-weight: 600;
+
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease,
+    background 0.3s ease,
+    color 0.3s ease;
+}
+
+.footer-button:hover {
+  transform: translateY(-2px);
+
+  background: var(--cor-superficie-secundaria);
+
+  color: var(--roxo-escuro);
+
+  box-shadow: 0 8px 20px var(--sombra);
+}
+
+/* =========================================================
+   PARTE INFERIOR
+========================================================= */
+
+.footer-bottom {
+  width: min(1200px, 100%);
+  margin: 0 auto;
+
+  padding: 22px 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 20px;
+
+  border-top: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.footer-bottom p {
+  margin: 0;
+
+  font-size: 0.85rem;
+
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* =========================================================
+   ACESSIBILIDADE — FOCO
+========================================================= */
+
+.footer a:focus-visible {
+  outline: 3px solid var(--cor-foco);
+  outline-offset: 4px;
+
+  border-radius: 4px;
+}
+
+/* =========================================================
+   RESPONSIVIDADE — ATÉ 900PX
+========================================================= */
+
+@media (max-width: 900px) {
+  .footer-container {
+    grid-template-columns:
+      1fr
+      1fr;
+
+    gap: 40px;
+  }
+
+  .footer-brand {
+    max-width: 100%;
+  }
+
+}
+
+/* =========================================================
+   RESPONSIVIDADE — ATÉ 600PX
+========================================================= */
+
+@media (max-width: 600px) {
+  .footer {
+    padding: 45px 20px 0;
+  }
+
+  .footer-container {
+    grid-template-columns: 1fr;
+
+    gap: 35px;
+
+    padding-bottom: 35px;
+  }
+
+  .footer-logo span {
+    font-size: 1.3rem;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+
+    align-items: flex-start;
+
+    gap: 8px;
+  }
+}

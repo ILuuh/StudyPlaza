@@ -1,0 +1,334 @@
+/* ========================================
+   CONFIGURAÇÕES GERAIS
+======================================== */
+
+/* Importa as variáveis do tema */
+@import url("style.css");
+
+.inscricao-section {
+  text-align: center;
+  flex-grow: 1;
+  max-width: 1000px;
+  margin: 50px auto 80px;
+  padding: 0 20px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* ========================================
+   CONTAINER DO FORMULÁRIO
+======================================== */
+
+.form-container {
+  background: var(--cor-superficie);
+  padding: 40px;
+  border-radius: 12px;
+  border: 1px solid var(--cor-borda);
+  box-shadow: 0 4px 20px var(--sombra);
+  max-width: 700px;
+  margin: 0 auto;
+  text-align: left;
+  transition:
+    background 0.3s ease,
+    border-color 0.3s ease;
+}
+
+.form-container h1 {
+  font-size: 2.2rem;
+  color: var(--roxo-principal);
+  margin-bottom: 5px;
+  text-align: center;
+}
+
+.form-container h2#curso-selecionado {
+  font-size: 1.5rem;
+  color: var(--roxo-principal);
+  margin-bottom: 20px;
+  text-align: center;
+  font-weight: 600;
+}
+
+.intro-texto {
+  font-size: 1.1rem;
+  color: var(--cor-fonte-secundaria);
+  margin-bottom: 30px;
+  text-align: center;
+  line-height: 1.6;
+}
+
+/* ========================================
+   FIELDSET E LEGEND
+======================================== */
+
+fieldset {
+  border: 1px solid var(--cor-borda);
+  padding: 20px;
+  margin-bottom: 30px;
+  border-radius: 8px;
+  background: var(--cor-superficie);
+}
+
+legend {
+  font-weight: 700;
+  color: var(--roxo-principal);
+  padding: 0 10px;
+  font-size: 1.1rem;
+}
+
+/* ========================================
+   CAMPOS DO FORMULÁRIO
+======================================== */
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: var(--cor-fonte);
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group input[type="tel"],
+.form-group select {
+  width: 100%;
+  padding: 12px;
+  border-radius: 6px;
+
+  border: 1px solid var(--cor-borda);
+  background: var(--cor-superficie);
+  color: var(--cor-fonte);
+
+  box-sizing: border-box;
+  font-family: var(--font-family);
+  font-size: 1rem;
+
+  transition:
+    border-color 0.3s ease,
+    box-shadow 0.3s ease,
+    background 0.3s ease;
+}
+
+/* Placeholder */
+.form-group input::placeholder {
+  color: var(--cor-fonte-secundaria);
+  opacity: 0.8;
+}
+
+/* Foco nos campos */
+.form-group input:focus,
+.form-group select:focus {
+  border-color: var(--cor-foco);
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(168, 139, 235, 0.25);
+}
+
+/* ========================================
+   RADIO BUTTONS
+======================================== */
+
+.radio-group {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.radio-group input[type="radio"] {
+  accent-color: var(--roxo-principal);
+  margin-right: 5px;
+  cursor: pointer;
+}
+
+.radio-group label {
+  font-weight: 400;
+  display: inline-block;
+  cursor: pointer;
+  color: var(--cor-fonte);
+}
+
+/* ========================================
+   TERMOS E CONDIÇÕES
+======================================== */
+
+.termos {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 30px;
+  gap: 10px;
+}
+
+.termos input[type="checkbox"] {
+  margin-top: 5px;
+  accent-color: var(--roxo-principal);
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.termos label {
+  color: var(--cor-fonte-secundaria);
+  line-height: 1.5;
+}
+
+.termos label a {
+  color: var(--roxo-principal);
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+.termos label a:hover {
+  color: var(--roxo-claro);
+  text-decoration: underline;
+}
+
+/* ========================================
+   BOTÃO DE ENVIO
+======================================== */
+
+.btn-submit {
+  width: 100%;
+  background: var(--roxo-principal);
+  border: 2px solid var(--roxo-principal);
+  color: var(--cor-fonte-invertida);
+
+  padding: 15px;
+  border-radius: 8px;
+
+  font-family: var(--font-family);
+  font-size: 1.1rem;
+  font-weight: bold;
+
+  cursor: pointer;
+
+  transition:
+    background 0.3s ease,
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.btn-submit:hover {
+  background: var(--roxo-escuro);
+  border-color: var(--roxo-escuro);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px var(--sombra);
+}
+
+.btn-submit:focus-visible {
+  outline: 3px solid var(--cor-foco);
+  outline-offset: 3px;
+}
+
+/* ========================================
+   NOTIFICAÇÕES (TOAST)
+======================================== */
+
+.toast-container {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+
+  z-index: 9999;
+  max-width: calc(100% - 2rem);
+}
+
+.toast {
+  opacity: 0;
+  transform: translateY(-20px);
+
+  padding: 0.75rem 1.25rem;
+  border-radius: 8px;
+
+  color: #ffffff;
+  font-weight: 500;
+
+  box-shadow: 0 2px 8px var(--sombra);
+
+  transition:
+    opacity 0.25s ease,
+    transform 0.25s ease;
+}
+
+.toast.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.toast.success {
+  background-color: var(--cor-sucesso);
+}
+
+.toast.error {
+  background-color: var(--cor-erro);
+}
+
+/* ========================================
+   RESPONSIVIDADE
+======================================== */
+
+@media (max-width: 768px) {
+  .inscricao-section {
+    margin: 30px auto 50px;
+  }
+
+  .form-container {
+    padding: 30px 20px;
+  }
+
+  .form-container h1 {
+    font-size: 1.8rem;
+  }
+
+  .form-container h2#curso-selecionado {
+    font-size: 1.3rem;
+  }
+
+  .intro-texto {
+    font-size: 1rem;
+  }
+
+  .radio-group {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .inscricao-section {
+    padding: 0 15px;
+  }
+
+  .form-container {
+    padding: 25px 15px;
+  }
+
+  .form-container h1 {
+    font-size: 1.6rem;
+  }
+
+  .form-container h2#curso-selecionado {
+    font-size: 1.2rem;
+  }
+
+  fieldset {
+    padding: 15px;
+  }
+
+  .btn-submit {
+    font-size: 1rem;
+    padding: 13px;
+  }
+
+  .toast-container {
+    left: 1rem;
+    right: 1rem;
+  }
+}

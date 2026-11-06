@@ -1,0 +1,482 @@
+/* =========================================================
+   IMPORTS
+========================================================= */
+
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap");
+
+/* =========================================================
+   PALETA DE CORES — TEMA CLARO
+========================================================= */
+
+:root {
+  /* -------------------------
+     Cores principais
+  ------------------------- */
+
+  --roxo-principal: #6a4c93;
+  --roxo-claro: #a88beb;
+  --roxo-escuro: #231942;
+
+  /* -------------------------
+     Fundo e superfícies
+  ------------------------- */
+
+  --cor-fundo: #f9f9f9;
+  --cor-superficie: #ffffff;
+  --cor-superficie-secundaria: #f3f0f8;
+
+  /* -------------------------
+     Textos
+  ------------------------- */
+
+  --cor-fonte: #333333;
+  --cor-fonte-secundaria: #666666;
+  --cor-fonte-invertida: #ffffff;
+
+  /* -------------------------
+     Estados
+  ------------------------- */
+
+  --cor-ativo: #bfdfff;
+  --cor-hover: #231942;
+  --cor-foco: #a88beb;
+
+  /* -------------------------
+     Bordas e sombras
+  ------------------------- */
+
+  --cor-borda: #dddddd;
+  --sombra: rgba(0, 0, 0, 0.08);
+
+  /* -------------------------
+     Gradientes
+  ------------------------- */
+
+  --gradient-principal: linear-gradient(
+    100deg,
+    var(--roxo-principal),
+    var(--roxo-claro)
+  );
+
+  /* -------------------------
+     Mensagens
+  ------------------------- */
+
+  --cor-erro: #e63946;
+  --cor-sucesso: #2a9d8f;
+  --cor-aviso: #f4a261;
+
+  /* -------------------------
+     Tipografia
+  ------------------------- */
+
+  --font-family: "Poppins", Arial, sans-serif;
+}
+
+/* =========================================================
+   PALETA DE CORES — TEMA ESCURO
+========================================================= */
+
+[data-bs-theme="dark"] {
+  /* -------------------------
+     Cores principais
+  ------------------------- */
+
+  --roxo-principal: #9d4edd;
+  --roxo-claro: #cdb4db;
+  --roxo-escuro: #10002b;
+
+  /* -------------------------
+     Fundo e superfícies
+  ------------------------- */
+
+  --cor-fundo: #10002b;
+  --cor-superficie: #240046;
+  --cor-superficie-secundaria: #3c096c;
+
+  /* -------------------------
+     Textos
+  ------------------------- */
+
+  --cor-fonte: #f9f9f9;
+  --cor-fonte-secundaria: #d0c7d8;
+  --cor-fonte-invertida: #ffffff;
+
+  /* -------------------------
+     Estados
+  ------------------------- */
+
+  --cor-ativo: #9d4edd;
+  --cor-hover: #8338ec;
+  --cor-foco: #c77dff;
+
+  /* -------------------------
+     Bordas e sombras
+  ------------------------- */
+
+  --cor-borda: #4a2a68;
+  --sombra: rgba(0, 0, 0, 0.35);
+
+  /* -------------------------
+     Gradientes
+  ------------------------- */
+
+  --gradient-principal: linear-gradient(
+    135deg,
+    #3c096c 0%,
+    #240046 50%,
+    #10002b 100%
+  );
+
+  /* -------------------------
+     Mensagens
+  ------------------------- */
+
+  --cor-erro: #ff8080;
+  --cor-sucesso: #52b788;
+  --cor-aviso: #ffb86b;
+}
+
+/* =========================================================
+   RESET
+========================================================= */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* =========================================================
+   BASE
+========================================================= */
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+
+  min-height: 100vh;
+
+  font-family: var(--font-family);
+  background-color: var(--cor-fundo);
+  color: var(--cor-fonte);
+
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
+}
+
+/* -------------------------
+   Elementos obrigatórios
+------------------------- */
+
+#obrigatorio::after {
+  content: "*";
+  color: var(--cor-erro);
+}
+
+/* =========================================================
+   HERO / BANNER
+========================================================= */
+
+.banner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+
+  min-height: 85vh;
+  padding: 60px;
+
+  background-color: var(--cor-fundo);
+}
+
+.banner-texto {
+  flex: 1;
+  padding-right: 30px;
+}
+
+.banner-texto h2 {
+  margin-bottom: 20px;
+
+  font-size: 2.8rem;
+  color: var(--cor-fonte);
+}
+
+.banner-texto p {
+  font-size: 1.2rem;
+  line-height: 1.6;
+
+  color: var(--cor-fonte-secundaria);
+}
+
+.banner img {
+  max-width: 300px;
+
+  border-radius: 12px;
+}
+
+/* =========================================================
+   FUNCIONALIDADES
+========================================================= */
+
+.funcionalidades-steps {
+  min-height: 80vh;
+  padding: 60px 20px;
+
+  text-align: center;
+
+  background-color: var(--cor-fundo);
+}
+
+.funcionalidades-steps h2 {
+  margin-bottom: 5rem;
+
+  font-size: 2rem;
+  color: var(--cor-fonte);
+}
+
+.steps-container {
+  display: flex;
+  flex-wrap: wrap;
+
+  justify-content: space-around;
+
+  gap: 20px;
+}
+
+.step {
+  flex: 1;
+  min-width: 140px;
+}
+
+.step-icon {
+  display: grid;
+  place-items: center;
+
+  width: 70px;
+  height: 70px;
+
+  margin: 0 auto 15px;
+
+  border-radius: 50%;
+
+  background: var(--roxo-principal);
+  color: var(--cor-fonte-invertida);
+
+  box-shadow:
+    0 0 0 4px var(--cor-superficie),
+    0 0 0 6px var(--roxo-principal);
+
+  transition:
+    transform 0.3s ease,
+    background 0.3s ease;
+}
+
+.step-icon:hover {
+  transform: translateY(-4px);
+
+  background: var(--roxo-claro);
+}
+
+.step p {
+  max-width: 200px;
+
+  margin: 0 auto;
+
+  font-size: 1rem;
+  font-weight: 600;
+
+  color: var(--cor-fonte);
+}
+
+/* =========================================================
+   BENEFÍCIOS
+========================================================= */
+
+.beneficios-lista {
+  min-height: 80vh;
+  padding: 60px;
+
+  background-color: var(--cor-fundo);
+}
+
+.beneficios-lista h2 {
+  margin-bottom: 30px;
+
+  text-align: center;
+
+  font-size: 2rem;
+  color: var(--cor-fonte);
+}
+
+.beneficios-animados {
+  display: grid;
+
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+
+  gap: 20px;
+
+  list-style: none;
+}
+
+.beneficios-animados li {
+  display: flex;
+  align-items: flex-start;
+
+  gap: 12px;
+
+  padding: 15px;
+
+  background-color: var(--cor-superficie);
+
+  border: 1px solid var(--cor-borda);
+  border-radius: 10px;
+
+  font-size: 1rem;
+  font-weight: 500;
+
+  color: var(--cor-fonte);
+
+  box-shadow: 0 4px 12px var(--sombra);
+
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.beneficios-animados li:hover {
+  transform: translateY(-3px);
+
+  box-shadow: 0 8px 20px var(--sombra);
+}
+
+.beneficios-animados li i {
+  margin-top: 3px;
+
+  font-size: 1.2rem;
+
+  color: var(--roxo-principal);
+}
+
+/* =========================================================
+   TABLET — ATÉ 1024PX
+========================================================= */
+
+@media (max-width: 1024px) {
+  .banner {
+    padding: 40px 30px;
+  }
+
+  .banner-texto h2 {
+    font-size: 2.2rem;
+  }
+
+  .beneficios-lista {
+    padding: 40px 30px;
+  }
+}
+
+/* =========================================================
+   MOBILE — ATÉ 768PX
+========================================================= */
+
+@media (max-width: 768px) {
+  /* -------------------------
+     BANNER
+  ------------------------- */
+
+  .banner {
+    flex-direction: column;
+
+    gap: 30px;
+    padding: 40px 20px;
+
+    text-align: center;
+  }
+
+  .banner-texto {
+    padding-right: 0;
+  }
+
+  .banner-texto h2 {
+    font-size: 2rem;
+  }
+
+  .banner-texto p {
+    font-size: 1rem;
+  }
+
+  .banner img {
+    max-width: 220px;
+  }
+
+  /* -------------------------
+     FUNCIONALIDADES
+  ------------------------- */
+
+  .steps-container {
+    flex-direction: column;
+
+    align-items: center;
+  }
+
+  .step {
+    max-width: 250px;
+  }
+
+  /* -------------------------
+     BENEFÍCIOS
+  ------------------------- */
+
+  .beneficios-lista {
+    padding: 40px 20px;
+  }
+
+  .beneficios-animados {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* =========================================================
+   MOBILE PEQUENO — ATÉ 480PX
+========================================================= */
+
+@media (max-width: 480px) {
+  /* -------------------------
+     LOGO
+  ------------------------- */
+
+  .logo img {
+    height: 70px;
+  }
+
+  /* -------------------------
+     TEXTO
+  ------------------------- */
+
+  .banner-texto h2 {
+    font-size: 1.6rem;
+  }
+
+  .banner-texto p {
+    font-size: 0.95rem;
+  }
+
+  .funcionalidades-steps h2,
+  .beneficios-lista h2 {
+    font-size: 1.5rem;
+  }
+
+  /* -------------------------
+     BENEFÍCIOS
+  ------------------------- */
+
+  .beneficios-lista {
+    padding: 30px 15px;
+  }
+}

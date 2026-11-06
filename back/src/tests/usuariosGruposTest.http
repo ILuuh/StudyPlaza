@@ -1,5 +1,5 @@
 @host = http://localhost
-@port = 4001
+@port = 3500
 @endpoint = usuariosgrupos
 
 @url = {{host}}:{{port}}/{{endpoint}} 
@@ -13,9 +13,18 @@ GET {{url}}/3
 
 ###
 # getByUser
-GET {{url}}/user/2
+GET {{url}}/user/1
+
 ###
-GET {{url}}/totalgruposativosuser/3
+# getBytotalgruposativosuser
+GET {{url}}/totalgruposativosuser/1
+###
+# getBygruposativosuser
+GET {{url}}/gruposativosuser/1
+
+###
+#getBybuscarpapeldouser
+GET {{url}}/buscarpapeldouser/1/1
 
 ###
 # getByEmail
@@ -35,8 +44,8 @@ POST  {{url}}
 Content-Type: application/json; charset=utf-8
 
 {
-    "iduser": 3,
-    "idgrupo": 2,
+    "iduser": 1,
+    "idgrupo": 3,
     "role": "Membro"
 }
 

@@ -29,7 +29,9 @@ export async function GetByGruposTotalMembros(req, res) {
   try {
     const results = await db.execute(
       `SELECT
+          ug.idgrupo,
           g.name AS grupo,
+          g.description,
           g.created_by AS data_criacao,
           u.name AS criador,
           COUNT(ug.iduser) AS quantMembros
@@ -48,15 +50,32 @@ export async function GetByTotalGruposAtivosUser(id) {
   try {
     const results = await db.execute(
       `SELECT
-          g.name AS grupo,
-          g.created_by AS data_criacao,
-          u.name AS criador,
-          COUNT(ug.iduser) AS quantMembros
+          u.name AS Usuário,
+          COUNT(ug.actived) AS quantGrupoAtivos
         FROM ${tableName} ug
         INNER JOIN users u ON (u.id = ug.iduser)
         INNER JOIN grupos g ON (g.id = ug.idgrupo)
         WHERE ug.iduser = ? AND g.actived = true
-        GROUP BY g.name, g.created_by;`,
+        GROUP BY ug.iduser`,
+      [id],
+    );
+    return { message: "Success", data: results[0] };
+  } catch (error) {
+    return { message: "error", Error: error.message };
+  }
+}
+
+export async function GetByGruposAtivosUser(id) {
+  try {
+    const results = await db.execute(
+      `SELECT
+          u.name AS usuário,
+          g.name AS grupo,
+          ug.actived AS ativo
+        FROM ${tableName} ug
+        INNER JOIN users u ON (u.id = ug.iduser)
+        INNER JOIN grupos g ON (g.id = ug.idgrupo)
+        WHERE ug.iduser = ? AND g.actived = true`,
       [id],
     );
     console.log( `id: ${id}`);
@@ -67,6 +86,24 @@ export async function GetByTotalGruposAtivosUser(id) {
   }
 }
 
+export async function GetByBuscarPapelDoUser(id, idgrupo) {
+  try {
+    const results = await db.execute(
+      ` SELECT 
+            g.name AS Grupo,
+            ug.role AS Papel
+          FROM ${tableName} ug
+          INNER JOIN grupos g ON (g.id = ug.idgrupo) 
+          WHERE ug.iduser = ? AND ug.idgrupo = ?
+        `, [id, idgrupo]
+    );
+    console.log( `id: ${id}, idgrupo: ${idgrupo}`);
+    console.log( results[0] );
+    return { message: "Success", data: results[0] };
+  } catch (error) {
+    return { message: "error", Error: error.message };
+  }
+}
 export async function GetById(id) {
   try {
     const results = await db.execute(
@@ -96,10 +133,13 @@ export async function GetByUser(id) {
       `SELECT 
             ug.id,
             ug.idgrupo,
+            g.name AS grupo,
+            g.description,
             ug.iduser,
             ug.created_at,
             u.name,
-            ug.role
+            ug.role,
+            ug.actived AS ativo
             FROM ${tableName} ug
             INNER JOIN users u ON (u.id = ug.iduser)
             INNER JOIN grupos g ON (g.id = ug.idgrupo)

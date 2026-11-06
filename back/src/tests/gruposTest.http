@@ -1,5 +1,5 @@
 @host = http://localhost
-@port = 4001
+@port = 3500
 @endpoint = grupos
 
 @url = {{host}}:{{port}}/{{endpoint}} 
@@ -13,11 +13,11 @@ GET {{url}}/totalGrupos
 
 ###
 # getById
-GET {{url}}/1
+GET {{url}}/2
 
 ###
 # GetByGruposDoUser
-GET {{url}}/theFromUser/1
+GET {{url}}/GruposDoUser/1
 
 ###
 # inclui novos registros
@@ -25,9 +25,9 @@ POST  {{url}}
 Content-Type: application/json; charset=utf-8
 
 {
-    "iduser": 1,
-    "name": "Sistemas ",
-    "description": "gr si"      
+    "iduser": 2,
+    "name": "Gestão da Produção Industrial",
+    "description": "grupo gpi"      
 }
 
 ###

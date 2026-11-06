@@ -1,0 +1,567 @@
+/* =========================================================
+IMPORTS
+========================================================= */
+
+@import url("style.css");
+
+/* =========================================================
+LAYOUT DA PÁGINA
+========================================================= */
+
+.login-page-wrapper {
+  min-height: 100vh;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 2rem 1rem;
+
+  background:
+    radial-gradient(
+      circle at top left,
+      rgba(139, 92, 246, 0.12),
+      transparent 35%
+    ),
+    var(--cor-fundo);
+
+  font-family: var(--font-family);
+}
+
+/* =========================================================
+CONTAINER PRINCIPAL DO LOGIN
+========================================================= */
+
+.login-container {
+  width: min(450px, 100%);
+
+  overflow: hidden;
+
+  background-color: var(--cor-superficie);
+  color: var(--cor-fonte);
+
+  border: 1px solid var(--cor-borda);
+  border-radius: 18px;
+
+  box-shadow: 0 20px 50px var(--sombra);
+}
+
+/* =========================================================
+CABEÇALHO / LOGO
+========================================================= */
+
+.login-header {
+  padding: 2rem 1.5rem 1.5rem;
+
+  text-align: center;
+
+  background: var(--gradient-principal);
+  color: var(--cor-fonte-invertida);
+
+  border-bottom: 1px solid var(--cor-borda);
+}
+
+.login-header a {
+  display: inline-block;
+
+  text-decoration: none;
+}
+
+.login-header img {
+  display: block;
+
+  width: 110px;
+  max-width: 100%;
+
+  height: auto;
+
+  object-fit: contain;
+
+  margin: 0 auto 1rem;
+}
+
+.login-header h1 {
+  width: 100%;
+
+  margin: 0;
+
+  font-family: var(--font-family);
+  font-size: 1.4rem;
+  font-weight: 700;
+  line-height: 1.3;
+
+  color: var(--cor-fonte-invertida);
+}
+
+/* =========================================================
+CORPO DO LOGIN
+========================================================= */
+
+.login-body {
+  padding: 1.75rem;
+}
+
+/* =========================================================
+GRUPOS DOS CAMPOS
+========================================================= */
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+
+  margin-bottom: 1.2rem;
+}
+
+/* =========================================================
+LABELS
+========================================================= */
+
+.form-label {
+  display: block;
+
+  margin-bottom: 0.5rem;
+
+  color: var(--cor-fonte);
+
+  font-family: var(--font-family);
+  font-size: 0.9rem;
+  font-weight: 600;
+
+  line-height: 1.4;
+
+  text-align: left;
+}
+
+/* Indicador de campo obrigatório */
+
+.obrigatorio::after {
+  content: " *";
+
+  color: var(--cor-erro);
+  font-weight: 700;
+}
+
+/* =========================================================
+INPUTS
+========================================================= */
+
+.form-control {
+  width: 100%;
+
+  padding: 0.75rem 0.85rem;
+
+  border: 1px solid var(--cor-borda);
+  border-radius: 9px;
+
+  background-color: var(--cor-superficie-secundaria);
+  color: var(--cor-fonte);
+
+  font-family: var(--font-family);
+  font-size: 0.95rem;
+
+  line-height: 1.5;
+
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    background-color 0.2s ease,
+    color 0.2s ease;
+}
+
+/* Placeholder */
+
+.form-control::placeholder {
+  color: var(--cor-fonte-secundaria);
+
+  opacity: 0.8;
+}
+
+/* Foco */
+
+.form-control:focus {
+  outline: none;
+
+  border-color: var(--cor-foco);
+
+  background-color: var(--cor-superficie);
+  color: var(--cor-fonte);
+
+  box-shadow: 0 0 0 3px rgba(168, 139, 235, 0.2);
+}
+
+/* Campo válido */
+
+.form-control.valid {
+  border-color: var(--cor-sucesso);
+}
+
+/* Campo inválido */
+
+.form-control.invalid {
+  border-color: var(--cor-erro);
+
+  background-color: rgba(230, 57, 70, 0.08);
+}
+
+/* =========================================================
+MENSAGENS DE ERRO
+========================================================= */
+
+.error-message {
+  display: none;
+
+  margin-top: 0.4rem;
+
+  color: var(--cor-erro);
+
+  font-family: var(--font-family);
+  font-size: 0.8rem;
+  font-weight: 500;
+
+  line-height: 1.4;
+
+  text-align: left;
+}
+
+/* Quando o erro estiver ativo */
+
+.error-message.active {
+  display: block;
+}
+
+/* =========================================================
+ERRO GERAL DO FORMULÁRIO
+========================================================= */
+
+#form-error {
+  margin-top: -0.3rem;
+  margin-bottom: 0.8rem;
+
+  color: var(--cor-erro);
+}
+
+/* =========================================================
+BOTÃO ENTRAR
+========================================================= */
+
+.btnEntrar {
+  width: 100%;
+
+  margin-top: 0.3rem;
+
+  padding: 0.75rem 1rem;
+
+  border: none;
+  border-radius: 9px;
+
+  background: var(--gradient-principal);
+  color: var(--cor-fonte-invertida);
+
+  font-family: var(--font-family);
+  font-size: 1rem;
+  font-weight: 600;
+
+  line-height: 1.5;
+
+  cursor: pointer;
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    opacity 0.2s ease;
+}
+
+/* Hover */
+
+.btnEntrar:hover {
+  transform: translateY(-2px);
+
+  box-shadow: 0 8px 20px var(--sombra);
+}
+
+/* Clique */
+
+.btnEntrar:active {
+  transform: translateY(0);
+
+  box-shadow: 0 4px 10px var(--sombra);
+}
+
+/* Foco por teclado */
+
+.btnEntrar:focus-visible {
+  outline: 2px solid var(--cor-foco);
+  outline-offset: 3px;
+}
+
+/* Botão desabilitado */
+
+.btnEntrar:disabled {
+  opacity: 0.7;
+
+  cursor: not-allowed;
+
+  transform: none;
+
+  box-shadow: none;
+}
+
+/* =========================================================
+ÁREA DE CADASTRO
+========================================================= */
+
+.cadastro-texto {
+  margin: 1.4rem 0 0;
+
+  color: var(--cor-fonte-secundaria);
+
+  font-family: var(--font-family);
+  font-size: 0.9rem;
+
+  line-height: 1.5;
+
+  text-align: center;
+}
+
+/* =========================================================
+LINK DE CADASTRO
+========================================================= */
+
+.linkCadastro {
+  color: var(--roxo-principal);
+
+  font-weight: 600;
+
+  text-decoration: none;
+
+  transition:
+    color 0.2s ease,
+    text-decoration 0.2s ease;
+}
+
+/* Hover */
+
+.linkCadastro:hover {
+  color: var(--cor-hover);
+
+  text-decoration: underline;
+}
+
+/* Foco */
+
+.linkCadastro:focus-visible {
+  outline: 2px solid var(--cor-foco);
+  outline-offset: 3px;
+}
+
+/* =========================================================
+LINK DO LOGO
+========================================================= */
+
+.login-header a:focus-visible {
+  outline: 2px solid var(--cor-fonte-invertida);
+  outline-offset: 5px;
+  border-radius: 8px;
+}
+
+/* =========================================================
+RESPONSIVIDADE
+========================================================= */
+
+@media (max-width: 480px) {
+  .login-page-wrapper {
+    min-height: 100vh;
+
+    padding: 1rem;
+  }
+
+  .login-container {
+    width: 100%;
+
+    border-radius: 14px;
+  }
+
+  .login-header {
+    padding: 1.5rem 1rem 1.25rem;
+  }
+
+  .login-header img {
+    width: 90px;
+
+    margin-bottom: 0.8rem;
+  }
+
+  .login-header h1 {
+    font-size: 1.2rem;
+  }
+
+  .login-body {
+    padding: 1.4rem;
+  }
+
+  .form-control {
+    padding: 0.7rem 0.75rem;
+
+    font-size: 0.9rem;
+  }
+
+  .btnEntrar {
+    padding: 0.7rem 0.9rem;
+  }
+
+  .cadastro-texto {
+    font-size: 0.85rem;
+  }
+}
+
+/* =========================================================
+TELAS MUITO PEQUENAS
+========================================================= */
+
+@media (max-width: 360px) {
+  .login-page-wrapper {
+    padding: 0.75rem;
+  }
+
+  .login-header {
+    padding: 1.25rem 0.8rem 1rem;
+  }
+
+  .login-header img {
+    width: 80px;
+  }
+
+  .login-header h1 {
+    font-size: 1.1rem;
+  }
+
+  .login-body {
+    padding: 1.15rem;
+  }
+}
+
+/* =========================================================
+ACESSIBILIDADE
+========================================================= */
+
+/* Reduz animações quando solicitado pelo sistema */
+
+@media (prefers-reduced-motion: reduce) {
+  .form-control,
+  .btnEntrar,
+  .linkCadastro {
+    transition: none;
+  }
+
+  .btnEntrar:hover {
+    transform: none;
+  }
+}
+
+/* =========================================================
+MODO ESCURO
+========================================================= */
+
+[data-bs-theme="dark"] .login-page-wrapper {
+  background:
+    radial-gradient(
+      circle at top left,
+      rgba(139, 92, 246, 0.18),
+      transparent 35%
+    ),
+    var(--cor-fundo);
+}
+
+[data-bs-theme="dark"] .form-control {
+  background-color: var(--cor-superficie-secundaria);
+
+  color: var(--cor-fonte);
+}
+
+[data-bs-theme="dark"] .form-control:focus {
+  background-color: var(--cor-superficie);
+
+  color: var(--cor-fonte);
+}
+
+/* =========================================================
+AUTOFILL DO NAVEGADOR
+========================================================= */
+
+.form-control:-webkit-autofill,
+.form-control:-webkit-autofill:hover,
+.form-control:-webkit-autofill:focus {
+  -webkit-text-fill-color: var(--cor-fonte);
+
+  -webkit-box-shadow: 0 0 0 1000px var(--cor-superficie-secundaria) inset;
+
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+/* =========================================================
+ESTADO DE CARREGAMENTO
+========================================================= */
+
+.btnEntrar.loading {
+  position: relative;
+
+  color: transparent;
+
+  pointer-events: none;
+}
+
+.btnEntrar.loading::after {
+  content: "";
+
+  position: absolute;
+
+  top: 50%;
+  left: 50%;
+
+  width: 18px;
+  height: 18px;
+
+  margin-top: -9px;
+  margin-left: -9px;
+
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  border-top-color: var(--cor-fonte-invertida);
+
+  border-radius: 50%;
+
+  animation: login-spinner 0.7s linear infinite;
+}
+
+@keyframes login-spinner {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* =========================================================
+IMPRESSÃO
+========================================================= */
+
+@media print {
+  .login-page-wrapper {
+    min-height: auto;
+
+    background: white;
+
+    padding: 0;
+  }
+
+  .login-container {
+    width: 100%;
+
+    border: 1px solid #000;
+
+    box-shadow: none;
+  }
+
+  .btnEntrar {
+    background: #000;
+
+    color: #fff;
+  }
+}

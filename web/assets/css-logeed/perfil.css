@@ -1,0 +1,734 @@
+/* =========================================================
+   PERFIL
+   Utiliza as variáveis definidas em style.css
+========================================================= */
+
+/* =========================================================
+   CONTAINER PRINCIPAL
+========================================================= */
+
+.perfil-container {
+  max-width: 900px;
+
+  margin: 40px auto;
+  padding: 20px;
+
+  background-color: var(--cor-superficie);
+
+  border: 1px solid var(--cor-borda);
+  border-radius: 12px;
+
+  box-shadow: 0 4px 15px var(--sombra);
+
+  color: var(--cor-fonte);
+}
+
+/* =========================================================
+   CABEÇALHO DO PERFIL
+========================================================= */
+
+.perfil-header-card {
+  display: flex;
+  align-items: center;
+
+  gap: 30px;
+
+  padding-bottom: 20px;
+  margin-bottom: 20px;
+
+  border-bottom: 2px solid var(--cor-foco);
+}
+
+/* =========================================================
+   AVATAR
+========================================================= */
+
+.perfil-avatar {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 130px;
+  height: 120px;
+
+  flex-shrink: 0;
+
+  border-radius: 50%;
+
+  background-color: var(--cor-superficie-secundaria);
+
+  border: 1px solid var(--cor-borda);
+}
+
+.perfil-avatar i {
+  font-size: 50px;
+
+  color: var(--roxo-principal);
+}
+
+/* =========================================================
+   BOTÃO ALTERAR FOTO
+========================================================= */
+
+.btn-mudar-foto {
+  position: absolute;
+
+  right: 0;
+  bottom: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 35px;
+  height: 35px;
+
+  padding: 0;
+
+  border: 3px solid var(--cor-superficie);
+  border-radius: 50%;
+
+  background-color: var(--roxo-principal);
+
+  color: var(--cor-fonte-invertida);
+
+  cursor: pointer;
+
+  font-size: 0.9em;
+
+  transition:
+    background-color 0.3s ease,
+    transform 0.2s ease;
+}
+
+.btn-mudar-foto:hover {
+  background-color: var(--cor-hover);
+
+  transform: scale(1.08);
+}
+
+.btn-mudar-foto:focus-visible {
+  outline: 2px solid var(--cor-foco);
+  outline-offset: 3px;
+}
+
+/* =========================================================
+   INFORMAÇÕES BÁSICAS
+========================================================= */
+
+.perfil-info-basica h1 {
+  margin: 0 0 5px;
+
+  color: var(--cor-fonte);
+
+  font-size: 2em;
+  font-weight: 700;
+}
+
+.perfil-username {
+  margin: 0 0 10px;
+
+  color: var(--cor-fonte-secundaria);
+
+  font-size: 1.1em;
+}
+
+.perfil-membro-desde {
+  margin: 0 0 15px;
+
+  color: var(--cor-fonte-secundaria);
+
+  font-size: 0.9em;
+}
+
+/* =========================================================
+   BADGES
+========================================================= */
+
+.perfil-badges .badge {
+  display: inline-block;
+
+  margin-right: 10px;
+  padding: 5px 10px;
+
+  border: 1px solid var(--cor-borda);
+  border-radius: 20px;
+
+  background-color: var(--cor-superficie-secundaria);
+
+  color: var(--cor-fonte);
+
+  font-size: 0.8em;
+}
+
+.perfil-badges .badge i {
+  margin-right: 5px;
+
+  color: var(--roxo-principal);
+}
+
+/* =========================================================
+   NAVEGAÇÃO DO PERFIL
+========================================================= */
+
+.perfil-nav {
+  display: flex;
+  justify-content: flex-start;
+
+  gap: 15px;
+
+  margin-bottom: 20px;
+  padding-bottom: 5px;
+
+  border-bottom: 1px solid var(--cor-borda);
+}
+
+.perfil-nav-item {
+  padding: 10px 15px;
+
+  border-bottom: 3px solid transparent;
+
+  color: var(--cor-fonte-secundaria);
+
+  text-decoration: none;
+
+  font-weight: 500;
+
+  transition:
+    color 0.3s ease,
+    border-color 0.3s ease;
+}
+
+.perfil-nav-item i {
+  margin-right: 8px;
+}
+
+.perfil-nav-item:hover {
+  color: var(--roxo-principal);
+}
+
+.perfil-nav-item.active {
+  border-bottom-color: var(--roxo-principal);
+
+  color: var(--roxo-principal);
+
+  font-weight: 700;
+}
+
+.perfil-nav-item:focus-visible {
+  outline: 2px solid var(--cor-foco);
+  outline-offset: 3px;
+}
+
+/* =========================================================
+   CONTEÚDO DAS SEÇÕES
+========================================================= */
+
+.perfil-content {
+  padding: 10px 0;
+}
+
+.perfil-section {
+  display: none;
+
+  animation: fadeIn 0.5s ease-out;
+}
+
+.perfil-section.active-section {
+  display: block;
+}
+
+/* =========================================================
+   ANIMAÇÃO
+========================================================= */
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(5px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* =========================================================
+   ESTATÍSTICAS
+========================================================= */
+
+.stats-grid {
+  display: grid;
+
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+
+  gap: 20px;
+
+  margin-bottom: 30px;
+}
+
+.stat-card {
+  padding: 20px;
+
+  border: 1px solid var(--cor-borda);
+  border-radius: 8px;
+
+  background-color: var(--cor-superficie);
+
+  text-align: center;
+
+  box-shadow: 0 2px 5px var(--sombra);
+
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.stat-card:hover {
+  transform: translateY(-3px);
+
+  box-shadow: 0 6px 15px var(--sombra);
+}
+
+.stat-card i {
+  margin-bottom: 10px;
+
+  color: var(--roxo-principal);
+
+  font-size: 2em;
+}
+
+.stat-card h3 {
+  margin: 5px 0;
+
+  color: var(--cor-fonte-secundaria);
+
+  font-size: 1em;
+}
+
+.stat-card p {
+  color: var(--cor-fonte);
+
+  font-size: 1.8em;
+  font-weight: 700;
+}
+
+/* =========================================================
+   GRÁFICO
+========================================================= */
+
+.chart-area {
+  margin-top: 30px;
+}
+
+.placeholder-chart {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  height: 250px;
+
+  border: 1px dashed var(--cor-borda);
+  border-radius: 8px;
+
+  background-color: var(--cor-superficie-secundaria);
+
+  color: var(--cor-fonte-secundaria);
+
+  font-style: italic;
+}
+
+/* =========================================================
+   FORMULÁRIO DE CONFIGURAÇÕES
+========================================================= */
+
+.config-form .form-group {
+  margin-bottom: 15px;
+}
+
+.config-form label {
+  display: block;
+
+  margin-bottom: 5px;
+
+  color: var(--cor-fonte);
+
+  font-weight: 600;
+}
+
+.config-form input,
+.config-form select {
+  width: 100%;
+
+  padding: 10px;
+
+  border: 1px solid var(--cor-borda);
+  border-radius: 6px;
+
+  background-color: var(--cor-superficie-secundaria);
+
+  color: var(--cor-fonte);
+
+  font-family: var(--font-family);
+  font-size: 1em;
+
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    background-color 0.2s ease;
+}
+
+.config-form input::placeholder {
+  color: var(--cor-fonte-secundaria);
+}
+
+.config-form input:focus,
+.config-form select:focus {
+  border-color: var(--cor-foco);
+
+  outline: none;
+
+  background-color: var(--cor-superficie);
+
+  box-shadow: 0 0 0 3px rgba(168, 139, 235, 0.2);
+}
+
+/* =========================================================
+   BOTÃO PRIMÁRIO
+========================================================= */
+
+.btn-primario {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  margin-top: 10px;
+
+  padding: 10px 20px;
+
+  border: none;
+  border-radius: 6px;
+
+  background: var(--gradient-principal);
+
+  color: var(--cor-fonte-invertida);
+
+  cursor: pointer;
+
+  font-family: var(--font-family);
+  font-weight: 700;
+
+  box-shadow: 0 4px 10px var(--sombra);
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.btn-primario:hover {
+  background: var(--gradient-principal);
+
+  transform: translateY(-2px);
+
+  box-shadow: 0 6px 15px var(--sombra);
+}
+
+.btn-primario:active {
+  transform: translateY(0);
+}
+
+.btn-primario:focus-visible {
+  outline: 2px solid var(--cor-foco);
+  outline-offset: 3px;
+}
+
+.btn-primario i {
+  margin-right: 8px;
+}
+
+/* =========================================================
+   HISTÓRICO
+========================================================= */
+
+.historico-list {
+  padding: 0;
+
+  list-style: none;
+}
+
+.historico-list li {
+  display: flex;
+  align-items: center;
+
+  margin-bottom: 10px;
+  padding: 12px 15px;
+
+  border: 1px solid var(--cor-borda);
+  border-left: 5px solid var(--roxo-principal);
+
+  border-radius: 6px;
+
+  background-color: var(--cor-superficie);
+
+  color: var(--cor-fonte);
+
+  transition:
+    background-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.historico-list li:hover {
+  background-color: var(--cor-superficie-secundaria);
+
+  transform: translateX(3px);
+}
+
+.historico-list li i {
+  margin-right: 15px;
+
+  color: var(--roxo-principal);
+
+  font-size: 1.1em;
+}
+
+/* =========================================================
+   VISUALIZAÇÃO ESTÁTICA DOS CAMPOS
+========================================================= */
+
+.config-view .form-group {
+  margin-bottom: 15px;
+}
+
+.field-value {
+  display: flex;
+  align-items: center;
+
+  min-height: 40px;
+
+  padding: 10px;
+
+  border: 1px solid var(--cor-borda);
+  border-radius: 6px;
+
+  background-color: var(--cor-superficie-secundaria);
+
+  color: var(--cor-fonte);
+
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+/* =========================================================
+   BOTÃO EDITAR
+========================================================= */
+
+.btn-editar {
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font-family: var(--font-family);
+}
+
+.btn-editar:hover {
+  color: var(--roxo-principal);
+}
+
+/* =========================================================
+   AÇÕES DO FORMULÁRIO
+========================================================= */
+
+.config-acoes {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.btn-cancelar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  margin-top: 10px;
+  padding: 10px 20px;
+
+  border: 1px solid var(--cor-borda);
+  border-radius: 6px;
+
+  background: var(--cor-superficie-secundaria);
+  color: var(--cor-fonte);
+
+  cursor: pointer;
+
+  font-family: var(--font-family);
+  font-weight: 600;
+
+  transition:
+    background-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.btn-cancelar:hover {
+  background-color: var(--cor-borda);
+  transform: translateY(-2px);
+}
+
+.btn-cancelar i {
+  margin-right: 8px;
+}
+
+/* =========================================================
+   RESPONSIVO
+========================================================= */
+
+@media (max-width: 500px) {
+  .config-acoes {
+    flex-direction: column;
+  }
+
+  .btn-cancelar,
+  .config-acoes .btn-primario {
+    width: 100%;
+  }
+}
+
+/* =========================================================
+   TABLET / MOBILE
+========================================================= */
+
+@media (max-width: 768px) {
+  .perfil-container {
+    margin: 25px 15px;
+    padding: 15px;
+  }
+
+  /* CABEÇALHO */
+
+  .perfil-header-card {
+    flex-direction: column;
+
+    gap: 15px;
+
+    text-align: center;
+  }
+
+  .perfil-avatar {
+    margin-bottom: 10px;
+  }
+
+  /* NAVEGAÇÃO */
+
+  .perfil-nav {
+    flex-wrap: wrap;
+
+    justify-content: center;
+
+    gap: 5px;
+  }
+
+  .perfil-nav-item {
+    flex-grow: 1;
+
+    padding: 8px 10px;
+
+    text-align: center;
+
+    font-size: 0.9em;
+  }
+
+  /* ESTATÍSTICAS */
+
+  .stats-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* =========================================================
+   MOBILE PEQUENO
+========================================================= */
+
+@media (max-width: 500px) {
+  .perfil-container {
+    margin: 15px 10px;
+    padding: 12px;
+  }
+
+  .perfil-avatar {
+    width: 110px;
+    height: 110px;
+  }
+
+  .perfil-avatar i {
+    font-size: 42px;
+  }
+
+  .perfil-info-basica h1 {
+    font-size: 1.6em;
+  }
+
+  .perfil-username {
+    font-size: 1em;
+  }
+
+  .perfil-membro-desde {
+    font-size: 0.85em;
+  }
+
+  /* NAVEGAÇÃO */
+
+  .perfil-nav {
+    flex-direction: column;
+
+    width: 100%;
+  }
+
+  .perfil-nav-item {
+    width: 100%;
+
+    border-bottom: 1px solid var(--cor-borda);
+
+    text-align: center;
+  }
+
+  .perfil-nav-item.active {
+    border-bottom: 3px solid var(--roxo-principal);
+  }
+
+  /* ESTATÍSTICAS */
+
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* CAMPOS */
+
+  .field-value {
+    padding: 8px;
+
+    font-size: 0.95em;
+  }
+
+  /* BOTÃO */
+
+  .btn-primario {
+    width: 100%;
+  }
+}
+
+/* =========================================================
+   ACESSIBILIDADE
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .perfil-section,
+  .stat-card,
+  .btn-mudar-foto,
+  .perfil-nav-item,
+  .btn-primario,
+  .historico-list li {
+    animation: none;
+    transition: none;
+  }
+}

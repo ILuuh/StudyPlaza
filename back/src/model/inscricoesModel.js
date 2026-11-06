@@ -31,6 +31,8 @@ export async function GetByInscricoesDoUser(id) {
   try {
     const results = await db.execute(
       ` SELECT
+            i.id,
+            i.idcurso,
 	        c.title, c.duration
         FROM ${tableName} i
         INNER JOIN cursos c ON c.id = i.idcurso

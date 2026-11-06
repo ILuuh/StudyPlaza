@@ -1,0 +1,349 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;600;700&display=swap');
+
+/* =========================================================
+CRIAR GRUPO
+Utiliza as variáveis definidas em style.css
+========================================================= */
+
+/* =========================================================
+RESET
+========================================================= */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  }
+
+/* =========================================================
+BODY
+========================================================= */
+
+body {
+font-family: var(--font-family);
+background: var(--cor-fundo);
+color: var(--cor-fonte);
+}
+
+/* =========================================================
+CONTEÚDO PRINCIPAL
+========================================================= */
+
+.conteudo-criargrupo {
+width: 100%;
+
+
+display: flex;
+justify-content: center;
+align-items: center;
+
+margin: 40px auto;
+padding: 40px;
+
+background: var(--cor-fundo);
+border-radius: 12px;
+
+
+}
+
+/* =========================================================
+WRAPPER
+========================================================= */
+
+.wrapper-criar-grupo {
+width: 100%;
+max-width: 500px;
+
+display: flex;
+flex-direction: column;
+align-items: center;
+
+
+}
+
+/* =========================================================
+TÍTULO
+========================================================= */
+
+.titulo {
+width: 100%;
+
+text-align: center;
+
+margin-bottom: 40px;
+
+font-size: 3rem;
+font-weight: 700;
+
+color: var(--cor-fonte);
+
+
+}
+
+/* =========================================================
+FORMULÁRIO
+========================================================= */
+
+#form-grupo {
+width: 100%;
+}
+
+#form-grupo .campo {
+width: 100%;
+}
+
+/* =========================================================
+LABEL
+========================================================= */
+
+.campo label {
+display: block;
+
+
+margin-bottom: 8px;
+
+font-weight: 600;
+
+color: var(--cor-fonte);
+
+
+}
+
+/* =========================================================
+CAMPOS
+========================================================= */
+
+.campo input,
+.campo textarea,
+.campo select {
+width: 100%;
+
+padding: 12px 14px;
+
+border: 2px solid var(--cor-borda);
+border-radius: 8px;
+
+font-family: inherit;
+font-size: 15px;
+
+background: var(--cor-superficie);
+color: var(--cor-fonte);
+
+outline: none;
+
+transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    background-color 0.2s ease;
+
+
+}
+
+/* =========================================================
+PLACEHOLDER
+========================================================= */
+
+.campo input::placeholder,
+.campo textarea::placeholder {
+color: var(--cor-fonte-secundaria);
+}
+
+/* =========================================================
+FOCO NOS CAMPOS
+========================================================= */
+
+.campo input:focus,
+.campo textarea:focus,
+.campo select:focus {
+border-color: var(--cor-foco);
+
+
+box-shadow:
+    0 0 0 3px
+    color-mix(
+        in srgb,
+        var(--cor-foco) 25%,
+        transparent
+    );
+
+
+}
+
+/* =========================================================
+TEXTAREA
+========================================================= */
+
+textarea {
+resize: vertical;
+min-height: 120px;
+}
+
+/* =========================================================
+BOTÃO CRIAR
+========================================================= */
+
+.btn-criar {
+width: 100%;
+
+padding: 14px;
+
+border: 2px solid var(--roxo-principal);
+border-radius: 8px;
+
+background: var(--gradient-principal);
+
+color: var(--cor-fonte-invertida);
+
+font-family: inherit;
+font-size: 1.1rem;
+font-weight: 600;
+
+cursor: pointer;
+
+transition:
+    opacity 0.25s ease,
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+
+
+}
+
+/* =========================================================
+HOVER
+========================================================= */
+
+.btn-criar:hover {
+opacity: 0.95;
+
+transform: translateY(-2px);
+
+box-shadow:
+    0 5px 15px var(--sombra);
+
+
+}
+
+/* =========================================================
+FOCO
+========================================================= */
+
+.btn-criar:focus-visible {
+outline: 3px solid var(--cor-foco);
+outline-offset: 3px;
+}
+
+/* =========================================================
+ACTIVE
+========================================================= */
+
+.btn-criar:active {
+transform: translateY(0);
+}
+
+/* =========================================================
+TABLET
+========================================================= */
+
+@media (max-width: 992px) {
+
+.wrapper-criar-grupo {
+    margin: 40px auto 60px;
+}
+
+.conteudo-criargrupo {
+    padding: 32px;
+}
+
+.titulo {
+    font-size: 1.8rem;
+}
+
+}
+
+/* =========================================================
+TABLET / MOBILE
+========================================================= */
+
+@media (max-width: 768px) {
+
+.wrapper-criar-grupo {
+    margin: 30px auto 50px;
+    padding: 0 15px;
+}
+
+.conteudo-criargrupo {
+    padding: 24px;
+}
+
+.titulo {
+    font-size: 1.6rem;
+}
+
+.campo input,
+.campo textarea,
+.campo select {
+    font-size: 14px;
+}
+
+.btn-criar {
+    font-size: 1rem;
+}
+
+}
+
+/* =========================================================
+MOBILE
+========================================================= */
+
+@media (max-width: 480px) {
+
+.wrapper-criar-grupo {
+    margin: 20px auto 40px;
+    padding: 0 10px;
+}
+
+.conteudo-criargrupo {
+    padding: 18px;
+    border-radius: 10px;
+}
+
+.titulo {
+    font-size: 1.35rem;
+    margin-bottom: 20px;
+}
+
+.campo {
+    margin-bottom: 18px;
+}
+
+.campo input,
+.campo textarea,
+.campo select {
+    padding: 10px;
+    font-size: 13px;
+}
+
+.btn-criar {
+    padding: 12px;
+    font-size: 0.95rem;
+}
+
+}
+
+/* =========================================================
+ACESSIBILIDADE
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+.campo input,
+.campo textarea,
+.campo select,
+.btn-criar {
+    transition: none;
+}
+
+.btn-criar:hover {
+    transform: none;
+}
+
+}

@@ -1,15 +1,16 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { 
-  Text, 
-  View, 
-  ScrollView, 
+import {
+  Text,
+  View,
+  ScrollView,
   TouchableOpacity,
   Modal,
   TextInput,
   Alert,
   ActivityIndicator,
   KeyboardAvoidingView,
-  Platform
+  Platform,
+  FlatList
 } from 'react-native';
 import { FontAwesome6 } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
@@ -19,7 +20,7 @@ import Logo from '../../../assets/images/Logo.svg';
 import { useAuth } from '../../../contexts/AuthContext';
 import api from '@/services/api';
 
-import { createStyles } from '@/styles/dash';
+import { createStyles } from '@/styles/tabs/dash';
 
 interface IGrupo {
   id: number;
@@ -30,6 +31,12 @@ interface IGrupo {
   criado_por: number;
   criador: string;
   total_membros: number;
+}
+
+interface IMembro {
+  id_usuario: number;
+  nome: string;
+  email?: string;
 }
 
 const GRUPO_DEMO: IGrupo = {
@@ -61,11 +68,16 @@ export default function Dashboard() {
   const [descricao, setDescricao] = useState('');
   const [idioma, setIdioma] = useState<'português' | 'inglês'>('português');
 
+  const [modalMembrosVisible, setModalMembrosVisible] = useState(false);
+  const [grupoGerenciado, setGrupoGerenciado] = useState<IGrupo | null>(null);
+  const [membros, setMembros] = useState<IMembro[]>([]);
+  const [loadingMembros, setLoadingMembros] = useState(false);
+
   const carregarGrupos = async () => {
     try {
       setLoading(true);
       const response = await api.get('/grupos');
-      
+
       if (Array.isArray(response.data) && response.data.length > 0) {
         setGrupos(response.data);
       } else {
@@ -107,8 +119,8 @@ export default function Dashboard() {
       `Deseja se juntar ao grupo "${grupo.nome}"?`,
       [
         { text: 'Cancelar', style: 'cancel' },
-        { 
-          text: 'Confirmar', 
+        {
+          text: 'Confirmar',
           onPress: async () => {
             try {
               if (grupo.id === 0) {
@@ -129,7 +141,7 @@ export default function Dashboard() {
               const msg = err.response?.data?.mensagem || 'Erro ao entrar no grupo.';
               Alert.alert('Aviso', msg);
             }
-          } 
+          }
         }
       ]
     );
@@ -214,10 +226,68 @@ export default function Dashboard() {
     }
   };
 
+  // --- NOVAS AÇÕES: GERENCIAR MEMBROS ---
+  const abrirModalMembros = async (grupo: IGrupo) => {
+    setGrupoGerenciado(grupo);
+    setModalMembrosVisible(true);
+    setLoadingMembros(true);
+
+    try {
+      if (grupo.id === 0) {
+        // Dados de teste para o grupo demo
+        setMembros([
+          { id_usuario: 101, nome: 'Bianca Silva', email: 'bianca@fatec.sp.gov.br' },
+          { id_usuario: 102, nome: 'João Pedro', email: 'joao.pedro@fatec.sp.gov.br' }
+        ]);
+        return;
+      }
+
+      const response = await api.get(`/grupos/${grupo.id}/membros`);
+      setMembros(response.data);
+    } catch (error) {
+      console.log('Erro ao carregar membros:', error);
+      Alert.alert('Erro', 'Não foi possível carregar a lista de membros.');
+    } finally {
+      setLoadingMembros(false);
+    }
+  };
+
+  const removerMembro = (membro: IMembro) => {
+    Alert.alert(
+      'Remover Membro',
+      `Deseja realmente remover ${membro.nome} do grupo?`,
+      [
+        { text: 'Cancelar', style: 'cancel' },
+        {
+          text: 'Remover',
+          style: 'destructive',
+          onPress: async () => {
+            try {
+              if (grupoGerenciado?.id === 0) {
+                setMembros(prev => prev.filter(m => m.id_usuario !== membro.id_usuario));
+                return;
+              }
+
+              // Endpoint assumido: DELETE /grupos/:id_grupo/membros/:id_usuario
+              await api.delete(`/grupos/${grupoGerenciado?.id}/membros/${membro.id_usuario}`, {
+                data: { id_usuario: user?.id } // Passando o ID do Admin que está logado
+              });
+              setMembros(prev => prev.filter(m => m.id_usuario !== membro.id_usuario));
+              carregarGrupos(); // Para atualizar o total_membros visualmente
+
+            } catch (error) {
+              Alert.alert('Erro', 'Não foi possível remover o membro.');
+            }
+          }
+        }
+      ]
+    );
+  };
+
   return (
-    <ScrollView 
+    <ScrollView
       ref={scrollViewRef}
-      style={styles.container} 
+      style={styles.container}
       showsVerticalScrollIndicator={false}
     >
       {/* CABEÇALHO */}
@@ -226,13 +296,13 @@ export default function Dashboard() {
           <Logo width={28} height={28} />
           <Text style={styles.headerTitle}>Study Plaza</Text>
         </View>
-        
+
         <View style={styles.headerActions}>
           <TouchableOpacity onPress={toggleTheme} style={styles.iconButton}>
             <FontAwesome6 name="moon" size={20} color={theme.corFonte} />
           </TouchableOpacity>
-          <TouchableOpacity 
-            style={styles.iconButton} 
+          <TouchableOpacity
+            style={styles.iconButton}
             onPress={() => router.push('/(tabs)/profile' as any)}
           >
             <FontAwesome6 name="circle-user" size={24} color={theme.corFonte} />
@@ -253,14 +323,14 @@ export default function Dashboard() {
         </Text>
 
         <View style={styles.heroButtonsContainer}>
-          <TouchableOpacity 
+          <TouchableOpacity
             style={styles.btnPrimaryHero}
             onPress={() => router.push('/(tabs)/cursos' as any)}
           >
-            <Text style={styles.btnPrimaryHeroText}>Ir para o painel</Text>
+            <Text style={styles.btnPrimaryHeroText}>Acessar cursos</Text>
           </TouchableOpacity>
 
-          <TouchableOpacity 
+          <TouchableOpacity
             style={styles.btnSecondaryHero}
             onPress={handleScrollToGrupos}
           >
@@ -270,7 +340,7 @@ export default function Dashboard() {
       </View>
 
       {/* LISTA DE GRUPOS RECOMENDADOS */}
-      <View 
+      <View
         style={styles.sectionContainer}
         onLayout={(event) => {
           setGruposSectionY(event.nativeEvent.layout.y);
@@ -324,17 +394,25 @@ export default function Dashboard() {
 
                 {/* BOTÕES DE AÇÃO DO CARD */}
                 {ehCriador ? (
-                  <TouchableOpacity 
-                    style={[styles.btnParticipar, { backgroundColor: '#EF4444' }]}
-                    onPress={() => handleExcluirGrupo(grupo)}
-                  >
-                    <FontAwesome6 name="trash-can" size={14} color="#FFF" style={{ marginRight: 6 }} />
-                    <Text style={[styles.btnParticiparText, { color: '#FFF' }]}>
-                      Excluir Grupo
-                    </Text>
-                  </TouchableOpacity>
+                  <View style={{ flexDirection: 'row', gap: 10 }}>
+                    <TouchableOpacity
+                      style={[styles.btnParticipar, { flex: 1, backgroundColor: theme.roxoPrincipal }]}
+                      onPress={() => abrirModalMembros(grupo)}
+                    >
+                      <FontAwesome6 name="users-gear" size={10} color="#FFF" style={{ marginRight: 6 }} />
+                      <Text style={[styles.btnParticiparText, { color: '#FFF' }]}>Membros</Text>
+                    </TouchableOpacity>
+
+                    <TouchableOpacity
+                      style={[styles.btnParticipar, { flex: 1, backgroundColor: theme.roxoPrincipal }]}
+                      onPress={() => handleExcluirGrupo(grupo)}
+                    >
+                      <FontAwesome6 name="trash-can" size={10} color="#FFF" style={{ marginRight: 6 }} />
+                      <Text style={[styles.btnParticiparText, { color: '#FFF' }]}>Excluir</Text>
+                    </TouchableOpacity>
+                  </View>
                 ) : (
-                  <TouchableOpacity 
+                  <TouchableOpacity
                     style={styles.btnParticipar}
                     onPress={() => handleParticipar(grupo)}
                   >
@@ -353,8 +431,8 @@ export default function Dashboard() {
         <Text style={styles.ctaDescription}>
           Organize sua turma, personalize regras, convide novos membros e acompanhe tudo no painel em tempo real.
         </Text>
-        <TouchableOpacity 
-          style={styles.btnCta} 
+        <TouchableOpacity
+          style={styles.btnCta}
           onPress={() => setModalVisible(true)}
         >
           <Text style={styles.btnCtaText}>Começar agora</Text>
@@ -375,6 +453,7 @@ export default function Dashboard() {
         visible={modalVisible}
         onRequestClose={() => setModalVisible(false)}
       >
+
         <KeyboardAvoidingView
           behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
           style={{
@@ -458,9 +537,9 @@ export default function Dashboard() {
                     backgroundColor: idioma === item ? '#F3E8FF' : 'transparent',
                   }}
                 >
-                  <Text style={{ 
-                    fontSize: 13, 
-                    fontWeight: 'bold', 
+                  <Text style={{
+                    fontSize: 13,
+                    fontWeight: 'bold',
                     color: idioma === item ? theme.roxoPrincipal : theme.corFonteSecundaria,
                     textTransform: 'capitalize'
                   }}>
@@ -507,6 +586,67 @@ export default function Dashboard() {
           </View>
         </KeyboardAvoidingView>
       </Modal>
+
+      <Modal
+        animationType="fade"
+        transparent={true}
+        visible={modalMembrosVisible}
+        onRequestClose={() => setModalMembrosVisible(false)}
+      >
+        <View style={{ flex: 1, backgroundColor: 'rgba(0,0,0,0.5)', justifyContent: 'center', padding: 20 }}>
+          <View style={{ backgroundColor: theme.corFundo || '#FFF', borderRadius: 16, padding: 20, maxHeight: '80%' }}>
+
+            <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: 16 }}>
+              <Text style={{ fontSize: 18, fontWeight: 'bold', color: theme.corFonte || '#111' }}>
+                Gerenciar Membros
+              </Text>
+              <TouchableOpacity onPress={() => setModalMembrosVisible(false)}>
+                <FontAwesome6 name="xmark" size={20} color={theme.corFonteSecundaria || '#666'} />
+              </TouchableOpacity>
+            </View>
+
+            <Text style={{ color: theme.corFonteSecundaria, marginBottom: 15 }}>
+              Grupo: {grupoGerenciado?.nome}
+            </Text>
+
+            {loadingMembros ? (
+              <ActivityIndicator color={theme.roxoPrincipal} style={{ marginVertical: 30 }} />
+            ) : membros.length === 0 ? (
+              <Text style={{ color: theme.corFonte, textAlign: 'center', marginVertical: 20 }}>
+                Nenhum membro encontrado neste grupo.
+              </Text>
+            ) : (
+              <FlatList
+                data={membros}
+                keyExtractor={(item) => item.id_usuario.toString()}
+                renderItem={({ item }) => (
+                  <View style={{
+                    flexDirection: 'row',
+                    justifyContent: 'space-between',
+                    alignItems: 'center',
+                    paddingVertical: 12,
+                    borderBottomWidth: 1,
+                    borderColor: theme.corBorda || '#E5E7EB'
+                  }}>
+                    <View>
+                      <Text style={{ color: theme.corFonte, fontWeight: '600' }}>{item.nome}</Text>
+                      {item.email && <Text style={{ color: theme.corFonteSecundaria, fontSize: 12 }}>{item.email}</Text>}
+                    </View>
+                    <TouchableOpacity
+                      onPress={() => removerMembro(item)}
+                      style={{ padding: 8, backgroundColor: '#FEE2E2', borderRadius: 6 }}
+                    >
+                      <FontAwesome6 name="user-xmark" size={14} color="#EF4444" />
+                    </TouchableOpacity>
+                  </View>
+                )}
+              />
+            )}
+          </View>
+        </View>
+      </Modal>
+
+
     </ScrollView>
   );
 }
