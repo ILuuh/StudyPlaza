@@ -12,7 +12,7 @@ async function carregarNavbar() {
   if (!navbar) return;
 
   try {
-    const response = await fetch("/web/components/navbarLogeed.html");
+    const response = await fetch("../components/navbarLogeed.html");
 
     if (!response.ok) {
       throw new Error(`Erro HTTP: ${response.status}`);

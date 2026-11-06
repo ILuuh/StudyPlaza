@@ -52,7 +52,7 @@ function carregarArquivoCSS(nomeArquivo) {
 
     link.rel = "stylesheet";
 
-    link.href = `/web/assets/css-logeed/${nomeArquivo}.css`;
+    link.href = `../assets/css-logeed/${nomeArquivo}.css`;
 
     document.head.appendChild(link);
 

@@ -1,7 +1,7 @@
 import {create} from "axios";
 
 const api = create({
-  baseURL: "http://192.168.3.9:3000",
+  baseURL: "http://10.33.4.26:3000",
 });
 
 export default api;

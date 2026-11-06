@@ -13,7 +13,7 @@ async function carregarAcessibilidade() {
 
   try {
     // Caminho absoluto a partir da raiz do servidor
-    const response = await fetch("/web/components/acessibilidade.html");
+    const response = await fetch("../components/acessibilidade.html");
 
     if (!response.ok) {
       throw new Error(`Erro HTTP: ${response.status}`);
