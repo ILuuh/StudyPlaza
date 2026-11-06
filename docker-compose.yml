@@ -1,7 +1,7 @@
 services:
   # back em nodejs
   back:
-    build: ./backend
+    build: ./back
     container_name: sutdyplaza_back
     #restart: always
     restart: unless-stopped
