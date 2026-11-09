@@ -2,11 +2,35 @@ import { StyleSheet } from 'react-native';
 import { ThemeType } from '../../constants/theme'; 
 
 export const createStyles = (theme: ThemeType) => StyleSheet.create({
-  container: {
+    safeArea: {
     flex: 1,
     backgroundColor: theme.corFundo,
-    paddingHorizontal: 16,
-    paddingTop: 40,
+  },
+    header: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    paddingHorizontal: 20, // <-- Adicionei paddingHorizontal para alinhar com o resto
+    paddingTop: 20,
+    paddingBottom: 15,   
+  },
+  logoContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  headerTitle: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    color: theme.corFonte,
+    marginLeft: 10,
+  },
+  headerActions: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 15,
+  },
+  iconButton: {
+    padding: 4,
   },
   headerCard: {
     flexDirection: 'row',
@@ -23,7 +47,7 @@ export const createStyles = (theme: ThemeType) => StyleSheet.create({
     shadowRadius: 3,
     elevation: 3,
   },
-  avatarContainer: {
+    avatarContainer: {
     width: 70,
     height: 70,
     borderRadius: 35,
@@ -104,6 +128,9 @@ export const createStyles = (theme: ThemeType) => StyleSheet.create({
     borderWidth: 1,
     borderColor: '#ef4444',
     gap: 8,
+  },
+  container: {
+    padding: 20,
   },
   logoutText: {
     color: '#ef4444',

@@ -7,12 +7,13 @@ export const createStyles = (theme: ThemeType) => StyleSheet.create({
     backgroundColor: theme.corFundo,
     paddingHorizontal: 16,
   },
-  header: {
+    header: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    paddingTop: 50,
-    paddingBottom: 20,
+    paddingHorizontal: 20, // <-- Adicionei paddingHorizontal para alinhar com o resto
+    paddingTop: 20,
+    paddingBottom: 15,   
   },
   logoContainer: {
     flexDirection: 'row',

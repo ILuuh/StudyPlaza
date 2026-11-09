@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import {
   Text,
   View,
@@ -14,6 +14,8 @@ import {
 } from 'react-native';
 import { FontAwesome6 } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
+
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { useAppTheme } from '../../../hooks/use-theme-context';
 import Logo from '../../../assets/images/Logo.svg';
@@ -285,12 +287,9 @@ export default function Dashboard() {
   };
 
   return (
-    <ScrollView
-      ref={scrollViewRef}
-      style={styles.container}
-      showsVerticalScrollIndicator={false}
-    >
-      {/* CABEÇALHO */}
+
+    <SafeAreaView style={styles.safeArea}>
+
       <View style={styles.header}>
         <View style={styles.logoContainer}>
           <Logo width={28} height={28} />
@@ -299,354 +298,359 @@ export default function Dashboard() {
 
         <View style={styles.headerActions}>
           <TouchableOpacity onPress={toggleTheme} style={styles.iconButton}>
-            <FontAwesome6 name="moon" size={20} color={theme.corFonte} />
+            <FontAwesome6 name="moon" size={20} color={theme?.corFonte || '#333'} />
           </TouchableOpacity>
-          <TouchableOpacity
-            style={styles.iconButton}
-            onPress={() => router.push('/(tabs)/profile' as any)}
-          >
-            <FontAwesome6 name="circle-user" size={24} color={theme.corFonte} />
+          <TouchableOpacity style={styles.iconButton} onPress={() => {/* Navegação Perfil */ }}>
+            <FontAwesome6 name="circle-user" size={24} color={theme?.corFonte || '#333'} />
           </TouchableOpacity>
         </View>
       </View>
 
-      {/* HERO SECTION */}
-      <View style={styles.heroCard}>
-        <View style={styles.badgeAtivos}>
-          <Text style={styles.badgeText}>+{grupos.length} grupos ativos</Text>
-        </View>
-
-        <Text style={styles.heroTitle}>Encontre o grupo ideal para evoluir nos estudos</Text>
-
-        <Text style={styles.heroDescription}>
-          Explore temas, participe de comunidades engajadas, compartilhe materiais e estude com colegas que têm os mesmos objetivos que você.
-        </Text>
-
-        <View style={styles.heroButtonsContainer}>
-          <TouchableOpacity
-            style={styles.btnPrimaryHero}
-            onPress={() => router.push('/(tabs)/cursos' as any)}
-          >
-            <Text style={styles.btnPrimaryHeroText}>Acessar cursos</Text>
-          </TouchableOpacity>
-
-          <TouchableOpacity
-            style={styles.btnSecondaryHero}
-            onPress={handleScrollToGrupos}
-          >
-            <Text style={styles.btnSecondaryHeroText}>Descobrir grupos</Text>
-          </TouchableOpacity>
-        </View>
-      </View>
-
-      {/* LISTA DE GRUPOS RECOMENDADOS */}
-      <View
-        style={styles.sectionContainer}
-        onLayout={(event) => {
-          setGruposSectionY(event.nativeEvent.layout.y);
-        }}
+      <ScrollView
+        ref={scrollViewRef}
+        style={styles.container}
+        showsVerticalScrollIndicator={false}
       >
-        <View style={styles.sectionHeaderRow}>
-          <Text style={styles.sectionTitle}>Grupos recomendados</Text>
-          <TouchableOpacity onPress={handleScrollToGrupos}>
-            <Text style={styles.seeAllText}>Ver todos</Text>
-          </TouchableOpacity>
+  
+
+        {/* HERO SECTION */}
+        <View style={styles.heroCard}>
+          <View style={styles.badgeAtivos}>
+            <Text style={styles.badgeText}>+{grupos.length} grupos ativos</Text>
+          </View>
+
+          <Text style={styles.heroTitle}>Encontre o grupo ideal para evoluir nos estudos</Text>
+
+          <Text style={styles.heroDescription}>
+            Explore temas, participe de comunidades engajadas, compartilhe materiais e estude com colegas que têm os mesmos objetivos que você.
+          </Text>
+
+          <View style={styles.heroButtonsContainer}>
+            <TouchableOpacity
+              style={styles.btnPrimaryHero}
+              onPress={() => router.push('/(tabs)/cursos' as any)}
+            >
+              <Text style={styles.btnPrimaryHeroText}>Acessar cursos</Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity
+              style={styles.btnSecondaryHero}
+              onPress={handleScrollToGrupos}
+            >
+              <Text style={styles.btnSecondaryHeroText}>Descobrir grupos</Text>
+            </TouchableOpacity>
+          </View>
         </View>
 
-        {loading ? (
-          <ActivityIndicator size="large" color={theme.roxoPrincipal} style={{ marginVertical: 20 }} />
-        ) : (
-          grupos.map((grupo) => {
-            const ehCriador = user?.id === grupo.criado_por;
-
-            return (
-              <View key={grupo.id} style={styles.cardGrupo}>
-                <View style={styles.cardHeader}>
-                  <Text style={styles.cardTitle}>{grupo.nome}</Text>
-                  <View style={styles.badgeSituacao}>
-                    <FontAwesome6 name="globe" size={10} color={theme.roxoPrincipal} />
-                    <Text style={styles.badgeSituacaoText}>
-                      {grupo.privado ? 'Privado' : 'Público'}
-                    </Text>
-                  </View>
-                </View>
-
-                <Text style={styles.cardDescription}>{grupo.descricao}</Text>
-
-                <View style={styles.cardDetails}>
-                  <View style={styles.detailRow}>
-                    <FontAwesome6 name="user-group" size={14} color={theme.corFonteSecundaria} />
-                    <Text style={styles.detailText}>{grupo.total_membros || 1} membro(s)</Text>
-                  </View>
-                  <View style={styles.detailRow}>
-                    <FontAwesome6 name="user" size={14} color={theme.corFonteSecundaria} />
-                    <Text style={styles.detailText}>
-                      Por: {ehCriador ? 'Você' : (grupo.criador || 'Anônimo')}
-                    </Text>
-                  </View>
-                  <View style={styles.detailRow}>
-                    <FontAwesome6 name="language" size={14} color={theme.corFonteSecundaria} />
-                    <Text style={styles.detailText}>
-                      {grupo.idioma === 'português' ? 'Português' : 'Inglês'}
-                    </Text>
-                  </View>
-                </View>
-
-                {/* BOTÕES DE AÇÃO DO CARD */}
-                {ehCriador ? (
-                  <View style={{ flexDirection: 'row', gap: 10 }}>
-                    <TouchableOpacity
-                      style={[styles.btnParticipar, { flex: 1, backgroundColor: theme.roxoPrincipal }]}
-                      onPress={() => abrirModalMembros(grupo)}
-                    >
-                      <FontAwesome6 name="users-gear" size={10} color="#FFF" style={{ marginRight: 6 }} />
-                      <Text style={[styles.btnParticiparText, { color: '#FFF' }]}>Membros</Text>
-                    </TouchableOpacity>
-
-                    <TouchableOpacity
-                      style={[styles.btnParticipar, { flex: 1, backgroundColor: theme.roxoPrincipal }]}
-                      onPress={() => handleExcluirGrupo(grupo)}
-                    >
-                      <FontAwesome6 name="trash-can" size={10} color="#FFF" style={{ marginRight: 6 }} />
-                      <Text style={[styles.btnParticiparText, { color: '#FFF' }]}>Excluir</Text>
-                    </TouchableOpacity>
-                  </View>
-                ) : (
-                  <TouchableOpacity
-                    style={styles.btnParticipar}
-                    onPress={() => handleParticipar(grupo)}
-                  >
-                    <Text style={styles.btnParticiparText}>Participar</Text>
-                  </TouchableOpacity>
-                )}
-              </View>
-            );
-          })
-        )}
-      </View>
-
-      {/* CTA: CRIAR PRÓPRIO GRUPO */}
-      <View style={styles.ctaCard}>
-        <Text style={styles.ctaTitle}>Pronto para criar seu próprio grupo?</Text>
-        <Text style={styles.ctaDescription}>
-          Organize sua turma, personalize regras, convide novos membros e acompanhe tudo no painel em tempo real.
-        </Text>
-        <TouchableOpacity
-          style={styles.btnCta}
-          onPress={() => setModalVisible(true)}
-        >
-          <Text style={styles.btnCtaText}>Começar agora</Text>
-        </TouchableOpacity>
-      </View>
-
-      {/* FOOTER */}
-      <View style={styles.footer}>
-        <Text style={styles.footerText}>© 2026 Study Plaza - Todos os direitos reservados.</Text>
-      </View>
-
-      <View style={{ height: 30 }} />
-
-      {/* MODAL DE CRIAÇÃO DE GRUPO */}
-      <Modal
-        animationType="slide"
-        transparent={true}
-        visible={modalVisible}
-        onRequestClose={() => setModalVisible(false)}
-      >
-
-        <KeyboardAvoidingView
-          behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-          style={{
-            flex: 1,
-            backgroundColor: 'rgba(0,0,0,0.5)',
-            justifyContent: 'center',
-            padding: 20,
+        {/* LISTA DE GRUPOS RECOMENDADOS */}
+        <View
+          style={styles.sectionContainer}
+          onLayout={(event) => {
+            setGruposSectionY(event.nativeEvent.layout.y);
           }}
         >
-          <View
+          <View style={styles.sectionHeaderRow}>
+            <Text style={styles.sectionTitle}>Grupos recomendados</Text>
+            <TouchableOpacity onPress={handleScrollToGrupos}>
+              <Text style={styles.seeAllText}>Ver todos</Text>
+            </TouchableOpacity>
+          </View>
+
+          {loading ? (
+            <ActivityIndicator size="large" color={theme.roxoPrincipal} style={{ marginVertical: 20 }} />
+          ) : (
+            grupos.map((grupo) => {
+              const ehCriador = user?.id === grupo.criado_por;
+
+              return (
+                <View key={grupo.id} style={styles.cardGrupo}>
+                  <View style={styles.cardHeader}>
+                    <Text style={styles.cardTitle}>{grupo.nome}</Text>
+                    <View style={styles.badgeSituacao}>
+                      <FontAwesome6 name="globe" size={10} color={theme.roxoPrincipal} />
+                      <Text style={styles.badgeSituacaoText}>
+                        {grupo.privado ? 'Privado' : 'Público'}
+                      </Text>
+                    </View>
+                  </View>
+
+                  <Text style={styles.cardDescription}>{grupo.descricao}</Text>
+
+                  <View style={styles.cardDetails}>
+                    <View style={styles.detailRow}>
+                      <FontAwesome6 name="user-group" size={14} color={theme.corFonteSecundaria} />
+                      <Text style={styles.detailText}>{grupo.total_membros || 1} membro(s)</Text>
+                    </View>
+                    <View style={styles.detailRow}>
+                      <FontAwesome6 name="user" size={14} color={theme.corFonteSecundaria} />
+                      <Text style={styles.detailText}>
+                        Por: {ehCriador ? 'Você' : (grupo.criador || 'Anônimo')}
+                      </Text>
+                    </View>
+                    <View style={styles.detailRow}>
+                      <FontAwesome6 name="language" size={14} color={theme.corFonteSecundaria} />
+                      <Text style={styles.detailText}>
+                        {grupo.idioma === 'português' ? 'Português' : 'Inglês'}
+                      </Text>
+                    </View>
+                  </View>
+
+                  {/* BOTÕES DE AÇÃO DO CARD */}
+                  {ehCriador ? (
+                    <View style={{ flexDirection: 'row', gap: 10 }}>
+                      <TouchableOpacity
+                        style={[styles.btnParticipar, { flex: 1, backgroundColor: theme.roxoPrincipal }]}
+                        onPress={() => abrirModalMembros(grupo)}
+                      >
+                        <FontAwesome6 name="users-gear" size={10} color="#FFF" style={{ marginRight: 6 }} />
+                        <Text style={[styles.btnParticiparText, { color: '#FFF' }]}>Membros</Text>
+                      </TouchableOpacity>
+
+                      <TouchableOpacity
+                        style={[styles.btnParticipar, { flex: 1, backgroundColor: theme.roxoPrincipal }]}
+                        onPress={() => handleExcluirGrupo(grupo)}
+                      >
+                        <FontAwesome6 name="trash-can" size={10} color="#FFF" style={{ marginRight: 6 }} />
+                        <Text style={[styles.btnParticiparText, { color: '#FFF' }]}>Excluir</Text>
+                      </TouchableOpacity>
+                    </View>
+                  ) : (
+                    <TouchableOpacity
+                      style={styles.btnParticipar}
+                      onPress={() => handleParticipar(grupo)}
+                    >
+                      <Text style={styles.btnParticiparText}>Participar</Text>
+                    </TouchableOpacity>
+                  )}
+                </View>
+              );
+            })
+          )}
+        </View>
+
+        {/* CTA: CRIAR PRÓPRIO GRUPO */}
+        <View style={styles.ctaCard}>
+          <Text style={styles.ctaTitle}>Pronto para criar seu próprio grupo?</Text>
+          <Text style={styles.ctaDescription}>
+            Organize sua turma, personalize regras, convide novos membros e acompanhe tudo no painel em tempo real.
+          </Text>
+          <TouchableOpacity
+            style={styles.btnCta}
+            onPress={() => setModalVisible(true)}
+          >
+            <Text style={styles.btnCtaText}>Começar agora</Text>
+          </TouchableOpacity>
+        </View>
+
+        {/* FOOTER */}
+        <View style={styles.footer}>
+          <Text style={styles.footerText}>© 2026 Study Plaza - Todos os direitos reservados.</Text>
+        </View>
+
+        <View style={{ height: 30 }} />
+
+        {/* MODAL DE CRIAÇÃO DE GRUPO */}
+        <Modal
+          animationType="slide"
+          transparent={true}
+          visible={modalVisible}
+          onRequestClose={() => setModalVisible(false)}
+        >
+
+          <KeyboardAvoidingView
+            behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
             style={{
-              backgroundColor: theme.corFundo || '#FFFFFF',
-              borderRadius: 16,
+              flex: 1,
+              backgroundColor: 'rgba(0,0,0,0.5)',
+              justifyContent: 'center',
               padding: 20,
-              elevation: 5,
             }}
           >
-            <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: 16 }}>
-              <Text style={{ fontSize: 18, fontWeight: 'bold', color: theme.corFonte || '#111' }}>
-                Criar Novo Grupo
-              </Text>
-              <TouchableOpacity onPress={() => setModalVisible(false)}>
-                <FontAwesome6 name="xmark" size={20} color={theme.corFonteSecundaria || '#666'} />
-              </TouchableOpacity>
-            </View>
-
-            <Text style={{ fontSize: 14, fontWeight: '600', color: theme.corFonte, marginBottom: 4 }}>
-              Nome do Grupo *
-            </Text>
-            <TextInput
-              placeholder="Ex: Grupo de Estudos React Native"
-              placeholderTextColor="#9CA3AF"
-              value={nome}
-              onChangeText={setNome}
+            <View
               style={{
-                borderWidth: 1,
-                borderColor: theme.corBorda || '#E5E7EB',
-                borderRadius: 8,
-                padding: 10,
-                color: theme.corFonte,
-                marginBottom: 12,
+                backgroundColor: theme.corFundo || '#FFFFFF',
+                borderRadius: 16,
+                padding: 20,
+                elevation: 5,
               }}
-            />
-
-            <Text style={{ fontSize: 14, fontWeight: '600', color: theme.corFonte, marginBottom: 4 }}>
-              Descrição *
-            </Text>
-            <TextInput
-              placeholder="Descreva o foco, regras e objetivos do grupo..."
-              placeholderTextColor="#9CA3AF"
-              multiline
-              numberOfLines={3}
-              value={descricao}
-              onChangeText={setDescricao}
-              style={{
-                borderWidth: 1,
-                borderColor: theme.corBorda || '#E5E7EB',
-                borderRadius: 8,
-                padding: 10,
-                color: theme.corFonte,
-                textAlignVertical: 'top',
-                marginBottom: 12,
-              }}
-            />
-
-            <Text style={{ fontSize: 14, fontWeight: '600', color: theme.corFonte, marginBottom: 6 }}>
-              Idioma do Grupo
-            </Text>
-            <View style={{ flexDirection: 'row', gap: 8, marginBottom: 20 }}>
-              {(['português', 'inglês'] as const).map((item) => (
-                <TouchableOpacity
-                  key={item}
-                  onPress={() => setIdioma(item)}
-                  style={{
-                    flex: 1,
-                    paddingVertical: 10,
-                    borderRadius: 6,
-                    alignItems: 'center',
-                    borderWidth: 1,
-                    borderColor: idioma === item ? theme.roxoPrincipal : theme.corBorda || '#E5E7EB',
-                    backgroundColor: idioma === item ? '#F3E8FF' : 'transparent',
-                  }}
-                >
-                  <Text style={{
-                    fontSize: 13,
-                    fontWeight: 'bold',
-                    color: idioma === item ? theme.roxoPrincipal : theme.corFonteSecundaria,
-                    textTransform: 'capitalize'
-                  }}>
-                    {item}
-                  </Text>
+            >
+              <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: 16 }}>
+                <Text style={{ fontSize: 18, fontWeight: 'bold', color: theme.corFonte || '#111' }}>
+                  Criar Novo Grupo
+                </Text>
+                <TouchableOpacity onPress={() => setModalVisible(false)}>
+                  <FontAwesome6 name="xmark" size={20} color={theme.corFonteSecundaria || '#666'} />
                 </TouchableOpacity>
-              ))}
-            </View>
+              </View>
 
-            <View style={{ flexDirection: 'row', gap: 12 }}>
-              <TouchableOpacity
-                onPress={() => setModalVisible(false)}
+              <Text style={{ fontSize: 14, fontWeight: '600', color: theme.corFonte, marginBottom: 4 }}>
+                Nome do Grupo *
+              </Text>
+              <TextInput
+                placeholder="Ex: Grupo de Estudos React Native"
+                placeholderTextColor="#9CA3AF"
+                value={nome}
+                onChangeText={setNome}
                 style={{
-                  flex: 1,
-                  paddingVertical: 12,
-                  borderRadius: 8,
-                  alignItems: 'center',
                   borderWidth: 1,
                   borderColor: theme.corBorda || '#E5E7EB',
-                }}
-              >
-                <Text style={{ color: theme.corFonte, fontWeight: '600' }}>Cancelar</Text>
-              </TouchableOpacity>
-
-              <TouchableOpacity
-                disabled={submitting}
-                onPress={handleCriarGrupo}
-                style={{
-                  flex: 1,
-                  backgroundColor: theme.roxoPrincipal || '#7A58B8',
-                  paddingVertical: 12,
                   borderRadius: 8,
-                  alignItems: 'center',
-                  justifyContent: 'center',
+                  padding: 10,
+                  color: theme.corFonte,
+                  marginBottom: 12,
                 }}
-              >
-                {submitting ? (
-                  <ActivityIndicator color="#FFF" size="small" />
-                ) : (
-                  <Text style={{ color: '#FFFFFF', fontWeight: 'bold' }}>Cadastrar Grupo</Text>
-                )}
-              </TouchableOpacity>
-            </View>
-          </View>
-        </KeyboardAvoidingView>
-      </Modal>
-
-      <Modal
-        animationType="fade"
-        transparent={true}
-        visible={modalMembrosVisible}
-        onRequestClose={() => setModalMembrosVisible(false)}
-      >
-        <View style={{ flex: 1, backgroundColor: 'rgba(0,0,0,0.5)', justifyContent: 'center', padding: 20 }}>
-          <View style={{ backgroundColor: theme.corFundo || '#FFF', borderRadius: 16, padding: 20, maxHeight: '80%' }}>
-
-            <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: 16 }}>
-              <Text style={{ fontSize: 18, fontWeight: 'bold', color: theme.corFonte || '#111' }}>
-                Gerenciar Membros
-              </Text>
-              <TouchableOpacity onPress={() => setModalMembrosVisible(false)}>
-                <FontAwesome6 name="xmark" size={20} color={theme.corFonteSecundaria || '#666'} />
-              </TouchableOpacity>
-            </View>
-
-            <Text style={{ color: theme.corFonteSecundaria, marginBottom: 15 }}>
-              Grupo: {grupoGerenciado?.nome}
-            </Text>
-
-            {loadingMembros ? (
-              <ActivityIndicator color={theme.roxoPrincipal} style={{ marginVertical: 30 }} />
-            ) : membros.length === 0 ? (
-              <Text style={{ color: theme.corFonte, textAlign: 'center', marginVertical: 20 }}>
-                Nenhum membro encontrado neste grupo.
-              </Text>
-            ) : (
-              <FlatList
-                data={membros}
-                keyExtractor={(item) => item.id_usuario.toString()}
-                renderItem={({ item }) => (
-                  <View style={{
-                    flexDirection: 'row',
-                    justifyContent: 'space-between',
-                    alignItems: 'center',
-                    paddingVertical: 12,
-                    borderBottomWidth: 1,
-                    borderColor: theme.corBorda || '#E5E7EB'
-                  }}>
-                    <View>
-                      <Text style={{ color: theme.corFonte, fontWeight: '600' }}>{item.nome}</Text>
-                      {item.email && <Text style={{ color: theme.corFonteSecundaria, fontSize: 12 }}>{item.email}</Text>}
-                    </View>
-                    <TouchableOpacity
-                      onPress={() => removerMembro(item)}
-                      style={{ padding: 8, backgroundColor: '#FEE2E2', borderRadius: 6 }}
-                    >
-                      <FontAwesome6 name="user-xmark" size={14} color="#EF4444" />
-                    </TouchableOpacity>
-                  </View>
-                )}
               />
-            )}
+
+              <Text style={{ fontSize: 14, fontWeight: '600', color: theme.corFonte, marginBottom: 4 }}>
+                Descrição *
+              </Text>
+              <TextInput
+                placeholder="Descreva o foco, regras e objetivos do grupo..."
+                placeholderTextColor="#9CA3AF"
+                multiline
+                numberOfLines={3}
+                value={descricao}
+                onChangeText={setDescricao}
+                style={{
+                  borderWidth: 1,
+                  borderColor: theme.corBorda || '#E5E7EB',
+                  borderRadius: 8,
+                  padding: 10,
+                  color: theme.corFonte,
+                  textAlignVertical: 'top',
+                  marginBottom: 12,
+                }}
+              />
+
+              <Text style={{ fontSize: 14, fontWeight: '600', color: theme.corFonte, marginBottom: 6 }}>
+                Idioma do Grupo
+              </Text>
+              <View style={{ flexDirection: 'row', gap: 8, marginBottom: 20 }}>
+                {(['português', 'inglês'] as const).map((item) => (
+                  <TouchableOpacity
+                    key={item}
+                    onPress={() => setIdioma(item)}
+                    style={{
+                      flex: 1,
+                      paddingVertical: 10,
+                      borderRadius: 6,
+                      alignItems: 'center',
+                      borderWidth: 1,
+                      borderColor: idioma === item ? theme.roxoPrincipal : theme.corBorda || '#E5E7EB',
+                      backgroundColor: idioma === item ? '#F3E8FF' : 'transparent',
+                    }}
+                  >
+                    <Text style={{
+                      fontSize: 13,
+                      fontWeight: 'bold',
+                      color: idioma === item ? theme.roxoPrincipal : theme.corFonteSecundaria,
+                      textTransform: 'capitalize'
+                    }}>
+                      {item}
+                    </Text>
+                  </TouchableOpacity>
+                ))}
+              </View>
+
+              <View style={{ flexDirection: 'row', gap: 12 }}>
+                <TouchableOpacity
+                  onPress={() => setModalVisible(false)}
+                  style={{
+                    flex: 1,
+                    paddingVertical: 12,
+                    borderRadius: 8,
+                    alignItems: 'center',
+                    borderWidth: 1,
+                    borderColor: theme.corBorda || '#E5E7EB',
+                  }}
+                >
+                  <Text style={{ color: theme.corFonte, fontWeight: '600' }}>Cancelar</Text>
+                </TouchableOpacity>
+
+                <TouchableOpacity
+                  disabled={submitting}
+                  onPress={handleCriarGrupo}
+                  style={{
+                    flex: 1,
+                    backgroundColor: theme.roxoPrincipal || '#7A58B8',
+                    paddingVertical: 12,
+                    borderRadius: 8,
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                  }}
+                >
+                  {submitting ? (
+                    <ActivityIndicator color="#FFF" size="small" />
+                  ) : (
+                    <Text style={{ color: '#FFFFFF', fontWeight: 'bold' }}>Cadastrar Grupo</Text>
+                  )}
+                </TouchableOpacity>
+              </View>
+            </View>
+          </KeyboardAvoidingView>
+        </Modal>
+
+        <Modal
+          animationType="fade"
+          transparent={true}
+          visible={modalMembrosVisible}
+          onRequestClose={() => setModalMembrosVisible(false)}
+        >
+          <View style={{ flex: 1, backgroundColor: 'rgba(0,0,0,0.5)', justifyContent: 'center', padding: 20 }}>
+            <View style={{ backgroundColor: theme.corFundo || '#FFF', borderRadius: 16, padding: 20, maxHeight: '80%' }}>
+
+              <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: 16 }}>
+                <Text style={{ fontSize: 18, fontWeight: 'bold', color: theme.corFonte || '#111' }}>
+                  Gerenciar Membros
+                </Text>
+                <TouchableOpacity onPress={() => setModalMembrosVisible(false)}>
+                  <FontAwesome6 name="xmark" size={20} color={theme.corFonteSecundaria || '#666'} />
+                </TouchableOpacity>
+              </View>
+
+              <Text style={{ color: theme.corFonteSecundaria, marginBottom: 15 }}>
+                Grupo: {grupoGerenciado?.nome}
+              </Text>
+
+              {loadingMembros ? (
+                <ActivityIndicator color={theme.roxoPrincipal} style={{ marginVertical: 30 }} />
+              ) : membros.length === 0 ? (
+                <Text style={{ color: theme.corFonte, textAlign: 'center', marginVertical: 20 }}>
+                  Nenhum membro encontrado neste grupo.
+                </Text>
+              ) : (
+                <FlatList
+                  data={membros}
+                  keyExtractor={(item) => item.id_usuario.toString()}
+                  renderItem={({ item }) => (
+                    <View style={{
+                      flexDirection: 'row',
+                      justifyContent: 'space-between',
+                      alignItems: 'center',
+                      paddingVertical: 12,
+                      borderBottomWidth: 1,
+                      borderColor: theme.corBorda || '#E5E7EB'
+                    }}>
+                      <View>
+                        <Text style={{ color: theme.corFonte, fontWeight: '600' }}>{item.nome}</Text>
+                        {item.email && <Text style={{ color: theme.corFonteSecundaria, fontSize: 12 }}>{item.email}</Text>}
+                      </View>
+                      <TouchableOpacity
+                        onPress={() => removerMembro(item)}
+                        style={{ padding: 8, backgroundColor: '#FEE2E2', borderRadius: 6 }}
+                      >
+                        <FontAwesome6 name="user-xmark" size={14} color="#EF4444" />
+                      </TouchableOpacity>
+                    </View>
+                  )}
+                />
+              )}
+            </View>
           </View>
-        </View>
-      </Modal>
+        </Modal>
 
 
-    </ScrollView>
+      </ScrollView>
+    </SafeAreaView>
   );
 }

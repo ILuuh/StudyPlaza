@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import  { useState, useEffect } from 'react';
 import {
   View,
   Text,
@@ -9,6 +9,8 @@ import {
   Alert
 } from 'react-native';
 import { FontAwesome6 } from '@expo/vector-icons';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import Logo from '../../../assets/images/Logo.svg';
 import { useAppTheme } from '../../../hooks/use-theme-context';
 import { createStyles } from '@/styles/tabs/profile';
 import { useAuth } from '../../../contexts/AuthContext';
@@ -24,8 +26,9 @@ const AVATARES_DISPONIVEIS = [
 ];
 
 export default function Profile() {
+
   const { user, signOut, updateProfile } = useAuth();
-  const { theme } = useAppTheme();
+  const { theme, toggleTheme } = useAppTheme();
   const styles = createStyles(theme);
 
   // Estados locais de controle da edição e formulário
@@ -80,7 +83,30 @@ export default function Profile() {
   };
 
   return (
-    <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
+
+     <SafeAreaView style={styles.safeArea}>
+
+            <View style={styles.header}>
+        <View style={styles.logoContainer}>
+          <Logo width={28} height={28} />
+          <Text style={styles.headerTitle}>Study Plaza</Text>
+        </View>
+
+        <View style={styles.headerActions}>
+          <TouchableOpacity onPress={toggleTheme} style={styles.iconButton}>
+            <FontAwesome6 name="moon" size={20} color={theme?.corFonte || '#333'} />
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.iconButton} onPress={() => {/* Navegação Perfil */}}>
+            <FontAwesome6 name="circle-user" size={24} color={theme?.corFonte || '#333'} />
+          </TouchableOpacity>
+        </View>
+      </View>
+
+    <ScrollView contentContainerStyle={styles.container} showsVerticalScrollIndicator={false}>
+
+
+
+
       {/* CABEÇALHO DO PERFIL */}
       <View style={styles.headerCard}>
         <View style={styles.avatarContainer}>
@@ -89,7 +115,7 @@ export default function Profile() {
         <View style={styles.infoBasica}>
           <Text style={styles.nome}>{user?.nome || user?.email}</Text>
           <Text style={styles.username}>{user?.email}</Text>
-          <Text style={{ color: theme.roxoPrincipal, fontWeight: 'bold', marginTop: 2 }}>
+          <Text style={{ color: theme.roxoEscuro, fontWeight: 'bold', marginTop: 2 }}>
             {user?.tipo_usuario || 'Estudante'}
           </Text>
         </View>
@@ -130,8 +156,8 @@ export default function Profile() {
 
           {!isEditing ? (
             <TouchableOpacity onPress={() => setIsEditing(true)} style={{ flexDirection: 'row', alignItems: 'center', gap: 6 }}>
-              <FontAwesome6 name="pen-to-square" size={16} color={theme.roxoPrincipal} />
-              <Text style={{ color: theme.roxoPrincipal, fontWeight: '600' }}>Editar</Text>
+              <FontAwesome6 name="pen-to-square" size={16} color={theme.roxoEscuro} />
+              <Text style={{ color: theme.roxoEscuro, fontWeight: '600' }}>Editar</Text>
             </TouchableOpacity>
           ) : (
             <TouchableOpacity onPress={handleCancel} disabled={isLoading}>
@@ -216,5 +242,6 @@ export default function Profile() {
 
       <View style={{ height: 40 }} />
     </ScrollView>
+    </SafeAreaView>
   );
 }

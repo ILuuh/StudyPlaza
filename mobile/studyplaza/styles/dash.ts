@@ -2,17 +2,20 @@ import { StyleSheet } from 'react-native';
 import { ThemeType } from '../constants/theme'; // Ajuste o caminho se necessário
 
 export const createStyles = (theme: ThemeType) => StyleSheet.create({
-  container: {
+    safeArea: {
     flex: 1,
     backgroundColor: theme.corFundo,
-    paddingHorizontal: 16,
   },
-  header: {
+    container: {
+    padding: 20,
+  },
+    header: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    paddingTop: 50,
-    paddingBottom: 20,
+    paddingHorizontal: 20, // <-- Adicionei paddingHorizontal para alinhar com o resto
+    paddingTop: 20,
+    paddingBottom: 15,   
   },
   logoContainer: {
     flexDirection: 'row',

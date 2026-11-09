@@ -8,6 +8,31 @@ export const createStyles = (theme: ThemeType) => StyleSheet.create({
     paddingHorizontal: 16,
     paddingTop: 40,
   },
+    header: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    paddingTop: 50,
+    paddingBottom: 20,
+  },
+  logoContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  headerTitle: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    color: theme.corFonte,
+    marginLeft: 10,
+  },
+  headerActions: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 15,
+  },
+  iconButton: {
+    padding: 4,
+  },
   headerCard: {
     flexDirection: 'row',
     alignItems: 'center',

@@ -7,13 +7,13 @@ export const createStyles = (theme: ThemeType) => StyleSheet.create({
     backgroundColor: theme.corFundo,
   },
   // Estilos do header que você já tinha me mandado:
-  header: {
+    header: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
     paddingHorizontal: 20, // <-- Adicionei paddingHorizontal para alinhar com o resto
-    paddingTop: 10,        // <-- Reduzi o paddingTop porque o SafeAreaView já protege a barra de status
-    paddingBottom: 15,
+    paddingTop: 20,
+    paddingBottom: 15,   
   },
   logoContainer: {
     flexDirection: 'row',
