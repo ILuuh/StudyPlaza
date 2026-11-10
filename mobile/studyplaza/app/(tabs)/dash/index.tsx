@@ -41,16 +41,16 @@ interface IMembro {
   email?: string;
 }
 
-const GRUPO_DEMO: IGrupo = {
-  id: 0,
-  nome: 'Front-end Colaborativo',
-  descricao: 'Estudos semanais focados em React, React Native e boas práticas de UI/UX. Compartilhe código e revise projetos em conjunto.',
-  idioma: 'português',
-  privado: 0,
-  criado_por: 999,
-  criador: 'Study Plaza Team',
-  total_membros: 12,
-};
+// const GRUPO_DEMO: IGrupo = {
+//   id: 0,
+//   nome: 'Front-end Colaborativo',
+//   descricao: 'Estudos semanais focados em React, React Native e boas práticas de UI/UX. Compartilhe código e revise projetos em conjunto.',
+//   idioma: 'português',
+//   privado: 0,
+//   criado_por: 999,
+//   criador: 'Study Plaza Team',
+//   total_membros: 12,
+// };
 
 export default function Dashboard() {
   const { theme, toggleTheme } = useAppTheme();
@@ -83,11 +83,12 @@ export default function Dashboard() {
       if (Array.isArray(response.data) && response.data.length > 0) {
         setGrupos(response.data);
       } else {
-        setGrupos([GRUPO_DEMO]);
+        console.log("Não há nenhum grupo existente!")
+        // setGrupos([GRUPO_DEMO]);
       }
     } catch (error) {
       console.log('Erro ao buscar grupos:', error);
-      setGrupos([GRUPO_DEMO]);
+      // setGrupos([GRUPO_DEMO]);
     } finally {
       setLoading(false);
     }
@@ -342,7 +343,7 @@ export default function Dashboard() {
           </View>
         </View>
 
-        {/* LISTA DE GRUPOS RECOMENDADOS */}
+      {/* LISTA DE GRUPOS RECOMENDADOS */}
         <View
           style={styles.sectionContainer}
           onLayout={(event) => {

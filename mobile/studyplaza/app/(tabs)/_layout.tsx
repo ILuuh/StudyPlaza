@@ -30,16 +30,16 @@ export default function TabsLayout() {
         options={{
           title: 'Início',
           tabBarIcon: ({ color }) => (
-            <FontAwesome6 name="house" size={22} color={ color} />
+            <FontAwesome6 name="house" size={26} color={ color} />
           ),
         }}
       />
       <Tabs.Screen
         name="dash/index"
         options={{
-          title: 'Painel',
+          title: 'Grupos',
           tabBarIcon: ({ color }) => (
-            <FontAwesome6 name="gauge-high" size={22} color={color} />
+            <FontAwesome6 name="gauge-high" size={26} color={color} />
           ),
         }}
       />
@@ -49,17 +49,27 @@ export default function TabsLayout() {
         options={{
           title: 'Cursos',
           tabBarIcon: ({ color }) => (
-            <FontAwesome6 name="book" size={22} color={color} />
+            <FontAwesome6 name="book" size={26} color={color} />
           ),
         }}
       />
+
+           {/* <Tabs.Screen
+        name="cursos/index"
+        options={{
+          title: 'Painel',
+          tabBarIcon: ({ color }) => (
+            <FontAwesome6 name="book" size={26} color={color} />
+          ),
+        }}
+      /> */}
 
       <Tabs.Screen
         name="profile/index"
         options={{
           title: 'Perfil',
           tabBarIcon: ({ color }) => (
-            <FontAwesome6 name="circle-user" size={22} color={color} />
+            <FontAwesome6 name="circle-user" size={26} color={color} />
           ),
         }}
       />

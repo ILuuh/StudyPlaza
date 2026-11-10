@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import {
   View,
   Text,
-  FlatList,
+  ScrollView,
   TouchableOpacity,
   ActivityIndicator,
   Alert,
@@ -14,7 +14,7 @@ import { useAuth } from '../../../contexts/AuthContext';
 import Logo from '../../../assets/images/Logo.svg';
 import api from '@/services/api';
 
-import {createStyles}  from '@/styles/tabs/cursos';
+import { createStyles } from '@/styles/tabs/cursos';
 
 export interface Curso {
   id: number;
@@ -54,15 +54,11 @@ export default function Cursos() {
           const responseMeusCursos = await api.get(`/meusCursos/${user.id}`);
           const meusCursos = responseMeusCursos.data;
 
-          // Mapeia os cursos do usuário associando o id_inscricao ao id_curso
-          // Espera-se que `meusCursos` traga o ID da inscrição (ex: c.id_inscricao ou c.inscricao_id)
           const mapaInscricoes = new Map<number, number>();
           meusCursos.forEach((c: any) => {
-            // Associa o ID do curso com o ID da inscrição
             mapaInscricoes.set(c.id, c.id_inscricao || c.inscricao_id || c.id);
           });
 
-          // Marca `inscrito: true` e atrela o `id_inscricao`
           listaCursos = listaCursos.map((curso) => {
             const temInscricao = mapaInscricoes.has(curso.id);
             return {
@@ -108,7 +104,6 @@ export default function Cursos() {
 
       if (response.data.sucesso) {
         Alert.alert('Sucesso!', 'Inscrição realizada com sucesso.');
-        // Recarrega os cursos para obter o ID exato da nova inscrição gerada
         fetchCourses();
       } else {
         Alert.alert('Erro', response.data.mensagem || 'Erro ao se inscrever.');
@@ -125,7 +120,6 @@ export default function Cursos() {
   // FUNÇÃO PARA SAIR DO CURSO (CANCELAR INSCRIÇÃO)
   const handleUnenrollCourse = (curso: Curso) => {
     if (!curso.id_inscricao) {
-      // Caso o id_inscricao não venha na lista, usa fallback recarregando a lista
       fetchCourses();
       return;
     }
@@ -142,13 +136,11 @@ export default function Cursos() {
             try {
               setSubmittingId(curso.id);
 
-              // Executa a requisição DELETE /inscricoes/:id
               const response = await api.delete(`/inscricoes/${curso.id_inscricao}`);
 
               if (response.data.sucesso) {
                 Alert.alert('Sucesso', `Você saiu do curso "${curso.titulo}".`);
 
-                // Atualiza o estado local removendo a marcação de inscrito
                 setCursos((prev) =>
                   prev.map((c) =>
                     c.id === curso.id
@@ -169,6 +161,156 @@ export default function Cursos() {
           },
         },
       ]
+    );
+  };
+
+  // LÓGICA DE SEPARAÇÃO DOS CURSOS
+  const meusCursos = cursos.filter((curso) => curso.inscrito);
+  const cursosDisponiveis = cursos.filter((curso) => !curso.inscrito);
+
+  // RENDERIZADOR DOS CARDS DE CURSO
+  const renderCursoCard = (item: Curso) => {
+    const isSubmitting = submittingId === item.id;
+    const isInscrito = item.inscrito;
+
+    return (
+      <View
+        key={item.id}
+        style={{
+          backgroundColor: theme?.corSuperficie || '#FFFFFF',
+          borderRadius: 12,
+          padding: 16,
+          borderWidth: 1,
+          borderColor: theme?.corBorda || '#E5E7EB',
+          elevation: 2,
+          marginBottom: 14,
+        }}
+      >
+        {/* Tag da Plataforma */}
+        <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
+          <Text
+            style={{
+              fontSize: 12,
+              fontWeight: 'bold',
+              color: theme?.roxoPrincipal || '#7A58B8',
+              backgroundColor: '#F3E8FF',
+              paddingHorizontal: 8,
+              paddingVertical: 4,
+              borderRadius: 6,
+            }}
+          >
+            {item.plataforma ? item.plataforma.toUpperCase() : 'PLATAFORMA'}
+          </Text>
+        </View>
+
+        {/* Título do Curso */}
+        <Text
+          style={{
+            fontSize: 18,
+            fontWeight: 'bold',
+            color: theme?.corFonte || '#1A202C',
+            marginBottom: 6,
+          }}
+        >
+          {item.titulo}
+        </Text>
+
+        {/* Descrição */}
+        <Text
+          style={{
+            fontSize: 14,
+            color: theme?.corFonteSecundaria || '#6B7280',
+            marginBottom: 12,
+          }}
+          numberOfLines={3}
+        >
+          {item.descricao}
+        </Text>
+
+        {/* Rodapé: Modalidade e Duração */}
+        <View
+          style={{
+            flexDirection: 'row',
+            alignItems: 'center',
+            gap: 16,
+            borderTopWidth: 1,
+            borderTopColor: theme?.corBorda || '#F3F4F6',
+            paddingTop: 10,
+            marginBottom: 14,
+          }}
+        >
+          <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6 }}>
+            <FontAwesome6 name="graduation-cap" size={14} color={theme?.corFonteSecundaria || '#6B7280'} />
+            <Text style={{ fontSize: 12, color: theme?.corFonteSecundaria || '#6B7280' }}>
+              {item.modalidade}
+            </Text>
+          </View>
+
+          <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6 }}>
+            <FontAwesome6 name="clock" size={14} color={theme?.corFonteSecundaria || '#6B7280'} />
+            <Text style={{ fontSize: 12, color: theme?.corFonteSecundaria || '#6B7280' }}>
+              {item.duracao_semestres} Semestres
+            </Text>
+          </View>
+        </View>
+
+        {/* BOTÃO DINÂMICO */}
+        {isInscrito ? (
+          <TouchableOpacity
+            activeOpacity={0.8}
+            disabled={isSubmitting}
+            onPress={() => handleUnenrollCourse(item)}
+            style={{
+              backgroundColor: '#FEE2E2',
+              borderWidth: 1,
+              borderColor: '#EF4444',
+              paddingVertical: 12,
+              borderRadius: 8,
+              alignItems: 'center',
+              justifyContent: 'center',
+              flexDirection: 'row',
+              gap: 8,
+            }}
+          >
+            {isSubmitting ? (
+              <ActivityIndicator size="small" color="#DC2626" />
+            ) : (
+              <>
+                <FontAwesome6 name="arrow-right-from-bracket" size={14} color="#DC2626" />
+                <Text style={{ color: '#DC2626', fontWeight: 'bold', fontSize: 14 }}>
+                  Sair do Curso
+                </Text>
+              </>
+            )}
+          </TouchableOpacity>
+        ) : (
+          <TouchableOpacity
+            activeOpacity={0.8}
+            disabled={isSubmitting}
+            onPress={() => handleEnrollCourse(item.id)}
+            style={{
+              backgroundColor: theme?.roxoPrincipal || '#7A58B8',
+              paddingVertical: 12,
+              borderRadius: 8,
+              alignItems: 'center',
+              justifyContent: 'center',
+              flexDirection: 'row',
+              gap: 8,
+            }}
+          >
+            {isSubmitting ? (
+              <ActivityIndicator size="small" color="#FFFFFF" />
+            ) : (
+              <>
+                <FontAwesome6 name="user-plus" size={14} color="#FFFFFF" />
+                <Text style={{ color: '#FFFFFF', fontWeight: 'bold', fontSize: 14 }}>
+                  Participar do Curso
+                </Text>
+              </>
+            )}
+          </TouchableOpacity>
+        )}
+      </View>
     );
   };
 
@@ -222,162 +364,45 @@ export default function Cursos() {
         </View>
       </View>
 
-      {/* Listagem de Cursos */}
-      <FlatList
-        data={cursos}
-        keyExtractor={(item) => String(item.id)}
-        contentContainerStyle={{ padding: 16, gap: 16 }}
-        showsVerticalScrollIndicator={false}
-        renderItem={({ item }) => {
-          const isSubmitting = submittingId === item.id;
-          const isInscrito = item.inscrito;
-
-          return (
-            <View
+      <ScrollView contentContainerStyle={{ padding: 16 }} showsVerticalScrollIndicator={false}>
+        {/* SEÇÃO 1: MEUS CURSOS */}
+        {meusCursos.length > 0 && (
+          <View style={{ marginBottom: 20 }}>
+            <Text
               style={{
-                backgroundColor: theme?.corSuperficie || '#FFFFFF',
-                borderRadius: 12,
-                padding: 16,
-                borderWidth: 1,
-                borderColor: theme?.corBorda || '#E5E7EB',
-                elevation: 2,
+                fontSize: 20,
+                fontWeight: 'bold',
+                color: theme?.corFonte || '#1A202C',
+                marginBottom: 12,
               }}
             >
-              {/* Tag da Plataforma */}
-              <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
-                <Text
-                  style={{
-                    fontSize: 12,
-                    fontWeight: 'bold',
-                    color: theme?.roxoPrincipal || '#7A58B8',
-                    backgroundColor: '#F3E8FF',
-                    paddingHorizontal: 8,
-                    paddingVertical: 4,
-                    borderRadius: 6,
-                  }}
-                >
-                  {item.plataforma ? item.plataforma.toUpperCase() : 'PLATAFORMA'}
-                </Text>
-              </View>
-
-              {/* Título do Curso */}
-              <Text
-                style={{
-                  fontSize: 18,
-                  fontWeight: 'bold',
-                  color: theme?.corFonte || '#1A202C',
-                  marginBottom: 6,
-                }}
-              >
-                {item.titulo}
-              </Text>
-
-              {/* Descrição */}
-              <Text
-                style={{
-                  fontSize: 14,
-                  color: theme?.corFonteSecundaria || '#6B7280',
-                  marginBottom: 12,
-                }}
-                numberOfLines={3}
-              >
-                {item.descricao}
-              </Text>
-
-              {/* Rodapé: Modalidade e Duração */}
-              <View
-                style={{
-                  flexDirection: 'row',
-                  alignItems: 'center',
-                  gap: 16,
-                  borderTopWidth: 1,
-                  borderTopColor: theme?.corBorda || '#F3F4F6',
-                  paddingTop: 10,
-                  marginBottom: 14,
-                }}
-              >
-                <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6 }}>
-                  <FontAwesome6 name="graduation-cap" size={14} color={theme?.corFonteSecundaria || '#6B7280'} />
-                  <Text style={{ fontSize: 12, color: theme?.corFonteSecundaria || '#6B7280' }}>
-                    {item.modalidade}
-                  </Text>
-                </View>
-
-                <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6 }}>
-                  <FontAwesome6 name="clock" size={14} color={theme?.corFonteSecundaria || '#6B7280'} />
-                  <Text style={{ fontSize: 12, color: theme?.corFonteSecundaria || '#6B7280' }}>
-                    {item.duracao_semestres} Semestres
-                  </Text>
-                </View>
-              </View>
-
-              {/* BOTÃO DINÂMICO: INSCREVER-SE OU SAIR DO CURSO */}
-              {isInscrito ? (
-                <TouchableOpacity
-                  activeOpacity={0.8}
-                  disabled={isSubmitting}
-                  onPress={() => handleUnenrollCourse(item)}
-                  style={{
-                    backgroundColor: '#FEE2E2',
-                    borderWidth: 1,
-                    borderColor: '#EF4444',
-                    paddingVertical: 12,
-                    borderRadius: 8,
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    flexDirection: 'row',
-                    gap: 8,
-                  }}
-                >
-                  {isSubmitting ? (
-                    <ActivityIndicator size="small" color="#DC2626" />
-                  ) : (
-                    <>
-                      <FontAwesome6 name="arrow-right-from-bracket" size={14} color="#DC2626" />
-                      <Text style={{ color: '#DC2626', fontWeight: 'bold', fontSize: 14 }}>
-                        Sair do Curso
-                      </Text>
-                    </>
-                  )}
-                </TouchableOpacity>
-              ) : (
-                <TouchableOpacity
-                  activeOpacity={0.8}
-                  disabled={isSubmitting}
-                  onPress={() => handleEnrollCourse(item.id)}
-                  style={{
-                    backgroundColor: theme?.roxoPrincipal || '#7A58B8',
-                    paddingVertical: 12,
-                    borderRadius: 8,
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    flexDirection: 'row',
-                    gap: 8,
-                  }}
-                >
-                  {isSubmitting ? (
-                    <ActivityIndicator size="small" color="#FFFFFF" />
-                  ) : (
-                    <>
-                      <FontAwesome6 name="user-plus" size={14} color="#FFFFFF" />
-                      <Text style={{ color: '#FFFFFF', fontWeight: 'bold', fontSize: 14 }}>
-                        Participar do Curso
-                      </Text>
-                    </>
-                  )}
-                </TouchableOpacity>
-              )}
-            </View>
-          );
-        }}
-        ListEmptyComponent={
-          <View style={{ alignItems: 'center', paddingTop: 40 }}>
-            <Text style={{ color: theme?.corFonte || '#666' }}>
-              Nenhum curso disponível no momento.
+              Meus Cursos
             </Text>
+            {meusCursos.map((curso) => renderCursoCard(curso))}
           </View>
-        }
-      />
+        )}
+
+        {/* SEÇÃO 2: CURSOS DISPONÍVEIS */}
+        <View style={{ marginBottom: 20 }}>
+          <Text
+            style={{
+              fontSize: 20,
+              fontWeight: 'bold',
+              color: theme?.corFonte || '#1A202C',
+              marginBottom: 12,
+            }}
+          >
+            Cursos Disponíveis
+          </Text>
+          {cursosDisponiveis.length === 0 ? (
+            <Text style={{ color: theme?.corFonteSecundaria || '#666', textAlign: 'center', marginVertical: 16 }}>
+              Nenhum novo curso disponível no momento.
+            </Text>
+          ) : (
+            cursosDisponiveis.map((curso) => renderCursoCard(curso))
+          )}
+        </View>
+      </ScrollView>
     </View>
   );
 }
