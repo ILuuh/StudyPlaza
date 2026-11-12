@@ -33,7 +33,8 @@ export async function GetByInscricoesDoUser(id) {
       ` SELECT
             i.id,
             i.idcurso,
-	        c.title, c.duration
+	        c.title, c.duration,
+            i.situation
         FROM ${tableName} i
         INNER JOIN cursos c ON c.id = i.idcurso
         WHERE i.iduser = ?

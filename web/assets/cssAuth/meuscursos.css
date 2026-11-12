@@ -1,0 +1,359 @@
+/* ========================================
+   CONFIGURAÇÕES GERAIS
+======================================== */
+
+/* Importa as variáveis do tema */
+@import url("style.css");
+
+body {
+  background: var(--cor-fundo);
+  color: var(--cor-fonte);
+  font-family: var(--font-family);
+
+  transition:
+    background 0.3s ease,
+    color 0.3s ease;
+}
+
+main {
+  display: flex;
+  justify-content: center;
+  padding: 1rem;
+}
+
+/* ========================================
+   SEÇÃO HERO
+======================================== */
+
+.grupos-hero {
+  display: flex;
+  align-items: center;
+  gap: 3rem;
+  flex-wrap: wrap;
+}
+
+.hero-texto .etiqueta {
+  display: inline-block;
+
+  background: var(--cor-superficie-secundaria);
+  color: var(--roxo-principal);
+
+  padding: 0.5rem 1rem;
+  border-radius: 999px;
+
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  margin-bottom: 1rem;
+
+  border: 1px solid var(--cor-borda);
+
+  transition:
+    background 0.3s ease,
+    color 0.3s ease,
+    border-color 0.3s ease;
+}
+
+/* ========================================
+   PAINEL PRINCIPAL
+======================================== */
+
+.painel {
+  background: var(--cor-superficie);
+  color: var(--cor-fonte);
+
+  border: 1px solid var(--cor-borda);
+  border-radius: 2rem;
+
+  padding: 3rem;
+  width: 80%;
+  margin: 50px auto;
+
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  align-items: start;
+  gap: 2.5rem;
+
+  box-shadow: 0 20px 40px var(--sombra);
+
+  transition:
+    background 0.3s ease,
+    color 0.3s ease,
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.painel h1 {
+  font-size: clamp(2.2rem, 4vw, 2.8rem);
+  margin-bottom: 1rem;
+  color: var(--cor-fonte);
+}
+
+.painel p {
+  line-height: 1.6;
+  margin-bottom: 2rem;
+  max-width: 520px;
+  color: var(--cor-fonte-secundaria);
+}
+
+/* ========================================
+   INDICADORES DE STATUS
+======================================== */
+
+.status {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 1rem;
+  margin-bottom: 10px;
+}
+
+.status div {
+  background: var(--cor-superficie-secundaria);
+  color: var(--cor-fonte);
+
+  border: 1px solid var(--cor-borda);
+  border-radius: 1.5rem;
+
+  padding: 1.2rem 1.4rem;
+
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+
+  transition:
+    background 0.3s ease,
+    color 0.3s ease,
+    border-color 0.3s ease;
+}
+
+.status strong {
+  font-size: 1rem;
+  color: var(--roxo-principal);
+}
+
+.status span {
+  font-size: 0.95rem;
+  color: var(--cor-fonte-secundaria);
+  line-height: 1.5;
+}
+
+.status p {
+  margin-top: 2rem;
+  margin-bottom: 0;
+}
+
+/* ========================================
+   AÇÕES DO CURSO
+======================================== */
+
+.acoesCurso {
+  margin-top: 15px;
+}
+
+/* Botão de cancelar */
+.btnCancelar {
+  width: 100%;
+  padding: 12px;
+
+  border: 1px solid var(--cor-erro);
+  border-radius: 8px;
+
+  cursor: pointer;
+
+  background: var(--cor-erro);
+  color: var(--cor-fonte-invertida);
+
+  font-family: var(--font-family);
+  font-size: 1rem;
+  font-weight: 600;
+
+  transition:
+    background 0.3s ease,
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.btnCancelar:hover {
+  filter: brightness(0.9);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px var(--sombra);
+}
+
+.btnCancelar:focus-visible {
+  outline: 3px solid var(--cor-foco);
+  outline-offset: 3px;
+}
+
+.btnCancelar:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+/* ========================================
+   EDIÇÃO DA SITUAÇÃO
+======================================== */
+
+.grupoSituacao {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 15px 0;
+}
+
+.grupoSituacao label {
+  color: var(--cor-fonte);
+  font-weight: 600;
+}
+
+.selectSituacao {
+  width: 100%;
+  padding: 10px;
+
+  border: 1px solid var(--cor-borda);
+  border-radius: 8px;
+
+  background: var(--cor-superficie);
+  color: var(--cor-fonte);
+
+  font-family: var(--font-family);
+  font-size: 0.95rem;
+
+  cursor: pointer;
+
+  transition:
+    background 0.3s ease,
+    color 0.3s ease,
+    border-color 0.3s ease;
+}
+
+.selectSituacao:focus-visible {
+  outline: 3px solid var(--cor-foco);
+  outline-offset: 2px;
+}
+
+/* ========================================
+   BOTÃO SALVAR SITUAÇÃO
+======================================== */
+
+.btnEditarSituacao {
+  width: 100%;
+  padding: 10px;
+
+  border: 1px solid var(--roxo-principal);
+  border-radius: 8px;
+
+  background: var(--roxo-principal);
+  color: var(--cor-fonte-invertida);
+
+  font-family: var(--font-family);
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition:
+    background 0.3s ease,
+    border-color 0.3s ease,
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.btnEditarSituacao:hover {
+  background: var(--roxo-escuro);
+  border-color: var(--roxo-escuro);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px var(--sombra);
+}
+
+.btnEditarSituacao:focus-visible {
+  outline: 3px solid var(--cor-foco);
+  outline-offset: 3px;
+}
+
+.btnEditarSituacao:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+/* ========================================
+   RESPONSIVIDADE
+======================================== */
+
+/* Tablets */
+@media screen and (max-width: 1024px) {
+  .painel {
+    width: 90%;
+    padding: 2rem;
+    gap: 2rem;
+  }
+
+  .status div {
+    padding: 1rem;
+  }
+
+  .painel h1 {
+    font-size: 2.4rem;
+  }
+}
+
+/* Smartphones */
+@media screen and (max-width: 768px) {
+  .grupos-hero {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .painel {
+    width: 95%;
+    padding: 1.5rem;
+    gap: 1.5rem;
+  }
+
+  .status div {
+    padding: 1rem;
+  }
+
+  .painel h1 {
+    font-size: 2rem;
+  }
+
+  .painel p {
+    max-width: 100%;
+  }
+}
+
+/* Smartphones pequenos */
+@media screen and (max-width: 480px) {
+  .status {
+    grid-template-columns: 1fr;
+  }
+
+  .status div {
+    padding: 0.8rem 1rem;
+  }
+
+  .painel {
+    width: 100%;
+    padding: 1.2rem;
+    border-radius: 1.2rem;
+    margin: 25px auto;
+  }
+
+  .painel h1 {
+    font-size: 1.8rem;
+  }
+
+  .painel p {
+    font-size: 0.95rem;
+  }
+
+  .status strong {
+    font-size: 1rem;
+  }
+
+  .status span {
+    font-size: 0.9rem;
+  }
+}

@@ -1,23 +1,50 @@
 import { Router } from "express";
-import * as mycontroller from "../controller/usuariosGruposController.js"
+import * as mycontroller from "../controller/usuariosGruposController.js";
 
-const pointName = mycontroller.getTableName() || 'users';
+const pointName = mycontroller.getTableName() || "users";
 
 const endPoint = `/${pointName}`;
 
 const router = Router();
 
-router.get( `${endPoint}`, (req,res)=>{ mycontroller.Get(req,res) });
-router.get( `${endPoint}/totalMembros`, (req,res)=>{ mycontroller.GetByGruposTotalMembros(req,res) });
-router.get( `${endPoint}/membros/:id`, (req,res)=>{ mycontroller.GetByMembro(req,res) });
-router.get( `${endPoint}/:id`, (req,res)=>{ mycontroller.GetById(req,res) });
-router.get( `${endPoint}/email/:email`, (req,res)=>{ mycontroller.GetByEmail(req,res) });
-router.get( `${endPoint}/user/:id`, (req,res)=>{ mycontroller.GetByUser(req,res) });
-router.get( `${endPoint}/totalgruposativosuser/:id`, (req,res)=>{ mycontroller.GetByTotalGruposAtivosUser(req,res) });
-router.get( `${endPoint}/gruposativosuser/:id`, (req,res)=>{ mycontroller.GetByGruposAtivosUser(req,res) });
-router.get( `${endPoint}/buscarpapeldouser/:id/:idgrupo`, (req,res)=>{ mycontroller.GetByBuscarPapelDoUser(req,res) });
+router.get(`${endPoint}`, (req, res) => {
+  mycontroller.Get(req, res);
+});
+router.get(`${endPoint}/totalMembros`, (req, res) => {
+  mycontroller.GetByGruposTotalMembros(req, res);
+});
+router.get(`${endPoint}/membros/:id`, (req, res) => {
+  mycontroller.GetByMembro(req, res);
+});
+router.get(`${endPoint}/:id`, (req, res) => {
+  mycontroller.GetById(req, res);
+});
+router.get(`${endPoint}/email/:email`, (req, res) => {
+  mycontroller.GetByEmail(req, res);
+});
+router.get(`${endPoint}/user/:id`, (req, res) => {
+  mycontroller.GetByUser(req, res);
+});
+router.get(`${endPoint}/totalgruposativosuser/:id`, (req, res) => {
+  mycontroller.GetByTotalGruposAtivosUser(req, res);
+});
+router.get(`${endPoint}/gruposativosuser/:id`, (req, res) => {
+  mycontroller.GetByGruposAtivosUser(req, res);
+});
+router.get(`${endPoint}/buscarpapeldouser/:id/:idgrupo`, (req, res) => {
+  mycontroller.GetByBuscarPapelDoUser(req, res);
+});
 
-router.delete( `${endPoint}/:id`, (req,res)=>{ mycontroller.Delete(req,res) });
-router.post(`${endPoint}`,(req,res) => { mycontroller.Post(req,res)});
-router.put(`${endPoint}/:id`, (req,res) => { mycontroller.Put(req,res)} );
+router.delete(`${endPoint}/:id`, (req, res) => {
+  mycontroller.Delete(req, res);
+});
+router.post(`${endPoint}`, (req, res) => {
+  mycontroller.Post(req, res);
+});
+router.put(`${endPoint}/:id`, (req, res) => {
+  mycontroller.Put(req, res);
+});
+router.put(`${endPoint}/:id/:idgrupo`, (req, res) => {
+  mycontroller.PutGrupo(req, res);
+});
 export default router;

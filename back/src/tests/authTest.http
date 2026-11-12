@@ -1,7 +1,7 @@
 ### Variáveis Globais
 @baseUrl = http://localhost:3500
-@name = User
-@email = teste@fatec.com
+@name = Admin
+@email = admin@gmail.com
 teste@fatec.com
 @password = 123456
 

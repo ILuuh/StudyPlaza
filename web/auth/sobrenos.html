@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-bs-theme="light">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description"
+        content="Conheça o StudyPlaza, uma plataforma de aprendizado colaborativo com quizzes personalizados, grupos de estudo e muito mais." />
+    <meta name="keywords" content="Estudo, Colaborativo, Plataforma, Quiz, Cursos, Comunidade, Educação" />
+    <meta name="author" content="StudyPlaza Team" />
+    <title>StudyPlaza - Plataforma de Aprendizado Colaborativo</title>
+    <link rel="icon" href="../assets/img/Logo_Fundo_Roxa.png" type="image/png" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <script src="../utils/jsAuth/carregarCSS.js"></script>
+</head>
+
+<body data-css="sobrenos">
+    <header id="navbar"></header>
+
+    <main>
+        <section id="vLibras"></section>
+
+        <section id="acessibilidade"></section>
+
+        <!-- Seção 'Sobre nós': texto explicativo e imagem -->
+        <section class="sobre-nos">
+            <div class="intro-sobre">
+                <div class="texto-sobre">
+                    <h2>Sobre o Study Plaza</h2>
+                    <p>
+                        <!-- Texto descritivo sobre missão, funcionalidades e IA que gera quizzes -->
+                        No Study Plaza, acreditamos que o aprendizado se torna mais eficiente e motivador quando é
+                        compartilhado. Sabemos que muitos estudantes enfrentam desafios ao estudar sozinhos, como falta
+                        de organização, acesso a bons materiais ou dificuldade em se conectar com outras pessoas.
+
+                        Por isso, criamos uma plataforma que promove o aprendizado colaborativo, onde os usuários podem
+                        participar de grupos de estudo, compartilhar materiais, trocar mensagens e crescer juntos em um
+                        ambiente respeitoso e inclusivo.
+
+                        Além disso, contamos com o apoio de uma inteligência artificial que analisa as postagens dos
+                        grupos e gera quizzes personalizados, ajudando os usuários a testarem seus conhecimentos de
+                        forma prática e interativa.
+
+                        Nosso objetivo é construir uma comunidade ativa e engajada no compartilhamento de conhecimento,
+                        tornando o estudo mais acessível, dinâmico e eficiente para todos.
+                    </p>
+                </div>
+                <div class="imagem-sobre">
+                    <!-- Imagem ilustrativa; alt descreve o conteúdo para leitores de tela -->
+                    <img src="../assets/img/Logo_Fundo_Roxa.png" alt="Logo da Study Plaza">
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção de integrantes: cards com botão que abre modal com mais informações -->
+        <section class="integrantes">
+            <h2>Conheça nossa equipe</h2>
+            <div class="cards-integrantes">
+
+                <!-- Card integrante: usar tabindex se quiser foco por teclado (não adicionado aqui) -->
+                <div class="card-integrante">
+                    <img src="../assets/img/CartoonLuiz.png" alt="Integrante 1">
+                    <h3>Luiz Gustavo</h3>
+                    <!-- abrirModal é implementado em js/sobrenos.js -->
+                    <button onclick="abrirModal('modalLuiz')">Ver sobre o
+                        integrante</button>
+                </div>
+
+                <div class="card-integrante">
+                    <img src="../assets/img/CartoonBianca.png" alt="Integrante 2">
+                    <h3>Bianca</h3>
+                    <button onclick="abrirModal('modalBianca')">Ver sobre o
+                        integrante</button>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <!-- Modais dos integrantes:
+                 - cada modal tem id que corresponde ao argumento passado para abrirModal/fecharModal
+                 - fecharModal deve esconder o modal e remover foco (implementado em js/sobrenos.js) -->
+            <div id="modalLuiz" class="modal-integrante">
+                <div class="modal-conteudo">
+                    <img src="../assets/img/CartoonLuiz.png" class="mini-img" alt="Luiz Gustavo">
+                    <div>
+                        <h3>Luiz Gustavo</h3>
+                        <p>Sou Luiz Gustavo, estudante de TI que gosta muito de
+                            desenvolvimento e inovação. Tenho foco em criar soluções acessíveis, organizadas e
+                            elegantes, com atenção especial à experiência do usuário. Busco constantemente me superar,
+                            aprendendo novas tecnologias e aplicando-as para entregar projetos funcionais e impactantes.
+                            Responsável pelo front-end e acessibilidade do projeto. Sempre em busca de surpreender
+                            através da tecnologia.</p>
+                    </div>
+                    <button class="fechar-modal" onclick="fecharModal('modalLuiz')">✕</button>
+                </div>
+            </div>
+
+            <div id="modalBianca" class="modal-integrante">
+                <div class="modal-conteudo">
+                    <img src="../assets/img/CartoonBianca.png" class="mini-img" alt="Bianca">
+                    <div>
+                        <h3>Bianca</h3>
+                        <p>Sou a Bianca, estudante de TI, gosto de deixar tudo
+                            mais intuitivo e bonito, pensando no público geral. Responsável pelo front-end e
+                            acessibilidade do projeto em colaboração com a equipe. Estou sempre aprendendo, testando,
+                            quebrando a cabeça, para entregar um trabalho que realmente faça a diferença.</p>
+                    </div>
+                    <button class="fechar-modal" onclick="fecharModal('modalBianca')">✕</button>
+                </div>
+            </div>
+        </section>
+
+
+    </main>
+
+    <div class="gtranslate_wrapper"></div>
+    <footer id="footer" class="footer"></footer>
+
+    <script src="../utils/jsAuth/carregarComponents.js"></script>
+    <script src="../utils/js/alterarTemas.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js">
+    </script>
+
+    <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+    <script>
+        new window.VLibras.Widget('https://vlibras.gov.br/app');
+    </script>
+    <script>window.gtranslateSettings = { "default_language": "pt", "native_language_names": true, "detect_browser_language": true, "languages": ["pt", "en", "es"], "wrapper_selector": ".gtranslate_wrapper", "switcher_horizontal_position": "inline", "float_switcher_open_direction": "bottom", "alt_flags": { "en": "usa", "pt": "brazil" } }</script>
+    <script src="https://cdn.gtranslate.net/widgets/latest/float.js" defer></script>
+</body>
+
+</html>

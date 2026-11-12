@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-bs-theme="light">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description"
+    content="Encontre grupos de estudo, filtre por temas e participe da comunidade colaborativa da StudyPlaza." />
+  <meta name="keywords" content="grupos de estudo, comunidade, colaboração, aprendizagem" />
+  <meta name="author" content="StudyPlaza" />
+  <title>Grupos de Estudo - StudyPlaza</title>
+  <link rel="icon" href="../assets/img/Logo_Fundo_Roxa.png" type="image/png" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+  <script src="../utils/jsAuth/carregarCSS.js"></script>
+  <link rel="stylesheet" href="../assets/cssAuth/showtoast.css">
+
+  <!--
+    Cabeçalho (head):
+    - Meta tags definem charset, responsividade e informações SEO básicas.
+    - Ordem dos CSS: style.css (global) -> grupos.css (específico), para permitir sobrescritas.
+    - Font Awesome via CDN para ícones; manter integrity/crossorigin em produção quando possível.
+  -->
+</head>
+
+<body data-css="grupos">
+
+  <header id="navbar"></header>
+
+  <main>
+
+    <section id="acessibilidade"></section>
+
+    <section id="vLibras"></section>
+
+    <section class="conteudo-grupos">
+
+      <section>
+        <!-- Hero da página: título, descrição e chamadas para ação -->
+        <section class="grupos-hero" aria-labelledby="hero-grupos-titulo">
+          <div class="hero-texto">
+            <!-- <span class="etiqueta">Comunidade ativa 7/24</span> -->
+            <h1 id="hero-grupos-titulo">Encontre o grupo ideal para evoluir nos
+              estudos</h1>
+            <p>Explore temas, participe de comunidades engajadas, compartilhe
+              materiais
+              e
+              estude com colegas que têm os mesmos objetivos que você.</p>
+            <div class="hero-acoes">
+              <a href="../auth/painel.html" class="btn-primario" >Ir para o
+                painel</a>
+              <a href="#lista-grupos" class="btn-secundario">Descobrir
+                grupos</a>
+            </div>
+          </div>
+          <div class="hero-ilustracao">
+            <img src="../assets/img/ElfaEstudando2.png" alt="Mascote StudyPlaza conectada a grupos" />
+            <div class="hero-destaque">
+              <strong>+180</strong>
+              <span >grupos ativos</span>
+            </div>
+          </div>
+        </section>
+
+        <!-- Lista / cards de grupos:
+         - Em produção, gerar estas linhas do backend (server-side) ou via JS dinâmico.
+         - Usar marcação semântica <ul>/<li> ou <table> se necessário para acessibilidade. -->
+        <section class="lista-grupos" id="lista-grupos" aria-labelledby="grupos-titulo">
+          <div class="cabecalho-secao">
+            <h2 id="grupos-titulo">Grupos recomendados para você</h2>
+            <a href="../auth/painel.html" class="link-secundario">Ver todos no
+              painel</a>
+          </div>
+          <div class="cards-grupos">
+            <article class="card-grupo" aria-labelledby="grupo-frontend-titulo">
+              <div class="titulo-grupo">
+                <h3 id="grupo-frontend-titulo">Front-end colaborativo
+                </h3>
+                <span class="situacao online" aria-hidden="true"><i class="fa-solid fa-signal"></i>
+                  <span>Online</span></span>
+              </div>
+              <p >Estudos semanais focados em React,
+                acessibilidade
+                e boas práticas de UI. Compartilhe códigos e revise projetos em conjunto.</p>
+              <ul>
+                <li><i class="fa-solid fa-user-group" aria-hidden="true"></i> <span
+                    >24
+                    membros</span></li>
+                <li><i class="fa-solid fa-calendar" aria-hidden="true"></i> <span
+                    >Encontros
+                    às terças</span></li>
+                <li><i class="fa-solid fa-language" aria-hidden="true"></i> <span
+                    >Português</span></li>
+              </ul>
+              <button type="button" class="btn-primario"
+                aria-label="Participar do grupo Front-end">Participar</button>
+            </article>
+          </div>
+        </section>
+
+        <!-- CTA final -->
+        <section class="cta-grupos" aria-labelledby="cta-grupos-titulo">
+          <div class="cta-conteudo">
+            <h2 id="cta-grupos-titulo">Pronto para criar seu próprio grupo?</h2>
+            <p>Organize sua turma, personalize regras, convide novos membros e
+              acompanhe
+              tudo no painel em tempo real.</p>
+            <a href="../auth/painel.html" class="btn-primario">Começar agora</a>
+          </div>
+        </section>
+      </section>
+
+  </main>
+
+  <div class="gtranslate_wrapper"></div>
+  <footer id="footer" class="footer"></footer>
+
+  <script type="module" src="../utils/jsAuth/carregarComponents.js"></script>
+  <script src="../utils/js/alterarTemas.js"></script>
+
+  <script>window.gtranslateSettings = { "default_language": "pt", "native_language_names": true, "detect_browser_language": true, "languages": ["pt", "en", "es"], "wrapper_selector": ".gtranslate_wrapper", "switcher_horizontal_position": "inline", "float_switcher_open_direction": "bottom", "alt_flags": { "en": "usa", "pt": "brazil" } }</script>
+  <script src="https://cdn.gtranslate.net/widgets/latest/float.js" defer></script>
+
+  <script type="module" src="../utils/jsAuth/grupos.js"></script>
+
+  <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+  <script>
+    // Inicializa widget VLibras (tradução para Libras). Mantê-lo por último para garantir que o plugin já está carregado.
+    new window.VLibras.Widget('https://vlibras.gov.br/app');
+  </script>
+
+</body>
+
+</html>

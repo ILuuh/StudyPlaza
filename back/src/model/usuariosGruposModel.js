@@ -78,8 +78,8 @@ export async function GetByGruposAtivosUser(id) {
         WHERE ug.iduser = ? AND g.actived = true`,
       [id],
     );
-    console.log( `id: ${id}`);
-    console.log( results[0] );
+    console.log(`id: ${id}`);
+    console.log(results[0]);
     return { message: "Success", data: results[0] };
   } catch (error) {
     return { message: "error", Error: error.message };
@@ -95,10 +95,11 @@ export async function GetByBuscarPapelDoUser(id, idgrupo) {
           FROM ${tableName} ug
           INNER JOIN grupos g ON (g.id = ug.idgrupo) 
           WHERE ug.iduser = ? AND ug.idgrupo = ?
-        `, [id, idgrupo]
+        `,
+      [id, idgrupo],
     );
-    console.log( `id: ${id}, idgrupo: ${idgrupo}`);
-    console.log( results[0] );
+    console.log(`id: ${id}, idgrupo: ${idgrupo}`);
+    console.log(results[0]);
     return { message: "Success", data: results[0] };
   } catch (error) {
     return { message: "error", Error: error.message };
@@ -238,7 +239,25 @@ export async function Put(data, id) {
     sqlValuesParms.push(id);
 
     const results = await db.execute(
-      `UPDATE ${tableName} SET ${sqlSets} WHERE id = ?`,
+      `UPDATE ${tableName} SET ${sqlSets} WHERE iduser = ?`,
+      sqlValuesParms,
+    );
+    return { message: "Success", data: results };
+  } catch (error) {
+    return { message: "error", Error: error.message };
+  }
+}
+
+export async function PutGrupo(data, id, idgrupo) {
+  try {
+    sqlutils.extrair_dados(data);
+    const sqlSets = sqlutils.gerar_sqlSets();
+    const sqlValuesParms = sqlutils.listParms();
+    sqlValuesParms.push(id);
+    sqlValuesParms.push(idgrupo);
+
+    const results = await db.execute(
+      `UPDATE ${tableName} SET ${sqlSets} WHERE iduser = ? AND idgrupo = ?`,
       sqlValuesParms,
     );
     return { message: "Success", data: results };

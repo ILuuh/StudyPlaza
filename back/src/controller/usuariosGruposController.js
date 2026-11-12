@@ -130,7 +130,6 @@ export async function GetByMembro(req, res) {
   }
 }
 
-
 export async function Delete(req, res) {
   try {
     const id = req.params.id;
@@ -186,6 +185,29 @@ export async function Put(req, res) {
     }
     //
     const response = await myModel.Put(dataBody, id);
+    if (response.message.toLowerCase() == "success".toLowerCase()) {
+      res.status(201).json(response);
+    } else {
+      res.status(400).json(response);
+    }
+  } catch (error) {
+    res.status(406).json({ message: "erro", Error: error.message });
+  }
+}
+
+export async function PutGrupo(req, res) {
+  try {
+    const id = req.params.id;
+    const idgrupo = req.params.idgrupo;
+    const dataBody = req.body;
+    if (id <= 0) {
+      res.status(416).json({ message: "erro", Error: "Falha sem ID..." });
+    }
+    if (!dataBody) {
+      res.status(415).json({ message: "erro", Error: "Falha sem Body..." });
+    }
+    //
+    const response = await myModel.PutGrupo(dataBody, id, idgrupo);
     if (response.message.toLowerCase() == "success".toLowerCase()) {
       res.status(201).json(response);
     } else {

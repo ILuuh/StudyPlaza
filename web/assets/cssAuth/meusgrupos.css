@@ -1,0 +1,302 @@
+/* ========================================
+   PÁGINA DE MEMBROS
+======================================== */
+
+.membros-page {
+  max-width: 1200px;
+  margin: auto;
+  padding: 40px 20px;
+
+  color: var(--cor-fonte);
+
+  transition:
+    background 0.3s ease,
+    color 0.3s ease;
+}
+
+/* ========================================
+   CABEÇALHO
+======================================== */
+
+.membros-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.membros-header h1 {
+  color: var(--roxo-principal);
+  margin-bottom: 10px;
+}
+
+.membros-header p {
+  color: var(--cor-fonte-secundaria);
+  opacity: 0.9;
+  line-height: 1.6;
+}
+
+/* ========================================
+   BOTÃO VOLTAR
+======================================== */
+
+.btn-voltar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+
+  padding: 10px 18px;
+  margin-bottom: 25px;
+
+  border: 1px solid var(--roxo-principal);
+  border-radius: 10px;
+
+  background: var(--roxo-principal);
+  color: var(--cor-fonte-invertida);
+
+  text-decoration: none;
+  font-family: var(--font-family);
+  font-size: 0.95rem;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition:
+    background 0.3s ease,
+    border-color 0.3s ease,
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.btn-voltar:hover {
+  background: var(--roxo-escuro);
+  border-color: var(--roxo-escuro);
+
+  color: var(--cor-fonte-invertida);
+
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px var(--sombra);
+}
+
+.btn-voltar:focus-visible {
+  outline: 3px solid var(--cor-foco);
+  outline-offset: 3px;
+}
+
+/* ========================================
+   GRID DE MEMBROS
+======================================== */
+
+.membros-grid {
+  display: grid;
+
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+
+  gap: 20px;
+}
+
+/* ========================================
+   CARD DE MEMBRO
+======================================== */
+
+.card-membro {
+  background: var(--cor-superficie);
+  color: var(--cor-fonte);
+
+  border: 1px solid var(--cor-borda);
+  border-radius: 16px;
+
+  padding: 20px;
+
+  box-shadow: 0 5px 20px var(--sombra);
+
+  transition:
+    transform 0.3s ease,
+    background 0.3s ease,
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.card-membro:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px var(--sombra);
+}
+
+/* ========================================
+   AVATAR
+======================================== */
+
+.avatar {
+  width: 70px;
+  height: 70px;
+
+  border-radius: 50%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 28px;
+  font-weight: 600;
+
+  background: var(--roxo-principal);
+  color: var(--cor-fonte-invertida);
+
+  margin-bottom: 15px;
+}
+
+/* ========================================
+   INFORMAÇÕES DO MEMBRO
+======================================== */
+
+.nome {
+  font-size: 1.1rem;
+  font-weight: 600;
+
+  color: var(--cor-fonte);
+
+  margin-bottom: 8px;
+}
+
+.email {
+  font-size: 0.95rem;
+
+  color: var(--cor-fonte-secundaria);
+
+  margin-bottom: 15px;
+
+  overflow-wrap: anywhere;
+}
+
+/* ========================================
+   IDENTIFICAÇÃO DO PAPEL
+======================================== */
+
+.papel {
+  display: inline-block;
+
+  background: var(--cor-superficie-secundaria);
+  color: var(--roxo-principal);
+
+  border: 1px solid var(--cor-borda);
+  border-radius: 30px;
+
+  padding: 6px 12px;
+
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+/* ========================================
+   BOTÃO REMOVER MEMBRO
+======================================== */
+
+.btn-remover {
+  margin-top: 12px;
+
+  border: 1px solid var(--cor-erro);
+  border-radius: 8px;
+
+  padding: 10px 14px;
+
+  background: var(--cor-erro);
+  color: var(--cor-fonte-invertida);
+
+  font-family: var(--font-family);
+  font-size: 0.9rem;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition:
+    background 0.3s ease,
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.btn-remover:hover {
+  filter: brightness(0.9);
+
+  transform: translateY(-2px);
+
+  box-shadow: 0 4px 12px var(--sombra);
+}
+
+.btn-remover:focus-visible {
+  outline: 3px solid var(--cor-foco);
+  outline-offset: 3px;
+}
+
+.btn-remover:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+/* ========================================
+   RESPONSIVIDADE
+======================================== */
+
+/* Tablets */
+@media screen and (max-width: 768px) {
+  .membros-page {
+    padding: 30px 18px;
+  }
+
+  .membros-header {
+    margin-bottom: 30px;
+  }
+
+  .membros-grid {
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  }
+}
+
+/* Smartphones */
+@media screen and (max-width: 480px) {
+  .membros-page {
+    padding: 25px 15px;
+  }
+
+  .membros-header h1 {
+    font-size: 1.7rem;
+  }
+
+  .membros-grid {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+
+  .card-membro {
+    padding: 18px;
+  }
+
+  .avatar {
+    width: 60px;
+    height: 60px;
+    font-size: 24px;
+  }
+
+  .btn-voltar {
+    padding: 9px 15px;
+    font-size: 0.9rem;
+  }
+}
+
+/* ========================================
+   ACESSIBILIDADE
+======================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .card-membro,
+  .btn-voltar,
+  .btn-remover {
+    transition: none;
+  }
+
+  .card-membro:hover,
+  .btn-voltar:hover,
+  .btn-remover:hover {
+    transform: none;
+  }
+}
