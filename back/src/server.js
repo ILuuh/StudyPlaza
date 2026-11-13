@@ -16,6 +16,8 @@ const Port = process.env.API_PORT || 3600;
 
 const app = express();
 
+app.use(express.json());
+
 // ========================================
 // CORS
 // ========================================

@@ -1,67 +1,48 @@
 import { useState } from "react";
 import {
-  StyleSheet,
   Text,
   View,
   TextInput,
   TouchableOpacity,
+  ActivityIndicator,
 } from "react-native";
-import { Link, router } from "expo-router";
+import { Link } from "expo-router";
 import { useAppTheme } from "../../hooks/use-theme-context";
-import { ThemeType } from "../../constants/theme";
 
 // Importa o SVG como um componente React
 import Logo from "../../assets/images/Logo.svg";
-import api from "../../services/api";
 import { useAuth } from "../../contexts/AuthContext";
-
-import { createStyles } from '@/styles/auth/login';
+import { createStyles } from "@/styles/auth/login";
 
 export default function Login() {
   const { signIn } = useAuth();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   async function handleLogin() {
-    // 1. Validação dos campos obrigatórios
-    if (!email || !password) {
+    if (!email.trim() || !password.trim()) {
       alert("Preencha todos os campos.");
       return;
     }
 
+    setIsSubmitting(true);
     try {
-      // 2. Requisição para a rota de login
-      const response = await api.post("/login", {
-        email,
-        senha: password,
-      });
-
+      // O signIn do AuthContext já faz o POST em /auth/login,
+      // salva o token e redireciona para /(tabs)/dash
       await signIn({
-        email,
-        token: response.data.token,
-        user: response.data.usuario,
+        login: email.trim(),
+        password,
       });
 
-      // 3. Exemplo de como guardar o token (caso o teu backend retorne um token JWT)
-      // if (response.data.token) {
-      //   await SecureStore.setItemAsync("user_token", response.data.token);
-      // }
-
-      alert(response.data.mensagem || "Login realizado com sucesso!");
-
-      // 4. Limpar os campos
       setEmail("");
       setPassword("");
-
-      // 5. Redirecionar para a tela principal (ex: /dashboard ou /(tabs))
-      router.replace("/(tabs)");
     } catch (error: any) {
-      console.log(error);
-      alert(
-        error.response?.data?.mensagem ||
-          "Erro ao realizar login. Verifique as suas credenciais.",
-      );
+      console.log("Erro no login:", error);
+      alert(error.message || "Erro ao realizar login. Verifique as suas credenciais.");
+    } finally {
+      setIsSubmitting(false);
     }
   }
 
@@ -70,14 +51,13 @@ export default function Login() {
 
   return (
     <View style={styles.container}>
-              <View style={{alignItems: "center", flexDirection: "column"}}>
-        <Logo width={130} height={130} style={styles.logoImage}/>
-          <Text style={styles.title}>Study Plaza</Text>    
-          </View>   
-      <View style={styles.card}>
-        {/* CABEÇALHO COM A CORUJA SVG E O TÍTULO */}
-        <View style={styles.headerContainer}>
+      <View style={{ alignItems: "center", flexDirection: "column" }}>
+        <Logo width={130} height={130} style={styles.logoImage} />
+        <Text style={styles.title}>Study Plaza</Text>
+      </View>
 
+      <View style={styles.card}>
+        <View style={styles.headerContainer}>
           <Text style={styles.title2}>Bem-vindo a Nossa Plataforma!</Text>
         </View>
 
@@ -85,7 +65,10 @@ export default function Login() {
         <TextInput
           style={styles.input}
           placeholder="seu@email.com"
+          value={email}
           onChangeText={setEmail}
+          keyboardType="email-address"
+          autoCapitalize="none"
           placeholderTextColor={theme.corFonteSecundaria}
         />
 
@@ -94,15 +77,23 @@ export default function Login() {
           style={styles.input}
           secureTextEntry
           placeholder="********"
+          value={password}
           onChangeText={setPassword}
           placeholderTextColor={theme.corFonteSecundaria}
         />
 
-        <TouchableOpacity onPress={handleLogin} style={styles.button}>
-          <Text style={styles.buttonText}>Entrar</Text>
+        <TouchableOpacity
+          onPress={handleLogin}
+          style={[styles.button, isSubmitting && { opacity: 0.7 }]}
+          disabled={isSubmitting}
+        >
+          {isSubmitting ? (
+            <ActivityIndicator color="#FFF" />
+          ) : (
+            <Text style={styles.buttonText}>Entrar</Text>
+          )}
         </TouchableOpacity>
 
-        {/* Link para ir para a tela de cadastro */}
         <View style={styles.footerContainer}>
           <Text style={styles.footerText}>Não tem uma conta? </Text>
           <Link href="/register" style={styles.link}>
@@ -110,7 +101,6 @@ export default function Login() {
           </Link>
         </View>
 
-        {/* Botão opcional para testar a troca de tema */}
         <TouchableOpacity onPress={toggleTheme} style={{ marginTop: 20 }}>
           <Text
             style={{
@@ -126,4 +116,3 @@ export default function Login() {
     </View>
   );
 }
-

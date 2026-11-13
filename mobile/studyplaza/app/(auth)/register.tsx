@@ -21,6 +21,7 @@ import api from "../../services/api";
 
 // Importa styles da página
 import { createStyles } from '@/styles/auth/register';
+import Login from ".";
 
 export default function Register() {
   const { theme } = useAppTheme(); // Pega as cores do tema atual
@@ -50,11 +51,11 @@ export default function Register() {
 
     try {
       const response = await api.post(
-        "/register",
+        "/auth/register",
         {
-          nome: name,
-          email,
-          senha: password,
+          name: name,
+          login: email,
+          password: password,
           tipo_usuario: profession
         }
       );

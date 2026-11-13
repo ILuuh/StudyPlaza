@@ -4,15 +4,27 @@ import { useRouter } from 'expo-router';
 import api from '@/services/api';
 
 interface User {
-  id?: string | number;
-  nome: string;
-  email: string;
+  id: string | number;
+  name: string;
+  login: string;
   tipo_usuario?: string;
-  avatar?: string; // <--- Ícone do avatar escolhido (ex: "user-graduate", "chalkboard-user", etc.)
+  avatar?: string;
+}
+
+interface SignInCredentials {
+  login: string;
+  password: string;
+}
+
+interface SignUpCredentials {
+  name: string;
+  login: string;
+  password: string;
+  tipo_usuario: string;
 }
 
 interface UpdateProfileData {
-  nome: string;
+  name: string;
   tipo_usuario: string;
   avatar?: string;
 }
@@ -21,7 +33,8 @@ interface AuthContextData {
   user: User | null;
   signed: boolean;
   loading: boolean;
-  signIn: (data: { email: string; token?: string; user?: User }) => Promise<void>;
+  signIn: (credentials: SignInCredentials) => Promise<void>;
+  signUp: (credentials: SignUpCredentials) => Promise<void>;
   signOut: () => Promise<void>;
   updateProfile: (data: UpdateProfileData) => Promise<void>;
 }
@@ -40,6 +53,8 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         const storedUser = await SecureStore.getItemAsync('user_data');
 
         if (storedToken && storedUser) {
+          // Injeta o token salvo nas próximas requisições do Axios
+          api.defaults.headers.common['Authorization'] = `Bearer ${storedToken}`;
           setUser(JSON.parse(storedUser));
         }
       } catch (error) {
@@ -52,20 +67,59 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     loadStorageData();
   }, []);
 
-  const signIn = async ({ email, token, user: userData }: { email: string; token?: string; user?: User }) => {
-    const loggedUser = userData || { nome: 'Usuário', email, tipo_usuario: 'Estudante', avatar: 'user-graduate' };
-    const userToken = token || 'token_demo_123';
+  const signIn = async ({ login, password }: SignInCredentials) => {
+    try {
+      // Bate na rota POST /auth/login do seu backend
+      const response = await api.post('/auth/login', { login, password });
 
-    await SecureStore.setItemAsync('user_token', userToken);
-    await SecureStore.setItemAsync('user_data', JSON.stringify(loggedUser));
+      // Seu backend retorna: { message: "success", data: token, user: { id, name } }
+      const { data: token, user: apiUser } = response.data;
 
-    setUser(loggedUser);
-    router.replace('/(tabs)/dash' as any);
+      const loggedUser: User = {
+        id: apiUser.id,
+        name: apiUser.name,
+        login: login,
+        tipo_usuario: apiUser.tipo_usuario || 'estudante',
+        avatar: 'user-graduate',
+      };
+
+      // Configura o token no cabeçalho padrão da API
+      api.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+
+      await SecureStore.setItemAsync('user_token', token);
+      await SecureStore.setItemAsync('user_data', JSON.stringify(loggedUser));
+
+      setUser(loggedUser);
+      router.replace('/(tabs)/dash' as any);
+    } catch (error: any) {
+      // Repassa a mensagem de erro do backend para a tela exibir no Alert
+      const errorMessage = error.response?.data?.message || 'Erro ao realizar login';
+      throw new Error(errorMessage);
+    }
+  };
+
+  const signUp = async ({ name, login, password, tipo_usuario }: SignUpCredentials) => {
+    try {
+      // Bate na rota POST /auth/register do seu backend
+      await api.post('/auth/register', {
+        name,
+        login,
+        password,
+        tipo_usuario,
+      });
+
+      // Opcional: já faz o login automático logo após cadastrar
+      await signIn({ login, password });
+    } catch (error: any) {
+      const errorMessage = error.response?.data?.message || 'Erro ao cadastrar usuário';
+      throw new Error(errorMessage);
+    }
   };
 
   const signOut = async () => {
     await SecureStore.deleteItemAsync('user_token');
     await SecureStore.deleteItemAsync('user_data');
+    delete api.defaults.headers.common['Authorization'];
     setUser(null);
     router.replace('/(auth)' as any);
   };
@@ -74,14 +128,18 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     if (!user) return;
 
     try {
-      await api.put(`/usuarios/${user.id}`, data);
+      // Envia apenas os campos que existem na tabela `users` do MySQL
+      await api.put(`/users/${user.id}`, {
+        name: data.name,
+        tipo_usuario: data.tipo_usuario,
+      });
     } catch (e) {
-      console.log('Servidor offline, atualizando apenas localmente');
+      console.log('Erro ao atualizar no servidor, atualizando localmente:', e);
     }
 
-    const updatedUser = {
+    const updatedUser: User = {
       ...user,
-      nome: data.nome,
+      name: data.name,
       tipo_usuario: data.tipo_usuario,
       avatar: data.avatar || user.avatar || 'user',
     };
@@ -91,7 +149,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   };
 
   return (
-    <AuthContext.Provider value={{ signed: !!user, user, loading, signIn, signOut, updateProfile }}>
+    <AuthContext.Provider value={{ signed: !!user, user, loading, signIn, signUp, signOut, updateProfile }}>
       {children}
     </AuthContext.Provider>
   );
