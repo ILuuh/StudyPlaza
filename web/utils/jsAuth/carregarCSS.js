@@ -13,8 +13,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const cssGlobais = [
         "style",
         "navbar",
-        "footer",
-        "btnAcessibilidade"
+        "footer"
     ];
 
 

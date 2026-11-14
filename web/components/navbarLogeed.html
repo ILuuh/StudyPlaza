@@ -1,81 +1,120 @@
-<!-- Logo e título: link para a página inicial. aria-label melhora acessibilidade para leitores de tela -->
-<div class="logo">
-  <a href="../auth/index.html" aria-label="Voltar para página inicial">
-    <img src="../assets/img/Logo.svg" alt="Logo">
-    <h1>Study Plaza</h1>
-  </a>
-</div>
+<nav class="navbar navbar-expand-lg navbar-logada">
+  <div class="container-fluid">
 
-<!-- Botão hamburger para menu responsivo.
-         - aria-expanded deve ser atualizado por JS quando o menu abrir/fechar
-         - aria-controls aponta para o menu que esse botão controla -->
-<button class="hamburger" aria-expanded="false" aria-controls="menu">
-  <span class="hamburger-bar"></span>
-  <span class="hamburger-bar"></span>
-  <span class="hamburger-bar"></span>
-</button>
+    <!-- LOGO -->
+    <a class="navbar-brand" href="../auth/index.html" aria-label="Voltar para página inicial">
 
-<nav class="menu" id="menu-principal" aria-label="Menu principal">
+      <img src="../assets/img/Logo.svg" alt="Logo Study Plaza" />
 
-  <!-- BOTÃO FECHAR (mobile) -->
-  <button class="fecharMenu" aria-label="Fechar menu">&times;</button>
-
-  <!-- LINKS PRINCIPAIS -->
-  <div class="menu-links">
-    <a href="../auth/gruposDisponiveis.html" class="linkMenu">
-      <i class="fa-solid fa-people-group"></i>
-      <span>Grupos</span>
+      <span>Study Plaza</span>
     </a>
 
-    <a href="../auth/painel.html" class="linkMenu">
-      <i class="fa-solid fa-gauge-high"></i>
-      <span>Painel</span>
-    </a>
+    <!-- BOTÃO RESPONSIVO -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menuPrincipal"
+      aria-controls="menuPrincipal" aria-expanded="false" aria-label="Abrir menu de navegação">
 
-    <a href="../auth/cursosDisponiveis.html" class="linkMenu">
-      <i class="fa-solid fa-book"></i>
-      <span>Cursos</span>
-    </a>
-    <a href="http://localhost:9000" class="linkMenu destaque">
-      <i class="fa-solid fa-comments"></i>
-      <span>Chat</span>
-    </a>
+      <span class="navbar-toggler-icon"></span>
+    </button>
 
-  </div>
+    <!-- MENU PRINCIPAL -->
+    <div class="collapse navbar-collapse" id="menuPrincipal">
 
-  <!-- AÇÕES / USUÁRIO -->
-  <div class="menu-acoes">
+      <!-- LINKS PRINCIPAIS -->
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 
-    <a href="../auth/sobrenos.html" class="linkMenu">
-      <i class="fa-solid fa-users"></i>
-      <span>Sobre</span>
-    </a>
+        <li class="nav-item">
+          <a class="nav-link" href="../auth/gruposDisponiveis.html">
+            <i class="fa-solid fa-people-group"></i>
+            <span>Grupos</span>
+          </a>
+        </li>
 
-    <!-- PERFIL -->
-    <div class="dropdown-perfil">
-      <button class="perfil-btn" aria-expanded="false">
-        <i class="fa-solid fa-circle-user"></i>
-        <span>Perfil</span>
-        <i class="fa-solid fa-chevron-down seta"></i>
-      </button>
+        <li class="nav-item">
+          <a class="nav-link" href="../auth/painel.html">
+            <i class="fa-solid fa-gauge-high"></i>
+            <span>Painel</span>
+          </a>
+        </li>
 
-      <div class="dropdown-conteudo">
-        <a href="../perfil.html">
-          <i class="fa-solid fa-user"></i> Meu Perfil
+        <li class="nav-item">
+          <a class="nav-link" href="../auth/cursosDisponiveis.html">
+            <i class="fa-solid fa-book"></i>
+            <span>Cursos</span>
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link destaque" href="http://localhost:9000">
+            <i class="fa-solid fa-comments"></i>
+            <span>Chat</span>
+          </a>
+        </li>
+
+      </ul>
+
+      <!-- AÇÕES DO USUÁRIO -->
+      <div class="navbar-acoes">
+
+        <!-- SOBRE -->
+        <a class="nav-link" href="../auth/sobrenos.html">
+          <i class="fa-solid fa-users"></i>
+          <span>Sobre</span>
         </a>
 
-        <a href="../auth/meuscursos.html">
-          <i class="fa-solid fa-book"></i> Meus Cursos
-        </a>
 
-        <hr>
+        <!-- ALTERNADOR DE TEMA -->
+        <button class="theme-toggle" type="button" id="theme-toggle" aria-label="Ativar tema escuro"
+          title="Ativar tema escuro">
 
-        <a href="#" id="logout-btn" class="logout">
-          <i class="fa-solid fa-right-from-bracket"></i> Sair
-        </a>
+          <i class="fa-solid fa-moon" id="icon"></i>
+
+        </button>
+
+
+        <!-- DROPDOWN DO PERFIL -->
+        <div class="dropdown">
+
+          <button class="perfil-btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+
+            <i class="fa-solid fa-circle-user"></i>
+
+            <span>Perfil</span>
+          </button>
+
+          <ul class="dropdown-menu dropdown-menu-end">
+
+            <li>
+              <a class="dropdown-item" href="../auth/perfil.html">
+                <i class="fa-solid fa-user"></i>
+                Meu Perfil
+              </a>
+            </li>
+
+            <li>
+              <a class="dropdown-item" href="../auth/meuscursos.html">
+                <i class="fa-solid fa-book"></i>
+                Meus Cursos
+              </a>
+            </li>
+
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+
+            <li>
+              <a href="#" id="logout-btn" class="dropdown-item logout">
+
+                <i class="fa-solid fa-right-from-bracket"></i>
+                Sair
+              </a>
+            </li>
+
+          </ul>
+
+        </div>
+
       </div>
+
     </div>
-
   </div>
-
 </nav>

@@ -10,8 +10,6 @@ const cursosContainer = document.querySelector(".courses-container");
  */
 async function carregarCursos(endpoint) {
   try {
-    console.log(`📡 Buscando cursos em: ${API_URL}/${endpoint}`);
-
     const response = await fetch(`${API_URL}/${endpoint}`);
 
     if (!response.ok) {

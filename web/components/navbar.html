@@ -1,29 +1,67 @@
-<!-- Logo e título: link para a página inicial. aria-label melhora acessibilidade para leitores de tela -->
-<div class="logo">
-  <a href="./index.html" aria-label="Voltar para página inicial">
-    <img src="./assets/img/Logo.svg" alt="Logo Study Plaza" />
-    <h1>Study Plaza</h1>
-  </a>
-</div>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-fluid">
 
-<!-- Botão hamburger para menu responsivo.
-         - aria-expanded deve ser atualizado por JS quando o menu abrir/fechar
-         - aria-controls aponta para o menu que esse botão controla -->
-<button class="hamburger" aria-expanded="false" aria-controls="menu">
-  <span class="hamburger-bar"></span>
-  <span class="hamburger-bar"></span>
-  <span class="hamburger-bar"></span>
-</button>
+    <!-- Logo e título -->
+    <a class="navbar-brand d-flex align-items-center gap-2" href="./index.html" aria-label="Voltar para página inicial">
 
-<!-- Navegação principal.
-         - data-translate: usado pelo sistema de tradução/idioma para substituir textos dinamicamente -->
-<nav class="menu" id="menu-principal" aria-label="Menu principal">
-  <button class="fecharMenu" aria-label="Fechar menu">&times;</button>
+      <img src="./assets/img/Logo.svg" alt="Logo Study Plaza" width="45" height="45" />
 
-  <!-- Cada link possui ícone e <span> com data-translate para multilíngue -->
-  <a href="./cursos.html" class="linkMenu"><i class="fa-solid fa-book"></i> <span>Cursos</span></a>
-  <a href="./quiz.html" class="linkMenu"><i class="fa-solid fa-trophy"></i> <span>Quiz</span></a>
-  <a href="./sobrenos.html" class="linkMenu"><i class="fa-solid fa-users"></i> <span>Sobre Nós</span></a>
-  <a href="./login.html" class="linkMenu"><i class="fa-solid fa-right-to-bracket"></i> <span>Entrar</span></a>
+      <span class="fw-bold">Study Plaza</span>
+    </a>
 
+    <!-- Botão responsivo -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menuPrincipal"
+      aria-controls="menuPrincipal" aria-expanded="false" aria-label="Abrir menu de navegação">
+
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+
+    <!-- ALTERNADOR DE TEMA -->
+    <button class="theme-toggle" type="button" id="theme-toggle" aria-label="Ativar tema escuro"
+      title="Ativar tema escuro">
+
+      <i class="fa-solid fa-moon" id="icon"></i>
+
+    </button>
+
+
+    <!-- Links de navegação -->
+    <div class="collapse navbar-collapse" id="menuPrincipal">
+
+      <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-2">
+
+        <li class="nav-item">
+          <a class="nav-link" href="./cursos.html">
+            <i class="fa-solid fa-book me-1"></i>
+            <span>Cursos</span>
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="./quiz.html">
+            <i class="fa-solid fa-trophy me-1"></i>
+            <span>Quiz</span>
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="./sobrenos.html">
+            <i class="fa-solid fa-users me-1"></i>
+            <span>Sobre Nós</span>
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="./login.html">
+            <i class="fa-solid fa-right-to-bracket me-1"></i>
+            <span>Entrar</span>
+          </a>
+        </li>
+
+      </ul>
+
+    </div>
+
+  </div>
 </nav>

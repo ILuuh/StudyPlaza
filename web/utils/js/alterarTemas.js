@@ -1,66 +1,81 @@
-// ======================================================
-// ALTERAÇÃO DE TEMA
-// ======================================================
+/* ======================================================
+   ALTERAÇÃO DE TEMA - STUDY PLAZA
+====================================================== */
 
-// ------------------------------------------------------
-// APLICA O TEMA SALVO AO CARREGAR A PÁGINA
-// ------------------------------------------------------
+/* ======================================================
+   INICIALIZAÇÃO
+====================================================== */
 
 document.addEventListener("DOMContentLoaded", () => {
-  const temaSalvo = localStorage.getItem("theme") || "light";
+  const temaSalvo = localStorage.getItem("theme");
+  const tema = temaSalvo === "dark" ? "dark" : "light";
 
-  aplicarTema(temaSalvo);
+  aplicarTema(tema);
 });
 
-// ------------------------------------------------------
-// CLIQUE NO BOTÃO DE TEMA
-// ------------------------------------------------------
-// A delegação de eventos perqmite que o botão funcione
-// mesmo quando ele é inserido posteriormente na Navbar.
-// ------------------------------------------------------
+/* ======================================================
+   EVENTO DO BOTÃO DE TEMA
+====================================================== */
 
 document.addEventListener("click", (evento) => {
-  const botaoTema = evento.target.closest("#theme-toggle");
+  const botao = evento.target.closest("#theme-toggle");
 
-  // Se o clique não foi no botão de tema, não faz nada
-  if (!botaoTema) {
-    return;
-  }
+  if (!botao) return;
 
-  // Descobre o tema atual
   const temaAtual = document.documentElement.getAttribute("data-bs-theme");
-
-  // Define o próximo tema
   const novoTema = temaAtual === "dark" ? "light" : "dark";
 
   aplicarTema(novoTema);
 });
 
-// ------------------------------------------------------
-// FUNÇÃO PARA APLICAR O TEMA
-// ------------------------------------------------------
+/* ======================================================
+   APLICAR TEMA
+====================================================== */
 
 function aplicarTema(tema) {
-  // Aplica o tema utilizando o Bootstrap
   document.documentElement.setAttribute("data-bs-theme", tema);
 
-  // Salva a preferência
   localStorage.setItem("theme", tema);
 
-  // --------------------------------------------------
-  // ATUALIZAR ÍCONE
-  // --------------------------------------------------
+  atualizarIconeTema();
+}
 
-  const iconeTema = document.getElementById("theme-icon");
+/* ======================================================
+   ATUALIZAR ÍCONE
+====================================================== */
 
-  // Verifica se o ícone existe
-  if (!iconeTema) {
-    return;
-  }
+function atualizarIconeTema() {
+  const temaAtual = document.documentElement.getAttribute("data-bs-theme");
 
-  if (tema === "dark") {
-    iconeTema.textContent = "🌙";
+  const icone = document.querySelector("#theme-toggle i");
+  const botao = document.getElementById("theme-toggle");
+
+  if (!icone || !botao) return;
+
+  if (temaAtual === "dark") {
+    icone.classList.remove("fa-moon");
+    icone.classList.add("fa-sun");
+
+    botao.setAttribute("aria-label", "Ativar tema claro");
+    botao.setAttribute("title", "Ativar tema claro");
   } else {
-    iconeTema.textContent = "☀️";
+    icone.classList.remove("fa-sun");
+    icone.classList.add("fa-moon");
+
+    botao.setAttribute("aria-label", "Ativar tema escuro");
+    botao.setAttribute("title", "Ativar tema escuro");
   }
 }
+
+/* ======================================================
+   OBSERVAR NAVBAR DINÂMICA
+====================================================== */
+
+const observadorNavbar = new MutationObserver(() => {
+  atualizarIconeTema();
+});
+
+observadorNavbar.observe(document.body, {
+  childList: true,
+  subtree: true,
+});

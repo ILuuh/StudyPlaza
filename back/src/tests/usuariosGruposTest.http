@@ -44,8 +44,8 @@ POST  {{url}}
 Content-Type: application/json; charset=utf-8
 
 {
-    "iduser": 1,
-    "idgrupo": 3,
+    "iduser": 3,
+    "idgrupo": 1,
     "role": "Membro"
 }
 
@@ -64,3 +64,7 @@ Content-Type: application/json; charset=utf-8
 DELETE  {{url}}/2
 Content-Type: application/json; charset=utf-8
 
+###
+# DeleteMembro
+DELETE  {{url}}/deletemembro/3/1
+Content-Type: application/json; charset=utf-8

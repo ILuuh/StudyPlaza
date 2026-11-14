@@ -1,6 +1,8 @@
-document.addEventListener("DOMContentLoaded", () => {
-  carregarNavbar();
-});
+/* =========================================
+   INICIALIZAÇÃO
+========================================= */
+
+document.addEventListener("DOMContentLoaded", carregarNavbar);
 
 /* =========================================
    CARREGAR NAVBAR
@@ -18,16 +20,14 @@ async function carregarNavbar() {
       throw new Error(`Erro HTTP: ${response.status}`);
     }
 
-    const html = await response.text();
+    navbar.innerHTML = await response.text();
 
-    navbar.innerHTML = html;
-
-    // Inicializa os eventos depois de carregar o HTML
+    // Inicializa os eventos após carregar a navbar
     inicializarMenu();
     inicializarLogout();
     inicializarDropdown();
   } catch (error) {
-    console.error("Erro ao carregar a Navbar:", error);
+    console.error("Erro ao carregar a navbar:", error);
   }
 }
 
@@ -42,25 +42,40 @@ function inicializarMenu() {
 
   if (!hamburger || !menu) return;
 
-  function toggleMenu() {
-    menu.classList.toggle("active");
-    document.body.classList.toggle("menu-open");
+  function fechar() {
+    menu.classList.remove("active");
+    document.body.classList.remove("menu-open");
+
+    hamburger.setAttribute("aria-expanded", "false");
   }
 
-  hamburger.addEventListener("click", toggleMenu);
+  function alternar() {
+    const aberto = menu.classList.toggle("active");
 
-  if (fecharMenu) {
-    fecharMenu.addEventListener("click", toggleMenu);
+    document.body.classList.toggle("menu-open", aberto);
+
+    hamburger.setAttribute("aria-expanded", String(aberto));
   }
 
-  // Fecha o menu ao clicar fora
-  document.addEventListener("click", (e) => {
+  hamburger.addEventListener("click", alternar);
+
+  fecharMenu?.addEventListener("click", fechar);
+
+  // Fecha ao clicar fora do menu
+  document.addEventListener("click", (event) => {
     if (
-      document.body.classList.contains("menu-open") &&
-      !menu.contains(e.target) &&
-      !hamburger.contains(e.target)
+      menu.classList.contains("active") &&
+      !menu.contains(event.target) &&
+      !hamburger.contains(event.target)
     ) {
-      toggleMenu();
+      fechar();
+    }
+  });
+
+  // Fecha ao pressionar ESC
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") {
+      fechar();
     }
   });
 }
@@ -70,38 +85,38 @@ function inicializarMenu() {
 ========================================= */
 
 function inicializarLogout() {
-  const logoutElements = document.querySelectorAll("#logout-btn, .logout-btn");
+  const logoutElements = document.getElementById("logout-btn");
+  console.log(logoutElements);
 
   logoutElements.forEach((element) => {
-    element.addEventListener("click", (e) => {
-      e.preventDefault();
+    element.addEventListener("click", (event) => {
+      event.preventDefault();
 
-      // Limpa os dados da sessão
+      // Remove os dados da sessão
       localStorage.removeItem("studyplaza-user");
       localStorage.removeItem("studyplaza-token");
+
       sessionStorage.clear();
 
-      // Limpa cookies acessíveis pelo JavaScript
+      // Remove cookies acessíveis pelo JavaScript
       document.cookie.split(";").forEach((cookie) => {
-        const name = cookie.split("=")[0].trim();
+        const nome = cookie.split("=")[0].trim();
 
-        if (name) {
-          document.cookie = `${name}=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/`;
+        if (nome) {
+          document.cookie = `${nome}=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/`;
         }
       });
 
-      const msg =
-        typeof getTranslation === "function"
-          ? getTranslation("menu.sair.success", "Você saiu da sua conta.")
-          : "Você saiu da sua conta.";
+      // Mensagem de confirmação
+      const mensagem = "Você saiu da sua conta.";
 
       if (typeof showToast === "function") {
-        showToast(msg, "success");
+        showToast(mensagem, "success");
       }
 
-      // Retorna à página inicial
+      // Redireciona para a página inicial
       setTimeout(() => {
-        window.location.href = "../index.html";
+        window.location.href = "../../web/index.html";
       }, 350);
     });
   });
@@ -118,18 +133,33 @@ function inicializarDropdown() {
 
   if (!perfilBtn || !dropdown || !dropdownPerfil) return;
 
-  // Abre e fecha o dropdown
-  perfilBtn.addEventListener("click", (e) => {
-    e.stopPropagation();
+  function fecharDropdown() {
+    dropdown.classList.remove("active");
+    perfilBtn.setAttribute("aria-expanded", "false");
+  }
 
-    dropdown.style.display =
-      dropdown.style.display === "block" ? "none" : "block";
+  function alternarDropdown() {
+    const aberto = dropdown.classList.toggle("active");
+
+    perfilBtn.setAttribute("aria-expanded", String(aberto));
+  }
+
+  perfilBtn.addEventListener("click", (event) => {
+    event.stopPropagation();
+    alternarDropdown();
   });
 
   // Fecha ao clicar fora
-  document.addEventListener("click", (e) => {
-    if (!dropdownPerfil.contains(e.target)) {
-      dropdown.style.display = "none";
+  document.addEventListener("click", (event) => {
+    if (!dropdownPerfil.contains(event.target)) {
+      fecharDropdown();
+    }
+  });
+
+  // Fecha ao pressionar ESC
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") {
+      fecharDropdown();
     }
   });
 }

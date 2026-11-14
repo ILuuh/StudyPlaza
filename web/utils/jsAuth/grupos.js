@@ -199,8 +199,6 @@ async function participarGrupo(idgrupo) {
       }),
     });
 
-    console.log(response);
-
     if (!response.ok) {
       if (response.status === 401) {
         showToast("Token inválido ou expirado. Faça login novamente.", "error");

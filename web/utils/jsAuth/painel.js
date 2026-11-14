@@ -5,7 +5,7 @@ import { URL_API } from "../api/apiconfig.js";
 const API_URL = URL_API;
 
 // ==========================================
-// 1. Verificar usuário e autenticação
+// 1. VERIFICAR USUÁRIO E AUTENTICAÇÃO
 // ==========================================
 
 let storedUser = null;
@@ -17,18 +17,17 @@ try {
 }
 
 const storedToken = localStorage.getItem("studyplaza-token");
+const userId = storedUser?.id;
 
-if (!storedUser?.id || !storedToken) {
+if (!userId || !storedToken) {
   window.location.href = "../login.html";
 }
 
-const userId = storedUser?.id;
-
 // ==========================================
-// 2. Funções auxiliares
+// 2. FUNÇÕES AUXILIARES
 // ==========================================
 
-// Verifica respostas da API
+// Realiza requisições à API
 async function buscarDados(url, options = {}) {
   const response = await fetch(url, {
     ...options,
@@ -38,6 +37,7 @@ async function buscarDados(url, options = {}) {
     },
   });
 
+  // Verifica autenticação
   if (response.status === 401) {
     localStorage.removeItem("studyplaza-user");
     localStorage.removeItem("studyplaza-token");
@@ -49,6 +49,11 @@ async function buscarDados(url, options = {}) {
 
   if (!response.ok) {
     throw new Error(`Erro na requisição: ${response.status}`);
+  }
+
+  // Algumas requisições podem não retornar conteúdo
+  if (response.status === 204) {
+    return null;
   }
 
   return response.json();
@@ -63,7 +68,6 @@ function criarBotao({ texto = "", icone, acao, descricao }) {
   botao.setAttribute("aria-label", descricao);
   botao.title = descricao;
 
-  // Cria o ícone
   if (icone) {
     const elementoIcone = document.createElement("i");
 
@@ -73,12 +77,10 @@ function criarBotao({ texto = "", icone, acao, descricao }) {
     botao.appendChild(elementoIcone);
   }
 
-  // Adiciona o texto, caso exista
   if (texto) {
     botao.appendChild(document.createTextNode(texto));
   }
 
-  // Adiciona a ação do botão
   if (typeof acao === "function") {
     botao.addEventListener("click", acao);
   }
@@ -86,8 +88,25 @@ function criarBotao({ texto = "", icone, acao, descricao }) {
   return botao;
 }
 
+// Busca o grupo correspondente na tabela grupos
+function buscarGrupoGeral(idgrupo, grupos) {
+  return grupos.find((item) => Number(item.id) === Number(idgrupo));
+}
+
+// Verifica se o grupo está ativo globalmente
+function grupoEstaAtivo(idgrupo, grupos) {
+  const dadosGrupo = buscarGrupoGeral(idgrupo, grupos);
+
+  return Number(dadosGrupo?.actived) === 1;
+}
+
+// Verifica se o usuário está ativo no grupo
+function usuarioEstaAtivo(grupo) {
+  return Number(grupo.ativo) === 1;
+}
+
 // ==========================================
-// 3. Mostrar grupos ativos do usuário
+// 3. MOSTRAR GRUPOS ATIVOS DO USUÁRIO
 // ==========================================
 
 async function mostrarGruposAtivosUsuario() {
@@ -106,7 +125,6 @@ async function mostrarGruposAtivosUsuario() {
     );
 
     const usuario = resposta?.data?.[0];
-
     const total = Number(usuario?.quantGrupoAtivos) || 0;
 
     container.textContent = total;
@@ -117,12 +135,11 @@ async function mostrarGruposAtivosUsuario() {
 }
 
 // ==========================================
-// 4. Carregar grupos do usuário
+// 4. CARREGAR GRUPOS DO USUÁRIO
 // ==========================================
 
 async function carregarGrupos() {
   const tabelaAtivos = document.querySelector(".tabela-grupos-ativos");
-
   const tabelaTodos = document.querySelector(".tabela-todos-grupos");
 
   if (!tabelaAtivos || !tabelaTodos) {
@@ -134,32 +151,55 @@ async function carregarGrupos() {
   tabelaTodos.textContent = "Carregando...";
 
   try {
-    // Busca os grupos do usuário e a quantidade de membros
-    const [respostaUsuario, respostaMembros] = await Promise.all([
-      buscarDados(`${API_URL}/usuariosgrupos/user/${userId}`),
-      buscarDados(`${API_URL}/usuariosgrupos/totalmembros`),
-    ]);
+    // Busca os dados das três consultas simultaneamente
+    const [respostaUsuario, respostaGrupo, respostaMembros] = await Promise.all(
+      [
+        buscarDados(`${API_URL}/usuariosgrupos/user/${userId}`),
+        buscarDados(`${API_URL}/grupos`),
+        buscarDados(`${API_URL}/usuariosgrupos/totalmembros`),
+      ],
+    );
 
-    const grupos = respostaUsuario?.data;
+    const gruposUser = respostaUsuario?.data;
+    const grupos = respostaGrupo?.data;
     const gruposMembros = respostaMembros?.data;
 
-    if (!Array.isArray(grupos) || !Array.isArray(gruposMembros)) {
+    // Verifica os dados retornados pela API
+    if (
+      !Array.isArray(gruposUser) ||
+      !Array.isArray(grupos) ||
+      !Array.isArray(gruposMembros)
+    ) {
       throw new Error("A API retornou dados em formato inesperado.");
     }
+    
+    // Filtra os grupos em que o usuário está ativo
+    const gruposAtivos = gruposUser.filter(usuarioEstaAtivo);
 
-    // Filtra somente grupos ativos
-    const gruposAtivos = grupos.filter((grupo) => Number(grupo.ativo) === 1);
+    // ==================================
+    // CABEÇALHOS DAS TABELAS
+    // ==================================
 
-    // Cabeçalho das tabelas
     const criarCabecalho = () => `
-            <div class="tabela-cabecalho">
-                <span>Grupo</span>
-                <span>Membros</span>
-                <span>Status</span>
-            </div>
-        `;
+      <div class="tabela-cabecalho">
+        <span>Grupo</span>
+        <span>Membros</span>
+        <span>Meu Status</span>
+        <span>Status Geral</span>
+        <span>Ações</span>
+      </div>
+    `;
 
-    tabelaAtivos.innerHTML = criarCabecalho();
+    const criarCabecalhoAtivos = () => `
+      <div class="tabela-cabecalho">
+        <span>Grupo</span>
+        <span>Membros</span>
+        <span>Meu Status</span>
+        <span>Status Geral</span>
+      </div>
+    `;
+
+    tabelaAtivos.innerHTML = criarCabecalhoAtivos();
     tabelaTodos.innerHTML = criarCabecalho();
 
     // ==================================
@@ -173,26 +213,48 @@ async function carregarGrupos() {
       );
     } else {
       gruposAtivos.forEach((grupo) => {
+        // Busca a quantidade de membros
         const dadosMembros = gruposMembros.find(
           (item) => Number(item.idgrupo) === Number(grupo.idgrupo),
         );
 
         const quantidadeMembros = Number(dadosMembros?.quantMembros) || 0;
 
+        // Busca os dados gerais na tabela grupos
+        const dadosGrupo = buscarGrupoGeral(grupo.idgrupo, grupos);
+
+        // Verifica o status geral
+        const geralAtivo = grupoEstaAtivo(grupo.idgrupo, grupos);
+
         const linha = document.createElement("div");
         linha.className = "tabela-linha";
 
+        // Nome do grupo
         const nome = document.createElement("p");
         nome.textContent = grupo.grupo ?? "Grupo sem nome";
 
+        // Quantidade de membros
         const membros = document.createElement("p");
         membros.textContent = quantidadeMembros;
 
-        const status = document.createElement("p");
-        status.className = "tag-sucesso";
-        status.textContent = "Ativo";
+        // Status pessoal
+        const statusPessoal = document.createElement("p");
+        statusPessoal.className = "tag-sucesso";
+        statusPessoal.textContent = "Ativo";
 
-        linha.append(nome, membros, status);
+        // Status geral
+        const statusGeral = document.createElement("p");
+
+        statusGeral.className = geralAtivo ? "tag-sucesso" : "tag-neutra";
+
+        statusGeral.textContent = dadosGrupo
+          ? geralAtivo
+            ? "Ativo"
+            : "Inativo"
+          : "Não encontrado";
+
+        linha.append(nome, membros, statusPessoal, statusGeral);
+
         tabelaAtivos.appendChild(linha);
       });
     }
@@ -201,7 +263,7 @@ async function carregarGrupos() {
     // TABELA DE TODOS OS GRUPOS
     // ==================================
 
-    if (grupos.length === 0) {
+    if (gruposUser.length === 0) {
       tabelaTodos.insertAdjacentHTML(
         "beforeend",
         "<p>Você não participa de nenhum grupo.</p>",
@@ -210,18 +272,25 @@ async function carregarGrupos() {
       return;
     }
 
-    grupos.forEach((grupo) => {
+    gruposUser.forEach((grupo) => {
+      // Busca a quantidade de membros
       const dadosMembros = gruposMembros.find(
         (item) => Number(item.idgrupo) === Number(grupo.idgrupo),
       );
 
       const quantidadeMembros = Number(dadosMembros?.quantMembros) || 0;
 
-      const ativo = Number(grupo.ativo) === 1;
-
+      // Identifica o papel do usuário
       const papel = String(grupo.role ?? grupo.papel ?? "").toUpperCase();
 
       const idGrupo = grupo.idgrupo;
+
+      // Busca os dados gerais do grupo
+      const dadosGrupo = buscarGrupoGeral(idGrupo, grupos);
+
+      // Verifica os dois status
+      const pessoalAtivo = usuarioEstaAtivo(grupo);
+      const geralAtivo = grupoEstaAtivo(idGrupo, grupos);
 
       const linha = document.createElement("div");
       linha.className = "tabela-linha";
@@ -234,12 +303,28 @@ async function carregarGrupos() {
       const membros = document.createElement("p");
       membros.textContent = quantidadeMembros;
 
-      // Status
-      const status = document.createElement("p");
-      status.className = ativo ? "tag-sucesso" : "tag-neutra";
-      status.textContent = ativo ? "Ativo" : "Inativo";
+      // Status pessoal
+      const statusPessoal = document.createElement("p");
 
-      // Ações
+      statusPessoal.className = pessoalAtivo ? "tag-sucesso" : "tag-neutra";
+
+      statusPessoal.textContent = pessoalAtivo ? "Ativo" : "Inativo";
+
+      // Status geral
+      const statusGeral = document.createElement("p");
+
+      statusGeral.className = geralAtivo ? "tag-sucesso" : "tag-neutra";
+
+      statusGeral.textContent = dadosGrupo
+        ? geralAtivo
+          ? "Ativo"
+          : "Inativo"
+        : "Não encontrado";
+
+      // ==================================
+      // AÇÕES DO GRUPO
+      // ==================================
+
       const acoes = document.createElement("article");
       acoes.className = "acoes";
 
@@ -248,6 +333,7 @@ async function carregarGrupos() {
         idGrupo !== null &&
         Number.isFinite(Number(idGrupo));
 
+      // 1. Abrir grupo
       const botaoAbrir = criarBotao({
         icone: "fa-solid fa-arrow-up-right-from-square",
         acao: () => abrirGrupo(idGrupo),
@@ -257,24 +343,52 @@ async function carregarGrupos() {
       botaoAbrir.disabled = !idValido;
       acoes.appendChild(botaoAbrir);
 
-      // Botões exclusivos de administradores
-      if (papel === "ADMIN" && idValido) {
-        const botaoEditar = criarBotao({
-          icone: "fa-solid fa-pen-to-square",
-          acao: () => editarGrupo(idGrupo, grupo.grupo, grupo.ativo, papel),
-          descricao: "Editar grupo",
+      // 2. Alterar status pessoal
+      if (idValido) {
+        const statusAtual = pessoalAtivo ? 1 : 0;
+
+        const botaoStatusPessoal = criarBotao({
+          icone: "fa-solid fa-user-pen",
+          acao: () => alterarStatusPessoal(idGrupo, statusAtual),
+          descricao: "Alterar meu status no grupo",
         });
 
+        acoes.appendChild(botaoStatusPessoal);
+      }
+
+      // 3. Ações exclusivas do administrador
+      if (papel === "ADMIN" && idValido) {
+        // Editar nome do grupo
+        const botaoEditar = criarBotao({
+          icone: "fa-solid fa-pen-to-square",
+          acao: () => editarNomeGrupo(idGrupo, grupo.grupo),
+          descricao: "Editar nome do grupo",
+        });
+
+        // Alterar status geral
+        const statusAtualGeral = geralAtivo ? 1 : 0;
+
+        const botaoStatusGeral = criarBotao({
+          icone: "fa-solid fa-toggle-on",
+          acao: () => alterarStatusGeral(idGrupo, statusAtualGeral),
+          descricao: "Alterar status geral do grupo",
+        });
+
+        // Não permite alterar o status se o grupo não foi encontrado
+        botaoStatusGeral.disabled = !dadosGrupo;
+
+        // Excluir grupo
         const botaoExcluir = criarBotao({
           icone: "fa-solid fa-trash-can",
           acao: () => excluirGrupo(idGrupo, grupo.grupo),
           descricao: "Excluir grupo",
         });
 
-        acoes.append(botaoEditar, botaoExcluir);
+        acoes.append(botaoEditar, botaoStatusGeral, botaoExcluir);
       }
 
-      linha.append(nome, membros, status, acoes);
+      linha.append(nome, membros, statusPessoal, statusGeral, acoes);
+
       tabelaTodos.appendChild(linha);
     });
   } catch (erro) {
@@ -286,7 +400,7 @@ async function carregarGrupos() {
 }
 
 // ==========================================
-// 5. Abrir grupo
+// 5. ABRIR GRUPO
 // ==========================================
 
 function abrirGrupo(idGrupo) {
@@ -296,7 +410,7 @@ function abrirGrupo(idGrupo) {
 }
 
 // ==========================================
-// 6. Excluir grupo
+// 6. EXCLUIR GRUPO
 // ==========================================
 
 async function excluirGrupo(idGrupo, nomeGrupo) {
@@ -321,103 +435,120 @@ async function excluirGrupo(idGrupo, nomeGrupo) {
     await Promise.all([mostrarGruposAtivosUsuario(), carregarGrupos()]);
   } catch (erro) {
     console.error("Erro ao excluir grupo:", erro);
-
     alert("Não foi possível excluir o grupo. Tente novamente.");
   }
 }
 
 // ==========================================
-// 7. Editar grupo
+// 7. EDITAR NOME DO GRUPO
 // ==========================================
 
-function editarGrupo(idgrupo, nomeAtual, statusAtual, papel) {
-  if (papel !== "ADMIN") {
-    alert("Somente administradores podem editar grupos.");
+async function editarNomeGrupo(idGrupo, nomeAtual) {
+  const novoNome = prompt("Digite o novo nome do grupo:", nomeAtual);
+
+  if (novoNome === null) return;
+
+  if (!novoNome.trim()) {
+    alert("O nome do grupo não pode estar vazio.");
     return;
   }
 
-  const modal = document.getElementById("modal-editar-grupo");
-  const inputNome = document.getElementById("input-editar-nome-grupo");
-  const selectStatus = document.getElementById("select-editar-status-grupo");
-  const btnSalvar = document.getElementById("btn-salvar-edicao");
-  const btnCancelar = document.getElementById("btn-cancelar-edicao");
+  try {
+    await buscarDados(`${API_URL}/grupos/${idGrupo}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        name: novoNome.trim(),
+      }),
+    });
 
-  if (!modal || !inputNome || !selectStatus || !btnSalvar || !btnCancelar) {
-    console.error("Elementos do modal não encontrados.");
-    return;
+    alert("Nome do grupo atualizado!");
+
+    await carregarGrupos();
+  } catch (erro) {
+    console.error("Erro ao editar nome:", erro);
+    alert("Não foi possível editar o nome do grupo.");
   }
-
-  inputNome.value = nomeAtual ?? "";
-  selectStatus.value = String(statusAtual);
-
-  modal.style.display = "flex";
-  inputNome.focus();
-
-  function fecharModal() {
-    modal.style.display = "none";
-    btnSalvar.onclick = null;
-    btnCancelar.onclick = null;
-  }
-
-  btnCancelar.onclick = fecharModal;
-
-  btnSalvar.onclick = async () => {
-    const novoNome = inputNome.value.trim();
-    const novoStatus = Number(selectStatus.value);
-
-    if (!novoNome) {
-      alert("O nome do grupo não pode estar vazio.");
-      return;
-    }
-
-    if (![0, 1].includes(novoStatus)) {
-      alert("Selecione um status válido.");
-      return;
-    }
-
-    try {
-      // 1. Atualiza o nome do grupo
-      await buscarDados(`${API_URL}/grupos/${idgrupo}`, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          name: novoNome,
-        }),
-      });
-
-      // 2. Atualiza somente o vínculo do usuário com o grupo
-      await buscarDados(
-        `${API_URL}/usuariosgrupos/${userId}/${idgrupo}`,
-        {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            actived: novoStatus,
-          }),
-        },
-      );
-
-      alert("Grupo atualizado com sucesso!");
-
-      fecharModal();
-
-      await Promise.all([mostrarGruposAtivosUsuario(), carregarGrupos()]);
-    } catch (erro) {
-      console.error("Erro ao editar grupo:", erro);
-      alert("Não foi possível atualizar o grupo.");
-    }
-  };
 }
+
 // ==========================================
-// 8. Inicialização
+// 8. ALTERAR STATUS PESSOAL
+// ==========================================
+
+async function alterarStatusPessoal(idGrupo, statusAtual) {
+  const novoStatus = statusAtual === 1 ? 0 : 1;
+
+  const confirmar = confirm(
+    novoStatus === 1
+      ? "Deseja ativar este grupo para você?"
+      : "Deseja desativar este grupo somente para você?",
+  );
+
+  if (!confirmar) return;
+
+  try {
+    await buscarDados(`${API_URL}/usuariosgrupos/${userId}/${idGrupo}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        actived: novoStatus,
+      }),
+    });
+
+    alert("Sua participação foi atualizada!");
+
+    await Promise.all([mostrarGruposAtivosUsuario(), carregarGrupos()]);
+  } catch (erro) {
+    console.error("Erro ao alterar participação:", erro);
+    alert("Não foi possível atualizar sua participação.");
+  }
+}
+
+// ==========================================
+// 9. ALTERAR STATUS GERAL DO GRUPO
+// ==========================================
+
+async function alterarStatusGeral(idGrupo, statusAtual) {
+  const novoStatus = statusAtual === 1 ? 0 : 1;
+
+  const confirmar = confirm(
+    novoStatus === 1
+      ? "Deseja ativar este grupo para todos os participantes?"
+      : "Deseja desativar este grupo para todos os participantes?",
+  );
+
+  if (!confirmar) return;
+
+  try {
+    await buscarDados(`${API_URL}/grupos/${idGrupo}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        actived: novoStatus,
+      }),
+    });
+
+    alert("Status geral do grupo atualizado!");
+
+    await Promise.all([mostrarGruposAtivosUsuario(), carregarGrupos()]);
+  } catch (erro) {
+    console.error("Erro ao alterar status geral:", erro);
+    alert("Não foi possível atualizar o status geral do grupo.");
+  }
+}
+
+// ==========================================
+// 10. INICIALIZAÇÃO
 // ==========================================
 
 document.addEventListener("DOMContentLoaded", () => {
-  if (!storedUser?.id || !storedToken) return;
+  if (!userId || !storedToken) return;
 
   mostrarGruposAtivosUsuario();
   carregarGrupos();

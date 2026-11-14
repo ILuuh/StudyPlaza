@@ -49,9 +49,7 @@ formGrupo.addEventListener("submit", async (event) => {
 
   // Busca o id_usuario do localStorage
   const storedUser = JSON.parse(localStorage.getItem("studyplaza-user"));
-  console.log(storedUser);
   const token = localStorage.getItem("studyplaza-token");
-  console.log(token);
 
   if (!storedUser || !token) {
     showToast("Você precisa fazer login para continuar.", "error");

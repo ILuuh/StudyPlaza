@@ -15,7 +15,6 @@ document.addEventListener("DOMContentLoaded", () => {
         "navbar",
         "footer",
         "login",
-        "btnAcessibilidade"
     ];
 
 

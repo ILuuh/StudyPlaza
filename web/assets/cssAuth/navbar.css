@@ -1,85 +1,112 @@
-/* =========================
-   NAVBAR
-========================= */
+/* =========================================================
+   IMPORTS
+========================================================= */
 
-header {
+@import url("style.css");
+
+/* =========================================================
+   NAVBAR
+========================================================= */
+
+.navbar-logada {
   position: sticky;
   top: 0;
   z-index: 1000;
 
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-
   padding: 0.5rem 5%;
 
   background: var(--gradient-principal);
+
   box-shadow: 0 4px 12px var(--sombra);
+
+  transition:
+    background 0.3s ease,
+    box-shadow 0.3s ease;
 }
 
-/* =========================
+/* =========================================================
    LOGO
-========================= */
+========================================================= */
 
-.logo a {
+.navbar-logada .navbar-brand {
   display: flex;
   align-items: center;
-  justify-content: center;
+  gap: 10px;
 
-  text-decoration: none;
+  margin: 0;
 
   color: var(--cor-fonte-invertida);
 
-  font-size: 0.75rem;
-}
-
-.logo a h1 {
   font-size: 1.5rem;
+  font-weight: 700;
+
+  text-decoration: none;
 }
 
-.logo img {
-  height: 100px;
+.navbar-logada .navbar-brand:hover {
+  color: var(--cor-fonte-invertida);
 }
 
-/* =========================
-   LINKS DO MENU
-========================= */
+.navbar-logada .navbar-brand img {
+  height: 70px;
+  width: auto;
 
-.linkMenu {
+  object-fit: contain;
+}
+
+/* =========================================================
+   LINKS DE NAVEGAÇÃO
+========================================================= */
+
+.navbar-logada .navbar-nav {
+  align-items: center;
+  gap: 10px;
+}
+
+.navbar-logada .nav-link {
   position: relative;
 
   display: flex;
   align-items: center;
 
-  gap: 6px;
-  margin: 0 1rem;
+  gap: 7px;
+
+  padding: 10px 12px;
 
   color: var(--cor-fonte-invertida);
 
-  font-weight: bold;
+  font-weight: 600;
+
   text-decoration: none;
 
   transition:
-    transform 0.3s ease,
-    color 0.3s ease;
+    color 0.3s ease,
+    transform 0.3s ease;
 }
 
-.linkMenu:hover {
-  transform: translateY(-4px);
+.navbar-logada .nav-link:hover {
+  color: var(--cor-fonte-invertida);
+
+  transform: translateY(-3px);
 }
 
-/* LINHA DE DESTAQUE */
+/* =========================================================
+   INDICADOR INFERIOR
+========================================================= */
 
-.linkMenu::before {
+.navbar-logada .navbar-nav .nav-link::before,
+.navbar-logada .navbar-acoes > .nav-link::before {
   content: "";
 
   position: absolute;
 
-  bottom: 0;
+  bottom: 3px;
   left: 50%;
 
   width: 0;
-  height: 4px;
+  height: 3px;
+
+  border-radius: 10px;
 
   background: var(--cor-foco);
 
@@ -92,46 +119,43 @@ header {
     opacity 0.3s ease;
 }
 
-.linkMenu:hover::before {
-  width: 100%;
+.navbar-logada .nav-link:hover::before {
+  width: 75%;
   opacity: 1;
 }
 
-/* =========================
-   ORGANIZAÇÃO DO MENU
-========================= */
+/* =========================================================
+   LINK DESTAQUE - CHAT
+========================================================= */
 
-.menu {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+.navbar-logada .nav-link.destaque {
+  padding: 8px 12px;
 
-  gap: 20px;
+  border-radius: 8px;
+
+  background: rgba(255, 255, 255, 0.15);
 }
 
-/* GRUPO DE LINKS */
+.navbar-logada .nav-link.destaque:hover {
+  background: rgba(255, 255, 255, 0.25);
+}
 
-.menu-links {
+/* =========================================================
+   AÇÕES DO USUÁRIO
+========================================================= */
+
+.navbar-acoes {
   display: flex;
   align-items: center;
 
   gap: 15px;
 }
 
-/* AÇÕES */
+/* =========================================================
+   BOTÃO DO PERFIL
+========================================================= */
 
-.menu-acoes {
-  display: flex;
-  align-items: center;
-
-  gap: 20px;
-}
-
-/* =========================
-   BOTÃO DE PERFIL
-========================= */
-
-.perfil-btn {
+.navbar-logada .perfil-btn {
   display: flex;
   align-items: center;
 
@@ -157,391 +181,242 @@ header {
     transform 0.3s ease;
 }
 
-/* ÍCONE DO PERFIL */
-
-.perfil-btn i:first-child {
-  font-size: 1.4rem;
-}
-
-/* SETA DO DROPDOWN */
-
-.perfil-btn .seta {
-  font-size: 0.8rem;
-
-  transition: transform 0.3s ease;
-}
-
-/* HOVER */
-
-.perfil-btn:hover {
+.navbar-logada .perfil-btn:hover,
+.navbar-logada .perfil-btn.show {
   background: rgba(255, 255, 255, 0.25);
+
+  color: var(--cor-fonte-invertida);
 
   transform: translateY(-2px);
 }
 
-/* CLICK */
-
-.perfil-btn:active {
-  transform: scale(0.95);
+.navbar-logada .perfil-btn i:first-child {
+  font-size: 1.3rem;
 }
 
-/* SETA QUANDO DROPDOWN ESTÁ ATIVO */
-
-.dropdown-perfil.active .perfil-btn .seta {
-  transform: rotate(180deg);
+/* Remove seta padrão do Bootstrap */
+.navbar-logada .perfil-btn::after {
+  margin-left: 3px;
 }
 
-/* =========================
-   LINK DESTAQUE
-========================= */
-
-.linkMenu.destaque {
-  padding: 6px 10px;
-
-  border-radius: 6px;
-
-  background: rgba(255, 255, 255, 0.1);
-}
-
-/* =========================
+/* =========================================================
    DROPDOWN DO PERFIL
-========================= */
+========================================================= */
 
-.dropdown-perfil {
+.navbar-logada .dropdown {
   position: relative;
 }
 
-.dropdown-conteudo {
-  position: absolute;
+.navbar-logada .dropdown-menu {
+  min-width: 190px;
 
-  top: 120%;
-  right: 0;
-
-  display: none;
-  flex-direction: column;
-
-  min-width: 180px;
-
-  padding: 10px;
+  margin-top: 8px;
+  padding: 8px;
 
   border: 1px solid var(--cor-borda);
-  border-radius: 8px;
+  border-radius: 10px;
 
   background: var(--cor-superficie);
-  color: var(--cor-fonte);
 
   box-shadow: 0 5px 15px var(--sombra);
+
+  z-index: 1050;
 }
 
-.dropdown-conteudo a {
+.navbar-logada .dropdown-item {
   display: flex;
   align-items: center;
+  gap: 10px;
 
-  gap: 8px;
-
-  padding: 8px;
+  padding: 10px;
 
   border-radius: 6px;
 
   color: var(--cor-fonte);
-
-  text-decoration: none;
+  font-weight: 500;
 
   transition:
-    background-color 0.2s ease,
+    background 0.2s ease,
     color 0.2s ease;
 }
 
-.dropdown-conteudo a:hover {
+.navbar-logada .dropdown-item:hover {
   background: var(--cor-superficie-secundaria);
-
   color: var(--roxo-principal);
 }
-
 /* LOGOUT */
 
-.logout {
-  color: var(--cor-erro) !important;
+.navbar-logada .dropdown-item.logout {
+  color: var(--cor-erro);
 }
 
-/* MOSTRAR DROPDOWN */
+.navbar-logada .dropdown-item.logout:hover {
+  background: rgba(230, 57, 70, 0.1);
 
-.dropdown-perfil:hover .dropdown-conteudo {
+  color: var(--cor-erro);
+}
+
+/* ======================================================
+   ALTERNADOR DE TEMA
+====================================================== */
+
+.theme-toggle {
   display: flex;
-}
+  align-items: center;
+  justify-content: center;
 
-/* ITEM ATIVO */
-
-#ativo {
-  color: var(--cor-ativo);
-}
-
-/* =========================
-   MENU HAMBURGER
-========================= */
-
-.hamburger {
-  display: none;
-  flex-direction: column;
-
-  gap: 0.4rem;
-
-  width: 2.5rem;
-  height: 2rem;
+  width: 42px;
+  height: 42px;
 
   border: none;
+  border-radius: 50%;
 
-  background: transparent;
-
-  cursor: pointer;
-}
-
-.hamburger-bar {
-  width: 100%;
-  height: 3px;
-
-  border-radius: 10px;
-
-  background: var(--cor-fonte-invertida);
-
-  transition: 0.3s ease;
-}
-
-/* =========================
-   BOTÃO FECHAR MENU
-========================= */
-
-.fecharMenu {
-  display: none;
-
-  align-self: flex-end;
-
-  border: none;
-
-  background: none;
+  background: rgba(255, 255, 255, 0.12);
 
   color: var(--cor-fonte-invertida);
 
-  font-size: 1.5rem;
+  font-size: 1.3rem;
 
   cursor: pointer;
 
   transition:
-    color 0.3s ease,
+    background 0.3s ease,
     transform 0.3s ease;
 }
 
-.fecharMenu:hover {
-  color: var(--cor-foco);
-
-  transform: scale(1.1);
-}
-
-/* =========================
-   BOTÃO DE TEMA
-========================= */
-
-.theme-toggle {
-  border: none;
-
-  background: transparent;
-
-  color: var(--cor-fonte-invertida);
-
-  font-size: 1.6rem;
-
-  cursor: pointer;
-
-  transition:
-    transform 0.3s ease,
-    color 0.3s ease;
-}
-
 .theme-toggle:hover {
+  background: rgba(255, 255, 255, 0.22);
+
   transform: rotate(20deg) scale(1.1);
 }
 
-/* ÍCONE DO TEMA */
-
-#icon,
-#theme-icon {
-  display: inline-block;
-
-  transition:
-    transform 0.5s ease,
-    opacity 0.3s ease;
+.theme-toggle:focus-visible {
+  outline: 3px solid var(--cor-foco);
+  outline-offset: 4px;
 }
 
-.fade-out {
-  opacity: 0;
-
-  transform: rotate(180deg) scale(0.5);
+#icon {
+  transition: transform 0.3s ease;
 }
 
-/* =========================
-   RESPONSIVIDADE
-   TABLET
-========================= */
+/* =========================================================
+   BOTÃO RESPONSIVO
+========================================================= */
 
-@media (max-width: 1024px) {
-  .menu {
+.navbar-logada .navbar-toggler {
+  padding: 8px 10px;
+
+  border: 1px solid var(--cor-fonte-invertida);
+
+  border-radius: 8px;
+}
+
+.navbar-logada .navbar-toggler:focus {
+  box-shadow: 0 0 0 3px var(--cor-foco);
+}
+
+/* =========================================================
+   ACESSIBILIDADE
+========================================================= */
+
+.navbar-logada .nav-link:focus-visible,
+.navbar-logada .navbar-brand:focus-visible,
+.navbar-logada .perfil-btn:focus-visible,
+.navbar-logada .theme-toggle:focus-visible,
+.navbar-logada .dropdown-item:focus-visible {
+  outline: 3px solid var(--cor-foco);
+  outline-offset: 3px;
+}
+
+/* =========================================================
+   RESPONSIVIDADE - TABLET E MOBILE
+========================================================= */
+
+@media (max-width: 991px) {
+  .navbar-logada {
+    padding: 0.5rem 20px;
+  }
+
+  .navbar-logada .navbar-brand img {
+    height: 60px;
+  }
+
+  .navbar-logada .navbar-collapse {
+    padding: 15px 0;
+  }
+
+  .navbar-logada .navbar-nav {
+    align-items: stretch;
+    gap: 5px;
+  }
+
+  .navbar-logada .nav-link {
+    padding: 12px;
+  }
+
+  .navbar-logada .nav-link::before {
+    display: none;
+  }
+
+  .navbar-logada .nav-link:hover {
+    background: rgba(255, 255, 255, 0.12);
+
+    transform: none;
+  }
+
+  .navbar-acoes {
+    flex-direction: column;
+    align-items: stretch;
+
     gap: 12px;
+
+    padding-top: 15px;
   }
 
-  .menu-links {
-    gap: 8px;
+  .navbar-logada .navbar-acoes > .nav-link {
+    width: fit-content;
   }
 
-  .linkMenu {
-    margin: 0 0.5rem;
-  }
-}
-
-/* =========================
-   RESPONSIVIDADE
-   MOBILE
-   ATÉ 768px
-========================= */
-
-@media (max-width: 768px) {
-  /* LINKS */
-
-  .menu-links {
-    display: flex;
-
-    flex-direction: column;
-    align-items: center;
-
-    width: 100%;
-
-    gap: 20px;
+  .navbar-logada .theme-toggle {
+    margin: 5px 0;
   }
 
-  /* AÇÕES */
-
-  .menu-acoes {
-    display: flex;
-
-    flex-direction: column;
-    align-items: center;
-
-    width: 100%;
-
-    gap: 15px;
+  .navbar-logada .perfil-btn {
+    width: fit-content;
   }
-
-  /* HAMBURGER */
-
-  .hamburger {
-    display: flex;
-  }
-
-  /* MENU LATERAL */
-
-  .menu {
-    position: fixed;
-
-    top: 0;
-    right: -100%;
-
-    width: 250px;
-    height: 100vh;
-
-    display: flex;
-
-    flex-direction: column;
-
-    align-items: center;
-    justify-content: flex-start;
-
-    gap: 25px;
-
-    padding-top: 80px;
-
-    background: var(--roxo-escuro);
-
-    box-shadow: -5px 0 15px var(--sombra);
-
-    transition: right 0.3s ease;
-  }
-
-  /* MENU ABERTO */
-
-  .menu.active {
-    right: 0;
-  }
-
-  /* BOTÃO FECHAR */
-
-  .fecharMenu {
-    display: block;
-
-    position: absolute;
-
-    top: 20px;
-    right: 20px;
-  }
-
-  /* LINKS */
-
-  .linkMenu {
-    margin: 0;
-
-    font-size: 1.1rem;
-  }
-
-  /* PERFIL */
-
-  .perfil-btn {
-    margin-top: 10px;
-  }
-
-  /* DROPDOWN */
-
-  .dropdown-conteudo {
-    position: static;
-
-    width: 100%;
-
-    margin-top: 10px;
-
-    box-shadow: none;
+  
+  .navbar-logada .dropdown-menu {
+    margin-top: 5px;
   }
 }
 
-/* =========================
+/* =========================================================
    MOBILE PEQUENO
-   ATÉ 480px
-========================= */
+========================================================= */
 
 @media (max-width: 480px) {
-  .logo img {
-    height: 70px;
+  .navbar-logada {
+    padding: 8px 15px;
   }
 
-  .hamburger {
-    width: 2rem;
-    height: 1.5rem;
+  .navbar-logada .navbar-brand {
+    font-size: 1.2rem;
   }
 
-  .menu {
-    width: 230px;
+  .navbar-logada .navbar-brand img {
+    height: 50px;
   }
 }
 
-/* =========================
-   ACESSIBILIDADE
-========================= */
+/* =========================================================
+   REDUÇÃO DE MOVIMENTO
+========================================================= */
 
 @media (prefers-reduced-motion: reduce) {
-  .linkMenu,
-  .perfil-btn,
-  .perfil-btn .seta,
-  .theme-toggle,
-  #icon,
-  #theme-icon,
-  .fecharMenu,
-  .menu {
-    transition: none;
+  .navbar-logada *,
+  .navbar-logada *::before,
+  .navbar-logada *::after {
+    transition: none !important;
+    animation: none !important;
   }
 }

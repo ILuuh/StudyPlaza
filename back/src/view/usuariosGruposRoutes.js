@@ -38,6 +38,9 @@ router.get(`${endPoint}/buscarpapeldouser/:id/:idgrupo`, (req, res) => {
 router.delete(`${endPoint}/:id`, (req, res) => {
   mycontroller.Delete(req, res);
 });
+router.delete(`${endPoint}/deletemembro/:id/:idgrupo`, (req, res) => {
+  mycontroller.DeleteMembro(req, res);
+});
 router.post(`${endPoint}`, (req, res) => {
   mycontroller.Post(req, res);
 });

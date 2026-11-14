@@ -61,12 +61,27 @@ async function usuarioEhAdmin(grupoId) {
     );
 
     if (!response.ok) {
+      console.error("Erro na consulta de permissão:", response.status);
       return false;
     }
 
-    const dados = await response.json();
+    const responseData = await response.json();
 
-    return dados.papel === "admin";
+    // Aceita tanto objeto quanto array
+    const dados = Array.isArray(responseData.data)
+      ? responseData.data[0]
+      : responseData.data;
+
+
+    // Aceita diferentes nomes para o campo
+    const papel = dados?.Papel ?? dados?.papel ?? dados?.role;
+
+
+    return (
+      String(papel ?? "")
+        .trim()
+        .toLowerCase() === "admin"
+    );
   } catch (erro) {
     console.error("Erro ao verificar permissão:", erro);
     return false;
@@ -79,7 +94,6 @@ async function usuarioEhAdmin(grupoId) {
 
 async function removerMembro(id) {
   const ehAdmin = await usuarioEhAdmin(grupoId);
-  console.log(ehAdmin);
 
   if (!ehAdmin) {
     alert("Somente administradores podem remover membros.");
@@ -92,7 +106,7 @@ async function removerMembro(id) {
 
   try {
     const response = await fetch(
-      `${API_URL}/usuariosgrupos/membros/${grupoId}/${id}`,
+      `${API_URL}/usuariosgrupos/deletemembro/${id}/${grupoId}`,
       {
         method: "DELETE",
         headers: {
@@ -181,8 +195,13 @@ async function carregarMembros() {
       (membro) =>
         Number(membro.iduser ?? membro.id) === Number(usuarioLogado.id),
     );
+    const papelUsuario = String(
+      meuRegistro?.role ?? meuRegistro?.Papel ?? meuRegistro?.papel ?? "",
+    )
+      .trim()
+      .toLowerCase();
 
-    const usuarioEhAdminGrupo = meuRegistro?.papel === "admin";
+    const usuarioEhAdminGrupo = papelUsuario === "admin";
 
     // Cria os cards dos membros
     membros.forEach((m) => {

@@ -144,6 +144,21 @@ export async function Delete(req, res) {
   }
 }
 
+export async function DeleteMembro(req, res) {
+  try {
+    const id = req.params.id;
+    const idgrupo = req.params.idgrupo;
+    const response = await myModel.DeleteMembro(id, idgrupo);
+    if (response.message.toLowerCase() == "success".toLowerCase()) {
+      res.status(200).json(response);
+    } else {
+      res.status(400).json(response);
+    }
+  } catch (error) {
+    res.status(403).json({ message: "erro", Error: error.message });
+  }
+}
+
 export async function Post(req, res) {
   try {
     const dataBody = req.body;

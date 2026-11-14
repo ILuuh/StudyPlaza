@@ -41,7 +41,6 @@ async function carregarCursos(endpoint) {
 
     const responseData = await response.json();
     const cursos = responseData.data;
-    console.log(cursos);
 
     if (!Array.isArray(cursos) || cursos.length === 0) {
       selectCurso.innerHTML = `<option value="" disabled selected>Nenhum curso disponível</option>`;
@@ -73,8 +72,6 @@ formInscricao.addEventListener("submit", async (event) => {
   // Verifica se usuário está logado
   const storedUser = JSON.parse(localStorage.getItem("studyplaza-user"));
   const token = localStorage.getItem("studyplaza-token");
-
-  console.log(localStorage.getItem("studyplaza-token"));
 
   if (!storedUser || !token) {
     showToast("Você precisa fazer login para continuar.", "error");

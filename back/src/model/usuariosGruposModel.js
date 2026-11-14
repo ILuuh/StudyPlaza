@@ -12,7 +12,8 @@ export async function Get(req, res) {
             ug.iduser,
             ug.created_at,
             u.name,
-            ug.role
+            ug.role,
+            ug.actived
             FROM ${tableName} ug
             INNER JOIN users u ON (u.id = ug.iduser)
             INNER JOIN grupos g ON (g.id = ug.idgrupo)
@@ -55,7 +56,7 @@ export async function GetByTotalGruposAtivosUser(id) {
         FROM ${tableName} ug
         INNER JOIN users u ON (u.id = ug.iduser)
         INNER JOIN grupos g ON (g.id = ug.idgrupo)
-        WHERE ug.iduser = ? AND g.actived = true
+        WHERE ug.iduser = ? AND ug.actived = true
         GROUP BY ug.iduser`,
       [id],
     );
@@ -213,6 +214,18 @@ export async function Delete(id) {
     return { message: "error", Error: error.message };
   }
 }
+
+export async function DeleteMembro(id, idgrupo) {
+  try {
+    const results = await db.execute(`DELETE FROM ${tableName} WHERE iduser = ? AND idgrupo = ?`, [
+      id, idgrupo
+    ]);
+    return { message: "Success", data: results };
+  } catch (error) {
+    return { message: "error", Error: error.message };
+  }
+}
+
 
 export async function Post(data) {
   try {
