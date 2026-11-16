@@ -205,11 +205,9 @@ export default function Dashboard() {
       setSubmitting(true);
 
       const response = await api.post('/grupos', {
-        nome: nome.trim(),
-        descricao: descricao.trim(),
-        idioma,
-        privado: 0,
-        criado_por: user.id,
+        name: nome.trim(),
+        description: descricao.trim(),
+        iduser: user.id,
       });
 
       if (response.data.sucesso) {

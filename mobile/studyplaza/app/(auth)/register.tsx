@@ -60,9 +60,17 @@ export default function Register() {
         }
       );
 
-      alert(
-        response.data.mensagem
-      );
+      console.log(response.data.message);
+
+      
+
+        if(
+          response.data.message == "Success"){
+            alert("Cadastrado com sucesso");
+          } 
+          else{
+           alert("Erro ao cadastrar");
+          };
 
       setName("");
       setEmail("");
