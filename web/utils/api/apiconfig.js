@@ -1,4 +1,4 @@
-const API_PORT = 3500;
+const API_PORT = 3000;
 const URL = "http://localhost";
 
 // Exporta a URL completa da API
