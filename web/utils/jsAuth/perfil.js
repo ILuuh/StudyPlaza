@@ -1,3 +1,6 @@
+// perfil.js — integração real com API
+import { URL_API } from "../api/apiconfig.js";
+
 /*
   perfil.js
   - Gerencia a navegação do perfil.
@@ -133,7 +136,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     try {
       const response = await fetch(
-        `http://localhost:3500/api/usuarios/${currentUserId}`,
+        `${URL_API}/users/${currentUserId}`,
         {
           method: "PUT",
 
@@ -142,8 +145,8 @@ document.addEventListener("DOMContentLoaded", () => {
           },
 
           body: JSON.stringify({
-            nome,
-            email,
+            name,
+            login,
             tipo_usuario,
           }),
         },
@@ -193,8 +196,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
         currentUser = {
           ...currentUser,
-          nome,
-          email,
+          name,
+          login,
           tipo_usuario,
         };
       }
@@ -251,7 +254,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     if (!stored || !stored.id) {
-      window.location.href = "/cadastro.html";
+      window.location.href = "../web/cadastro.html";
 
       return;
     }
@@ -262,7 +265,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     try {
       const response = await fetch(
-        `http://localhost:3500/api/usuarios/${userId}`,
+        `${URL_API}/users/${userId}`,
       );
 
       if (!response.ok) {
@@ -271,14 +274,16 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
       }
 
-      const rows = await response.json();
+      const responseData = await response.json();
+      const rows = responseData.data[0];
+      console.log(rows);
 
       const user = Array.isArray(rows) ? rows[0] : rows;
 
       if (!user) {
         alert("Usuário não encontrado no banco.");
 
-        window.location.href = "/cadastro.html";
+        window.location.href = "../web/cadastro.html";
 
         return;
       }
@@ -309,7 +314,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const nameEl = document.querySelector(".perfil-info-basica h1");
 
     if (nameEl) {
-      nameEl.textContent = user.nome || "Usuário";
+      nameEl.textContent = user.name || "Usuário";
     }
 
     // -----------------------------------------------------
@@ -319,7 +324,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const usernameEl = document.querySelector(".perfil-username");
 
     if (usernameEl) {
-      if (user.nome) {
+      if (user.name) {
         const nick =
           "@" +
           user.nome
@@ -348,7 +353,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     if (emailField) {
-      emailField.textContent = user.email || "";
+      emailField.textContent = user.login || "";
     }
 
     if (tipoField) {
@@ -362,11 +367,11 @@ document.addEventListener("DOMContentLoaded", () => {
     // -----------------------------------------------------
 
     if (inputNome) {
-      inputNome.value = user.nome || "";
+      inputNome.value = user.name || "";
     }
 
     if (inputEmail) {
-      inputEmail.value = user.email || "";
+      inputEmail.value = user.login || "";
     }
 
     if (inputTipoUsuario) {
