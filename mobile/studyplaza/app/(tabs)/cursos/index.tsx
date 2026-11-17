@@ -18,13 +18,13 @@ import { createStyles } from '@/styles/tabs/cursos';
 
 export interface Curso {
   id: number;
-  titulo: string;
-  descricao: string;
-  plataforma: string;
-  modalidade: string;
-  duracao_semestres: string | number;
+  title: string;
+  description: string;
+  platform: string;
+  category: string;
+  duration: string | number;
   inscrito?: boolean;
-  id_inscricao?: number | null; // Guardará o ID do registro em 'inscricoes'
+  id_inscricao?: number | null; // Guardará o 'id' da tabela 'inscricoes'
 }
 
 export default function Cursos() {
@@ -38,37 +38,59 @@ export default function Cursos() {
 
   const [submittingId, setSubmittingId] = useState<number | null>(null);
 
-  // BUSCA CURSOS E MAPEA AS INSCRIÇÕES EXISTENTES
+  // Extrai o array de dentro de { message: "Success", data: [...] }
+  const extrairArray = (dados: any): any[] => {
+    if (Array.isArray(dados)) return dados;
+    if (Array.isArray(dados?.data)) return dados.data;
+    return [];
+  };
+
+  // BUSCA CURSOS E MAPEIA AS INSCRIÇÕES EXISTENTES DO USUÁRIO
   const fetchCourses = async () => {
     try {
       setLoading(true);
       setError(null);
 
-      // Busca todos os cursos disponíveis
-      const responseCursos = await api.get<Curso[]>('/cursos');
-      let listaCursos = responseCursos.data;
+      // 1. Busca todos os cursos disponíveis
+      const responseCursos = await api.get('/cursos');
+      const listaBruta = extrairArray(responseCursos.data);
 
-      // Se o usuário estiver logado, busca os cursos inscritos
+      let listaCursos: Curso[] = listaBruta.map((item: any) => ({
+        id: item.id,
+        title: item.title ?? 'Curso sem título',
+        description: item.description ?? 'Sem descrição disponível.',
+        platform: item.platform ?? 'Study Plaza',
+        category: item.category ?? 'Online',
+        duration: item.duration ?? '-',
+        inscrito: false,
+        id_inscricao: null,
+      }));
+
+      // 2. Se o usuário estiver logado, busca suas inscrições na rota real do backend
       if (user?.id) {
         try {
-          const responseMeusCursos = await api.get(`/meusCursos/${user.id}`);
-          const meusCursos = responseMeusCursos.data;
+          const responseMeusCursos = await api.get(`/inscricoes/inscricaouser/${user.id}`);
+          const inscricoesUsuario = extrairArray(responseMeusCursos.data);
 
+          // Na query GetByInscricoesDoUser:
+          // 'item.idcurso' = ID do curso | 'item.id' = ID do registro na tabela 'inscricoes'
           const mapaInscricoes = new Map<number, number>();
-          meusCursos.forEach((c: any) => {
-            mapaInscricoes.set(c.id, c.id_inscricao || c.inscricao_id || c.id);
+          inscricoesUsuario.forEach((insc: any) => {
+            if (insc.idcurso) {
+              mapaInscricoes.set(Number(insc.idcurso), Number(insc.id));
+            }
           });
 
           listaCursos = listaCursos.map((curso) => {
-            const temInscricao = mapaInscricoes.has(curso.id);
+            const temInscricao = mapaInscricoes.has(Number(curso.id));
             return {
               ...curso,
               inscrito: temInscricao,
-              id_inscricao: temInscricao ? mapaInscricoes.get(curso.id) : null,
+              id_inscricao: temInscricao ? mapaInscricoes.get(Number(curso.id)) : null,
             };
           });
         } catch (errInscricoes) {
-          console.log('Erro ao buscar cursos do usuário:', errInscricoes);
+          console.log('Erro ao buscar inscrições do usuário:', errInscricoes);
         }
       }
 
@@ -85,39 +107,45 @@ export default function Cursos() {
     fetchCourses();
   }, [user]);
 
-  // FUNÇÃO DE INSCRIÇÃO NO CURSO
-  const handleEnrollCourse = async (id_curso: number) => {
+  // FUNÇÃO DE INSCRIÇÃO NO CURSO (POST /inscricoes)
+  const handleEnrollCourse = async (idcurso: number) => {
     try {
-      const id_usuario = user?.id;
+      const iduser = user?.id;
 
-      if (!id_usuario) {
+      if (!iduser) {
         Alert.alert('Atenção', 'Você precisa estar logado para se inscrever.');
         return;
       }
 
-      setSubmittingId(id_curso);
+      setSubmittingId(idcurso);
 
+      // Envia exatamente os nomes das colunas da tabela 'inscricoes' (iduser, idcurso)
       const response = await api.post('/inscricoes', {
-        id_usuario,
-        id_curso,
+        iduser,
+        idcurso,
       });
 
-      if (response.data.sucesso) {
+      if (
+        response.data?.message?.toLowerCase() === 'success' ||
+        response.data?.sucesso ||
+        response.status === 201 ||
+        response.status === 200
+      ) {
         Alert.alert('Sucesso!', 'Inscrição realizada com sucesso.');
-        fetchCourses();
+        fetchCourses(); // Recarrega para atualizar o botão e pegar o ID da inscrição
       } else {
-        Alert.alert('Erro', response.data.mensagem || 'Erro ao se inscrever.');
+        Alert.alert('Erro', response.data?.Error || response.data?.mensagem || 'Erro ao se inscrever.');
       }
     } catch (err: any) {
       console.error('Erro ao realizar inscrição:', err);
-      const msg = err.response?.data?.mensagem || 'Falha ao conectar com o servidor.';
+      const msg = err.response?.data?.Error || err.response?.data?.mensagem || 'Falha ao conectar com o servidor.';
       Alert.alert('Erro', msg);
     } finally {
       setSubmittingId(null);
     }
   };
 
-  // FUNÇÃO PARA SAIR DO CURSO (CANCELAR INSCRIÇÃO)
+  // FUNÇÃO PARA SAIR DO CURSO (DELETE /inscricoes/:id)
   const handleUnenrollCourse = (curso: Curso) => {
     if (!curso.id_inscricao) {
       fetchCourses();
@@ -126,7 +154,7 @@ export default function Cursos() {
 
     Alert.alert(
       'Sair do Curso',
-      `Deseja realmente cancelar sua inscrição em "${curso.titulo}"?`,
+      `Deseja realmente cancelar sua inscrição em "${curso.title}"?`,
       [
         { text: 'Cancelar', style: 'cancel' },
         {
@@ -138,8 +166,12 @@ export default function Cursos() {
 
               const response = await api.delete(`/inscricoes/${curso.id_inscricao}`);
 
-              if (response.data.sucesso) {
-                Alert.alert('Sucesso', `Você saiu do curso "${curso.titulo}".`);
+              if (
+                response.data?.message?.toLowerCase() === 'success' ||
+                response.data?.sucesso ||
+                response.status === 200
+              ) {
+                Alert.alert('Sucesso', `Você saiu do curso "${curso.title}".`);
 
                 setCursos((prev) =>
                   prev.map((c) =>
@@ -153,7 +185,7 @@ export default function Cursos() {
               }
             } catch (err: any) {
               console.error('Erro ao cancelar inscrição:', err);
-              const msg = err.response?.data?.mensagem || 'Erro ao sair do curso.';
+              const msg = err.response?.data?.Error || err.response?.data?.mensagem || 'Erro ao sair do curso.';
               Alert.alert('Erro', msg);
             } finally {
               setSubmittingId(null);
@@ -165,13 +197,18 @@ export default function Cursos() {
   };
 
   // LÓGICA DE SEPARAÇÃO DOS CURSOS
-  const meusCursos = cursos.filter((curso) => curso.inscrito);
-  const cursosDisponiveis = cursos.filter((curso) => !curso.inscrito);
+  const listaSegura = Array.isArray(cursos) ? cursos : [];
+  const meusCursos = listaSegura.filter((curso) => curso.inscrito);
+  const cursosDisponiveis = listaSegura.filter((curso) => !curso.inscrito);
 
   // RENDERIZADOR DOS CARDS DE CURSO
   const renderCursoCard = (item: Curso) => {
     const isSubmitting = submittingId === item.id;
     const isInscrito = item.inscrito;
+
+    const plataformaFormatada = item.platform
+      ? item.platform.replace(/^https?:\/\//, '').replace(/\/$/, '').toUpperCase()
+      : 'PLATAFORMA';
 
     return (
       <View
@@ -190,7 +227,7 @@ export default function Cursos() {
         <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
           <Text
             style={{
-              fontSize: 12,
+              fontSize: 11,
               fontWeight: 'bold',
               color: theme?.roxoPrincipal || '#7A58B8',
               backgroundColor: '#F3E8FF',
@@ -199,7 +236,7 @@ export default function Cursos() {
               borderRadius: 6,
             }}
           >
-            {item.plataforma ? item.plataforma.toUpperCase() : 'PLATAFORMA'}
+            {plataformaFormatada}
           </Text>
         </View>
 
@@ -212,7 +249,7 @@ export default function Cursos() {
             marginBottom: 6,
           }}
         >
-          {item.titulo}
+          {item.title}
         </Text>
 
         {/* Descrição */}
@@ -224,7 +261,7 @@ export default function Cursos() {
           }}
           numberOfLines={3}
         >
-          {item.descricao}
+          {item.description}
         </Text>
 
         {/* Rodapé: Modalidade e Duração */}
@@ -242,14 +279,14 @@ export default function Cursos() {
           <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6 }}>
             <FontAwesome6 name="graduation-cap" size={14} color={theme?.corFonteSecundaria || '#6B7280'} />
             <Text style={{ fontSize: 12, color: theme?.corFonteSecundaria || '#6B7280' }}>
-              {item.modalidade}
+              {item.category}
             </Text>
           </View>
 
           <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6 }}>
             <FontAwesome6 name="clock" size={14} color={theme?.corFonteSecundaria || '#6B7280'} />
             <Text style={{ fontSize: 12, color: theme?.corFonteSecundaria || '#6B7280' }}>
-              {item.duracao_semestres} Semestres
+              {item.duration}
             </Text>
           </View>
         </View>
