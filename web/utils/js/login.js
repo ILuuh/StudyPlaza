@@ -215,7 +215,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const email = emailInput.value.trim();
     const password = passwordInput.value;
     const url = `${URL_API}/auth/login`;
-
+    console.log( url ) ;
     try {
       const response = await fetch(`${url}`, {
         method: "POST",

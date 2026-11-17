@@ -1,23 +1,25 @@
 services:
   # back em nodejs
   back:
-    build: ./backend
-    container_name: sutdyplaza_back
+    build: ./back
+    container_name: studyplaza_back
     #restart: always
     restart: unless-stopped
 
     environment:
       - API_PORT=3000
+      - DB_TYPE=mysql
       - DB_HOST=dbmaria
       - DB_USER=root
       - DB_PASSWORD=teste@123
       - DB_PORT=3306
       - DB_DATABASE=studyplaza
       - DB_RESET=false
-      - JWT_SECRET=senhasupersecreta
+      - DB_SEED=false
+      - JWT_SECRET=senhasupersecreta134665649*dasa9a4sd9
 
     ports:
-      - "4001:3000"  # Acesse o sistema via http://IP_DO_SERVIDOR:8080
+      - "13025:3000"  # API disponível em http://IP_DO_SERVIDOR:3600
     volumes:
       - ./uploads:/app/uploads  # Mapeia a raiz inteira (bancosangue/) permitindo edição em tempo real
       - /app/node_modules
@@ -28,18 +30,17 @@ services:
   # Servidor Web + API/Front PHP
   web:
     build: ./web
-    container_name: sutdyplaza_web
+    container_name: studyplaza_web
     #restart: always
     restart: unless-stopped
     ports:
-      - "8082:80"  # Acesse o sistema via http://IP_DO_SERVIDOR:8080
+      - "15025:80"  # Acesse o sistema via http://IP_DO_SERVIDOR:8080
     volumes:
-      - ./web:/var/www/html  # Mapeia a raiz inteira (bancosangue/) permitindo edição em tempo real
+      - ./web:/usr/share/nginx/html  # Mapeia a raiz inteira (bancosangue/) permitindo edição em tempo real
     #depends_on:
     #  - dbmaria
     networks:
       - fatectqnet
-
 
 networks:
   fatectqnet:
