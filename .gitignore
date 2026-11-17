@@ -475,3 +475,9 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
+
+
+expo-env.d.ts
+.expo/
+
+docker-compose.yml
