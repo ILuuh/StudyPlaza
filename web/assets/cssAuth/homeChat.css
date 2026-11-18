@@ -404,27 +404,59 @@ body {
    BOTÃO VOLTAR
    ========================================================= */
 
+/* =========================================================
+   BOTÃO VOLTAR
+========================================================= */
+
 .back-button {
   display: inline-flex;
   align-items: center;
-  gap: 7px;
+  justify-content: center;
+  gap: 8px;
 
   margin-top: 22px;
+  padding: 10px 18px;
+
+  background: transparent;
+  border: 1px solid var(--cor-borda);
+  border-radius: 10px;
 
   color: var(--cor-fonte-secundaria);
   text-decoration: none;
 
+  font-family: var(--font-family);
   font-size: 13px;
-  font-weight: 300;
+  font-weight: 600;
 
-  transition:
-    color 0.2s ease,
-    transform 0.2s ease;
+  cursor: pointer;
+
+  transition: all 0.3s ease;
+}
+
+.back-button i {
+  font-size: 13px;
+  transition: transform 0.3s ease;
 }
 
 .back-button:hover {
-  color: var(--roxo-principal);
-  transform: translateX(-2px);
+  background: var(--roxo-principal);
+  border-color: var(--roxo-principal);
+  color: #ffffff;
+
+  transform: translateX(-3px);
+}
+
+.back-button:hover i {
+  transform: translateX(-3px);
+}
+
+.back-button:focus-visible {
+  outline: 3px solid var(--cor-foco);
+  outline-offset: 3px;
+}
+
+.back-button:active {
+  transform: scale(0.97);
 }
 
 /* =========================================================

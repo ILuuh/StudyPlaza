@@ -25,9 +25,9 @@ POST  {{url}}
 Content-Type: application/json; charset=utf-8
 
 {
-    "iduser": 2,
-    "name": "Gestão da Produção Industrial",
-    "description": "grupo gpi"      
+    "iduser": 1,
+    "name": "Grupo Chat Geral",
+    "description": "grupo chat"      
 }
 
 ###

@@ -2,29 +2,35 @@
 <html lang="pt-BR" data-bs-theme="light">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Plataforma de aprendizado colaborativo com IA, quizzes e grupos de estudo." />
-  <meta name="keywords" content="estudo, educação, grupos de estudo, quizzes, IA, aprendizagem colaborativa" />
-  <meta name="author" content="Study Plaza" />
-  <title>Study Plaza - Plataforma de Aprendizado Colaborativo</title>
-  <link rel="icon" href="../img/Logo_Fundo_Roxa.png" type="image/svg+xml" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
-    integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta name="description" content="Converse e compartilhe conhecimentos no Study Chat.">
+  <meta name="keywords" content="Study Plaza, chat, estudo, grupos de estudo">
+  <meta name="author" content="Study Plaza">
+
+  <title>Study Plaza - Study Chat</title>
+
+  <link rel="icon" href="../assets/img/Logo_Fundo_Roxa.png" type="image/png">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
-  <script src="../utils/jsAuth/carregarCSS.js"></script>
+
+  <script src="../utils/jsAuth/carregarCSS.js" defer></script>
+  <script src="../utils/js/alterarTemas.js" defer></script>
 </head>
 
 <body data-css="chat">
+
   <section id="navbar"></section>
+
   <main>
     <section id="vLibras"></section>
 
-    <!-- Chat Container -->
     <section class="chat-layout">
 
-      <!-- Sidebar -->
+      <!-- SIDEBAR -->
       <aside class="chat-sidebar">
 
         <div class="sidebar-header">
@@ -35,21 +41,21 @@
         </div>
 
         <div class="sidebar-info">
-          <p>Grupo Atual</p>
-          <h3>Grupo de Estudos</h3>
+          <p>Grupo atual</p>
+          <h3>Grupo Geral</h3>
         </div>
 
         <div class="online-users">
 
           <h4>
-            <i class="fa-solid fa-user-group"></i>
-            Online
+            <i class="fa-solid fa-user"></i>
+            Sua conta
           </h4>
 
-          <ul id="user-list">
+          <ul>
             <li>
               <i class="fa-solid fa-circle"></i>
-              Você
+              <span id="current-user-name">Carregando...</span>
             </li>
           </ul>
 
@@ -57,36 +63,48 @@
 
       </aside>
 
-      <!-- Chat -->
+      <!-- CHAT PRINCIPAL -->
       <section class="chat-main">
 
-        <div class="chat-header">
+        <header class="chat-header">
+
           <div>
             <h2># chat-geral</h2>
-            <p>Converse com os participantes do grupo.</p>
+            <p>Converse com a comunidade Study Plaza.</p>
           </div>
 
-          <div class="chat-status">
-            <i class="fa-solid fa-wifi"></i>
-            Conectado
+          <div class="chat-status" id="chat-status">
+            <i class="fa-solid fa-circle-notch fa-spin"></i>
+            <span id="chat-status-text">Conectando...</span>
           </div>
-          <a href="#" onclick="history.back(); return false;" class="chat-button">
+
+          <button type="button" id="leave-chat" class="chat-button">
             Sair
-          </a>
-        </div>
+          </button>
 
-        <ul class="chat-messages" id="chat-messages">
-          <!-- mensagens -->
+        </header>
+
+        <!-- MENSAGENS -->
+        <ul class="chat-messages" id="chat-messages" aria-live="polite" aria-label="Mensagens do grupo geral">
+
+          <li id="chat-loading" class="chat-placeholder">
+            Carregando mensagens...
+          </li>
+
         </ul>
 
+        <!-- ENVIO -->
         <form class="chat-input-area" id="chat-form">
 
           <div class="input-wrapper">
 
-            <input type="text" id="chat-input" placeholder="Digite sua mensagem..." autocomplete="off" required>
+            <input type="text" id="chat-input" placeholder="Digite sua mensagem..." autocomplete="off" maxlength="500"
+              required disabled>
 
-            <button type="submit">
+            <button type="submit" id="send-button" aria-label="Enviar mensagem" disabled>
+
               <i class="fa-solid fa-paper-plane"></i>
+
             </button>
 
           </div>
@@ -96,122 +114,38 @@
       </section>
 
     </section>
-
   </main>
 
   <div class="gtranslate_wrapper"></div>
-  <footer class="footer" id="footer"> </footer>
 
-  <script>window.gtranslateSettings = { "default_language": "pt", "native_language_names": true, "detect_browser_language": true, "languages": ["pt", "en", "es"], "wrapper_selector": ".gtranslate_wrapper", "switcher_horizontal_position": "inline", "float_switcher_open_direction": "bottom", "alt_flags": { "en": "usa", "pt": "brazil" } }</script>
-  <script src="https://cdn.gtranslate.net/widgets/latest/float.js" defer></script>
-  <script type="module" src="../utils/jsAuth/carregarComponents.js"></script>
-  <script type="module" src="../utils/jsAuth/chat.js"></script>
-  <script src="../utils/js/alterarTemas.js"></script>
+  <footer class="footer" id="footer"></footer>
 
-  <!-- Socket.IO client (for tempo real) -->
-  <script src="/socket.io/socket.io.js"></script>
-
-  <!--
-      Script inline: lógica do chat via Socket.IO
-      - Conecta ao servidor socket (io()).
-      - Envia mensagens do formulário para o servidor (evento 'chat message').
-      - Recebe mensagens do servidor e as adiciona à lista de mensagens.
-      - Marca mensagens locais com classe 'my-message' para estilização diferenciada.
-      - Mantém o scroll sempre no final ao receber mensagens.
-    -->
   <script>
-    // Cria conexão com o servidor Socket.IO (endereço relativo - assume mesmo host)
-    // Resgata o nome do usuário que você salvou no login. 
-    // Se não achar nada (usuário burlou o login), define como "Visitante".
-    const usuariodados = JSON.parse(localStorage.getItem('studyplaza-user'))
-
-    const myUsername = usuariodados.name || 'Visitante_' + Math.floor(Math.random() * 1000);
-    const myUserId = usuariodados.id || null;
-
-    const idGrupoAtual = 1;
-
-    console.log(myUsername)
-
-    const socket = io();
-
-    const form = document.getElementById('chat-form');
-    const input = document.getElementById('chat-input');
-    const chatMessages = document.getElementById('chat-messages');
-
-    let myId = null;
-
-    socket.on('connect', () => {
-      myId = socket.id;
-      console.log('Conectado com ID:', myId);
-
-      // Assim que conectar, envia o nome do usuário para o servidor registrar
-      socket.emit('join', {
-        name: myUsername,
-        iduser: myUserId,
-        idgrupo: idGrupoAtual
-      });
-    });
-
-    socket.on('chat history', function (mensagensAntigas) {
-      chatMessages.innerHTML = ''; // Limpa a tela antes de carregar o histórico
-
-      mensagensAntigas.forEach(function (data) {
-        const messageElement = document.createElement('li');
-
-        // AGORA SIM: Se o banco retornar o nome, ele usa o nome. 
-        // Se por algum motivo falhar, ele ainda tem o fallback de segurança.
-        const autor = data.name || `Usuário ${data.iduser}`;
-
-        messageElement.innerHTML = `<strong>${autor}:</strong> ${data.mensagem}`;
-
-        // Define se a mensagem antiga era nossa ou de outro (baseado no ID)
-        if (String(data.id_usuario) === String(myUserId)) {
-          messageElement.classList.add('my-message');
-        } else {
-          messageElement.classList.add('other-message');
-        }
-
-        chatMessages.appendChild(messageElement);
-      });
-
-      // Joga o scroll para o final das mensagens
-      chatMessages.scrollTop = chatMessages.scrollHeight;
-    });
-
-
-    form.addEventListener('submit', function (e) {
-      e.preventDefault();
-      const text = input.value && input.value.trim();
-
-      if (text) {
-        socket.emit('chat message', text);
-        input.value = '';
-        input.focus();
+    window.gtranslateSettings = {
+      "default_language": "pt",
+      "native_language_names": true,
+      "detect_browser_language": true,
+      "languages": ["pt", "en", "es"],
+      "wrapper_selector": ".gtranslate_wrapper",
+      "switcher_horizontal_position": "inline",
+      "float_switcher_open_direction": "bottom",
+      "alt_flags": {
+        "en": "usa",
+        "pt": "brazil"
       }
-    });
-
-    socket.on('chat message', function (data) {
-      const messageElement = document.createElement('li');
-
-      // Adiciona o nome do usuário antes da mensagem (em negrito)
-      messageElement.innerHTML = `<strong>${data.name}:</strong> ${data.msg}`;
-
-      if (data.id === myId) {
-        messageElement.classList.add('my-message');
-      } else {
-        messageElement.classList.add('other-message');
-      }
-
-      chatMessages.appendChild(messageElement);
-      chatMessages.scrollTop = chatMessages.scrollHeight;
-    });
-
-
-    // Observação:
-    // - Em produção é recomendável escapar / sanitizar o conteúdo das mensagens
-    //   para evitar XSS se o servidor repassar HTML.
-    // - Também é comum exibir autor e timestamp; adaptar data enviada pelo servidor conforme necessário.
+    };
   </script>
+
+  <script src="https://cdn.gtranslate.net/widgets/latest/float.js" defer></script>
+
+  <!-- Componentes do Study Plaza -->
+  <script type="module" src="../utils/jsAuth/carregarComponents.js"></script>
+
+  <!-- Cliente Socket.IO -->
+  <script src="https://cdn.socket.io/4.8.1/socket.io.min.js"></script>
+
+  <!-- Lógica do chat -->
+  <script type="module" src="../utils/jsAuth/chat.js"></script>
 
 </body>
 

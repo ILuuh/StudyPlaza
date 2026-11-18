@@ -5,7 +5,10 @@ import path from "path";
 import { fileURLToPath } from "url";
 import uploads from "./middlewares/upload.js";
 import swRoutes from "./view/routes.js";
-import cors from "cors"
+import cors from "cors";
+import { createServer } from "http";
+import { Server } from "socket.io";
+import { configureSocket } from "./configChat/socket.js";
 
 dotenv.config();
 
@@ -29,7 +32,7 @@ app.use(cors());
 //   origin: 'http://localhost:5500', // URL padrão do seu frontend Vite
 //   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
 //   credentials: true, // Permite o envio de cookies/headers de autenticação se necessário
-//   optionsSuccessStatus: 200 
+//   optionsSuccessStatus: 200
 // };
 
 // app.use(cors(corsOptions));
@@ -40,10 +43,12 @@ app.use(cors());
 
 app.use(express.json({ limit: "100mb" }));
 
-app.use(express.urlencoded({
+app.use(
+  express.urlencoded({
     limit: "100mb",
-    extended: true
-}));
+    extended: true,
+  }),
+);
 
 // ========================================
 // ROTAS
@@ -56,10 +61,10 @@ app.use(swRoutes);
 // ========================================
 
 app.get("/test", (req, res) => {
-    res.status(200).json({
-        message: "servidor rodando",
-        port: Port
-    });
+  res.status(200).json({
+    message: "servidor rodando",
+    port: Port,
+  });
 });
 
 // ========================================
@@ -67,23 +72,17 @@ app.get("/test", (req, res) => {
 // ========================================
 
 const getLocalIp = () => {
+  const interfaces = os.networkInterfaces();
 
-    const interfaces = os.networkInterfaces();
-
-    for (const name of Object.keys(interfaces)) {
-
-        for (const iface of interfaces[name] || []) {
-
-            if (
-                iface.family === "IPv4" &&
-                !iface.internal
-            ) {
-                return iface.address;
-            }
-        }
+  for (const name of Object.keys(interfaces)) {
+    for (const iface of interfaces[name] || []) {
+      if (iface.family === "IPv4" && !iface.internal) {
+        return iface.address;
+      }
     }
+  }
 
-    return "localhost";
+  return "localhost";
 };
 
 // ========================================
@@ -91,64 +90,56 @@ const getLocalIp = () => {
 // ========================================
 
 app.get("/ip-servidor", (req, res) => {
+  const serverIp = getLocalIp();
 
-    const serverIp = getLocalIp();
-
-    res.json({
-        ipServidor: serverIp,
-        porta: Port
-    });
+  res.json({
+    ipServidor: serverIp,
+    porta: Port,
+  });
 });
 
 // ========================================
 // ARQUIVOS UPLOAD
 // ========================================
 
-app.use(
-    "/uploads",
-    express.static(
-        path.resolve(__dirname, "..", "uploads")
-    )
-);
+app.use("/uploads", express.static(path.resolve(__dirname, "..", "uploads")));
 
 // ========================================
 // UPLOAD
 // ========================================
 
-app.post(
-    "/upload",
-    uploads.single("avatar"),
-    (req, res) => {
+app.post("/upload", uploads.single("avatar"), (req, res) => {
+  if (!req.file) {
+    return res.status(400).json({
+      message: "Erro ao fazer upload do arquivo!",
+    });
+  }
 
-        if (!req.file) {
-            return res.status(400).json({
-                message: "Erro ao fazer upload do arquivo!"
-            });
-        }
-
-        return res.status(200).json({
-            message: "Arquivo enviado com sucesso!"
-        });
-    }
-);
+  return res.status(200).json({
+    message: "Arquivo enviado com sucesso!",
+  });
+});
 
 // ========================================
 // SERVIDOR
 // ========================================
 
-app.listen(Port, () => {
+const httpServer = createServer(app);
 
-    const ipServidor = getLocalIp();
+const io = new Server(httpServer, {
+  cors: {
+    origin: "*",
+    methods: ["GET", "POST"],
+  },
+});
 
-    console.log(
-        `Servidor ouvindo em: http://${ipServidor}:${Port}`
-    );
+configureSocket(io);
 
-    console.log(
-        `Acesse também em: http://localhost:${Port}`
-    );
+httpServer.listen(Port, () => {
+  const ipServidor = getLocalIp();
 
-    console.log(
-        "CTRL+C para encerrar o servidor"
-    );
+  console.log(`Servidor ouvindo em: http://${ipServidor}:${Port}`);
+  console.log(`Acesse também em: http://localhost:${Port}`);
+  console.log("Socket.IO conectado.");
+  console.log("CTRL+C para encerrar o servidor");
 });
