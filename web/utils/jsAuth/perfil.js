@@ -1,64 +1,20 @@
-// perfil.js — integração real com API
 import { URL_API } from "../api/apiconfig.js";
 
-/*
-  perfil.js
-  - Gerencia a navegação do perfil.
-  - Carrega os dados do usuário.
-  - Permite editar nome, e-mail e tipo de usuário.
-  - Salva as alterações no backend.
-*/
-
 document.addEventListener("DOMContentLoaded", () => {
-  const navItems = document.querySelectorAll(".perfil-nav-item");
-  const sections = document.querySelectorAll(".perfil-section");
-
   let currentUserId = null;
   let currentUser = null;
 
-  // =========================================================
-  // NAVEGAÇÃO
-  // =========================================================
+  // =====================================================
+  // ELEMENTOS
+  // =====================================================
 
-  function changeSection(event) {
-    // O botão Editar não é uma seção
-    if (this.id === "btnEditar") {
-      return;
-    }
-
-    event.preventDefault();
-
-    const targetId = this.getAttribute("href").substring(1);
-
-    navItems.forEach((item) => {
-      item.classList.remove("active");
-    });
-
-    this.classList.add("active");
-
-    sections.forEach((section) => {
-      section.classList.remove("active-section");
-    });
-
-    const targetSection = document.getElementById(targetId);
-
-    if (targetSection) {
-      targetSection.classList.add("active-section");
-    }
-  }
-
-  navItems.forEach((item) => {
-    if (item.tagName.toLowerCase() === "a") {
-      item.addEventListener("click", changeSection);
-    }
-  });
-
-  // =========================================================
-  // ELEMENTOS DO FORMULÁRIO
-  // =========================================================
+  const navItems = document.querySelectorAll(".perfil-nav-item");
+  const sections = document.querySelectorAll(".perfil-section");
 
   const btnEditar = document.getElementById("btnEditar");
   const btnCancelar = document.getElementById("btnCancelar");
+  const btnSalvar = document.getElementById("btnSalvar");
+
   const configView = document.getElementById("configView");
   const configForm = document.getElementById("configForm");
 
@@ -66,17 +22,41 @@ document.addEventListener("DOMContentLoaded", () => {
   const inputEmail = document.getElementById("inputEmail");
   const inputTipoUsuario = document.getElementById("inputTipoUsuario");
 
-  // =========================================================
-  // ABRIR MODO DE EDIÇÃO
-  // =========================================================
+  // =====================================================
+  // NAVEGAÇÃO
+  // =====================================================
+
+  navItems.forEach((item) => {
+    if (item.tagName.toLowerCase() !== "a") return;
+
+    item.addEventListener("click", (event) => {
+      event.preventDefault();
+
+      const targetId = item.getAttribute("href")?.substring(1);
+
+      if (!targetId) return;
+
+      const targetSection = document.getElementById(targetId);
+
+      if (!targetSection) return;
+
+      navItems.forEach((nav) => nav.classList.remove("active"));
+      sections.forEach((section) => section.classList.remove("active-section"));
+
+      item.classList.add("active");
+      targetSection.classList.add("active-section");
+    });
+  });
+
+  // =====================================================
+  // ABRIR E CANCELAR EDIÇÃO
+  // =====================================================
 
   function abrirEdicao() {
-    if (!currentUser) {
-      return;
-    }
+    if (!currentUser) return;
 
-    inputNome.value = currentUser.nome || "";
-    inputEmail.value = currentUser.email || "";
+    inputNome.value = currentUser.name || "";
+    inputEmail.value = currentUser.login || "";
     inputTipoUsuario.value = currentUser.tipo_usuario || "estudante";
 
     configView.style.display = "none";
@@ -85,33 +65,34 @@ document.addEventListener("DOMContentLoaded", () => {
     inputNome.focus();
   }
 
-  // =========================================================
-  // CANCELAR EDIÇÃO
-  // =========================================================
-
   function cancelarEdicao() {
     configForm.reset();
 
     configForm.style.display = "none";
     configView.style.display = "block";
+
+    if (currentUser) {
+      inputNome.value = currentUser.name || "";
+      inputEmail.value = currentUser.login || "";
+      inputTipoUsuario.value = currentUser.tipo_usuario || "estudante";
+    }
   }
 
-  // =========================================================
+  // =====================================================
   // SALVAR ALTERAÇÕES
-  // =========================================================
+  // =====================================================
 
   async function salvarAlteracoes(event) {
     event.preventDefault();
 
     if (!currentUserId) {
+      alert("Usuário não identificado.");
       return;
     }
 
     const nome = inputNome.value.trim();
     const email = inputEmail.value.trim();
     const tipo_usuario = inputTipoUsuario.value;
-
-    // Validações básicas
 
     if (!nome) {
       alert("Digite seu nome.");
@@ -125,9 +106,12 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
-    const btnSalvar = document.getElementById("btnSalvar");
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      alert("Digite um e-mail válido.");
+      inputEmail.focus();
+      return;
+    }
 
-    // Evita múltiplos cliques
     btnSalvar.disabled = true;
     btnSalvar.innerHTML = `
             <i class="fa-solid fa-spinner fa-spin"></i>
@@ -135,77 +119,44 @@ document.addEventListener("DOMContentLoaded", () => {
         `;
 
     try {
-      const response = await fetch(
-        `${URL_API}/users/${currentUserId}`,
-        {
-          method: "PUT",
-
-          headers: {
-            "Content-Type": "application/json",
-          },
-
-          body: JSON.stringify({
-            name,
-            login,
-            tipo_usuario,
-          }),
+      const response = await fetch(`${URL_API}/users/${currentUserId}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
         },
-      );
+        body: JSON.stringify({
+          name: nome,
+          login: email,
+          tipo_usuario: tipo_usuario,
+        }),
+      });
 
-      if (!response.ok) {
-        let mensagem = "Não foi possível atualizar o usuário.";
+      const responseData = await response.json();
 
-        try {
-          const erro = await response.json();
-
-          if (erro.message) {
-            mensagem = erro.message;
-          }
-        } catch (e) {
-          // Resposta não era JSON
-        }
-
-        throw new Error(mensagem);
+      if (!response.ok || responseData.message?.toLowerCase() !== "success") {
+        throw new Error(
+          responseData.Error ||
+            responseData.message ||
+            "Não foi possível atualizar o usuário.",
+        );
       }
 
-      // Tenta pegar o usuário atualizado retornado pelo backend
-      let usuarioAtualizado = null;
+      // Atualiza os dados localmente.
+      // O Model atual retorna o resultado SQL,
+      // e não o usuário atualizado.
 
-      try {
-        usuarioAtualizado = await response.json();
-      } catch (e) {
-        // Backend pode não retornar JSON
-      }
+      currentUser = {
+        ...currentUser,
+        id: currentUserId,
+        name: nome,
+        login: email,
+        tipo_usuario: tipo_usuario,
+      };
 
-      /*
-       * Caso a API retorne:
-       *
-       * {
-       *    id: 1,
-       *    nome: "...",
-       *    email: "...",
-       *    tipo_usuario: "..."
-       * }
-       */
-
-      if (usuarioAtualizado && usuarioAtualizado.nome) {
-        currentUser = usuarioAtualizado;
-      } else {
-        // Caso o backend não retorne o usuário,
-        // usamos os valores que acabamos de enviar.
-
-        currentUser = {
-          ...currentUser,
-          name,
-          login,
-          tipo_usuario,
-        };
-      }
-
-      // Atualiza a tela
+      // Atualiza o perfil na tela.
       populateProfile(currentUser);
 
-      // Volta para o modo visualização
+      // Fecha o formulário.
       configForm.style.display = "none";
       configView.style.display = "block";
 
@@ -213,7 +164,7 @@ document.addEventListener("DOMContentLoaded", () => {
     } catch (error) {
       console.error("Erro ao atualizar usuário:", error);
 
-      alert(error.message || "Ocorreu um erro ao atualizar seus dados.");
+      alert(error.message || "Erro ao atualizar seus dados.");
     } finally {
       btnSalvar.disabled = false;
 
@@ -224,132 +175,100 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  // =========================================================
+  // =====================================================
   // EVENTOS
-  // =========================================================
+  // =====================================================
 
-  if (btnEditar) {
-    btnEditar.addEventListener("click", abrirEdicao);
-  }
+  btnEditar?.addEventListener("click", abrirEdicao);
+  btnCancelar?.addEventListener("click", cancelarEdicao);
+  configForm?.addEventListener("submit", salvarAlteracoes);
 
-  if (btnCancelar) {
-    btnCancelar.addEventListener("click", cancelarEdicao);
-  }
-
-  if (configForm) {
-    configForm.addEventListener("submit", salvarAlteracoes);
-  }
-
-  // =========================================================
+  // =====================================================
   // CARREGAR USUÁRIO
-  // =========================================================
+  // =====================================================
 
-  (async function loadUserProfile() {
-    let stored = null;
+  async function loadUserProfile() {
+    let stored;
 
     try {
       stored = JSON.parse(localStorage.getItem("studyplaza-user"));
-    } catch (e) {
+    } catch (error) {
+      console.error("Erro ao ler usuário:", error);
       stored = null;
     }
 
-    if (!stored || !stored.id) {
+    if (!stored?.id) {
       window.location.href = "../web/cadastro.html";
-
       return;
     }
 
-    const userId = stored.id;
-
-    currentUserId = userId;
+    currentUserId = stored.id;
 
     try {
-      const response = await fetch(
-        `${URL_API}/users/${userId}`,
-      );
+      const response = await fetch(`${URL_API}/users/${currentUserId}`);
 
       if (!response.ok) {
-        alert("Erro ao carregar perfil do servidor.");
-
-        return;
+        throw new Error("Erro ao carregar perfil do servidor.");
       }
 
       const responseData = await response.json();
-      const rows = responseData.data[0];
-      console.log(rows);
 
-      const user = Array.isArray(rows) ? rows[0] : rows;
+      if (responseData.message?.toLowerCase() !== "success") {
+        throw new Error(responseData.Error || "Usuário não encontrado.");
+      }
+
+      // GetById retorna data como um array de registros.
+      const user = responseData.data?.[0];
 
       if (!user) {
         alert("Usuário não encontrado no banco.");
-
         window.location.href = "../web/cadastro.html";
-
         return;
       }
 
       currentUser = user;
 
-      populateProfile(user);
+      populateProfile(currentUser);
     } catch (error) {
       console.error("Erro ao buscar perfil:", error);
-
-      alert("Erro ao carregar perfil do servidor.");
+      alert(error.message || "Erro ao carregar perfil.");
     }
-  })();
+  }
 
-  // =========================================================
+  // =====================================================
   // PREENCHER PERFIL
-  // =========================================================
+  // =====================================================
 
   function populateProfile(user) {
-    if (!user) {
-      return;
-    }
+    if (!user) return;
 
-    // -----------------------------------------------------
     // Nome no cabeçalho
-    // -----------------------------------------------------
-
     const nameEl = document.querySelector(".perfil-info-basica h1");
 
     if (nameEl) {
       nameEl.textContent = user.name || "Usuário";
     }
 
-    // -----------------------------------------------------
-    // Username
-    // -----------------------------------------------------
-
+    // Nome de usuário
     const usernameEl = document.querySelector(".perfil-username");
 
     if (usernameEl) {
-      if (user.name) {
-        const nick =
-          "@" +
-          user.nome
+      usernameEl.textContent = user.name
+        ? "@" +
+          user.name
             .toLowerCase()
             .replace(/[^a-z0-9]/gi, "")
-            .slice(0, 16);
-
-        usernameEl.textContent = nick;
-      } else if (user.username) {
-        usernameEl.textContent = user.username;
-      }
+            .slice(0, 16)
+        : "";
     }
 
-    // -----------------------------------------------------
-    // Campos da configuração
-    // -----------------------------------------------------
-
+    // Informações do perfil
     const nameField = document.getElementById("nome");
-
     const emailField = document.getElementById("email");
-
     const tipoField = document.getElementById("tipo_usuario");
 
     if (nameField) {
-      nameField.textContent = user.nome || "";
+      nameField.textContent = user.name || "";
     }
 
     if (emailField) {
@@ -357,15 +276,10 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     if (tipoField) {
-      const tipo = user.tipo_usuario || "";
-
-      tipoField.textContent = formatarTipoUsuario(tipo);
+      tipoField.textContent = formatarTipoUsuario(user.tipo_usuario);
     }
 
-    // -----------------------------------------------------
-    // Atualiza também os inputs
-    // -----------------------------------------------------
-
+    // Atualiza os campos de edição
     if (inputNome) {
       inputNome.value = user.name || "";
     }
@@ -379,32 +293,29 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  // =========================================================
+  // =====================================================
   // FORMATA TIPO DE USUÁRIO
-  // =========================================================
+  // =====================================================
 
   function formatarTipoUsuario(tipo) {
-    if (!tipo) {
-      return "";
-    }
+    if (!tipo) return "";
 
     const tipoKey = `tipo.${tipo}`;
 
-    const translated =
-      window.translationSystem && window.translationSystem.getTranslation
-        ? window.translationSystem.getTranslation(tipoKey)
-        : null;
+    const translated = window.translationSystem?.getTranslation
+      ? window.translationSystem.getTranslation(tipoKey)
+      : null;
 
-    if (translated) {
-      return translated;
-    }
+    if (translated) return translated;
 
     return tipo.charAt(0).toUpperCase() + tipo.slice(1);
   }
 
-  // =========================================================
-  // TOPO DA PÁGINA
-  // =========================================================
+  // =====================================================
+  // INICIALIZAÇÃO
+  // =====================================================
 
   window.scrollTo(0, 0);
+
+  loadUserProfile();
 });

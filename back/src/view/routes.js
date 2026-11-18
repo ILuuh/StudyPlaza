@@ -7,6 +7,7 @@ import cursosRoutes from "./cursosRoutes.js";
 import inscricoesRoutes from "./inscricoesRoutes.js";
 import gruposRoutes from "./gruposRoutes.js";
 import usuariosGruposRoutes from "./usuariosGruposRoutes.js";
+import mensagensRoutes from "./mensagensRoutes.js";
 
 const swRoutes = Router();
 
@@ -20,5 +21,6 @@ swRoutes.use( cursosRoutes);
 swRoutes.use( usuariosGruposRoutes);
 swRoutes.use( gruposRoutes);
 swRoutes.use( inscricoesRoutes);
+swRoutes.use( mensagensRoutes);
 
 export default swRoutes;

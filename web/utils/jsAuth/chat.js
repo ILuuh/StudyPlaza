@@ -23,7 +23,7 @@ io.on("connection", (socket) => {
     try {
       // Faz um GET na sua API passando o ID do grupo atual
       // Ajuste a URL abaixo de acordo com a porta/rota real da sua API
-      const response = await fetch(`http://localhost:3500/api/mensagens/conversasGrupo/${socket.id_grupo}`);
+      const response = await fetch(`http://localhost:3500/mensagens/grupo/${socket.id_grupo}`);
       
       if (response.ok) {
         const historico = await response.json();
@@ -58,7 +58,7 @@ io.on("connection", (socket) => {
     };
 
     try {
-      await fetch("http://localhost:3500/api/mensagens", {
+      await fetch("http://localhost:3500/mensagens", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(dadosParaSalvar)
@@ -83,7 +83,7 @@ app.use('/logeed', express.static(path.join(__dirname, '../')));
 
 // Rota raiz que envia index.html (útil ao abrir http://localhost:9000)
 app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, '../..', '/logeed/homeChat.html'));
+  res.sendFile(path.join(__dirname, '../..', '../web/auth/homeChat.html'));
 });
 
 
