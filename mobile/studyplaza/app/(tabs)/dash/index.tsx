@@ -22,6 +22,8 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { useAppTheme } from "../../../hooks/use-theme-context";
 import { useAuth } from "../../../contexts/AuthContext";
 
+import Logo from "@/assets/images/Logo_Fundo_Roxa.png";
+
 import api from "@/services/api";
 import { createStyles } from "@/styles/tabs/dash";
 
@@ -121,7 +123,7 @@ export default function Dashboard() {
 
   const router = useRouter();
   const styles = createStyles(theme);
-  
+
   const scrollViewRef = useRef<ScrollViewInstance | null>(null);
 
   const [gruposSectionY, setGruposSectionY] = useState(0);
@@ -572,8 +574,15 @@ export default function Dashboard() {
 
       <View style={styles.header}>
         <View style={styles.logoContainer}>
-          <Image 
-        source={require('../../../assets/images/Logo_Fundo_Roxa.png')}width={28} height={28} />
+          <Image
+            source={Logo}
+            style={{
+              width: 28,
+              height: 28,
+              resizeMode: "contain",
+            }}
+          />
+
           <Text style={styles.headerTitle}>Study Plaza</Text>
         </View>
 
@@ -588,7 +597,7 @@ export default function Dashboard() {
 
           <TouchableOpacity
             style={styles.iconButton}
-            onPress={() => router.push("/(tabs)/perfil" as any)}
+            onPress={() => router.push("/(tabs)/profile/" as any)}
           >
             <FontAwesome6
               name="circle-user"
