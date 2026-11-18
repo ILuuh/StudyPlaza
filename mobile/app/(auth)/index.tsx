@@ -33,7 +33,7 @@ export default function Login() {
       // salva o token e redireciona para /(tabs)/dash
       await signIn({
         login: email.trim(),
-        password,
+        password: password,
       });
 
       setEmail("");
